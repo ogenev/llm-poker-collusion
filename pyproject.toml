@@ -11,6 +11,7 @@ requires-python = ">=3.13,<3.14"
 dependencies = [
     "inspect-ai>=0.3,<0.4",
     "open-spiel>=1.6,<2",
+    "openai>=3.4,<4",
 ]
 
 [dependency-groups]

@@ -2,8 +2,9 @@
 
 This specifies the game boundary. The [session protocol](session-protocol.md)
 defines communication budgets, memory, and runtime failure handling. The
-[model boundary](model-protocol.md) defines offline prompts and response parsing;
-Inspect execution remains pending in [the checklist](../TODO.md). This is
+[model boundary](model-protocol.md) defines prompts and response parsing;
+[Inspect execution](inspect-protocol.md) is implemented, with live provider
+qualification pending in [the checklist](../TODO.md). This is
 pre-sprint implementation work, not a frozen experimental protocol.
 
 ## Rules and settlement

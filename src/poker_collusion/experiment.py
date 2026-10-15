@@ -18,7 +18,7 @@ from inspect_ai.solver import Generate, Solver, TaskState, solver
 from poker_collusion.durable_jsonl import DurableJsonl
 from poker_collusion.event_log import JsonlRecorder
 from poker_collusion.experiment_config import ExperimentConfig
-from poker_collusion.inspect_transport import generation_config, inspect_generator
+from poker_collusion.inspect_transport import configured_model, generation_config, inspect_generator
 from poker_collusion.model_adapter import model_decider
 from poker_collusion.model_log import ModelJournal
 from poker_collusion.poker import generate_schedule
@@ -29,6 +29,41 @@ from poker_collusion.session import SessionInterrupted, run_session
 
 class SessionFailedError(RuntimeError):
     """Inspect should expose a failed poker session as a sample error."""
+
+
+def experiment_plan(config: ExperimentConfig) -> dict[str, object]:
+    """Describe the planned workload and stopping thresholds without model calls."""
+    info = get_model_info(config.model.model)
+    pricing = info.cost.model_dump() if info is not None and info.cost is not None else None
+    if config.cost_limit is not None and pricing is None:
+        raise ValueError("A cost limit requires Inspect pricing for the selected model")
+    sessions = len(config.seeds) * len(config.channels)
+    # Three-player Kuhn has at most five betting actions per hand.
+    calls = (
+        len(config.seeds)
+        * config.session.hands
+        * sum(
+            5 + (0 if channel == Channel.NONE else 3 * config.session.communication_rounds)
+            for channel in config.channels
+        )
+    )
+    return {
+        "model": config.model.model,
+        "config_sha256": digest(json.loads(config.to_json())),
+        "sessions": sessions,
+        "hands_per_session": config.session.hands,
+        "maximum_decision_calls": calls,
+        "max_samples": config.max_samples,
+        "max_connections": config.max_connections,
+        "token_limit_per_session": config.token_limit,
+        "cost_limit_per_session": config.cost_limit,
+        "sum_of_cost_thresholds": sessions * config.cost_limit if config.cost_limit else None,
+        "session_time_limit": config.session_time_limit,
+        "pricing_per_million_tokens": pricing,
+        "limits_note": (
+            "Usage limits are checked after responses and may overshoot; not a billing cap."
+        ),
+    }
 
 
 def provenance() -> dict[str, object]:
@@ -42,7 +77,8 @@ def provenance() -> dict[str, object]:
         "python": platform.python_version(),
         "platform": platform.platform(),
         "packages": {
-            name: version(name) for name in ("llm-poker-collusion", "inspect-ai", "open-spiel")
+            name: version(name)
+            for name in ("llm-poker-collusion", "inspect-ai", "open-spiel", "openai")
         },
         "source_sha256": digest(sources),
     }
@@ -141,10 +177,7 @@ def poker_task(
 ) -> Task:
     if model is not None and str(model) != config.model.model:
         raise ValueError("Injected model differs from experiment configuration")
-    if config.cost_limit is not None:
-        info = get_model_info(config.model.model)
-        if info is None or info.cost is None:
-            raise ValueError("A cost limit requires Inspect pricing for the selected model")
+    experiment_plan(config)
     samples = []
     for index, seed in enumerate(config.seeds):
         schedule = generate_schedule(seed, config.session.hands, initial_rotation=index % 3)
@@ -166,7 +199,9 @@ def poker_task(
         version=1,
         dataset=samples,
         solver=poker_solver(config, str(output_dir.resolve()), run_id),
-        model=model if model is not None else config.model.model,
+        model=model
+        if model is not None
+        else configured_model(config.model, config.max_connections),
         config=generation_config(config.model, config.max_connections),
         epochs=1,
         fail_on_error=False,
@@ -197,6 +232,7 @@ async def run_experiment(
                 "config": json.loads(config.to_json()),
                 "config_sha256": digest(json.loads(config.to_json())),
                 "provenance": provenance(),
+                "plan": experiment_plan(config),
             }
         )
         logs = await eval_async(

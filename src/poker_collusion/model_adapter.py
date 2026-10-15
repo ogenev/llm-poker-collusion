@@ -1,7 +1,7 @@
-"""Offline model boundary: explicit requests and strict, single-response parsing.
+"""Provider-independent requests and strict, single-response parsing.
 
-The caller supplies the async text generator. Inspect transport, provider audit
-records, and evaluation orchestration are added in the next increment.
+The caller supplies the async text generator; Inspect transport adds durable
+provider evidence while the session engine owns legality and memory.
 """
 
 from __future__ import annotations

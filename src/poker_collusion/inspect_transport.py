@@ -3,6 +3,7 @@
 import asyncio
 from datetime import UTC, datetime
 from time import monotonic
+from typing import Any
 
 from inspect_ai.event import Event, ModelEvent
 from inspect_ai.log import EvalSample, resolve_sample_attachments, transcript
@@ -13,6 +14,7 @@ from inspect_ai.model import (
     GenerateConfig,
     Model,
     ModelOutput,
+    get_model,
 )
 from inspect_ai.util import span
 
@@ -20,6 +22,22 @@ from poker_collusion.model_adapter import GenerateText, ModelConfig, ModelReques
 from poker_collusion.model_log import ModelJournal
 from poker_collusion.records import DecisionParseError
 from poker_collusion.session_audit import current_request_id
+
+
+def configured_model(config: ModelConfig, max_connections: int, **model_args: Any) -> Model:
+    """Initialize the provider with the same retry policy as Inspect.
+
+    OpenAI's SDK otherwise retries twice independently of GenerateConfig.
+    Explicit test transports can be supplied without changing player inputs.
+    """
+    if config.model.startswith("openai/"):
+        model_args["max_retries"] = 0
+    return get_model(
+        config.model,
+        config=generation_config(config, max_connections),
+        memoize=False,
+        **model_args,
+    )
 
 
 def generation_config(config: ModelConfig, max_connections: int) -> GenerateConfig:

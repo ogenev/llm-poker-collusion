@@ -52,6 +52,18 @@ responses, global connection limits, fresh attempts, private-input isolation,
 malformed/refused/truncated responses, retry suppression, time/token/dollar limits,
 disk failures, incomplete prefixes, and corrupted audit links.
 
+Increment 3 offline preparation completed on 2026-10-15: a pinned OpenAI smoke
+candidate, explicit pricing and workload limits, client preflight without API
+calls, and a command that verifies complete saved runs across Inspect and both
+journals. Tests exercise the real OpenAI SDK using simulated HTTP, including
+request translation, raw evidence, failures, and zero SDK retries. See the
+[live smoke instructions](docs/live-smoke.md). Review fixes size the smoke token
+threshold for repeated prompts and check token accounting, including cached input,
+reasoning, and per-model session totals. All 986 offline tests pass, with Ruff
+lint/format and strict mypy passing. The live run is deliberately deferred
+until API credentials and provider access are ready. No provider calls or research
+runs have been made; compatibility, competence, and coordination remain unproven.
+
 ## Phase scope
 
 | Dimension | Phase 1 Sprint study | Phase 2 Full research project |
@@ -119,7 +131,7 @@ open for Phase 2 snapshot/branch state.
 - [ ] Define complete session state: game state, phase and cursor, player identities and seats, all histories, rewards, pending messages, budgets, schedule position, and random-generator state.
 - [ ] Define audit identifiers for runs, matched blocks, sessions, hands, events, requests, snapshots, and branches. Keep internal identifiers and experimental labels out of player-visible observations.
 - [x] Add schema versions and configuration/prompt hashes. Reject incompatible saved records explicitly rather than loading them partially. Future snapshot/branch schemas accompany Phase 2 recovery.
-- [ ] Add environment-variable configuration for credentials and ignore generated runs, caches, and credential files in version control.
+- [x] Add environment-variable configuration for credentials and ignore generated runs, caches, and credential files in version control. `.env.example` documents `OPENAI_API_KEY`; preflight checks client setup without API calls. Secrets belong in the shell or managed environment, not experiment files.
 
 Done when configurations and state records validate, serialize, and round-trip in offline tests, and the package passes the configured checks.
 
@@ -172,9 +184,11 @@ Dependencies: milestone 5. Primary module: `experiment.py`.
 
 Increment 1 supplies the provider-independent request/parse boundary. Increment 2
 connects it to the actual Inspect task/solver/model runtime, verified with an offline
-scripted model. Next: select the Phase 1 model and qualify its provider behavior
-with an explicitly invoked, bounded live smoke run. None of the offline checks
-establish poker competence or spontaneous/enacted coordination.
+scripted model. Increment 3's offline implementation supplies a pinned candidate,
+small live configuration, pricing, preflight, OpenAI SDK HTTP tests, and saved-run
+verification. Its live qualification is deferred until credentials and provider
+access are ready; fix the study model after the competence/control pilot. None
+of the offline checks establish poker competence or spontaneous/enacted coordination.
 
 - [x] Implement the Inspect decision function with explicit player-specific inputs, generation settings, structured response parsing, and validation against the current phase.
 - [x] Keep all persistent player memory in session state. Ensure model clients do not introduce conversation state that snapshots cannot capture. Inspect receives fresh explicit messages for each request; live provider payloads still require qualification.
@@ -185,7 +199,8 @@ establish poker competence or spontaneous/enacted coordination.
 - [x] Apply bounded concurrency, transport retries, timeouts, token/cost limits, and the predefined model-failure policy. Record interrupted or incomplete runs explicitly. Retries are zero; limits apply per session and may overshoot for in-flight responses. Dollar limits require known Inspect pricing.
 - [x] Configure response-cache behavior so independent sessions do not reuse sampled answers. Record exact outputs and supported sampling settings without assuming seeds make provider calls deterministic.
 - [x] Connect Inspect execution logs to the experiment event records using stable references, with the experiment records authoritative for game behavior.
-- [ ] Test the integration with a fake model interface. Provide a small, explicitly invoked live smoke-run configuration and verify compatibility with the model selected for Phase 1. Offline integration tests and mock configurations are complete; the live half remains increment 3.
+- [x] Test the integration with a fake model interface and simulated provider HTTP. Provide a small, explicitly invoked live smoke-run configuration, preflight, pricing, and offline artifact verification.
+- [ ] Execute the bounded live smoke run and review model identity, settings, legal decisions, privacy, usage, raw payloads, and replay. Increment 3 remains open for this evidence; remote compatibility cannot be established by offline tests.
 
 Done when Inspect can execute and inspect complete sessions, preserve distinct player histories, and report failures and usage without changing the protocol.
 

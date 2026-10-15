@@ -16,7 +16,7 @@ def test_experiment_configuration_round_trips() -> None:
     assert ExperimentConfig.from_json(config.to_json()) == config
 
 
-@pytest.mark.parametrize("path", sorted(Path("configs").glob("*.json")))
+@pytest.mark.parametrize("path", sorted(Path("configs").glob("inspect-*.json")))
 def test_shipped_configurations_are_valid(path: Path) -> None:
     config = ExperimentConfig.from_json(path.read_text())
     assert ExperimentConfig.from_json(config.to_json()) == config

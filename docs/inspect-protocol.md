@@ -1,10 +1,11 @@
 # Inspect execution v1
 
-This is increment 2 of Phase 1 milestone 6. Inspect now executes the existing
-session engine and records model-call evidence. Verification uses Inspect's real
-task, solver, model, and logging APIs with an offline scripted model. No live
-provider has been qualified and no research data has been collected. A bounded
-live compatibility check remains increment 3; recovery and branching remain Phase 2.
+This covers increments 2 and 3 of Phase 1 milestone 6. Inspect executes the existing
+session engine and records model-call evidence. Offline verification uses Inspect's
+real task, solver, model, and logging APIs, including the OpenAI SDK with simulated
+HTTP responses. [Increment 3 preparation](live-smoke.md) is complete; the live run
+is deferred until provider access is ready. No live provider has been qualified
+and no research data has been collected. Recovery and branching remain Phase 2.
 
 ## Execution and player inputs
 
@@ -48,13 +49,17 @@ The number of planned sessions is `len(seeds) * len(channels)`.
 Each request also uses the model's output-token cap and the session's decision
 timeout. Queuing for a connection counts toward that timeout. Transport retries,
 sample retries, response caching, fallback models, and batch execution are disabled.
+The default model constructor disables OpenAI SDK retries as well as Inspect
+retries; these are separate settings. Injected models must honor the same contract.
 Provider-side prompt caching is distinct from reusing a sampled answer. We make
 no claim that live sampling is reproducible from a seed: seeds determine deals.
 
 Token and dollar limits are checked by Inspect after responses arrive. Concurrent
 in-flight calls may exceed them, and usage absent from a provider response cannot
 be metered reliably. A configured dollar limit is rejected if Inspect has no
-pricing for that model. These are per-session stopping limits, not a prepaid cap
+pricing for that model. The CLI accepts an explicit `--model-cost-config` file
+and saves the effective prices; see the [smoke instructions](live-smoke.md).
+These are per-session stopping limits, not a prepaid cap
 on the whole run. Live validation must check supported settings, returned model
 identity, usage, pricing, and transport behavior before fixing an evaluation budget.
 
@@ -70,7 +75,8 @@ run-directory/
 ```
 
 `run.jsonl` saves configuration/hash, run ID, Python/platform/package versions,
-and a digest of installed package source and prompt files. Its final record lists
+and a digest of installed package source and prompt files. New runs also save the
+workload plan, per-session stopping thresholds, and effective prices. Its final record lists
 Inspect log locations and evaluation IDs. An absent final record leaves an
 incomplete run manifest; inspect individual attempts before classifying them.
 
@@ -130,12 +136,20 @@ Replay uses recorded decisions, with no model calls or dependence on Inspect log
 formats. Only complete, linked, replay-verified sessions qualify for complete-session
 results; preserve failed, interrupted, and incomplete attempts separately.
 
+`await verify_run(directory)` from `poker_collusion.verification` combines these
+checks for an entire saved run. It checks sample coverage, matched schedules,
+Inspect event links, exact permitted inputs, generation settings, returned model
+identity, raw payload availability, output parsing, usage, and game replay.
+The report retains unsuccessful sessions and distinguishes mock runs. Provider
+wire semantics and live behavior still require the [compatibility review](live-smoke.md).
+
 ## Offline commands and control templates
 
 Run the full offline pipeline in a new directory:
 
 ```sh
 uv run --locked python scripts/run_experiment.py configs/inspect-offline.json --offline --output runs/preparation/inspect-001
+uv run --locked python scripts/verify_run.py runs/preparation/inspect-001
 ```
 
 The command prints session statuses and Inspect log paths. Open a returned `.eval`
@@ -154,7 +168,7 @@ state = asyncio.run(replay_session(directory / "session.jsonl"))
 print(audit.status, state.completed_hands, state.rewards)
 ```
 
-All three shipped configurations use `mockllm/model` and three hands:
+Three offline configurations use `mockllm/model` and three hands:
 
 - `inspect-offline.json`: neutral none/public/private matched sessions.
 - `inspect-competence.json`: separate neutral no-communication sessions for the
@@ -165,8 +179,10 @@ Use the latter files with the same command and distinct output directories.
 The offline policy passes on messages and checks/calls. Its token counts are
 explicitly synthetic, supplied to avoid a tokenizer download and exercise usage
 metering. It does not demonstrate competence or enacted coordination, even when
-run under the control instructions. The model and budget for live runs remain
-to be selected and verified; these templates are preparation defaults.
+run under the control instructions. `inspect-live-smoke.json` supplies a pinned
+OpenAI candidate and small explicit limits for the deferred compatibility run.
+The final study model and budget still require pilot evidence; these templates
+are preparation defaults.
 
 Ordinary tests require no credentials or external network. Inspect needs local
 event-loop sockets and writable XDG data/cache directories. Restricted sandboxes

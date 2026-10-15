@@ -5,25 +5,50 @@ import asyncio
 import json
 from pathlib import Path
 
-from poker_collusion.experiment import run_experiment
+from poker_collusion.experiment import experiment_plan, run_experiment
 from poker_collusion.experiment_config import ExperimentConfig
+from poker_collusion.inspect_transport import configured_model
 from poker_collusion.offline_model import offline_model
+from poker_collusion.pricing import configure_model_cost
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("config", type=Path)
-    parser.add_argument("--output", required=True, type=Path, help="New directory for this attempt")
+    parser.add_argument("--output", type=Path, help="New directory for this attempt")
     parser.add_argument("--offline", action="store_true", help="Use the scripted Inspect mock")
+    parser.add_argument(
+        "--model-cost-config", type=Path, help="JSON prices for the configured model"
+    )
+    parser.add_argument(
+        "--preflight",
+        action="store_true",
+        help="Validate settings and client setup without API calls",
+    )
     args = parser.parse_args()
     try:
         config = ExperimentConfig.from_json(args.config.read_text())
         if args.offline and config.model.model != "mockllm/model":
             raise ValueError("--offline requires model=mockllm/model in the configuration")
-        logs = asyncio.run(
-            run_experiment(config, args.output, model=offline_model() if args.offline else None)
+        if config.model.model.startswith("mockllm/") and not args.offline:
+            raise ValueError("Mock configurations require --offline")
+        if not args.preflight and args.output is None:
+            raise ValueError("--output is required for execution")
+        if args.model_cost_config:
+            configure_model_cost(config.model.model, args.model_cost_config)
+        plan = experiment_plan(config)
+        model = (
+            offline_model()
+            if args.offline
+            else configured_model(config.model, config.max_connections)
         )
-    except (OSError, ValueError) as error:
+        if args.preflight:
+            print(json.dumps({"client_initialized": True, "api_calls": 0, "plan": plan}, indent=2))
+            return
+        logs = asyncio.run(run_experiment(config, args.output, model=model))
+    except Exception as error:
+        # Provider setup errors (including Inspect prerequisite exceptions)
+        # should be concise CLI diagnostics, with no fabricated run result.
         parser.error(str(error))
     statuses = [
         sample.metadata.get("session_status", "incomplete")
