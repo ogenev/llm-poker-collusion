@@ -1,9 +1,9 @@
-# Model boundary v1 — offline increment
+# Model boundary v1
 
-This is the first part of Phase 1 milestone 6. It defines prompts, model settings,
-and response parsing, exercised through an injected fake text generator. It makes
-no provider calls. Inspect transport, task/solver execution, provider audit records,
-and a live smoke run remain subsequent increments. These are preparation defaults;
+This is the model boundary introduced in increment 1 of Phase 1 milestone 6.
+It defines prompts, model settings, and response parsing through an injected text
+generator. Increment 2 supplies [Inspect transport and durable model-call auditing](inspect-protocol.md),
+verified offline. Live provider compatibility remains increment 3. These are preparation defaults;
 the experimental protocol and budget must be frozen separately before evaluation.
 
 ## Request construction and memory
@@ -53,7 +53,7 @@ Explicit fair-play instructions remain Phase 2.
 record. Unknown or missing saved fields, duplicate JSON keys, and incompatible
 versions are rejected. `config.sha256` hashes the canonical configuration record;
 `prompt.sha256` hashes the exact system/user content pair, including whitespace.
-These hashes are available for the next increment's model-call audit.
+The Inspect model-call audit retains both hashes.
 
 | Field | Default | Rule |
 | --- | --- | --- |
@@ -66,10 +66,11 @@ These hashes are available for the next increment's model-call audit.
 
 `temperature=None` means not explicitly requested. Supported settings, provider
 defaults, model resolution, and actual token limits must be checked and recorded
-when Inspect transport is implemented. These fields do not claim provider
+in the live compatibility check. These fields do not claim provider
 compatibility or enforce a budget inside an arbitrary injected generator.
 The session's existing decision timeout covers request rendering, generation,
-and parsing. Run-level concurrency and token/cost limits follow with Inspect.
+and parsing. The [Inspect runner](inspect-protocol.md) adds concurrency and
+per-session time/token/cost limits.
 Credentials are not part of this record. No credentials are needed offline.
 
 ## Strict response contract
@@ -105,10 +106,12 @@ are cleaned up. All these terminal trajectories replay through the existing
 journal format without invoking the generator. Recording failures still propagate
 and can leave an incomplete journal.
 
-The current session journal preserves parsed decisions and malformed text.
-It does **not** yet preserve successful raw model text, rendered prompts, usage,
-or provider payloads. Durable model-call auditing and stable links to Inspect
-logs belong to increment 2; do not use this offline adapter for research runs yet.
+The session journal preserves parsed decisions and malformed text. When executed
+through the Inspect runner, a separate linked model journal preserves successful
+raw text, exact prompts, usage, and available provider payloads before game effects.
+An arbitrary injected generator does not automatically supply that evidence.
+Live model compatibility and the experimental protocol must be verified before
+using this integration for research runs.
 
 ## Offline example
 

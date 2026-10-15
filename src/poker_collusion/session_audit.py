@@ -4,8 +4,9 @@ from __future__ import annotations
 
 import asyncio
 from collections.abc import Awaitable, Callable
+from contextvars import ContextVar
 
-from poker_collusion.event_log import EventSink
+from poker_collusion.event_log import EventSink, RecordingError
 from poker_collusion.records import (
     Action,
     BetDecision,
@@ -22,6 +23,16 @@ from poker_collusion.records import (
 
 type Decider = Callable[[PlayerView], Awaitable[Decision]]
 type Outcome = Decision | SessionFailure
+
+_active_request: ContextVar[int | None] = ContextVar("poker_request_id", default=None)
+
+
+def current_request_id() -> int:
+    """Trusted audit context, never part of the player's observation."""
+    request_id = _active_request.get()
+    if request_id is None:
+        raise RuntimeError("Model calls must occur inside a session decision request")
+    return request_id
 
 
 def validate_decision(view: PlayerView, decision: object) -> Decision:
@@ -125,7 +136,15 @@ class SessionAudit:
         # must abort execution, never become an agent failure or a default action.
         try:
             async with asyncio.timeout(timeout):
-                candidate: object = await decide(view)
+                token = _active_request.set(request_id)
+                try:
+                    candidate: object = await decide(view)
+                finally:
+                    _active_request.reset(token)
+        except RecordingError:
+            # Model-call persistence happens inside the callback; it has the
+            # same stop-on-disk-error guarantee as the session journal.
+            raise
         except DecisionParseError as error:
             # A raw string is never a protocol decision. Preserve malformed model
             # text using the existing candidate format and validation/replay path.

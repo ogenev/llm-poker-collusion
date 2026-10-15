@@ -3,8 +3,9 @@
 This is Phase 1 framework preparation. It records the existing
 [session protocol](session-protocol.md) without changing player observations,
 communication opportunities, or game mechanics. No model experiment has been
-run. Inspect integration, provider prompts, usage, and model provenance follow
-this milestone; recovery and intervention execution remain Phase 2.
+run. The [Inspect integration](inspect-protocol.md) adds separate linked model-call
+records, prompts, usage, and provenance without changing this journal format.
+Recovery and intervention execution remain Phase 2.
 
 ## File and durability contract
 
@@ -96,12 +97,12 @@ integers exceeding Python's string-conversion limit retain a class name and
 Valid protocol decisions need at most two nesting levels and are preserved
 exactly. Validation precedes audit encoding, and malformed values yield explicit
 failed sessions rather than serialization crashes. No pickle or executable class
-loading is used. The offline model adapter uses `DecisionParseError` to preserve
+loading is used. The model adapter uses `DecisionParseError` to preserve
 malformed response text as a string candidate; this yields a replayable
 `INVALID_DECISION` outcome without a schema change. Successfully parsed outputs
-are recorded as decisions. Future Inspect integration must separately preserve
-rendered prompts, successful raw outputs, and provider request/response data;
-the current journal captures the decision callable boundary.
+are recorded as decisions. The [Inspect model journal](inspect-protocol.md)
+separately preserves rendered prompts, successful raw outputs, and available
+provider request/response data; this journal captures the decision callable boundary.
 
 The audit retains all completed-hand observations even when `memory_hands=0`.
 Retention only bounds what a player receives. The final state record is an audit

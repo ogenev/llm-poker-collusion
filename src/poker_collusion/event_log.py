@@ -3,13 +3,14 @@
 from __future__ import annotations
 
 import json
-import os
 from dataclasses import dataclass
 from pathlib import Path
 from types import TracebackType
 from typing import Protocol, Self
 from uuid import uuid4
 
+from poker_collusion.durable_jsonl import DurableJsonl
+from poker_collusion.durable_jsonl import RecordingError as RecordingError
 from poker_collusion.records import DealSchedule, Phase
 from poker_collusion.serialization import canonical, digest, event_payload, read_config
 
@@ -43,10 +44,6 @@ class EventSink(Protocol):
     def emit(self, event: str, data: dict[str, object]) -> None: ...
 
 
-class RecordingError(OSError):
-    """Persistence failed. Stop execution; the journal may have an incomplete tail."""
-
-
 class JsonlRecorder:
     """One exclusive file per attempt, including reruns. Use as a context manager.
 
@@ -68,42 +65,24 @@ class JsonlRecorder:
                 raise ValueError("Audit identifiers must be nonempty strings")
         self.metadata = {"run_id": run_id, "matched_block_id": matched_block_id}
         self.path = Path(path)
-        self.path.parent.mkdir(parents=True, exist_ok=True)
-        descriptor = os.open(self.path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
-        self._file = os.fdopen(descriptor, "w", encoding="utf-8", newline="\n")
-        self._sequence = 0
+        self._writer = DurableJsonl(path)
         self._finished = False
-        self._broken = False
 
     def emit(self, event: str, data: dict[str, object]) -> None:
-        if self._broken or self._finished or self._file.closed:
+        if self._finished:
             raise RecordingError("Recorder is closed, finished, or failed")
-        if event not in EVENT_TYPES or (self._sequence == 0) != (event == "session_started"):
+        if event not in EVENT_TYPES or (self._writer.count == 0) != (event == "session_started"):
             raise ValueError("Expected one session_started event followed by known events")
         envelope = {
             "kind": "session_event",
             "version": 1,
             "session_id": self.session_id,
-            "sequence": self._sequence,
+            "sequence": self._writer.count,
             "event": event,
             "data": event_payload(event, data),
             "metadata": self.metadata,
         }
-        line = canonical(envelope) + "\n"
-        try:
-            self._file.write(line)
-            self._file.flush()
-            os.fsync(self._file.fileno())
-            if self._sequence == 0:
-                directory = os.open(self.path.parent, os.O_RDONLY)
-                try:
-                    os.fsync(directory)
-                finally:
-                    os.close(directory)
-        except (OSError, ValueError) as error:
-            self._broken = True
-            raise RecordingError("Could not durably record session event") from error
-        self._sequence += 1
+        self._writer.write(envelope)
         self._finished = event == "session_ended"
 
     def __enter__(self) -> Self:
@@ -115,7 +94,7 @@ class JsonlRecorder:
         exc: BaseException | None,
         traceback: TracebackType | None,
     ) -> None:
-        self._file.close()
+        self._writer.__exit__(exc_type, exc, traceback)
 
 
 @dataclass(frozen=True)

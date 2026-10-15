@@ -34,6 +34,24 @@ Offline model verification: 875 tests pass, including 126 new model-boundary
 checks. Ruff lint/format and strict mypy pass. The package wheel includes the
 prompt resources, and the documented fake-model example completes using that wheel.
 
+Inspect increment 2 completed on 2026-10-15: one sample per session, matched
+channel blocks, explicit player-specific model inputs, bounded concurrency and
+per-session limits, separate competence/control templates, and durable model-call
+evidence linked to game requests and Inspect model events. The unchanged game
+journal remains authoritative and replay uses no models. The
+[Inspect protocol](docs/inspect-protocol.md) documents commands, artifacts, and
+failure handling. Verification uses the actual Inspect runtime with a scripted
+mock; usage is synthetic. Live provider compatibility remains increment 3, and
+no provider calls or research runs have been made.
+
+Inspect verification: 930 offline tests pass, with Ruff lint/format and strict
+mypy passing. A concurrent 30-hand run in each of the three channels completes;
+all 630 model calls retain raw mock payloads, both journals link successfully,
+and all three game trajectories replay exactly. The suite covers out-of-order
+responses, global connection limits, fresh attempts, private-input isolation,
+malformed/refused/truncated responses, retry suppression, time/token/dollar limits,
+disk failures, incomplete prefixes, and corrupted audit links.
+
 ## Phase scope
 
 | Dimension | Phase 1 Sprint study | Phase 2 Full research project |
@@ -85,21 +103,22 @@ Done when every observation, legal decision, phase transition, and failure outco
 
 Dependencies: milestone 1. Primary outputs: package skeleton, locked environment, and state schemas.
 
-Runtime session records and Phase 1 audit persistence are implemented. The compound tasks below remain open where they also require provider settings or complete recovery state. The current in-memory state is not a session checkpoint.
+Runtime session records, Phase 1 configuration, and audit persistence are implemented. The compound tasks below remain open where they also require analysis or complete recovery state. The current in-memory state is not a session checkpoint.
 
 Milestone 5 now supplies durable events, versioned configuration/terminal records,
 configuration and schedule hashes, and session/event/request identifiers with
-optional run/matched-block identifiers. The compound tasks remain open for
-provider configuration, prompt hashes, or Phase 2 snapshot/branch recovery state.
+optional run/matched-block identifiers. Milestone 6 adds model/experiment configuration,
+prompt hashes, provenance, and Inspect references. Compound recovery tasks remain
+open for Phase 2 snapshot/branch state.
 
 - [x] Create `pyproject.toml`, a compatible Python environment managed with uv, and a lockfile. Verify the selected Inspect and OpenSpiel versions work together on the target machine. Python 3.13.7, Inspect 0.3.278, and OpenSpiel 1.6.15 install and import together on macOS arm64; end-to-end Inspect execution remains milestone 6.
 - [ ] Add the five initial modules, test directories, configuration and prompt directories, and output-directory conventions.
 - [x] Configure pytest, formatting, linting, and type checking with documented local commands. Keep ordinary verification independent of paid model calls.
-- [ ] Define validated configuration records for rules, communication, instructions, model settings, memory, deal schedules, stopping limits, and failure policy.
+- [x] Define validated configuration records for rules, communication, instructions, model settings, memory, deal schedules, stopping limits, and failure policy. Phase 1 rules and the zero-retry failure policy are fixed; provider compatibility still requires the live check.
 - [ ] Define `PlayerView`, phase-specific decisions, messages, events, results, and serializable state. Reject inconsistent phase/action/channel combinations and unknown configuration values.
 - [ ] Define complete session state: game state, phase and cursor, player identities and seats, all histories, rewards, pending messages, budgets, schedule position, and random-generator state.
 - [ ] Define audit identifiers for runs, matched blocks, sessions, hands, events, requests, snapshots, and branches. Keep internal identifiers and experimental labels out of player-visible observations.
-- [ ] Add schema versions and configuration/prompt hashes. Reject incompatible saved records explicitly rather than loading them partially.
+- [x] Add schema versions and configuration/prompt hashes. Reject incompatible saved records explicitly rather than loading them partially. Future snapshot/branch schemas accompany Phase 2 recovery.
 - [ ] Add environment-variable configuration for credentials and ignore generated runs, caches, and credential files in version control.
 
 Done when configurations and state records validate, serialize, and round-trip in offline tests, and the package passes the configured checks.
@@ -151,22 +170,22 @@ Done when complete scripted sessions replay exactly and failed runs remain visib
 
 Dependencies: milestone 5. Primary module: `experiment.py`.
 
-Increment 1 supplies the provider-independent request/parse boundary and fake-model
-verification. The compound tasks below remain open for Inspect transport, actual
-provider settings and logs, evaluation orchestration, or the live smoke run.
-Next: connect one Inspect sample to one session and link durable model-call records
-to session requests, preserving exact successful raw outputs as well as failures.
+Increment 1 supplies the provider-independent request/parse boundary. Increment 2
+connects it to the actual Inspect task/solver/model runtime, verified with an offline
+scripted model. Next: select the Phase 1 model and qualify its provider behavior
+with an explicitly invoked, bounded live smoke run. None of the offline checks
+establish poker competence or spontaneous/enacted coordination.
 
-- [ ] Implement the Inspect decision function with explicit player-specific inputs, generation settings, structured response parsing, and validation against the current phase.
-- [ ] Keep all persistent player memory in session state. Ensure model clients do not introduce conversation state that snapshots cannot capture.
-- [ ] Implement a custom solver that invokes the session runner and exposes results and artifact references to Inspect without using a shared sample transcript as player input.
-- [ ] Map one Inspect sample to one complete session. Build tasks/configurations for the three Phase 1 channels under neutral instructions, maintaining a shared matching identifier across conditions.
-- [ ] Add separate positive-control and competence configurations. Use one fixed model with three separate histories and individual rewards in the main formation experiments.
-- [ ] Record requested and returned model identifiers where available, supported generation parameters, exact prompts, raw returned outputs, token usage, latency, retry information, and run provenance.
-- [ ] Apply bounded concurrency, transport retries, timeouts, token/cost limits, and the predefined model-failure policy. Record interrupted or incomplete runs explicitly.
-- [ ] Configure response-cache behavior so independent sessions do not reuse sampled answers. Record exact outputs and supported sampling settings without assuming seeds make provider calls deterministic.
-- [ ] Connect Inspect execution logs to the experiment event records using stable references, with the experiment records authoritative for game behavior.
-- [ ] Test the integration with a fake model interface. Provide a small, explicitly invoked live smoke-run configuration and verify compatibility with the model selected for Phase 1.
+- [x] Implement the Inspect decision function with explicit player-specific inputs, generation settings, structured response parsing, and validation against the current phase.
+- [x] Keep all persistent player memory in session state. Ensure model clients do not introduce conversation state that snapshots cannot capture. Inspect receives fresh explicit messages for each request; live provider payloads still require qualification.
+- [x] Implement a custom solver that invokes the session runner and exposes results and artifact references to Inspect without using a shared sample transcript as player input.
+- [x] Map one Inspect sample to one complete session. Build tasks/configurations for the three Phase 1 channels under neutral instructions, maintaining a shared matching identifier across conditions.
+- [x] Add separate positive-control and competence configurations. Use one fixed model with three separate histories and individual rewards in the main formation experiments. Shipped templates use the offline mock until a live model is selected; competence and control outcomes are not yet scored.
+- [x] Record requested and returned model identifiers where available, supported generation parameters, exact prompts, raw returned outputs, token usage, latency, retry information, and run provenance. Inspect events retain effective settings and available raw payloads; live support and payload completeness remain to be verified.
+- [x] Apply bounded concurrency, transport retries, timeouts, token/cost limits, and the predefined model-failure policy. Record interrupted or incomplete runs explicitly. Retries are zero; limits apply per session and may overshoot for in-flight responses. Dollar limits require known Inspect pricing.
+- [x] Configure response-cache behavior so independent sessions do not reuse sampled answers. Record exact outputs and supported sampling settings without assuming seeds make provider calls deterministic.
+- [x] Connect Inspect execution logs to the experiment event records using stable references, with the experiment records authoritative for game behavior.
+- [ ] Test the integration with a fake model interface. Provide a small, explicitly invoked live smoke-run configuration and verify compatibility with the model selected for Phase 1. Offline integration tests and mock configurations are complete; the live half remains increment 3.
 
 Done when Inspect can execute and inspect complete sessions, preserve distinct player histories, and report failures and usage without changing the protocol.
 

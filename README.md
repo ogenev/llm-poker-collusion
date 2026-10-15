@@ -20,11 +20,13 @@ durable recording, and deterministic session replay. The optional JSONL audit
 preserves exact player views and responses separately from bounded memory.
 Replay verifies the entire trajectory through the same session engine without
 calling players. See the [recording protocol](docs/recording-protocol.md).
-The offline [model boundary](docs/model-protocol.md) adds neutral and separate
+The [model boundary](docs/model-protocol.md) adds neutral and separate
 coordination-control prompts, validated model settings, strict JSON response
-parsing, and fake-model tests of actual rendered inputs. Inspect compatibility is
-checked by importing it alongside OpenSpiel. Inspect execution, provider audit
-records, live model calls, and research analysis remain on the checklist. Logs
+parsing, and tests of actual rendered inputs. The [Inspect integration](docs/inspect-protocol.md)
+now runs one session per sample with bounded concurrency, fresh player inputs,
+explicit failures, and durable model-call evidence linked to the game journal.
+Offline Inspect tests cover raw payloads, usage, privacy, limits, and replay.
+Live model compatibility and research analysis remain on the checklist. Logs
 and game snapshots are not recovery checkpoints; mid-session recovery belongs
 to Phase 2.
 
@@ -62,8 +64,8 @@ state so each continuation can advance independently.
 
 The session engine requests decisions from an async callable receiving only a
 player's permitted view, then applies validated actions through `PokerHand`.
-Scripted callables and the offline model adapter exercise the same interface that
-Inspect transport will use. OpenSpiel remains responsible for poker mechanics.
+Scripted callables and the Inspect model adapter use the same interface.
+OpenSpiel remains responsible for poker mechanics.
 
 ## Setup and checks
 
@@ -80,7 +82,22 @@ uv run --locked mypy
 
 These checks run locally without model API calls or credentials. Initial setup
 downloads dependencies. The current environment has been verified on macOS
-arm64 with Python 3.13.7, OpenSpiel 1.6.15, and Inspect 0.3.278.
+arm64 with Python 3.13.7 and Linux x86_64 with Python 3.13.16, OpenSpiel 1.6.15,
+and Inspect 0.3.278. Inspect tests use a scripted model and reject external network
+connections; local event-loop sockets and writable XDG data/cache directories are required.
+
+## Run Inspect offline
+
+```sh
+uv run --locked python scripts/run_experiment.py configs/inspect-offline.json --offline --output runs/preparation/inspect-001
+```
+
+This executes three matched sessions through Inspect using a scripted mock, with
+synthetic token counts and no provider calls. It writes an Inspect `.eval` log,
+a run manifest, and linked `session.jsonl`/`model.jsonl` journals per attempt.
+Use a new output directory for each run. The command exits nonzero for incomplete
+or unsuccessful sessions. See the [Inspect protocol](docs/inspect-protocol.md)
+for artifact verification, limits, and separate competence/control templates.
 
 ## Run an offline session
 
@@ -165,12 +182,11 @@ combines permitted poker information with delivered messages and bounded history
 
 ## Next implementation step
 
-Connect the offline model adapter to Inspect transport and a custom task/solver,
-with one sample per session. Add durable model-call records for exact requests,
-raw responses, usage, and provenance linked to session requests and Inspect logs.
-Then verify the selected model with a bounded live smoke run. The
-[checklist](TODO.md) tracks these remaining Phase 1 milestones; the
-[model protocol](docs/model-protocol.md) includes a runnable fake-model example.
+Select the Phase 1 model and run increment 3: a small, explicitly invoked live
+compatibility check with fixed limits. Verify supported settings, returned model
+identity, legal decisions, usage, raw payload availability, privacy, and replay
+before planning the pilot. The [checklist](TODO.md) tracks the remaining Phase 1
+competence, control, analysis, and sprint-report work.
 Full recovery and counterfactual continuations remain Phase 2.
 
 ## Experiment outputs

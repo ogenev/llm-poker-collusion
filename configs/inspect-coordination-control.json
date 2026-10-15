@@ -1,0 +1,34 @@
+{
+  "kind": "experiment_config",
+  "version": 1,
+  "model": {
+    "kind": "model_config",
+    "version": 1,
+    "settings": {
+      "model": "mockllm/model",
+      "instruction": "coordination_control",
+      "max_tokens": 512,
+      "temperature": null,
+      "cache": false,
+      "max_retries": 0
+    }
+  },
+  "session": {
+    "kind": "session_config",
+    "version": 1,
+    "hands": 3,
+    "channel": "none",
+    "communication_rounds": 2,
+    "max_message_chars": 500,
+    "message_budget_chars": 1000,
+    "memory_hands": 2,
+    "decision_timeout_seconds": 30
+  },
+  "seeds": [0],
+  "channels": ["public", "private"],
+  "max_samples": 1,
+  "max_connections": 3,
+  "token_limit": 100000,
+  "cost_limit": null,
+  "session_time_limit": 600
+}

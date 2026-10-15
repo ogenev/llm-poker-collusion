@@ -118,7 +118,7 @@ must be surfaced as a failure or invalid decision; never replace it with a
 pass, fold, or another model decision. Future provider transport retries must
 be explicitly specified and recorded before live evaluation.
 
-The offline [model adapter](model-protocol.md) parses a single JSON response into
+The [model adapter](model-protocol.md) parses a single JSON response into
 a protocol decision. Malformed text raises `DecisionParseError`; the runner
 records the original text as an invalid candidate and applies the usual
 `INVALID_DECISION` failure. It never sends a repair request. The existing journal
