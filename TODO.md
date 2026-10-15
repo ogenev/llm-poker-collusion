@@ -6,6 +6,8 @@ This checklist tracks implementation and experiment tasks. Complete each phase's
 
 Preparation increment completed on 2026-10-12: [game protocol](docs/game-protocol.md), locked Python environment, typed game records, OpenSpiel wrapper, and saved matched schedules. The offline suite passes 548 tests, including all 24 deals × 13 terminal paths, privacy, and game replay. Lint, formatting, and strict type checks pass. Inspect and OpenSpiel load together; session execution and model integration remain pending. Full session schemas and the remaining protocol choices below are required before implementing the session layer. No model calls or research runs have been made.
 
+Session increment completed on 2026-10-15: [session protocol](docs/session-protocol.md), validated runtime configuration, immutable player views and decisions, explicit in-memory session state, and scripted sessions in all three channels. The suite now passes 618 tests, including delivery barriers, private-message metadata, folded-card memory, budgets, history retention, reset, failures, and cancellation. The demo completes 30 hands in each condition. Durable audit records, replay, provider configuration, model prompts, and Inspect execution remain pending; no model calls have been made.
+
 ## Phase scope
 
 | Dimension | Phase 1 Sprint study | Phase 2 Full research project |
@@ -45,17 +47,19 @@ Dependencies: none. Primary outputs: rules, configuration specification, and pro
 - [x] Specify the three-player, four-card rules completely: card ranks, one-chip ante, one opening bet, no raises, check/bet/call/fold semantics, response order, terminal states, and net settlement.
 - [x] Specify what is revealed at showdown and after folds, including which cards and payoff information each player receives. Resolve this before constructing histories.
 - [x] Define persistent player identities separately from acting positions. Specify seat rotation and whether matched deals are assigned by identity or position so comparisons remain consistent.
-- [ ] Define the fixed communication phase after dealing and before betting. Start the pilot with two configurable rounds and simultaneous delivery at each round's end; settle the choice before main runs.
-- [ ] Define optional messages, permitted recipients, message-length units, and per-player budgets. Match sending opportunities across public-only and private-only conditions.
-- [ ] Specify bounded memory, session length, new-session resets, and how prior hands are retained or removed. Use an explicit retention rule for the baseline.
+- [x] Define the fixed communication phase after dealing and before betting. Start the pilot with two configurable rounds and simultaneous delivery at each round's end; settle the choice before main runs.
+- [x] Define optional messages, permitted recipients, message-length units, and per-player budgets. Match sending opportunities across public-only and private-only conditions.
+- [x] Specify bounded memory, session length, new-session resets, and how prior hands are retained or removed. Use an explicit retention rule for the baseline.
 - [ ] Specify neutral individual-objective prompts and a separate instructed-coordination positive control. Keep partner assignment and pooled rewards out of the main conditions.
-- [ ] Define malformed-output, refusal, timeout, retry, and incomplete-session handling before collecting results. Separate transport retries from additional model decisions.
+- [x] Define malformed-output, refusal, timeout, retry, and incomplete-session handling before collecting results. Separate transport retries from additional model decisions. The runtime uses zero retries and explicit failed/interrupted states; any future provider retry policy must be specified and recorded before live evaluation.
 
 Done when every observation, legal decision, phase transition, and failure outcome has a written rule. Unresolved pilot parameters must be explicit configuration fields.
 
 ### Milestone 2 Create the package and typed records
 
 Dependencies: milestone 1. Primary outputs: package skeleton, locked environment, and state schemas.
+
+Runtime session records are implemented. The compound tasks below remain open where they also require provider settings, durable events, versioned session serialization, or complete recovery state. The current in-memory state is not a session checkpoint.
 
 - [x] Create `pyproject.toml`, a compatible Python environment managed with uv, and a lockfile. Verify the selected Inspect and OpenSpiel versions work together on the target machine. Python 3.13.7, Inspect 0.3.278, and OpenSpiel 1.6.15 install and import together on macOS arm64; end-to-end Inspect execution remains milestone 6.
 - [ ] Add the five initial modules, test directories, configuration and prompt directories, and output-directory conventions.
@@ -87,15 +91,15 @@ Done when the wrapper passes exhaustive offline game checks and the documented r
 
 Dependencies: milestones 2 and 3. Primary module: `session.py`.
 
-- [ ] Implement the session loop with explicit deal, communication, betting, settlement, memory-update, and session-end phases.
-- [ ] Define an asynchronous decision callable that receives only a player's view and returns a validated message, pass, or betting decision. Supply scripted and seeded-random implementations for tests.
-- [ ] Construct player views from explicitly permitted fields. Include the player's own card, allowed public information, own rewards, delivered messages, and bounded history.
-- [ ] Implement no-communication, public-only, and private-only settings using configuration and small delivery functions.
-- [ ] Give every player the same private-recipient choices. Enforce optional sending, recipient validity, allowed channels, and message budgets in code.
-- [ ] Collect each communication round's decisions before delivery. Ensure model response timing cannot change another player's observation within that round.
-- [ ] Preserve identities through seat rotation, accumulate individual rewards, and apply the specified memory policy consistently. Reset all player histories between independent sessions.
-- [ ] Test observation privacy, including private-message metadata, folded cards, other players' histories, audit labels, and full game-state strings. Verify that one player's model output is shared only through an explicit message.
-- [ ] Test the three Phase 1 channel conditions with scripted sessions, budget exhaustion, declined messages, invalid recipients, and malformed actions. Ensure failures follow the configured policy without silent substitutions.
+- [x] Implement the session loop with explicit deal, communication, betting, settlement, memory-update, and session-end phases.
+- [x] Define an asynchronous decision callable that receives only a player's view and returns a validated message, pass, or betting decision. Supply scripted and seeded-random implementations for tests.
+- [x] Construct player views from explicitly permitted fields. Include the player's own card, allowed public information, own rewards, delivered messages, and bounded history.
+- [x] Implement no-communication, public-only, and private-only settings using configuration and small delivery functions.
+- [x] Give every player the same private-recipient choices. Enforce optional sending, recipient validity, allowed channels, and message budgets in code.
+- [x] Collect each communication round's decisions before delivery. Ensure model response timing cannot change another player's observation within that round.
+- [x] Preserve identities through seat rotation, accumulate individual rewards, and apply the specified memory policy consistently. Reset all player histories between independent sessions.
+- [x] Test observation privacy, including private-message metadata, folded cards, other players' histories, audit labels, and full game-state strings. Verify that one player's model output is shared only through an explicit message. This increment validates the scripted decision boundary; actual provider prompts are checked during Inspect integration.
+- [x] Test the three Phase 1 channel conditions with scripted sessions, budget exhaustion, declined messages, invalid recipients, and malformed actions. Ensure failures follow the configured policy without silent substitutions.
 
 Done when scripted players can complete repeated sessions in every condition and privacy and phase-order tests pass.
 

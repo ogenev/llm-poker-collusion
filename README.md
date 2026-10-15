@@ -7,25 +7,29 @@ a custom Python session engine, and Inspect for model execution. See the
 
 ## Current implementation
 
-The first increment implements the [game protocol](docs/game-protocol.md), a
-three-player poker wrapper, restricted per-seat observations, reproducible deal
-schedules, and game-state replay. Exhaustive offline tests cover all 24 deals and
-13 terminal betting paths per deal. Full sessions, messaging, Inspect execution,
-and research analysis remain on the checklist. Game snapshots are not complete
-session checkpoints. The current suite contains 548 offline tests; Inspect
-compatibility is checked by importing it alongside OpenSpiel. End-to-end model
-execution is a later milestone.
+The poker core implements the [game protocol](docs/game-protocol.md), private
+observations, reproducible deal schedules, and game-state replay. The
+[session engine](src/poker_collusion/session.py) now runs repeated hands with
+persistent identities, public/private/no communication, simultaneous round
+delivery, bounded player histories, and explicit failure handling. See the
+[session protocol](docs/session-protocol.md) for configurable pilot defaults.
+
+The 618 offline tests cover all 24 deals and 13 terminal betting paths per deal,
+plus message privacy, delivery timing, memory, rotation, budgets, and failures.
+Inspect compatibility is checked by importing it alongside OpenSpiel. Durable
+session logging, full-session replay, model execution, and research analysis
+remain on the checklist. Game snapshots are not complete session checkpoints.
 
 ## How OpenSpiel connects
 
 The `open-spiel` dependency provides `pyspiel`, Python bindings to OpenSpiel's
 C++ engine. Calls run inside the same Python process. Our
 [`PokerHand`](src/poker_collusion/poker.py) class owns the native game state and
-provides the interface the session engine will use:
+provides the interface used by the session engine:
 
 ```mermaid
 flowchart LR
-    Session["Session engine (planned)"] -->|calls| Hand["Our PokerHand wrapper"]
+    Session["Our session engine"] -->|calls| Hand["Our PokerHand wrapper"]
     Hand -->|pyspiel calls| Engine["OpenSpiel game state"]
 ```
 
@@ -48,10 +52,10 @@ Game snapshots store the deal and accepted actions in versioned JSON. Restoring
 a snapshot replays those actions through the wrapper; cloning copies the native
 state so each continuation can advance independently.
 
-The planned session engine will manage repeated hands, communication, persistent
-identities, and bounded histories. It will request decisions through an Inspect
-adapter using only the acting player's permitted view, then apply validated
-actions through `PokerHand`. OpenSpiel remains responsible for poker mechanics.
+The session engine requests decisions from an async callable receiving only a
+player's permitted view, then applies validated actions through `PokerHand`.
+Scripted callables exercise the same interface that the future Inspect adapter
+will use. OpenSpiel remains responsible for poker mechanics.
 
 ## Setup and checks
 
@@ -70,6 +74,35 @@ These checks run locally without model API calls or credentials. Initial setup
 downloads dependencies. The current environment has been verified on macOS
 arm64 with Python 3.13.7, OpenSpiel 1.6.15, and Inspect 0.3.278.
 
+## Run an offline session
+
+Run a 30-hand session with seeded-random scripted players:
+
+```sh
+uv run --locked python scripts/demo_session.py --channel private
+```
+
+Use `--channel public` or `--channel none` for the other conditions. Keep
+`--seed` and `--hands` the same to reuse matched deals and rotations. The demo
+prints completion status, settled rewards by identity, retained-history counts,
+and the last hand's message count. It makes no model calls and writes no logs.
+The random policy ignores message content when betting, so identical rewards
+across matched channel demos are expected.
+
+For a deterministic all-check session with no messages:
+
+```sh
+uv run --locked python scripts/demo_session.py --channel none --hands 6 --agent passive
+```
+
+The Python entry point is `await run_session(config, schedule, decide)`.
+`decide(view)` returns a `MessageDecision`, `PassDecision`, or `BetDecision`
+according to the phase. `SessionConfig` defaults to 30 hands, two message rounds,
+500 characters per message, a 1,000-character hand budget, ten retained hands,
+and a 30-second decision timeout. The runner returns completed or failed
+in-memory state; callers must inspect its `phase`. Cancellation raises
+`SessionInterrupted` carrying partial state.
+
 ## Scripted hand
 
 ```python
@@ -86,15 +119,14 @@ print(hand.returns())  # (-1, -2, 3); trusted experiment code only.
 ```
 
 Never give a decision callable the `PokerHand`, deal schedule, or serialized
-snapshot. They contain hidden cards. The future session layer will pass a player
-view that combines `hand.view(seat)` with permitted messages and bounded history.
+snapshot. They contain hidden cards. The session layer passes a player view that
+combines permitted poker information with delivered messages and bounded history.
 
 ## Next implementation step
 
-Finish the communication, memory, and failure-handling rules, then build the
-session engine with scripted players. That establishes private message delivery
-and independent player histories before adding event recording, full-session
-replay, and Inspect model calls. The [checklist](TODO.md) tracks these milestones.
+Add durable event recording and exact full-session replay, including accepted
+decisions and failures. Then integrate Inspect and model calls through the same
+player-view boundary. The [checklist](TODO.md) tracks these milestones.
 
 ## Experiment outputs
 

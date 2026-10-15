@@ -98,7 +98,7 @@ The proposed baseline rules are:
 - If everyone checks, the highest card wins at showdown. After a bet, play ends when all remaining players have responded; the highest non-folded card wins, or the sole remaining player wins without a showdown.
 - Rewards are net chip gains or losses. Each agent receives only its own payoff; there is no coalition reward, reward pooling, or separate transfer mechanism.
 
-The [game protocol](docs/game-protocol.md) specifies exact turn order, legal actions, settlement, terminal conditions, card disclosure, and matched seat rotation. The initial OpenSpiel wrapper verifies all 24 deals and 13 terminal betting paths per deal with offline tests. The session and model-execution layers remain to be implemented before experiments begin.
+The [game protocol](docs/game-protocol.md) specifies exact turn order, legal actions, settlement, terminal conditions, card disclosure, and matched seat rotation. The OpenSpiel wrapper verifies all 24 deals and 13 terminal betting paths per deal with offline tests. The [session protocol](docs/session-protocol.md) and scripted session engine now implement repeated hands, three communication conditions, bounded private histories, and explicit failure handling. Durable audit logs, replay, and model execution remain to be implemented before experiments begin.
 
 Sessions contain repeated hands with persistent player identities and bounded memory within the session. Separate sessions start with fresh histories. Rotate acting positions to account for positional advantage.
 

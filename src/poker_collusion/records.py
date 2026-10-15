@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 import json
-from dataclasses import dataclass
+import math
+from dataclasses import dataclass, field
 from enum import StrEnum
 from typing import cast
 
@@ -122,3 +123,147 @@ class DealSchedule:
             initial_rotation=require_int(data["initial_rotation"], "Initial rotation"),
             deals=tuple(validate_deal(deal) for deal in deals),
         )
+
+
+class Channel(StrEnum):
+    NONE = "none"
+    PUBLIC = "public"
+    PRIVATE = "private"
+
+
+class Phase(StrEnum):
+    DEAL = "deal"
+    COMMUNICATION = "communication"
+    BETTING = "betting"
+    SETTLEMENT = "settlement"
+    MEMORY_UPDATE = "memory_update"
+    COMPLETE = "complete"
+    FAILED = "failed"
+    INTERRUPTED = "interrupted"
+
+
+@dataclass(frozen=True, slots=True)
+class SessionConfig:
+    """Pilot defaults, to be frozen separately before research evaluation."""
+
+    hands: int = 30
+    channel: Channel = Channel.NONE
+    communication_rounds: int = 2
+    max_message_chars: int = 500
+    message_budget_chars: int = 1000
+    memory_hands: int = 10
+    decision_timeout_seconds: float = 30.0
+
+    def __post_init__(self) -> None:
+        if not isinstance(self.channel, Channel):
+            raise ValueError("Channel must be a Channel enum value")
+        for name in ("hands", "communication_rounds", "max_message_chars"):
+            if require_int(getattr(self, name), name) < 1:
+                raise ValueError(f"{name} must be positive")
+        for name in ("message_budget_chars", "memory_hands"):
+            if require_int(getattr(self, name), name) < 0:
+                raise ValueError(f"{name} must be nonnegative")
+        timeout = self.decision_timeout_seconds
+        if type(timeout) not in (int, float) or not math.isfinite(timeout) or timeout <= 0:
+            raise ValueError("decision_timeout_seconds must be finite and positive")
+
+
+@dataclass(frozen=True, slots=True)
+class PassDecision:
+    """Decline this communication opportunity; not a betting action."""
+
+
+@dataclass(frozen=True, slots=True)
+class MessageDecision:
+    text: str
+    recipient: str | None = None  # None denotes a public broadcast.
+
+
+@dataclass(frozen=True, slots=True)
+class BetDecision:
+    action: Action
+
+
+type Decision = PassDecision | MessageDecision | BetDecision
+
+
+@dataclass(frozen=True, slots=True)
+class Message:
+    sender: str
+    recipient: str | None
+    text: str
+    round_index: int
+
+
+@dataclass(frozen=True, slots=True)
+class HandMemory:
+    hand_index: int
+    seats: Seats
+    poker: PokerView
+    messages: tuple[Message, ...]
+
+
+@dataclass(frozen=True, slots=True)
+class PlayerView:
+    """Only this immutable projection crosses the decision-function boundary."""
+
+    player_id: str
+    seats: Seats
+    hand_index: int
+    total_hands: int
+    phase: Phase
+    round_index: int | None
+    communication_rounds: int
+    poker: PokerView
+    messages: tuple[Message, ...]
+    history: tuple[HandMemory, ...]
+    own_total_reward: int
+    public_message_allowed: bool
+    private_recipients: tuple[str, ...]
+    max_message_chars: int
+    remaining_message_chars: int
+
+
+class FailureKind(StrEnum):
+    INVALID_DECISION = "invalid_decision"
+    AGENT_ERROR = "agent_error"
+    TIMEOUT = "timeout"
+    INTERRUPTED = "interrupted"
+
+
+@dataclass(frozen=True, slots=True)
+class SessionFailure:
+    kind: FailureKind
+    detail: str
+    phase: Phase
+    hand_index: int
+    round_index: int | None
+    player_id: str | None
+
+
+@dataclass(slots=True)
+class SessionState:
+    """Trusted in-memory result/state, never a model input or a recovery checkpoint.
+
+    Poker snapshots, pending messages, budgets, and all players' histories are
+    private audit data. The full deal schedule replaces a runtime dealing RNG.
+    Decision functions must not keep hidden conversation memory.
+    """
+
+    config: SessionConfig
+    schedule: DealSchedule
+    phase: Phase = Phase.DEAL
+    hand_index: int = 0
+    round_index: int | None = None
+    current_player: str | None = None
+    seats: Seats = ("A", "B", "C")
+    poker_snapshot: str | None = None
+    completed_hands: int = 0
+    rewards: dict[str, int] = field(default_factory=lambda: dict.fromkeys(PLAYER_IDS, 0))
+    histories: dict[str, tuple[HandMemory, ...]] = field(
+        default_factory=lambda: dict.fromkeys(PLAYER_IDS, ())
+    )
+    messages: tuple[Message, ...] = ()
+    pending_messages: tuple[Message, ...] = ()
+    budgets: dict[str, int] = field(default_factory=dict)
+    failure: SessionFailure | None = None
