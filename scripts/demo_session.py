@@ -3,8 +3,11 @@
 import argparse
 import asyncio
 import json
+from contextlib import nullcontext
 from dataclasses import asdict
+from pathlib import Path
 
+from poker_collusion.event_log import JsonlRecorder
 from poker_collusion.poker import generate_schedule
 from poker_collusion.records import Channel, Phase, SessionConfig
 from poker_collusion.session import passive_decider, run_session, seeded_random_decider
@@ -18,6 +21,7 @@ def main() -> None:
     parser.add_argument("--agent", choices=("passive", "random"), default="random")
     parser.add_argument("--agent-seed", type=int, default=0)
     parser.add_argument("--memory-hands", type=int, default=10)
+    parser.add_argument("--log", type=Path, help="Write a new durable audit JSONL file")
     args = parser.parse_args()
     try:
         config = SessionConfig(
@@ -27,7 +31,8 @@ def main() -> None:
     except ValueError as error:
         parser.error(str(error))
     decide = passive_decider if args.agent == "passive" else seeded_random_decider(args.agent_seed)
-    state = asyncio.run(run_session(config, schedule, decide))
+    with JsonlRecorder(args.log) if args.log else nullcontext() as recorder:
+        state = asyncio.run(run_session(config, schedule, decide, recorder=recorder))
     print(
         json.dumps(
             {

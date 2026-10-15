@@ -14,11 +14,15 @@ persistent identities, public/private/no communication, simultaneous round
 delivery, bounded player histories, and explicit failure handling. See the
 [session protocol](docs/session-protocol.md) for configurable pilot defaults.
 
-The 618 offline tests cover all 24 deals and 13 terminal betting paths per deal,
-plus message privacy, delivery timing, memory, rotation, budgets, and failures.
-Inspect compatibility is checked by importing it alongside OpenSpiel. Durable
-session logging, full-session replay, model execution, and research analysis
-remain on the checklist. Game snapshots are not complete session checkpoints.
+The offline tests cover all 24 deals and 13 terminal betting paths per deal,
+plus message privacy, delivery timing, memory, rotation, budgets, failures,
+durable recording, and deterministic session replay. The optional JSONL audit
+preserves exact player views and responses separately from bounded memory.
+Replay verifies the entire trajectory through the same session engine without
+calling players. See the [recording protocol](docs/recording-protocol.md).
+Inspect compatibility is checked by importing it alongside OpenSpiel. Model
+execution and research analysis remain on the checklist. Logs and game snapshots
+are not recovery checkpoints; mid-session recovery belongs to Phase 2.
 
 ## How OpenSpiel connects
 
@@ -85,7 +89,7 @@ uv run --locked python scripts/demo_session.py --channel private
 Use `--channel public` or `--channel none` for the other conditions. Keep
 `--seed` and `--hands` the same to reuse matched deals and rotations. The demo
 prints completion status, settled rewards by identity, retained-history counts,
-and the last hand's message count. It makes no model calls and writes no logs.
+and the last hand's message count. It makes no model calls. Logging is optional.
 The random policy ignores message content when betting, so identical rewards
 across matched channel demos are expected.
 
@@ -102,6 +106,39 @@ according to the phase. `SessionConfig` defaults to 30 hands, two message rounds
 and a 30-second decision timeout. The runner returns completed or failed
 in-memory state; callers must inspect its `phase`. Cancellation raises
 `SessionInterrupted` carrying partial state.
+
+## Record and replay an offline session
+
+Use a new file for every attempt; existing files are never overwritten or resumed:
+
+```sh
+uv run --locked python scripts/demo_session.py --channel private --log runs/preparation/private-001.jsonl
+uv run --locked python scripts/replay_session.py runs/preparation/private-001.jsonl
+```
+
+The recorder flushes and fsyncs each event, including accepted decisions before
+their effects. Files contain the full hidden schedule and private audit data;
+never pass a journal to a player. Audit identifiers stay outside player views.
+
+In Python, use `with JsonlRecorder(path) as recorder:` from
+`poker_collusion.event_log`, then pass `recorder=recorder` to `run_session`.
+`await replay_session(path)` from `poker_collusion.replay` returns the reconstructed
+state after checking all observations, responses, effects, and terminal state.
+Replay uses recorded outcomes and makes no model calls or timeout waits.
+
+Cleanly failed and interrupted sessions also replay and retain their original
+status. Successful verification does not make them completed evaluation data.
+A missing footer or torn final line is **incomplete** and cannot be fully replayed.
+Inspect its committed prefix without modifying it:
+
+```sh
+uv run --locked python scripts/replay_session.py runs/preparation/private-001.jsonl --inspect
+```
+
+Only verified `complete` sessions qualify for complete-session results; retain
+all other statuses separately. Malformed committed records are rejected. A disk
+write failure stops execution and propagates as `RecordingError`; inspect the
+retained prefix and use a separate file/identifier for any later attempt.
 
 ## Scripted hand
 
@@ -124,9 +161,11 @@ combines permitted poker information with delivered messages and bounded history
 
 ## Next implementation step
 
-Add durable event recording and exact full-session replay, including accepted
-decisions and failures. Then integrate Inspect and model calls through the same
-player-view boundary. The [checklist](TODO.md) tracks these milestones.
+Integrate Inspect and model calls through the existing player-view boundary.
+Define the neutral and positive-control prompts, provider configuration, and
+recording of exact model requests, raw responses, usage, and provenance. The
+[checklist](TODO.md) tracks these remaining Phase 1 milestones. Full recovery and
+counterfactual continuations remain Phase 2.
 
 ## Experiment outputs
 

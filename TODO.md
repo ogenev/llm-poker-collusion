@@ -8,6 +8,18 @@ Preparation increment completed on 2026-10-12: [game protocol](docs/game-protoco
 
 Session increment completed on 2026-10-15: [session protocol](docs/session-protocol.md), validated runtime configuration, immutable player views and decisions, explicit in-memory session state, and scripted sessions in all three channels. The suite now passes 618 tests, including delivery barriers, private-message metadata, folded-card memory, budgets, history retention, reset, failures, and cancellation. The demo completes 30 hands in each condition. Durable audit records, replay, provider configuration, model prompts, and Inspect execution remain pending; no model calls have been made.
 
+Recording increment completed on 2026-10-15: optional append-only JSONL journals, versioned configuration and terminal state records, exact scripted callback observations/responses, durable decisions before effects, and verified full-session replay through the ordinary runner. Failed and cleanly interrupted attempts replay with their original status; abrupt exits retain inspectable incomplete prefixes. See the [recording protocol](docs/recording-protocol.md). This is still pre-sprint preparation; Inspect execution, provider prompts/settings, and research runs remain pending. Mid-session recovery and intervention execution remain Phase 2.
+
+Recording verification: 749 offline tests pass, including 131 recording/replay
+checks; Ruff lint/format and strict mypy pass. The CLI records and verifies
+30-hand scripted sessions in all three Phase 1 channels. Failure replay and
+incomplete-prefix inspection/exclusion also pass.
+
+Audit encoding occurs only at the writer/replay boundary; unlogged sessions skip
+it. Replay shares one active-request tracker with live execution. Malformed
+response coverage includes deep/cyclic values and oversized integers, retaining
+explicit failures without changing the version 1 journal format.
+
 ## Phase scope
 
 | Dimension | Phase 1 Sprint study | Phase 2 Full research project |
@@ -59,7 +71,12 @@ Done when every observation, legal decision, phase transition, and failure outco
 
 Dependencies: milestone 1. Primary outputs: package skeleton, locked environment, and state schemas.
 
-Runtime session records are implemented. The compound tasks below remain open where they also require provider settings, durable events, versioned session serialization, or complete recovery state. The current in-memory state is not a session checkpoint.
+Runtime session records and Phase 1 audit persistence are implemented. The compound tasks below remain open where they also require provider settings or complete recovery state. The current in-memory state is not a session checkpoint.
+
+Milestone 5 now supplies durable events, versioned configuration/terminal records,
+configuration and schedule hashes, and session/event/request identifiers with
+optional run/matched-block identifiers. The compound tasks remain open for
+provider configuration, prompt hashes, or Phase 2 snapshot/branch recovery state.
 
 - [x] Create `pyproject.toml`, a compatible Python environment managed with uv, and a lockfile. Verify the selected Inspect and OpenSpiel versions work together on the target machine. Python 3.13.7, Inspect 0.3.278, and OpenSpiel 1.6.15 install and import together on macOS arm64; end-to-end Inspect execution remains milestone 6.
 - [ ] Add the five initial modules, test directories, configuration and prompt directories, and output-directory conventions.
@@ -107,12 +124,12 @@ Done when scripted players can complete repeated sessions in every condition and
 
 Dependencies: milestone 4. Primary modules: `records.py` and `session.py`.
 
-- [ ] Record append-only events for phase transitions, deals, views, decisions, message sending and delivery, actions, rewards, memory updates, failures, and interventions.
-- [ ] Save the exact inputs sent to each player and returned decisions so replay and privacy checks can inspect actual observations. Keep the complete audit record separate from player histories.
-- [ ] Save versioned session/configuration records and retain completed events if a run fails. Detect incomplete records and distinguish completed, failed, and interrupted sessions.
-- [ ] Record accepted decisions before applying them. Preserve failed attempts and log any complete-session rerun separately under the predefined policy rather than silently replacing data.
-- [ ] Implement deterministic replay from recorded events and decisions without model calls. Compare reconstructed state, histories, and rewards with the original trajectory.
-- [ ] Test recording and replay for a full scripted session and interrupted sessions. Verify that private observations remain auditable and that incomplete trajectories are excluded or handled as specified.
+- [x] Record append-only events for phase transitions, deals, views, decisions, message sending and delivery, actions, rewards, memory updates, and failures. Intervention records accompany intervention execution in Phase 2; no interventions run in this increment.
+- [x] Save the exact inputs sent to each player and returned decisions so replay and privacy checks can inspect actual observations. Keep the complete audit record separate from player histories. This covers the scripted callable boundary; provider prompts/raw responses follow in milestone 6. Unsupported Python objects retain explicitly marked diagnostics and fail validation.
+- [x] Save versioned session/configuration records and retain completed events if a run fails. Detect incomplete records and distinguish completed, failed, and interrupted sessions.
+- [x] Record accepted decisions before applying them. Preserve failed attempts and require a separate new file/session identifier for every complete-session rerun rather than silently replacing data. There are no automatic reruns; the evaluation rerun policy must be frozen in milestone 7.
+- [x] Implement deterministic replay from recorded events and decisions without model calls. Compare reconstructed state, histories, and rewards with the original trajectory.
+- [x] Test recording and replay for a full scripted session and interrupted sessions. Verify that private observations remain auditable and that incomplete trajectories are excluded or handled as specified.
 
 Done when complete scripted sessions replay exactly and failed runs remain visible without contaminating results. Exact replay uses recorded decisions; fresh LLM continuations may differ. Mid-session resume is not a Phase 1 completion requirement.
 

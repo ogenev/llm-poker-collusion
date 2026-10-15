@@ -4,9 +4,9 @@ from __future__ import annotations
 
 import asyncio
 import random
-from collections.abc import Awaitable, Callable
 from dataclasses import replace
 
+from poker_collusion.event_log import EventSink
 from poker_collusion.poker import PokerHand
 from poker_collusion.records import (
     PLAYER_IDS,
@@ -27,8 +27,8 @@ from poker_collusion.records import (
     SessionState,
     require_int,
 )
-
-type Decider = Callable[[PlayerView], Awaitable[Decision]]
+from poker_collusion.session_audit import Decider as Decider
+from poker_collusion.session_audit import SessionAudit
 
 
 class SessionInterrupted(asyncio.CancelledError):
@@ -75,60 +75,20 @@ def _view(state: SessionState, hand: PokerHand, player: str) -> PlayerView:
     )
 
 
-def _validate(view: PlayerView, decision: object) -> Decision:
-    if view.phase == Phase.BETTING:
-        if (
-            not isinstance(decision, BetDecision)
-            or not isinstance(decision.action, Action)
-            or decision.action not in view.poker.legal_actions
-        ):
-            raise ValueError("Expected a legal BetDecision")
-        return decision
-    if isinstance(decision, PassDecision):
-        return decision
-    if not isinstance(decision, MessageDecision):
-        raise ValueError("Expected a MessageDecision or PassDecision")
-    if not isinstance(decision.text, str) or not decision.text.strip():
-        raise ValueError("A message must contain non-whitespace text")
-    if len(decision.text) > view.max_message_chars:
-        raise ValueError("Message exceeds the per-message limit or remaining hand budget")
-    if decision.recipient is None:
-        if not view.public_message_allowed:
-            raise ValueError("Public messages are unavailable")
-    elif (
-        not isinstance(decision.recipient, str) or decision.recipient not in view.private_recipients
-    ):
-        raise ValueError("Private recipient is unavailable")
-    return decision
-
-
-async def _request(view: PlayerView, decide: Decider, timeout: float) -> Decision | SessionFailure:
-    try:
-        async with asyncio.timeout(timeout):
-            candidate: object = await decide(view)
-    except TimeoutError:
-        kind, detail = FailureKind.TIMEOUT, "Decision timed out"
-    except Exception as error:
-        kind, detail = FailureKind.AGENT_ERROR, f"{type(error).__name__}: {error}"
-    else:
-        try:
-            return _validate(view, candidate)
-        except ValueError as error:
-            kind, detail = FailureKind.INVALID_DECISION, str(error)
-    return SessionFailure(
-        kind, detail, view.phase, view.hand_index, view.round_index, view.player_id
-    )
-
-
-async def _communicate(state: SessionState, hand: PokerHand, decide: Decider) -> bool:
-    state.phase = Phase.COMMUNICATION
+async def _communicate(
+    state: SessionState, hand: PokerHand, decide: Decider, audit: SessionAudit
+) -> bool:
+    audit.phase(state, Phase.COMMUNICATION)
     for round_index in range(state.config.communication_rounds):
         state.round_index = round_index
         # Freeze all observations before invoking any decision function.
         views = tuple(_view(state, hand, player) for player in PLAYER_IDS)
+        requests = tuple(audit.requested(view) for view in views)
         tasks = [
-            asyncio.create_task(_request(view, decide, state.config.decision_timeout_seconds))
-            for view in views
+            asyncio.create_task(
+                audit.request(request, view, decide, state.config.decision_timeout_seconds)
+            )
+            for request, view in zip(requests, views, strict=True)
         ]
         try:
             decisions = await asyncio.gather(*tasks)
@@ -138,6 +98,11 @@ async def _communicate(state: SessionState, hand: PokerHand, decide: Decider) ->
                 if not task.done():
                     task.cancel()
             await asyncio.gather(*tasks, return_exceptions=True)
+            # A task cancelled before its coroutine starts cannot log itself.
+            for request, task in zip(requests, tasks, strict=True):
+                if task.cancelled():
+                    audit.cancelled(request)
+        audit.decision_boundary()
         pending = []
         for view, decision in zip(views, decisions, strict=True):
             if isinstance(decision, SessionFailure):
@@ -148,43 +113,57 @@ async def _communicate(state: SessionState, hand: PokerHand, decide: Decider) ->
                     Message(view.player_id, decision.recipient, decision.text, round_index)
                 )
         state.pending_messages = tuple(pending)
+        audit.emit("messages_pending", messages=state.pending_messages)
         if state.failure is not None:
-            state.phase = Phase.FAILED
+            audit.emit("session_failed", failure=state.failure)
+            audit.phase(state, Phase.FAILED)
             return False
         # Charge and deliver only after the whole round has validated. Passes are private.
         for message in state.pending_messages:
             state.budgets[message.sender] -= len(message.text)
         state.messages += state.pending_messages
+        audit.emit("messages_delivered", messages=state.pending_messages, budgets=state.budgets)
         state.pending_messages = ()
     state.round_index = None
     return True
 
 
-async def _bet(state: SessionState, hand: PokerHand, decide: Decider) -> bool:
-    state.phase = Phase.BETTING
+async def _bet(state: SessionState, hand: PokerHand, decide: Decider, audit: SessionAudit) -> bool:
+    audit.phase(state, Phase.BETTING)
     while not hand.terminal:
         seat = hand.current_player
         assert seat is not None
         state.current_player = state.seats[seat]
-        decision = await _request(
-            _view(state, hand, state.current_player), decide, state.config.decision_timeout_seconds
+        view = _view(state, hand, state.current_player)
+        decision = await audit.request(
+            audit.requested(view), view, decide, state.config.decision_timeout_seconds
         )
+        audit.decision_boundary()
         if isinstance(decision, SessionFailure):
             state.failure = decision
-            state.phase = Phase.FAILED
+            audit.emit("session_failed", failure=state.failure)
+            audit.phase(state, Phase.FAILED)
             return False
         assert isinstance(decision, BetDecision)
         hand.apply(decision.action)
         state.poker_snapshot = hand.to_json()
+        audit.emit(
+            "action_applied",
+            player_id=state.current_player,
+            action=decision.action,
+            poker_snapshot=state.poker_snapshot,
+        )
     state.current_player = None
     return True
 
 
-def _settle(state: SessionState, hand: PokerHand) -> None:
-    state.phase = Phase.SETTLEMENT
+def _settle(state: SessionState, hand: PokerHand, audit: SessionAudit) -> None:
+    audit.phase(state, Phase.SETTLEMENT)
     for seat, reward in enumerate(hand.returns()):
         state.rewards[state.seats[seat]] += reward
-    state.phase = Phase.MEMORY_UPDATE
+    audit.emit("rewards_settled", returns=hand.returns(), rewards=state.rewards)
+    audit.phase(state, Phase.MEMORY_UPDATE)
+    memories = {}
     for seat, player in enumerate(state.seats):
         memory = HandMemory(
             state.hand_index,
@@ -197,26 +176,45 @@ def _settle(state: SessionState, hand: PokerHand) -> None:
             if state.config.memory_hands
             else ()
         )
+        memories[player] = memory
     state.completed_hands += 1
+    audit.emit(
+        "memory_updated",
+        memories=memories,
+        histories=state.histories,
+        completed_hands=state.completed_hands,
+    )
 
 
 async def run_session(
-    config: SessionConfig, schedule: DealSchedule, decide: Decider
+    config: SessionConfig,
+    schedule: DealSchedule,
+    decide: Decider,
+    *,
+    recorder: EventSink | None = None,
 ) -> SessionState:
     """Run a fresh session; return completed/failed state, propagate cancellation.
 
     A schedule must match config.hands exactly. All persistent player memory is
     supplied in PlayerView; callers must use stateless or newly reset deciders.
-    This runner performs no transport retries, model calls, or disk persistence.
+    Pass a JsonlRecorder for durable audit events. Persistence errors propagate
+    and stop execution. This runner performs no transport retries or model calls.
     """
+    return await _run_session(config, schedule, decide, SessionAudit(recorder))
+
+
+async def _run_session(
+    config: SessionConfig, schedule: DealSchedule, decide: Decider, audit: SessionAudit
+) -> SessionState:
     if len(schedule.deals) != config.hands:
         raise ValueError("Schedule length must equal the configured hand count")
     state = SessionState(config, schedule)
+    audit.emit("session_started", config=config, schedule=schedule)
     try:
         for hand_index, deal in enumerate(schedule.deals):
-            state.phase = Phase.DEAL
             state.hand_index = hand_index
             state.round_index = None
+            audit.phase(state, Phase.DEAL)
             state.seats = schedule.seats_for_hand(hand_index)
             state.messages = ()
             state.pending_messages = ()
@@ -224,11 +222,22 @@ async def run_session(
             state.budgets = dict.fromkeys(PLAYER_IDS, budget)
             hand = PokerHand(deal)
             state.poker_snapshot = hand.to_json()
-            if config.channel != Channel.NONE and not await _communicate(state, hand, decide):
+            audit.emit(
+                "hand_dealt",
+                hand_index=hand_index,
+                seats=state.seats,
+                poker_snapshot=state.poker_snapshot,
+                budgets=state.budgets,
+            )
+            if config.channel != Channel.NONE and not await _communicate(
+                state, hand, decide, audit
+            ):
+                audit.finish(state)
                 return state
-            if not await _bet(state, hand, decide):
+            if not await _bet(state, hand, decide, audit):
+                audit.finish(state)
                 return state
-            _settle(state, hand)
+            _settle(state, hand, audit)
     except asyncio.CancelledError as error:
         state.failure = SessionFailure(
             FailureKind.INTERRUPTED,
@@ -238,9 +247,12 @@ async def run_session(
             state.round_index,
             state.current_player,
         )
-        state.phase = Phase.INTERRUPTED
+        audit.emit("session_interrupted", failure=state.failure)
+        audit.phase(state, Phase.INTERRUPTED)
+        audit.finish(state)
         raise SessionInterrupted(state) from error
-    state.phase = Phase.COMPLETE
+    audit.phase(state, Phase.COMPLETE)
+    audit.finish(state)
     return state
 
 

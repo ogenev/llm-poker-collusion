@@ -87,6 +87,9 @@ During communication, the nested poker view exposes no betting actor or legal
 betting actions. During betting, only the actual actor is called. A betting
 decision is `BetDecision(Action.CHECK/BET/CALL/FOLD)` and must be legal in the
 current game state. Messages and passes cannot substitute for betting actions.
+Return the protocol's exact decision classes and built-in strings for message
+text/recipients; arbitrary subclasses are rejected so accepted decisions remain
+serializable without loading callback code.
 
 Each `HandMemory` records the hand index, seat mapping, terminal poker view,
 and messages that this player sent or received. Card disclosure follows the
@@ -134,12 +137,21 @@ round callbacks are cancelled and awaited. Callbacks must be cooperative
 async functions; timeouts and cancellation cannot stop synchronous blocking
 code or a callback that suppresses cancellation indefinitely.
 
-## Current persistence boundary
+## Recording and replay boundary
 
 `SessionState` is trusted in-memory state, not a recovery checkpoint. It contains
 all players' bounded histories and the full hidden schedule, and must never be
-passed to a player. Earlier hands removed by the retention policy and exact
-callback inputs/outputs are not durably logged in this increment. Interrupted
-rounds do not preserve every in-flight response. Durable events, complete audit
-records, and exact session replay are the next milestone; robust recovery is
-Phase 2. Do not use the demo output as research evaluation data.
+passed to a player. Pass an optional `JsonlRecorder` to retain the complete audit,
+including forgotten hands, exact callback views and supported responses,
+accepted decisions before effects, and failure/cancellation outcomes. Completed
+responses in an interrupted round remain in the journal even when they have not
+been assembled into `state.pending_messages`; unfinished callbacks have no
+fabricated response. See the [recording protocol](recording-protocol.md).
+
+Replay uses recorded responses through the same runner and verifies all events
+and the terminal state without calling players. It returns completed, failed,
+or cleanly interrupted state. Abrupt exits or persistence failures may leave only
+an incomplete prefix, which can be inspected but not resumed or counted as a
+complete session. Disk errors propagate rather than becoming agent failures.
+Robust recovery and intervention branches remain Phase 2. Scripted demos remain
+preparation data, not research evaluation data.
