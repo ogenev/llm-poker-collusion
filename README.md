@@ -28,9 +28,9 @@ explicit failures, and durable model-call evidence linked to the game journal.
 Offline Inspect and OpenAI SDK tests cover raw payloads, usage, privacy, limits,
 and replay. [Live smoke preparation](docs/live-smoke.md) adds a bounded candidate
 configuration, preflight without API calls, explicit pricing, and saved-run
-verification. Live model compatibility and research analysis remain on the checklist. Logs
-and game snapshots are not recovery checkpoints; mid-session recovery belongs
-to Phase 2.
+verification. Live model compatibility and research analysis remain on the
+checklist. Logs and game snapshots are not recovery checkpoints; mid-session
+recovery belongs to Phase 2.
 
 ## How OpenSpiel connects
 
@@ -89,6 +89,10 @@ and Inspect 0.3.278. Inspect tests use scripted models or simulated OpenAI HTTP
 responses and reject external network connections; local event-loop sockets and
 writable XDG data/cache directories are required.
 
+Latest verification (2026-10-15): **994 offline tests pass**, together with Ruff
+lint/format and strict mypy checks. These checks validate the framework;
+live model compatibility, poker competence, and coordination remain unproven.
+
 ## Run Inspect offline
 
 ```sh
@@ -100,9 +104,12 @@ This executes three matched sessions through Inspect using a scripted mock, with
 synthetic token counts and no provider calls. It writes an Inspect `.eval` log,
 a run manifest, and linked `session.jsonl`/`model.jsonl` journals per attempt.
 Use a new output directory for each run. The runner exits nonzero for incomplete
-or unsuccessful sessions. The verifier checks all saved evidence and replays each
-session without model calls. Use `--preflight` instead of `--output` to inspect
-the planned workload without executing sessions. See the [Inspect protocol](docs/inspect-protocol.md)
+or unsuccessful sessions. The verifier cross-checks the manifest, Inspect log,
+and both journals, reconciles token usage, and replays each session without model
+calls. It uses the saved deals rather than regenerating them from a seed, and
+requires matching schedules across conditions and between Inspect and the game
+journals. Use `--preflight` instead of `--output` to inspect the planned workload
+without executing sessions. See the [Inspect protocol](docs/inspect-protocol.md)
 for artifact verification, limits, and separate competence/control templates.
 
 ## Run an offline session
@@ -186,15 +193,19 @@ Never give a decision callable the `PokerHand`, deal schedule, or serialized
 snapshot. They contain hidden cards. The session layer passes a player view that
 combines permitted poker information with delivered messages and bounded history.
 
-## Next implementation step
+## Next steps
 
-Increment 3's offline implementation is complete. Once API credentials and
-provider access are ready, run and review the [bounded live compatibility check](docs/live-smoke.md).
-Verify supported settings, returned model identity, legal decisions, usage, raw
-payload availability, privacy, and replay before planning the pilot and fixing
-the study model. The [checklist](TODO.md) tracks the remaining Phase 1
-competence, control, analysis, and sprint-report work.
-Full recovery and counterfactual continuations remain Phase 2.
+The Phase 1 runtime is implemented and reviewed offline. **Step 6 still requires
+live provider qualification.** Once API credentials and provider access are ready,
+run and review the [bounded live compatibility check](docs/live-smoke.md). Verify
+supported settings, returned model identity, legal decisions, usage, raw payload
+availability, privacy, and replay before proceeding to the research pilot.
+
+**Step 7 remains research sprint work:** the competence and coordination-control
+pilot, final model and protocol selection, annotation and analysis, matched
+evaluation runs, and the sprint report. The [checklist](TODO.md) tracks these
+tasks. Phase 1 is the narrow sprint experiment; full recovery, counterfactual
+continuations, and broader model comparisons remain Phase 2.
 
 ## Experiment outputs
 
