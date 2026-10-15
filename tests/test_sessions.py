@@ -225,6 +225,7 @@ def test_zero_budget_allows_only_passes(channel: Channel) -> None:
         {"decision_timeout_seconds": 0},
         {"decision_timeout_seconds": float("inf")},
         {"decision_timeout_seconds": float("nan")},
+        {"decision_timeout_seconds": 10**400},
         {"decision_timeout_seconds": True},
         {"decision_timeout_seconds": "30"},
     ],

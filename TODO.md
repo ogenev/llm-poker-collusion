@@ -64,6 +64,15 @@ lint/format and strict mypy passing. The live run is deliberately deferred
 until API credentials and provider access are ready. No provider calls or research
 runs have been made; compatibility, competence, and coordination remain unproven.
 
+Phase 1 steps 1–6 review completed on 2026-10-15: whole-run verification now uses
+the authoritative saved schedules, checks Inspect metadata against the game
+journals, and rejects unmatched deals across conditions without depending on the
+current deal generator. Oversized decision timeouts now produce the same
+validation error as other invalid values. Eight regression cases bring the suite
+to 994 passing offline tests; Ruff lint/format and strict mypy pass. The follow-up
+review found no further actionable issues. Live qualification remains deferred,
+and milestone 7 remains research sprint work.
+
 ## Phase scope
 
 | Dimension | Phase 1 Sprint study | Phase 2 Full research project |

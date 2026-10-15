@@ -14,8 +14,7 @@ from poker_collusion.event_log import read_log
 from poker_collusion.experiment_config import ExperimentConfig
 from poker_collusion.model_adapter import _read_object, parse_response
 from poker_collusion.model_log import verify_model_links
-from poker_collusion.poker import generate_schedule
-from poker_collusion.records import Channel
+from poker_collusion.records import Channel, DealSchedule
 from poker_collusion.replay import replay_session
 from poker_collusion.serialization import canonical, config_record, decode_candidate, digest
 
@@ -128,6 +127,7 @@ async def _session_report(
     run_id: str,
     block: int,
     channel: Channel,
+    schedule: DealSchedule,
 ) -> dict[str, Any]:
     session_id = sample.metadata.get("session_id")
     _require(
@@ -154,13 +154,10 @@ async def _session_report(
         and sample.metadata.get("channel") == channel.value,
         "Sample and model audit identifiers differ",
     )
-    schedule = json.loads(
-        generate_schedule(config.seeds[block], config.session.hands, block % 3).to_json()
-    )
     _require(
         header.get("model_config_sha256") == config.model.sha256
         and game.events[0].data["config"] == config_record(replace(config.session, channel=channel))
-        and game.events[0].data["schedule"] == schedule,
+        and game.events[0].data["schedule"] == json.loads(schedule.to_json()),
         "Session differs from the planned matched block",
     )
     issues = []
@@ -314,10 +311,30 @@ async def verify_run(directory: Path) -> dict[str, Any]:
         set(samples) == set(expected) and len(samples) == len(log.samples or []),
         "Missing, duplicate, or unexpected samples",
     )
-    sessions = [
-        await _session_report(directory, samples[key], config, start["run_id"], *values)
-        for key, values in expected.items()
-    ]
+    schedules: dict[int, DealSchedule] = {}
+    sessions = []
+    for key, (block, channel) in expected.items():
+        saved = samples[key].metadata.get("schedule")
+        _require(isinstance(saved, str), "Missing or invalid saved sample schedule")
+        assert isinstance(saved, str)
+        schedule = DealSchedule.from_json(saved)
+        _require(
+            schedule.seed == config.seeds[block]
+            and schedule.initial_rotation == block % 3
+            and len(schedule.deals) == config.session.hands,
+            "Saved schedule differs from the planned matched block",
+        )
+        # Saved deals are authoritative across runtime/generator changes. All
+        # conditions in the block must still use exactly the same saved schedule.
+        _require(
+            schedule == schedules.setdefault(block, schedule),
+            "Saved schedules differ within the matched block",
+        )
+        sessions.append(
+            await _session_report(
+                directory, samples[key], config, start["run_id"], block, channel, schedule
+            )
+        )
     _require(
         {path.name for path in (directory / "sessions").iterdir()}
         == {session["session_id"] for session in sessions},

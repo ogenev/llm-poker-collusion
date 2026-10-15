@@ -164,7 +164,11 @@ class SessionConfig:
             if require_int(getattr(self, name), name) < 0:
                 raise ValueError(f"{name} must be nonnegative")
         timeout = self.decision_timeout_seconds
-        if type(timeout) not in (int, float) or not math.isfinite(timeout) or timeout <= 0:
+        try:
+            valid_timeout = type(timeout) in (int, float) and math.isfinite(timeout) and timeout > 0
+        except OverflowError:
+            valid_timeout = False
+        if not valid_timeout:
             raise ValueError("decision_timeout_seconds must be finite and positive")
 
 

@@ -1,10 +1,12 @@
 import asyncio
 import json
 import shutil
+from dataclasses import replace
 from pathlib import Path
 from typing import Any
 
 import pytest
+from inspect_ai.dataset import Sample
 from inspect_ai.event import ModelEvent
 from inspect_ai.log import read_eval_log, write_eval_log
 from inspect_ai.model import ChatMessage, GenerateConfig, ModelOutput, get_model
@@ -14,7 +16,8 @@ from poker_collusion.experiment import run_experiment
 from poker_collusion.experiment_config import ExperimentConfig
 from poker_collusion.model_adapter import ModelConfig
 from poker_collusion.offline_model import offline_model, scripted_output
-from poker_collusion.records import Channel, SessionConfig
+from poker_collusion.poker import generate_schedule
+from poker_collusion.records import Channel, DealSchedule, SessionConfig
 from poker_collusion.serialization import canonical
 from poker_collusion.verification import verify_run
 
@@ -37,6 +40,65 @@ def test_saved_run_verifies_after_moving_artifacts(run_directory: Path, tmp_path
     assert sum(session["calls"] for session in report["sessions"]) == 21
     assert sum(session["total_tokens"] for session in report["sessions"]) == 2310
     assert {session["channel"] for session in report["sessions"]} == {"none", "public", "private"}
+
+
+def test_saved_schedule_is_authoritative_when_generation_changes(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    def alternate_schedule(seed: int, hands: int, initial_rotation: int = 0) -> DealSchedule:
+        schedule = generate_schedule(seed, hands, initial_rotation)
+        return replace(schedule, deals=tuple((3 - a, 3 - b, 3 - c) for a, b, c in schedule.deals))
+
+    config = ExperimentConfig(
+        ModelConfig("mockllm/model"), session=SessionConfig(hands=1), seeds=(0, 1)
+    )
+    root = tmp_path / "run"
+    with monkeypatch.context() as patch:
+        patch.setattr("poker_collusion.experiment.generate_schedule", alternate_schedule)
+        asyncio.run(run_experiment(config, root, model=offline_model()))
+    assert asyncio.run(verify_run(root))["passed"]
+
+
+@pytest.mark.parametrize("field", ["missing", "deals", "seed", "initial_rotation", "hands"])
+def test_inspect_schedule_must_match_saved_game_and_configuration(
+    run_directory: Path, field: str
+) -> None:
+    path = next((run_directory / "inspect").glob("*.eval"))
+    log = read_eval_log(str(path), resolve_attachments="full")
+    assert log.samples
+    metadata = log.samples[0].metadata
+    schedule = json.loads(metadata.pop("schedule"))
+    if field == "deals":
+        schedule["deals"] = [[3 - card for card in deal] for deal in schedule["deals"]]
+    elif field == "hands":
+        schedule["deals"] *= 2
+    elif field != "missing":
+        schedule[field] += 1
+    if field != "missing":
+        metadata["schedule"] = canonical(schedule)
+    write_eval_log(log, str(path))
+    with pytest.raises(ValueError):
+        asyncio.run(verify_run(run_directory))
+
+
+def test_conditions_cannot_use_different_saved_deals(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    def unmatched_sample(id: str, input: str, metadata: dict[str, Any]) -> Sample:
+        if metadata["channel"] == "private":
+            schedule = DealSchedule.from_json(metadata["schedule"])
+            metadata["schedule"] = replace(
+                schedule, deals=tuple((3 - a, 3 - b, 3 - c) for a, b, c in schedule.deals)
+            ).to_json()
+        return Sample(id=id, input=input, metadata=metadata)
+
+    # Create internally consistent journals for an incorrectly paired task.
+    monkeypatch.setattr("poker_collusion.experiment.Sample", unmatched_sample)
+    config = ExperimentConfig(ModelConfig("mockllm/model"), session=SessionConfig(hands=1))
+    root = tmp_path / "run"
+    asyncio.run(run_experiment(config, root, model=offline_model()))
+    with pytest.raises(ValueError, match="Saved schedules differ within the matched block"):
+        asyncio.run(verify_run(root))
 
 
 @pytest.mark.parametrize(

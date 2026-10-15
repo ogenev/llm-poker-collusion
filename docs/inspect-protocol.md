@@ -140,6 +140,9 @@ results; preserve failed, interrupted, and incomplete attempts separately.
 checks for an entire saved run. It checks sample coverage, matched schedules,
 Inspect event links, exact permitted inputs, generation settings, returned model
 identity, raw payload availability, output parsing, usage, and game replay.
+Saved sample schedules must match their game journals and every condition in the
+same block, with the configured seed, hand count, and rotation. Verification uses
+those saved deals; it does not regenerate them with the current runtime's RNG.
 The report retains unsuccessful sessions and distinguishes mock runs. Provider
 wire semantics and live behavior still require the [compatibility review](live-smoke.md).
 
