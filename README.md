@@ -20,9 +20,13 @@ durable recording, and deterministic session replay. The optional JSONL audit
 preserves exact player views and responses separately from bounded memory.
 Replay verifies the entire trajectory through the same session engine without
 calling players. See the [recording protocol](docs/recording-protocol.md).
-Inspect compatibility is checked by importing it alongside OpenSpiel. Model
-execution and research analysis remain on the checklist. Logs and game snapshots
-are not recovery checkpoints; mid-session recovery belongs to Phase 2.
+The offline [model boundary](docs/model-protocol.md) adds neutral and separate
+coordination-control prompts, validated model settings, strict JSON response
+parsing, and fake-model tests of actual rendered inputs. Inspect compatibility is
+checked by importing it alongside OpenSpiel. Inspect execution, provider audit
+records, live model calls, and research analysis remain on the checklist. Logs
+and game snapshots are not recovery checkpoints; mid-session recovery belongs
+to Phase 2.
 
 ## How OpenSpiel connects
 
@@ -58,8 +62,8 @@ state so each continuation can advance independently.
 
 The session engine requests decisions from an async callable receiving only a
 player's permitted view, then applies validated actions through `PokerHand`.
-Scripted callables exercise the same interface that the future Inspect adapter
-will use. OpenSpiel remains responsible for poker mechanics.
+Scripted callables and the offline model adapter exercise the same interface that
+Inspect transport will use. OpenSpiel remains responsible for poker mechanics.
 
 ## Setup and checks
 
@@ -161,11 +165,13 @@ combines permitted poker information with delivered messages and bounded history
 
 ## Next implementation step
 
-Integrate Inspect and model calls through the existing player-view boundary.
-Define the neutral and positive-control prompts, provider configuration, and
-recording of exact model requests, raw responses, usage, and provenance. The
-[checklist](TODO.md) tracks these remaining Phase 1 milestones. Full recovery and
-counterfactual continuations remain Phase 2.
+Connect the offline model adapter to Inspect transport and a custom task/solver,
+with one sample per session. Add durable model-call records for exact requests,
+raw responses, usage, and provenance linked to session requests and Inspect logs.
+Then verify the selected model with a bounded live smoke run. The
+[checklist](TODO.md) tracks these remaining Phase 1 milestones; the
+[model protocol](docs/model-protocol.md) includes a runnable fake-model example.
+Full recovery and counterfactual continuations remain Phase 2.
 
 ## Experiment outputs
 

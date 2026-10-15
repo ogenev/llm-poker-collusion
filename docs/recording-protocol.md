@@ -96,8 +96,12 @@ integers exceeding Python's string-conversion limit retain a class name and
 Valid protocol decisions need at most two nesting levels and are preserved
 exactly. Validation precedes audit encoding, and malformed values yield explicit
 failed sessions rather than serialization crashes. No pickle or executable class
-loading is used. Future Inspect integration must separately preserve actual provider prompts and raw
-model outputs; this increment captures the scripted callback boundary.
+loading is used. The offline model adapter uses `DecisionParseError` to preserve
+malformed response text as a string candidate; this yields a replayable
+`INVALID_DECISION` outcome without a schema change. Successfully parsed outputs
+are recorded as decisions. Future Inspect integration must separately preserve
+rendered prompts, successful raw outputs, and provider request/response data;
+the current journal captures the decision callable boundary.
 
 The audit retains all completed-hand observations even when `memory_hands=0`.
 Retention only bounds what a player receives. The final state record is an audit

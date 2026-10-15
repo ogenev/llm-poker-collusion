@@ -10,6 +10,7 @@ from poker_collusion.records import (
     Action,
     BetDecision,
     Decision,
+    DecisionParseError,
     FailureKind,
     MessageDecision,
     PassDecision,
@@ -125,8 +126,13 @@ class SessionAudit:
         try:
             async with asyncio.timeout(timeout):
                 candidate: object = await decide(view)
+        except DecisionParseError as error:
+            # A raw string is never a protocol decision. Preserve malformed model
+            # text using the existing candidate format and validation/replay path.
+            outcome: Outcome = resolve_candidate(view, error.response)
+            self.emit("decision_returned", request_id=request_id, candidate=error.response)
         except TimeoutError:
-            outcome: Outcome = failure_for(view, FailureKind.TIMEOUT, "Decision timed out")
+            outcome = failure_for(view, FailureKind.TIMEOUT, "Decision timed out")
         except asyncio.CancelledError:
             self.cancelled(request_id)
             raise

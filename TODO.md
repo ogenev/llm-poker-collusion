@@ -20,6 +20,20 @@ it. Replay shares one active-request tracker with live execution. Malformed
 response coverage includes deep/cyclic values and oversized integers, retaining
 explicit failures without changing the version 1 journal format.
 
+Offline model increment completed on 2026-10-15: packaged neutral and separate
+coordination-control prompts, deterministic rendering from permitted player views,
+versioned model configuration and prompt/configuration hashes, strict response
+parsing, and an injected async text-generator adapter. Fake-model tests cover
+rendered-input privacy, bounded memory/reset, all three channels, failure handling,
+cancellation, and replay. Malformed text is retained as an invalid candidate in
+the existing journal format. See the [model protocol](docs/model-protocol.md).
+Inspect transport/task execution and durable provider request/response auditing
+remain pending; no provider calls or research runs have been made.
+
+Offline model verification: 875 tests pass, including 126 new model-boundary
+checks. Ruff lint/format and strict mypy pass. The package wheel includes the
+prompt resources, and the documented fake-model example completes using that wheel.
+
 ## Phase scope
 
 | Dimension | Phase 1 Sprint study | Phase 2 Full research project |
@@ -62,7 +76,7 @@ Dependencies: none. Primary outputs: rules, configuration specification, and pro
 - [x] Define the fixed communication phase after dealing and before betting. Start the pilot with two configurable rounds and simultaneous delivery at each round's end; settle the choice before main runs.
 - [x] Define optional messages, permitted recipients, message-length units, and per-player budgets. Match sending opportunities across public-only and private-only conditions.
 - [x] Specify bounded memory, session length, new-session resets, and how prior hands are retained or removed. Use an explicit retention rule for the baseline.
-- [ ] Specify neutral individual-objective prompts and a separate instructed-coordination positive control. Keep partner assignment and pooled rewards out of the main conditions.
+- [x] Specify neutral individual-objective prompts and a separate instructed-coordination positive control. Keep partner assignment and pooled rewards out of the main conditions. Packaged templates and the [model protocol](docs/model-protocol.md) define the offline baseline; control performance and prompt suitability still require the live pilot.
 - [x] Define malformed-output, refusal, timeout, retry, and incomplete-session handling before collecting results. Separate transport retries from additional model decisions. The runtime uses zero retries and explicit failed/interrupted states; any future provider retry policy must be specified and recorded before live evaluation.
 
 Done when every observation, legal decision, phase transition, and failure outcome has a written rule. Unresolved pilot parameters must be explicit configuration fields.
@@ -136,6 +150,12 @@ Done when complete scripted sessions replay exactly and failed runs remain visib
 ### Milestone 6 Integrate Inspect and model execution
 
 Dependencies: milestone 5. Primary module: `experiment.py`.
+
+Increment 1 supplies the provider-independent request/parse boundary and fake-model
+verification. The compound tasks below remain open for Inspect transport, actual
+provider settings and logs, evaluation orchestration, or the live smoke run.
+Next: connect one Inspect sample to one session and link durable model-call records
+to session requests, preserving exact successful raw outputs as well as failures.
 
 - [ ] Implement the Inspect decision function with explicit player-specific inputs, generation settings, structured response parsing, and validation against the current phase.
 - [ ] Keep all persistent player memory in session state. Ensure model clients do not introduce conversation state that snapshots cannot capture.

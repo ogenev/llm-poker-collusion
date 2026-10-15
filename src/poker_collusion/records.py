@@ -187,6 +187,16 @@ class BetDecision:
 type Decision = PassDecision | MessageDecision | BetDecision
 
 
+class DecisionParseError(ValueError):
+    """An adapter could not decode text; retain it as an invalid audit candidate."""
+
+    def __init__(self, response: str, detail: str) -> None:
+        if type(response) is not str:
+            raise TypeError("An unparsed response must be a built-in string")
+        super().__init__(detail)
+        self.response = response
+
+
 @dataclass(frozen=True, slots=True)
 class Message:
     sender: str

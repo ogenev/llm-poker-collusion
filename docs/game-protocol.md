@@ -1,8 +1,9 @@
 # Game protocol v1
 
 This specifies the game boundary. The [session protocol](session-protocol.md)
-defines communication budgets, memory, and runtime failure handling. Model
-prompts and integration remain pending in [the checklist](../TODO.md). This is
+defines communication budgets, memory, and runtime failure handling. The
+[model boundary](model-protocol.md) defines offline prompts and response parsing;
+Inspect execution remains pending in [the checklist](../TODO.md). This is
 pre-sprint implementation work, not a frozen experimental protocol.
 
 ## Rules and settlement

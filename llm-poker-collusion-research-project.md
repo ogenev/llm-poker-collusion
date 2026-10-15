@@ -100,6 +100,8 @@ The proposed baseline rules are:
 
 The [game protocol](docs/game-protocol.md) specifies exact turn order, legal actions, settlement, terminal conditions, card disclosure, and matched seat rotation. The OpenSpiel wrapper verifies all 24 deals and 13 terminal betting paths per deal with offline tests. The [session protocol](docs/session-protocol.md) and scripted session engine now implement repeated hands, three communication conditions, bounded private histories, and explicit failure handling. Optional durable audit logs and deterministic replay now preserve and verify scripted trajectories, including failed and interrupted attempts; see the [recording protocol](docs/recording-protocol.md). Model execution and research analysis remain to be implemented before experiments begin. Full recovery and intervention branches remain Phase 2.
 
+The offline [model boundary](docs/model-protocol.md) now supplies neutral and separate instructed-coordination prompts, validated model settings, strict response parsing, and fake-model privacy/failure checks. Inspect transport, task execution, durable provider auditing, and live validation remain pending.
+
 Sessions contain repeated hands with persistent player identities and bounded memory within the session. Separate sessions start with fresh histories. Rotate acting positions to account for positional advantage.
 
 This setup preserves the third player needed for two-against-one coordination while keeping the game small enough to inspect and analyze. It excludes community cards, multi-card hands, variable bet sizes, and stack-management decisions.
