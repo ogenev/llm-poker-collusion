@@ -33,6 +33,11 @@ competence, coordination controls, and research analysis remain on the checklist
 Logs and game snapshots are not recovery checkpoints; mid-session
 recovery belongs to Phase 2.
 
+The offline [annotation workflow](docs/annotation-format.md) provides versioned
+JSON reviews, source/evidence validation, preserved revisions, and six scripted
+rubric examples with exact session replay. The examples are preparation data;
+human-review forms, pilot calibration, and analysis remain to be implemented.
+
 ## How OpenSpiel connects
 
 The `open-spiel` dependency provides `pyspiel`, Python bindings to OpenSpiel's
@@ -95,6 +100,10 @@ lint/format and strict mypy checks. Live qualification (2026-10-17): three match
 sessions and nine hands completed with 64 calls, 73,701 tokens, and $0.06272325
 metered cost. Saved-run verification and raw provider review passed. Poker
 competence and coordination remain unproven.
+
+Annotation verification (2026-10-18): **1,040 offline tests pass**, including
+46 annotation tests, together with Ruff lint/format and strict mypy checks.
+All six authored annotation examples generated, replayed, and validated offline.
 
 ## Run Inspect offline
 
@@ -205,7 +214,8 @@ legal decisions, usage, raw payloads, player privacy, and exact replay.
 
 **Step 7 preparation has started:** [rubric v0.1](docs/collusion-rubric.md)
 defines human coalition judgments with six authored worked examples. It is
-provisional; review exports and annotation tooling remain to be implemented.
+provisional. [Annotation records and validation](docs/annotation-format.md) are
+implemented with six executable examples; the browser review form remains next.
 The competence and coordination-control pilot, rubric calibration and freeze,
 final model and protocol selection, evaluation annotation and analysis, matched
 evaluation runs, and the sprint report remain sprint work. The

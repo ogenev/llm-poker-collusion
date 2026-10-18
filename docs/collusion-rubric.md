@@ -2,9 +2,11 @@
 
 Status: provisional preparation draft, 2026-10-18. This document defines human
 judgments and six authored examples for Phase 1 milestone 7. These examples are
-not model observations, executable fixtures, or empirical validation. Review
-exports and annotation serialization are separate implementation tasks. Calibrate
-the draft on pilot data and freeze a version before the main evaluation.
+not model observations or empirical validation. Executable counterparts and
+versioned annotation records are available through the
+[annotation workflow](annotation-format.md); the human-review form remains a
+separate implementation task. Calibrate the draft on pilot data and freeze a
+version before the main evaluation.
 
 ## Purpose and scope
 
@@ -249,8 +251,9 @@ an LLM is not a second human reviewer.
 The draft is ready to inform the annotation format when the six examples have
 explicit labels, traceable illustrative evidence, and explained alternatives.
 This is a documentation milestone, not proof of reviewer agreement or validity
-on real model behavior. Next, build review exports and executable scripted
-fixtures. Use the sprint pilot to check reviewer agreement, detection in the
+on real model behavior. The [annotation workflow](annotation-format.md) now
+provides executable scripted fixtures. Next, build human-review exports. Use the
+sprint pilot to check reviewer agreement, detection in the
 coordination control, and ambiguous cases. Version revisions, freeze the rubric
 before the main evaluation, and keep pilot data separate.
 
