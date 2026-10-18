@@ -1,11 +1,42 @@
-# Increment 3: live compatibility preparation
+# Increment 3: live compatibility
 
-The implementation is ready for a bounded OpenAI compatibility run. The live run
-is deliberately deferred until credentials and provider access are available.
-Offline tests exercise Inspect and the OpenAI SDK with simulated HTTP responses;
-they do not establish remote model availability, poker competence, or coordination.
-Phase 1 milestone 6 remains open until the live evidence is reviewed. Recovery,
+The bounded OpenAI compatibility run passed on 2026-10-17, completing Phase 1
+milestone 6. All three sessions completed, saved-run verification passed, and all
+64 raw provider request/response pairs were reviewed. See the recorded result
+below. This qualifies the tested model and settings for compatibility; poker
+competence and coordination still require the milestone 7 pilot. Recovery,
 interventions, and multiple-model research remain Phase 2.
+
+## Accepted run: 2026-10-17
+
+The unchanged smoke configuration ran against `gpt-5.4-mini-2026-03-17` from source
+commit `1304380`. Run ID: `eb58eb45058148d6b228e71238e9b858`.
+Artifacts are retained locally under
+`runs/preparation/live-smoke-20261017-001/` (ignored by Git), including the Inspect
+`.eval` log, run manifest, both journals per session, `console.log`,
+`verification.json`, and `provider-review.json`.
+
+| Channel | Completed hands | Calls / raw payload pairs | Total tokens | Metered cost (USD) |
+| --- | ---: | ---: | ---: | ---: |
+| None | 3 | 9 / 9 | 7,242 | $0.005859 |
+| Public | 3 | 27 / 27 | 35,518 | $0.030051 |
+| Private | 3 | 28 / 28 | 30,941 | $0.02681325 |
+| Total | 9 | 64 / 64 | 73,701 | $0.06272325 |
+
+The verifier returned `passed: true` with no session issues: matched saved deals,
+legal decisions, exact replay, permitted player inputs, artifact links, settings,
+and usage all passed. Raw requests contained exactly the expected developer
+prompt and player-view JSON, the pinned model, a 2,048-token output cap, and no
+tools or additional conversation state. All raw responses matched the recorded
+outputs and model identity, with normal stop reasons and reconciled usage/cost.
+There were no retries, response-cache hits, refusals, truncations, or failed
+sessions. Usage was 71,715 input and 1,986 output tokens, with zero cached-input
+or reasoning tokens. Pricing was rechecked against the model page on 2026-10-17;
+metered cost is an estimate rather than a billing receipt.
+
+The live run took about one minute. Saved-run verification needed the environment's
+local socket support for Inspect's asynchronous file reads; it made no model
+calls. This is preparation evidence, separate from future pilot/evaluation data.
 
 ## Configuration
 
@@ -60,11 +91,11 @@ Inspect's bundled model metadata does not supply these prices. Pass
 `configs/openai-smoke-pricing.json` explicitly using `--model-cost-config`.
 It uses Inspect's JSON pricing format in dollars per million tokens. The
 [OpenAI model page](https://developers.openai.com/api/docs/models/gpt-5.4-mini)
-was checked on 2026-10-15: input $0.75, cached input $0.075, output $4.50.
+was checked on 2026-10-17: input $0.75, cached input $0.075, output $4.50.
 The required cache-write field uses the ordinary input rate; this integration
 does not request a separate cache-write product. These rates cover standard
 processing, without regional or other service-tier adjustments. Recheck pricing
-and model availability before the deferred run.
+and model availability before another live run.
 
 The pricing loader rejects a mismatched model, missing/extra rates, negative or
 nonfinite values, and implicit conversions. The effective prices and workload
@@ -90,9 +121,9 @@ The offline equivalent needs no key:
 uv run --locked python scripts/run_experiment.py configs/inspect-offline.json --offline --preflight
 ```
 
-## Deferred live execution
+## Live execution
 
-Once access is ready, explicitly run the smoke test in a fresh directory:
+With provider access ready, explicitly run the smoke test in a fresh directory:
 
 ```sh
 uv run --locked python scripts/run_experiment.py configs/inspect-live-smoke.json \

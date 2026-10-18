@@ -3,9 +3,10 @@
 This covers increments 2 and 3 of Phase 1 milestone 6. Inspect executes the existing
 session engine and records model-call evidence. Offline verification uses Inspect's
 real task, solver, model, and logging APIs, including the OpenAI SDK with simulated
-HTTP responses. [Increment 3 preparation](live-smoke.md) is complete; the live run
-is deferred until provider access is ready. No live provider has been qualified
-and no research data has been collected. Recovery and branching remain Phase 2.
+HTTP responses. [Increment 3 live qualification](live-smoke.md#accepted-run-2026-10-17)
+passed on 2026-10-17 for the pinned OpenAI smoke candidate: three complete sessions,
+64 calls, and successful replay and provider-payload review. No competence/control
+pilot or evaluation data has been collected. Recovery and branching remain Phase 2.
 
 ## Execution and player inputs
 
@@ -144,7 +145,8 @@ Saved sample schedules must match their game journals and every condition in the
 same block, with the configured seed, hand count, and rotation. Verification uses
 those saved deals; it does not regenerate them with the current runtime's RNG.
 The report retains unsuccessful sessions and distinguishes mock runs. Provider
-wire semantics and live behavior still require the [compatibility review](live-smoke.md).
+wire semantics and live behavior require a separate [compatibility review](live-smoke.md);
+the pinned OpenAI smoke run passed that review on 2026-10-17.
 
 ## Offline commands and control templates
 
@@ -183,7 +185,7 @@ The offline policy passes on messages and checks/calls. Its token counts are
 explicitly synthetic, supplied to avoid a tokenizer download and exercise usage
 metering. It does not demonstrate competence or enacted coordination, even when
 run under the control instructions. `inspect-live-smoke.json` supplies a pinned
-OpenAI candidate and small explicit limits for the deferred compatibility run.
+OpenAI candidate and small explicit limits used by the accepted compatibility run.
 The final study model and budget still require pilot evidence; these templates
 are preparation defaults.
 

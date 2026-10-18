@@ -26,10 +26,11 @@ parsing, and tests of actual rendered inputs. The [Inspect integration](docs/ins
 now runs one session per sample with bounded concurrency, fresh player inputs,
 explicit failures, and durable model-call evidence linked to the game journal.
 Offline Inspect and OpenAI SDK tests cover raw payloads, usage, privacy, limits,
-and replay. [Live smoke preparation](docs/live-smoke.md) adds a bounded candidate
+and replay. [Live smoke tooling](docs/live-smoke.md) adds a bounded candidate
 configuration, preflight without API calls, explicit pricing, and saved-run
-verification. Live model compatibility and research analysis remain on the
-checklist. Logs and game snapshots are not recovery checkpoints; mid-session
+verification. The pinned OpenAI candidate passed live compatibility on 2026-10-17;
+competence, coordination controls, and research analysis remain on the checklist.
+Logs and game snapshots are not recovery checkpoints; mid-session
 recovery belongs to Phase 2.
 
 ## How OpenSpiel connects
@@ -89,9 +90,11 @@ and Inspect 0.3.278. Inspect tests use scripted models or simulated OpenAI HTTP
 responses and reject external network connections; local event-loop sockets and
 writable XDG data/cache directories are required.
 
-Latest verification (2026-10-15): **994 offline tests pass**, together with Ruff
-lint/format and strict mypy checks. These checks validate the framework;
-live model compatibility, poker competence, and coordination remain unproven.
+Offline verification (2026-10-15): **994 offline tests pass**, together with Ruff
+lint/format and strict mypy checks. Live qualification (2026-10-17): three matched
+sessions and nine hands completed with 64 calls, 73,701 tokens, and $0.06272325
+metered cost. Saved-run verification and raw provider review passed. Poker
+competence and coordination remain unproven.
 
 ## Run Inspect offline
 
@@ -195,21 +198,24 @@ combines permitted poker information with delivered messages and bounded history
 
 ## Next steps
 
-The Phase 1 runtime is implemented and reviewed offline. **Step 6 still requires
-live provider qualification.** Once API credentials and provider access are ready,
-run and review the [bounded live compatibility check](docs/live-smoke.md). Verify
-supported settings, returned model identity, legal decisions, usage, raw payload
-availability, privacy, and replay before proceeding to the research pilot.
+The Phase 1 runtime is implemented and reviewed. **Step 6 is complete:** the
+[bounded live compatibility check](docs/live-smoke.md#accepted-run-2026-10-17)
+passed on 2026-10-17 for `openai/gpt-5.4-mini-2026-03-17`, including model/settings,
+legal decisions, usage, raw payloads, player privacy, and exact replay.
 
-**Step 7 remains research sprint work:** the competence and coordination-control
-pilot, final model and protocol selection, annotation and analysis, matched
-evaluation runs, and the sprint report. The [checklist](TODO.md) tracks these
-tasks. Phase 1 is the narrow sprint experiment; full recovery, counterfactual
-continuations, and broader model comparisons remain Phase 2.
+**Step 7 preparation has started:** [rubric v0.1](docs/collusion-rubric.md)
+defines human coalition judgments with six authored worked examples. It is
+provisional; review exports and annotation tooling remain to be implemented.
+The competence and coordination-control pilot, rubric calibration and freeze,
+final model and protocol selection, evaluation annotation and analysis, matched
+evaluation runs, and the sprint report remain sprint work. The
+[checklist](TODO.md) tracks these tasks. Phase 1 is the narrow sprint experiment;
+full recovery, counterfactual continuations, and broader model comparisons
+remain Phase 2.
 
 ## Experiment outputs
 
 Write generated runs under `runs/` (ignored), separated into preparation, pilot,
 sprint evaluation, and Phase 2 confirmatory data. Preserve exact schedules and
-configuration with each run. The work here is pre-sprint framework preparation;
-no experimental data has been collected.
+configuration with each run. The live smoke artifacts are preparation evidence;
+no competence/control pilot or sprint evaluation data has been collected.

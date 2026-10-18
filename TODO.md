@@ -73,6 +73,16 @@ to 994 passing offline tests; Ruff lint/format and strict mypy pass. The follow-
 review found no further actionable issues. Live qualification remains deferred,
 and milestone 7 remains research sprint work.
 
+Live qualification completed on 2026-10-17: the pinned OpenAI smoke candidate
+completed all three matched channels, three hands each. All 64 calls retained
+raw payloads; saved-run verification and raw provider review passed with no
+issues, retries, or failed sessions. Usage was 73,701 tokens and metered cost
+was $0.06272325. Evidence is retained in
+`runs/preparation/live-smoke-20261017-001/`; see the
+[accepted run](docs/live-smoke.md#accepted-run-2026-10-17). Milestone 6 is complete.
+Competence, coordination controls, final study model selection, and evaluation
+remain milestone 7; this smoke run is preparation data only.
+
 ## Phase scope
 
 | Dimension | Phase 1 Sprint study | Phase 2 Full research project |
@@ -135,7 +145,7 @@ open for Phase 2 snapshot/branch state.
 - [x] Create `pyproject.toml`, a compatible Python environment managed with uv, and a lockfile. Verify the selected Inspect and OpenSpiel versions work together on the target machine. Python 3.13.7, Inspect 0.3.278, and OpenSpiel 1.6.15 install and import together on macOS arm64; end-to-end Inspect execution remains milestone 6.
 - [ ] Add the five initial modules, test directories, configuration and prompt directories, and output-directory conventions.
 - [x] Configure pytest, formatting, linting, and type checking with documented local commands. Keep ordinary verification independent of paid model calls.
-- [x] Define validated configuration records for rules, communication, instructions, model settings, memory, deal schedules, stopping limits, and failure policy. Phase 1 rules and the zero-retry failure policy are fixed; provider compatibility still requires the live check.
+- [x] Define validated configuration records for rules, communication, instructions, model settings, memory, deal schedules, stopping limits, and failure policy. Phase 1 rules and the zero-retry failure policy are fixed; the pinned OpenAI smoke candidate passed live compatibility on 2026-10-17.
 - [ ] Define `PlayerView`, phase-specific decisions, messages, events, results, and serializable state. Reject inconsistent phase/action/channel combinations and unknown configuration values.
 - [ ] Define complete session state: game state, phase and cursor, player identities and seats, all histories, rewards, pending messages, budgets, schedule position, and random-generator state.
 - [ ] Define audit identifiers for runs, matched blocks, sessions, hands, events, requests, snapshots, and branches. Keep internal identifiers and experimental labels out of player-visible observations.
@@ -195,21 +205,22 @@ Increment 1 supplies the provider-independent request/parse boundary. Increment 
 connects it to the actual Inspect task/solver/model runtime, verified with an offline
 scripted model. Increment 3's offline implementation supplies a pinned candidate,
 small live configuration, pricing, preflight, OpenAI SDK HTTP tests, and saved-run
-verification. Its live qualification is deferred until credentials and provider
-access are ready; fix the study model after the competence/control pilot. None
-of the offline checks establish poker competence or spontaneous/enacted coordination.
+verification. Live qualification passed on 2026-10-17 with the pinned OpenAI
+candidate; fix the study model after the competence/control pilot. Neither the
+offline checks nor this smoke run establish poker competence or
+spontaneous/enacted coordination.
 
 - [x] Implement the Inspect decision function with explicit player-specific inputs, generation settings, structured response parsing, and validation against the current phase.
-- [x] Keep all persistent player memory in session state. Ensure model clients do not introduce conversation state that snapshots cannot capture. Inspect receives fresh explicit messages for each request; live provider payloads still require qualification.
+- [x] Keep all persistent player memory in session state. Ensure model clients do not introduce conversation state that snapshots cannot capture. Inspect receives fresh explicit messages for each request; all 64 live smoke payloads matched the expected two-message inputs without additional conversation state.
 - [x] Implement a custom solver that invokes the session runner and exposes results and artifact references to Inspect without using a shared sample transcript as player input.
 - [x] Map one Inspect sample to one complete session. Build tasks/configurations for the three Phase 1 channels under neutral instructions, maintaining a shared matching identifier across conditions.
 - [x] Add separate positive-control and competence configurations. Use one fixed model with three separate histories and individual rewards in the main formation experiments. Shipped templates use the offline mock until a live model is selected; competence and control outcomes are not yet scored.
-- [x] Record requested and returned model identifiers where available, supported generation parameters, exact prompts, raw returned outputs, token usage, latency, retry information, and run provenance. Inspect events retain effective settings and available raw payloads; live support and payload completeness remain to be verified.
+- [x] Record requested and returned model identifiers where available, supported generation parameters, exact prompts, raw returned outputs, token usage, latency, retry information, and run provenance. Inspect events retain effective settings and raw payloads; all 64 live smoke calls passed payload and usage review.
 - [x] Apply bounded concurrency, transport retries, timeouts, token/cost limits, and the predefined model-failure policy. Record interrupted or incomplete runs explicitly. Retries are zero; limits apply per session and may overshoot for in-flight responses. Dollar limits require known Inspect pricing.
 - [x] Configure response-cache behavior so independent sessions do not reuse sampled answers. Record exact outputs and supported sampling settings without assuming seeds make provider calls deterministic.
 - [x] Connect Inspect execution logs to the experiment event records using stable references, with the experiment records authoritative for game behavior.
 - [x] Test the integration with a fake model interface and simulated provider HTTP. Provide a small, explicitly invoked live smoke-run configuration, preflight, pricing, and offline artifact verification.
-- [ ] Execute the bounded live smoke run and review model identity, settings, legal decisions, privacy, usage, raw payloads, and replay. Increment 3 remains open for this evidence; remote compatibility cannot be established by offline tests.
+- [x] Execute the bounded live smoke run and review model identity, settings, legal decisions, privacy, usage, raw payloads, and replay. Accepted on 2026-10-17: three complete sessions, nine hands, 64 calls, and no verification issues. See [live evidence](docs/live-smoke.md#accepted-run-2026-10-17).
 
 Done when Inspect can execute and inspect complete sessions, preserve distinct player histories, and report failures and usage without changing the protocol.
 
@@ -217,7 +228,7 @@ Done when Inspect can execute and inspect complete sessions, preserve distinct p
 
 Dependencies: Phase 1 milestones 1 through 6. Primary outputs: reviewed evidence, analysis, and the sprint report.
 
-- [ ] Define a short rubric for attempted, agreed, and enacted coalitions, requiring message/action evidence and recording uncertainty. Identify membership behaviorally rather than selecting the highest-winning pair.
+- [x] Draft a short rubric for attempted, agreed, and enacted coalitions, requiring message/action evidence and recording uncertainty. [Rubric v0.1](docs/collusion-rubric.md) includes six authored worked examples and identifies membership behaviorally rather than selecting the highest-winning pair. This is pre-sprint preparation; pilot calibration and the evaluation freeze remain below.
 - [ ] Create human-review exports and test the rubric with scripted examples of enacted coordination, talk without action, and similar play without agreement. Do not treat no-communication sessions as guaranteed non-collusion labels.
 - [ ] Implement session-level formation outcomes, proposal/agreement timing, and individual/pair/outsider payoff summaries. Assess identified pairs on subsequent hands where feasible and distinguish descriptive results from causal effectiveness claims.
 - [ ] Implement matched condition comparisons and uncertainty estimates that preserve independent session blocks. Record failed sessions, absent coalitions, ambiguous labels, and the small study's limitations.
