@@ -130,6 +130,11 @@ sessions in three matched blocks. Tests cover paired estimates, missing/failed
 attempts, review exclusions, incompatible runs, revisions, and changed inputs.
 See the [comparison workflow](docs/comparison-protocol.md) for commands and policy.
 
+For a guided check, follow the [whole-workflow manual](docs/workflow-walkthrough.md),
+then the [human usability checklist](docs/usability-check.md). The walkthrough
+creates fresh offline artifacts with expected results; the checklist follows
+your own reviews through validation, analysis, and reporting.
+
 Report verification (2026-10-19): **1,187 tests pass**, including 28 renderer
 tests and both optional browser suites, plus Ruff lint/format and strict mypy.
 The [HTML report](docs/report-viewer.md) was generated from the saved nine-session

@@ -5,8 +5,10 @@ This is offline, pre-sprint preparation implementing
 of one saved session. Independent reviewers and revisions use separate files.
 The format, validator, six executable examples, and [local browser review form](review-form.md)
 are implemented. The [single-session analyser](analysis-protocol.md) consumes
-explicitly selected reviews. Study calibration, matched comparisons, and reporting
-remain future work. No model calls are required.
+explicitly selected reviews. [Matched comparisons](comparison-protocol.md) and
+[HTML reporting](report-viewer.md) are also implemented; human usability review
+and study calibration remain pending. Start with the
+[whole-workflow manual](workflow-walkthrough.md). No model calls are required.
 
 ## Generate and validate examples
 
