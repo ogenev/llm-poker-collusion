@@ -41,8 +41,9 @@ are preparation data. The [single-session analyser](docs/analysis-protocol.md)
 validates selected reviews, verifies gameplay, and exports stage summaries and
 descriptive payoffs. The [matched comparison layer](docs/comparison-protocol.md)
 uses an explicit run/review manifest, preserves exclusions, and estimates paired
-differences with block bootstrap intervals. Human rubric calibration and
-standalone reporting remain to be completed.
+differences with block bootstrap intervals. The [standalone HTML report](docs/report-viewer.md)
+shows saved comparisons, uncertainty, review coverage, and filterable session
+evidence offline. Human usability review and rubric calibration remain pending.
 
 ## How OpenSpiel connects
 
@@ -128,6 +129,13 @@ The documented example commands generated and compared nine scripted Inspect
 sessions in three matched blocks. Tests cover paired estimates, missing/failed
 attempts, review exclusions, incompatible runs, revisions, and changed inputs.
 See the [comparison workflow](docs/comparison-protocol.md) for commands and policy.
+
+Report verification (2026-10-19): **1,187 tests pass**, including 28 renderer
+tests and both optional browser suites, plus Ruff lint/format and strict mypy.
+The [HTML report](docs/report-viewer.md) was generated from the saved nine-session
+example with links to all nine source review pages. Browser checks cover fixed
+estimates during filtering, evidence, missing/failed data, pagination, mobile,
+and print behavior. Human usability review remains pending.
 
 ## Run Inspect offline
 
@@ -242,8 +250,10 @@ provisional. [Annotation records and validation](docs/annotation-format.md) are
 implemented with six executable examples and a [local browser review form](docs/review-form.md).
 The [single-session analyser](docs/analysis-protocol.md) now produces validated
 JSON summaries. The [comparison workflow](docs/comparison-protocol.md) adds
-offline matched-block estimates and a runnable scripted Inspect example. Human
-usability review, precise formation timing, and report generation remain pending.
+offline matched-block estimates and a runnable scripted Inspect example. The
+[HTML viewer](docs/report-viewer.md) renders those saved results with session
+filters and evidence details. Human usability review and precise formation
+timing remain pending.
 The competence and coordination-control pilot, rubric calibration and freeze,
 final model and protocol selection, evaluation annotation and analysis, matched
 evaluation runs, and the sprint report remain sprint work. The

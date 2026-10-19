@@ -195,7 +195,9 @@ and runtime versions are also recorded. Given the same selection, bytes, code,
 and runtime, output is deterministic. Moving the complete tree does not break
 relative references or require the absolute paths recorded during execution.
 
-Standalone HTML reporting, human usability testing, adjudication, precise
-reviewer-selected onset markers, subsequent-hand payoff windows, and the live
-pilot/evaluation remain separate work. This command does not modify annotation
-files, submit Inspect scores, run a model judge, or create new model responses.
+The [standalone HTML viewer](report-viewer.md) renders this saved output with a
+primary comparison chart, review coverage, and filterable session details.
+Human usability testing, adjudication, precise reviewer-selected onset markers,
+subsequent-hand payoff windows, and the live pilot/evaluation remain separate
+work. This command does not modify annotation files, submit Inspect scores,
+run a model judge, or create new model responses.

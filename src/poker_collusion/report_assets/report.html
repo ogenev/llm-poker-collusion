@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'nonce-@@NONCE@@'; style-src 'nonce-@@NONCE@@'; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <title>Communication &amp; coordination · poker research</title>
+  <style nonce="@@NONCE@@">@@STYLE@@</style>
+</head>
+<body>
+  <a class="skip" href="#primary">Skip to primary comparison</a>
+  <header>
+    <div><p class="eyebrow">POKER RESEARCH / SAVED COMPARISON</p><h1>Communication &amp; coordination</h1><p class="subtitle">Matched sessions, reviewed evidence, and uncertainty.</p></div>
+    <div class="header-actions"><span id="dataset-role" class="badge"></span><button id="print" type="button">Print report</button></div>
+  </header>
+  <nav aria-label="Report sections"><a href="#overview">Overview</a><a href="#primary">Primary comparison</a><a href="#secondary">Other results</a><a href="#sessions">Session explorer</a><a href="#provenance">Provenance</a></nav>
+  <main>
+    <noscript><p class="notice">Enable JavaScript to display this embedded report. No network connection is needed.</p></noscript>
+    <p id="loading" role="status">Loading saved results…</p>
+    <section id="overview" aria-labelledby="overview-heading">
+      <h2 id="overview-heading">Dataset overview</h2>
+      <p id="dataset-note" class="notice"></p>
+      <div id="overview-cards" class="cards"></div>
+      <dl id="settings" class="facts"></dl>
+      <details><summary>Protocol and analysis settings</summary><pre id="settings-detail"></pre></details>
+    </section>
+    <section id="primary" aria-labelledby="primary-heading">
+      <div class="section-heading"><div><p class="eyebrow">PRIMARY COMPARISON</p><h2 id="primary-heading">Private − public: enacted coordination</h2></div><span class="badge">One outcome per session</span></div>
+      <p>Difference in the proportion of sessions with observed enacted coordination, using the same eligible matched blocks in both conditions.</p>
+      <div id="primary-cards" class="cards"></div>
+      <figure id="comparison-chart" aria-label="Saved primary estimate and uncertainty interval"></figure>
+      <div id="primary-warnings" class="notice"></div>
+      <p class="hint">Positive differences mean a higher observed rate under private communication. Excluding failures or unresolved reviews can bias the result.</p>
+      <details><summary>Included blocks and exclusions</summary><div id="primary-members"></div></details>
+    </section>
+    <section id="coverage" aria-labelledby="coverage-heading">
+      <h2 id="coverage-heading">Completion and review coverage</h2>
+      <p class="hint">Condition rates may use different denominators. Raw verdict counts include unfinished or excluded reviews; unknown and uncertain are kept separate.</p>
+      <div id="condition-coverage"></div>
+    </section>
+    <section id="secondary" aria-labelledby="secondary-heading">
+      <h2 id="secondary-heading">Other stages, baseline, and payoffs</h2>
+      <p class="hint">These comparisons are descriptive. Whole-session payoffs cover fixed players and pairs; they do not establish a causal benefit from coordination.</p>
+      <div id="secondary-results"></div>
+    </section>
+    <section id="sessions" aria-labelledby="sessions-heading">
+      <h2 id="sessions-heading">Session explorer</h2>
+      <p id="filter-policy" class="notice subtle">Filters change the session list only. All estimates and denominators above remain fixed.</p>
+      <div class="filters">
+        <label class="search">Search IDs, reviewer, or evidence<input type="search" id="search" autocomplete="off" placeholder="Search saved sessions"></label>
+        <label>Channel<select id="channel-filter"><option value="all">All channels</option><option value="private">Private</option><option value="public">Public</option><option value="none">No communication</option></select></label>
+        <label>Session status<select id="status-filter"><option value="all">All statuses</option><option value="complete">Complete</option><option value="failed">Failed</option><option value="interrupted">Interrupted</option><option value="incomplete">Incomplete</option><option value="missing">Unavailable</option></select></label>
+        <label>Review status<select id="review-filter"><option value="all">All reviews</option><option value="complete">Complete</option><option value="draft">Draft</option><option value="unreviewed">Unreviewed / unavailable</option></select></label>
+        <label>Exclusion reason<select id="exclusion-filter"><option value="all">All sessions</option><option value="any">Any exclusion</option><option value="eligible">No exclusions</option></select></label>
+        <button id="reset-filters" type="button">Reset filters</button>
+      </div>
+      <p id="session-count" role="status" aria-live="polite"></p>
+      <div class="table-wrap"><table id="session-table"><caption>Planned sessions and saved review outcomes</caption><thead><tr><th scope="col">Session / block</th><th scope="col">Channel</th><th scope="col">Status</th><th scope="col">Review</th><th scope="col">Proposed</th><th scope="col">Accepted</th><th scope="col">Enacted</th><th scope="col">Details</th></tr></thead><tbody></tbody></table></div>
+      <p id="empty-sessions" hidden>No sessions match these filters.</p>
+      <div class="pagination"><button id="previous-page" type="button">Previous</button><span id="page-number"></span><button id="next-page" type="button">Next</button></div>
+      <article id="session-detail" tabindex="-1" hidden></article>
+    </section>
+    <section id="provenance" aria-labelledby="provenance-heading">
+      <h2 id="provenance-heading">Provenance and limitations</h2>
+      <p class="hint">This page displays a saved comparison. Rendering checks its structure and internal references; it does not replay journals, authenticate reviewers, or reassess judgments.</p>
+      <dl id="report-origin" class="facts"></dl><ul id="report-notes"></ul>
+      <details><summary>Runs and unlinked attempts</summary><pre id="run-details"></pre></details>
+      <details><summary>Input file hashes</summary><div id="input-hashes"></div></details>
+    </section>
+  </main>
+  <footer>Offline report · session comparison v1 · preparation policy v0.1</footer>
+  <script id="report-data" type="application/json" nonce="@@NONCE@@">@@PAYLOAD@@</script>
+  <script nonce="@@NONCE@@">@@SCRIPT@@</script>
+</body>
+</html>
