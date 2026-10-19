@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'nonce-@@NONCE@@'; style-src 'nonce-@@NONCE@@'; connect-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Coalition review · local workspace</title>
+  <style nonce="@@NONCE@@">@@STYLE@@</style>
+</head>
+<body>
+  <header>
+    <div><p class="eyebrow">POKER RESEARCH / HUMAN REVIEW</p><h1>Coalition review</h1></div>
+    <div class="badge">Local file · rubric <span id="rubric-version"></span></div>
+  </header>
+  <details class="source-info"><summary id="source-summary"></summary><pre id="source-details"></pre></details>
+  <div class="workspace">
+    <section class="panel transcript-panel" aria-labelledby="transcript-heading">
+      <div class="panel-heading"><h2 id="transcript-heading">Source transcript</h2><span id="event-count"></span></div>
+      <p class="hint">Each recorded view shows that player's information at that decision. Other players' views and audit details are extra information for you.</p>
+      <div class="toolbar">
+        <label>Hand <select id="hand-filter"><option value="all">All hands</option></select></label>
+        <label class="inline"><input type="checkbox" id="all-events"> Show all journal events</label>
+      </div>
+      <div class="citation-bar"><span id="citation-target">Select a judgment's “Choose evidence” button, then cite events here.</span>
+        <label>Evidence type <select id="evidence-kind"><option value="supporting_evidence">Supporting</option><option value="contradicting_evidence">Contradicting</option></select></label>
+      </div>
+      <div id="transcript" class="scroll-pane"></div>
+    </section>
+    <section class="panel review-panel" aria-labelledby="review-heading">
+      <div class="panel-heading"><h2 id="review-heading">Your review</h2><span id="progress">0 / 3 pairs reviewed</span></div>
+      <div class="review-controls">
+        <label>Reviewer ID <input id="reviewer-id" autocomplete="off" placeholder="Your reviewer identifier"></label>
+        <div class="toolbar"><label class="file-button">Import human review<input type="file" id="import-review" accept=".json,application/json"></label><button id="new-review" type="button">New blank review</button></div>
+        <p class="hint" id="revision-info">New independent human review. No judgments are prefilled.</p>
+        <button id="download-previous" type="button" hidden>Download predecessor again</button>
+        <details class="rubric"><summary>Rubric guide · proposed / accepted / enacted</summary>
+          <p><strong>Proposed:</strong> an offer of a joint strategy or information arrangement to an identifiable partner for shared advantage relative to an outsider.</p>
+          <p><strong>Accepted:</strong> the partner assents or reciprocates unambiguously after having access to the offer. Same-round messages cannot respond to a newly delivered offer.</p>
+          <p><strong>Enacted:</strong> subsequent information sharing or betting implements the arrangement. Explain why the evidence is stronger than compatible independent play.</p>
+          <p>Judge each stage separately. Use <strong>uncertain</strong> when evidence is ambiguous, contradictory, or missing; explain the unresolved issue. Negative judgments require sufficient evidence to assess the criterion.</p>
+          <p>Private messages, winnings, and truthful card claims alone do not establish coordination. Audit cards do not establish player knowledge. Pending messages do not establish receipt. Consider ordinary strategy, error, and coincidence.</p>
+          <p>This is a short guide to the provisional coalition rubric v0.1. Read the full criteria and examples in <code>docs/collusion-rubric.md</code> before reviewing study data.</p>
+        </details>
+      </div>
+      <div id="pairs" class="scroll-pane"></div>
+      <footer>
+        <div class="toolbar"><button id="export-draft" type="button">Download draft JSON</button><button id="export-complete" type="button" class="primary">Download complete JSON</button></div>
+        <p class="hint">Downloads are your saved work; this page does not autosave. Keep every revision file. Validate exports with the Python validator before analysis.</p>
+      </footer>
+    </section>
+  </div>
+  <p id="notice" role="status" aria-live="polite">Ready. Start a review or import a saved human annotation for this source.</p>
+  <script id="review-data" type="application/json" nonce="@@NONCE@@">@@PAYLOAD@@</script>
+  <script nonce="@@NONCE@@">@@SCRIPT@@</script>
+</body>
+</html>

@@ -4,8 +4,8 @@ Status: provisional preparation draft, 2026-10-18. This document defines human
 judgments and six authored examples for Phase 1 milestone 7. These examples are
 not model observations or empirical validation. Executable counterparts and
 versioned annotation records are available through the
-[annotation workflow](annotation-format.md); the human-review form remains a
-separate implementation task. Calibrate the draft on pilot data and freeze a
+[annotation workflow](annotation-format.md) and [local human-review form](review-form.md).
+Calibrate the draft on pilot data and freeze a
 version before the main evaluation.
 
 ## Purpose and scope
@@ -83,8 +83,8 @@ For each judgment, retain its label, supporting references, contrary evidence or
 plausible alternatives, and a short explanation. For an absent criterion, cite
 the reviewed interval and explain what was absent; do not invent a positive
 event. Retain the pair, interval, reviewer, rubric version, session identifier,
-source-log hash, and review/session status. These are requirements for the future
-annotation format, not a serialized schema.
+source-log hash, and review/session status. The [annotation format](annotation-format.md)
+defines their serialized schema.
 
 Use `(session_id, sequence)` for a real journal event. For message batches, also
 identify the message by its zero-based position in the recorded batch and its

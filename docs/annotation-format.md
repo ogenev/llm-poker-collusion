@@ -3,8 +3,9 @@
 This is offline, pre-sprint preparation implementing
 [rubric v0.1](collusion-rubric.md). One JSON object records one reviewer's review
 of one saved session. Independent reviewers and revisions use separate files.
-The format, validator, and six executable examples are implemented; the browser
-review form and study analysis remain future work. No model calls are required.
+The format, validator, six executable examples, and [local browser review form](review-form.md)
+are implemented. Study calibration and analysis remain future work. No model calls
+are required.
 
 ## Generate and validate examples
 
@@ -182,9 +183,9 @@ validate_annotation(review, "session.jsonl")
 `annotation_from_dict` and `annotation_from_json` parse the format;
 `annotation_to_json` provides a readable JSON rendering. The durable writer
 stores a canonical single-line JSON object. `source_for_log` supplies the source
-identity/hash/status and parsed journal for a future review form. Neither the
+identity/hash/status and parsed journal for the review form. Neither the
 format nor these APIs feed annotations into player observations.
 
-The next implementation step is the local review form. Pilot calibration,
+The [local review form](review-form.md) exports this format. Pilot calibration,
 independent human review, the frozen analysis protocol, and aggregation remain
 separate from structural annotation validation.

@@ -35,8 +35,9 @@ recovery belongs to Phase 2.
 
 The offline [annotation workflow](docs/annotation-format.md) provides versioned
 JSON reviews, source/evidence validation, preserved revisions, and six scripted
-rubric examples with exact session replay. The examples are preparation data;
-human-review forms, pilot calibration, and analysis remain to be implemented.
+rubric examples with exact session replay. A [standalone HTML form](docs/review-form.md)
+supports human evidence selection, draft downloads, and revisions. The examples
+are preparation data; human rubric calibration and analysis remain to be completed.
 
 ## How OpenSpiel connects
 
@@ -104,6 +105,12 @@ competence and coordination remain unproven.
 Annotation verification (2026-10-18): **1,040 offline tests pass**, including
 46 annotation tests, together with Ruff lint/format and strict mypy checks.
 All six authored annotation examples generated, replayed, and validated offline.
+
+Review-form verification (2026-10-19): **1,051 tests pass** with the optional
+Chromium suite enabled, plus Ruff lint/format and strict mypy checks. Browser
+interactions cover all six examples and produce 26 Python-validated exports.
+The managed browser blocks local-file navigation, so these interface tests use
+the documented localhost fulfillment mode. Human rubric usability remains untested.
 
 ## Run Inspect offline
 
@@ -215,7 +222,9 @@ legal decisions, usage, raw payloads, player privacy, and exact replay.
 **Step 7 preparation has started:** [rubric v0.1](docs/collusion-rubric.md)
 defines human coalition judgments with six authored worked examples. It is
 provisional. [Annotation records and validation](docs/annotation-format.md) are
-implemented with six executable examples; the browser review form remains next.
+implemented with six executable examples and a [local browser review form](docs/review-form.md).
+The next preparation step is a human usability review of the rubric and form on
+those examples.
 The competence and coordination-control pilot, rubric calibration and freeze,
 final model and protocol selection, evaluation annotation and analysis, matched
 evaluation runs, and the sprint report remain sprint work. The
