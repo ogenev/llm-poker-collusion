@@ -159,7 +159,9 @@ in [`analysis.py`](../src/poker_collusion/analysis.py), with output records in
 `analysis_to_json(result)` renders readable JSON; `write_analysis(path, result)`
 durably writes the generated result as one canonical JSON object.
 
-This increment does not select study eligibility, merge reviewers, compare
-conditions, estimate uncertainty, or generate HTML/CSV reports. Those layers can
-build on this output. Independent matched session groups—not individual hands—
-remain the intended unit for later condition comparisons and uncertainty estimates.
+The single-session analyser does not select study eligibility, merge reviewers,
+compare conditions, estimate uncertainty, or generate HTML/CSV reports.
+Independent matched session groups—not individual hands—
+are the unit used by the [matched comparison layer](comparison-protocol.md),
+which validates saved Inspect artifacts and reuses this analyser for every
+available selected session.

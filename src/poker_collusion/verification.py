@@ -120,7 +120,7 @@ def _check_call(
     return issues
 
 
-async def _session_report(
+async def verify_saved_sample(
     directory: Path,
     sample: EvalSample,
     config: ExperimentConfig,
@@ -129,6 +129,7 @@ async def _session_report(
     channel: Channel,
     schedule: DealSchedule,
 ) -> dict[str, Any]:
+    """Check a saved Inspect sample against both journals; never make model calls."""
     session_id = sample.metadata.get("session_id")
     _require(
         isinstance(session_id, str)
@@ -331,7 +332,7 @@ async def verify_run(directory: Path) -> dict[str, Any]:
             "Saved schedules differ within the matched block",
         )
         sessions.append(
-            await _session_report(
+            await verify_saved_sample(
                 directory, samples[key], config, start["run_id"], block, channel, schedule
             )
         )

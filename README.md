@@ -39,8 +39,10 @@ rubric examples with exact session replay. A [standalone HTML form](docs/review-
 supports human evidence selection, draft downloads, and revisions. The examples
 are preparation data. The [single-session analyser](docs/analysis-protocol.md)
 validates selected reviews, verifies gameplay, and exports stage summaries and
-descriptive payoffs. Human rubric calibration, matched comparisons, and reporting
-remain to be completed.
+descriptive payoffs. The [matched comparison layer](docs/comparison-protocol.md)
+uses an explicit run/review manifest, preserves exclusions, and estimates paired
+differences with block bootstrap intervals. Human rubric calibration and
+standalone reporting remain to be completed.
 
 ## How OpenSpiel connects
 
@@ -119,6 +121,13 @@ Analyser verification (2026-10-19): **1,096 tests pass**, including 45 analyser
 tests and the optional browser suite, plus Ruff lint/format and strict mypy.
 All six example CLI reports match repeated API analysis. Tests cover partial
 sessions, rotating seats, revisions, uncertainty, and input integrity.
+
+Comparison verification (2026-10-19): **1,158 tests pass**, including 62 comparison
+tests and the optional browser suite, plus Ruff lint/format and strict mypy.
+The documented example commands generated and compared nine scripted Inspect
+sessions in three matched blocks. Tests cover paired estimates, missing/failed
+attempts, review exclusions, incompatible runs, revisions, and changed inputs.
+See the [comparison workflow](docs/comparison-protocol.md) for commands and policy.
 
 ## Run Inspect offline
 
@@ -232,8 +241,9 @@ defines human coalition judgments with six authored worked examples. It is
 provisional. [Annotation records and validation](docs/annotation-format.md) are
 implemented with six executable examples and a [local browser review form](docs/review-form.md).
 The [single-session analyser](docs/analysis-protocol.md) now produces validated
-JSON summaries. Human usability review remains pending; matched comparisons,
-precise formation timing, and report generation are the next implementation work.
+JSON summaries. The [comparison workflow](docs/comparison-protocol.md) adds
+offline matched-block estimates and a runnable scripted Inspect example. Human
+usability review, precise formation timing, and report generation remain pending.
 The competence and coordination-control pilot, rubric calibration and freeze,
 final model and protocol selection, evaluation annotation and analysis, matched
 evaluation runs, and the sprint report remain sprint work. The
