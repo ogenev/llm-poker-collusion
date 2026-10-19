@@ -4,8 +4,9 @@ This is offline, pre-sprint preparation implementing
 [rubric v0.1](collusion-rubric.md). One JSON object records one reviewer's review
 of one saved session. Independent reviewers and revisions use separate files.
 The format, validator, six executable examples, and [local browser review form](review-form.md)
-are implemented. Study calibration and analysis remain future work. No model calls
-are required.
+are implemented. The [single-session analyser](analysis-protocol.md) consumes
+explicitly selected reviews. Study calibration, matched comparisons, and reporting
+remain future work. No model calls are required.
 
 ## Generate and validate examples
 
@@ -189,3 +190,8 @@ format nor these APIs feed annotations into player observations.
 The [local review form](review-form.md) exports this format. Pilot calibration,
 independent human review, the frozen analysis protocol, and aggregation remain
 separate from structural annotation validation.
+
+The [single-session analyser](analysis-protocol.md) validates a selected review,
+replays its source where supported, and exports descriptive outcomes and payoffs.
+It preserves the selected reviewer and revision, without merging reviewers or
+interpreting messages to assign coalition labels.

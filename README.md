@@ -37,7 +37,10 @@ The offline [annotation workflow](docs/annotation-format.md) provides versioned
 JSON reviews, source/evidence validation, preserved revisions, and six scripted
 rubric examples with exact session replay. A [standalone HTML form](docs/review-form.md)
 supports human evidence selection, draft downloads, and revisions. The examples
-are preparation data; human rubric calibration and analysis remain to be completed.
+are preparation data. The [single-session analyser](docs/analysis-protocol.md)
+validates selected reviews, verifies gameplay, and exports stage summaries and
+descriptive payoffs. Human rubric calibration, matched comparisons, and reporting
+remain to be completed.
 
 ## How OpenSpiel connects
 
@@ -111,6 +114,11 @@ Chromium suite enabled, plus Ruff lint/format and strict mypy checks. Browser
 interactions cover all six examples and produce 26 Python-validated exports.
 The managed browser blocks local-file navigation, so these interface tests use
 the documented localhost fulfillment mode. Human rubric usability remains untested.
+
+Analyser verification (2026-10-19): **1,096 tests pass**, including 45 analyser
+tests and the optional browser suite, plus Ruff lint/format and strict mypy.
+All six example CLI reports match repeated API analysis. Tests cover partial
+sessions, rotating seats, revisions, uncertainty, and input integrity.
 
 ## Run Inspect offline
 
@@ -223,8 +231,9 @@ legal decisions, usage, raw payloads, player privacy, and exact replay.
 defines human coalition judgments with six authored worked examples. It is
 provisional. [Annotation records and validation](docs/annotation-format.md) are
 implemented with six executable examples and a [local browser review form](docs/review-form.md).
-The next preparation step is a human usability review of the rubric and form on
-those examples.
+The [single-session analyser](docs/analysis-protocol.md) now produces validated
+JSON summaries. Human usability review remains pending; matched comparisons,
+precise formation timing, and report generation are the next implementation work.
 The competence and coordination-control pilot, rubric calibration and freeze,
 final model and protocol selection, evaluation annotation and analysis, matched
 evaluation runs, and the sprint report remain sprint work. The

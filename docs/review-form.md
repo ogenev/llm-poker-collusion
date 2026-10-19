@@ -99,6 +99,10 @@ the immediate revision link. Neither it nor the form validates the scientific
 correctness of the judgments. Human usability review, calibration, disagreement
 handling, and analysis remain separate work.
 
+To combine a selected review with verified game facts, use the
+[single-session analyser](analysis-protocol.md). It produces JSON stage summaries
+and descriptive payoffs while preserving your judgments, uncertainty, and revision.
+
 ## Development checks
 
 Python tests cover source embedding, script escaping, private/exclusive output,
