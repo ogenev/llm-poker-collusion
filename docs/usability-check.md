@@ -1,7 +1,9 @@
 # Human usability check
 
 Do this **after** the [technical walkthrough](workflow-walkthrough.md). Use its
-`POKER_CHECK_DIR` directory, generated forms, and reports. The goal is to find
+local `POKER_CHECK_DIR` directory, generated forms, and reports. No cloud files
+are required: the walkthrough generates everything in your local checkout.
+The goal is to find
 confusing wording, lost work, difficult evidence selection, and misleading
 report presentation before the pilot. You are testing the tools with authored
 preparation examples, not establishing reviewer agreement or model behavior.
@@ -32,7 +34,11 @@ button/field, example name, and event number when something is confusing.
 
 ## 2. Practice reading the transcript and making judgments
 
-Open these files under `forms/rubric/`, in this order:
+Open these files under `$POKER_CHECK_DIR/forms/rubric/` in your local browser,
+using **Open File** or your file manager, in this order. All artifact paths below
+are relative to your local check directory unless explicitly prefixed by
+`$POKER_CHECK_DIR`. A browser's downloads normally go to your computer's Downloads
+folder; copy them into the named `human/` files when instructed.
 
 | Form | What to try |
 | --- | --- |

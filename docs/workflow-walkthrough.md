@@ -1,6 +1,7 @@
 # Workflow test, then human usability check
 
-Start here to exercise the current framework from saved gameplay to a report.
+Run this walkthrough on your local machine, from your own repository checkout,
+to exercise the current framework from saved gameplay to a report.
 Complete this technical walkthrough first, then follow the
 [human usability check](usability-check.md). The second part includes exporting
 your own reviews and following them through analysis and reporting.
@@ -21,14 +22,32 @@ source journal → browser review → annotation JSON → validation
 The comparison command calls the single-session analyser itself. You do not
 feed individual analysis JSON files into the comparison command.
 
-## 1. Prepare a fresh workspace
+## 1. Prepare your local checkout
 
-Use Python 3.13 and [uv](https://docs.astral.sh/uv/). In a terminal, change to
-your repository checkout. In the shared workspace that is:
+Use Python 3.13, Git, and [uv](https://docs.astral.sh/uv/). The commands below use
+Bash/Zsh syntax, suitable for a macOS or Linux terminal. For an existing checkout,
+open a terminal in its root directory and update your local `main` branch:
 
 ```sh
-cd /workspace/llm-poker-collusion
+git status --short --branch
+git pull --ff-only origin main
 ```
+
+Run the pull when the status shows `main` and a clean working tree. If you have
+local work or are on another branch, preserve it and resolve that before updating.
+If you do not yet have a checkout, instead run these commands from your preferred
+projects directory:
+
+```sh
+git clone https://github.com/ogenev/llm-poker-collusion.git
+cd llm-poker-collusion
+```
+
+All remaining commands start from that local repository root. There is no
+`/workspace` path requirement and no cloud runtime to connect to. The guides and
+code come from Git; previously generated cloud reports, examples, and results
+notes do **not**, because `runs/` is ignored. The steps below create your own
+artifacts locally.
 
 Use the same terminal throughout both guides so the exported path persists.
 Choose an unused suffix each time; do not delete an earlier check to rerun it.
@@ -66,21 +85,27 @@ uv run --locked mypy
 Expected: no failures. At the report-viewer implementation, the default suite
 has **1,185 passing tests and two optional browser tests skipped**; with both
 browser tests enabled, **1,187 pass**. Counts can grow with later changes. If the
-same unchanged code has already passed these checks, proceed to step 3.
+same unchanged code has already passed these checks on your local installation,
+proceed to step 3. A successful cloud run does not verify your local environment.
 
-Optional browser automation needs Node, Playwright, and Chromium. See
-[browser setup](review-form.md#development-checks). Once installed, run:
+Optional browser automation needs Node/npm, Playwright, and Chromium. You can
+skip this block and still perform the full manual usability check with your own
+browser. To run automation, install its tools inside the ignored check directory
+and let Playwright install its matching Chromium (these downloads need network):
 
 ```sh
+npm install --prefix "$POKER_CHECK_DIR/browser-tools" playwright
+node "$POKER_CHECK_DIR/browser-tools/node_modules/playwright/cli.js" install chromium
 POKER_REVIEW_BROWSER=1 POKER_REPORT_BROWSER=1 \
-CHROMIUM_PATH=/usr/bin/chromium NODE_PATH=/path/to/node_modules \
+NODE_PATH="$POKER_CHECK_DIR/browser-tools/node_modules" \
 uv run --locked pytest -q tests/test_review_browser.py tests/test_report_browser.py
 ```
 
-Replace the two installation paths. If the managed browser prohibits `file://`,
-the test-only `POKER_REVIEW_BROWSER_HTTP=1` mode serves exact fixtures through
-Playwright route fulfillment. It does not grant permission to open local files
-manually. Browser automation is separate from the human check in part two.
+Leave `CHROMIUM_PATH` unset to use Playwright's installed browser; alternatively,
+set it to an existing Chromium executable on your machine. There is no dependency
+on a Linux-specific browser path. See [browser setup](review-form.md#development-checks)
+for the test-only HTTP fixture mode if your browser policy blocks `file://`.
+Browser automation is separate from the human check in part two.
 
 ## 3. Test rubric examples, replay, and single-session analysis
 
@@ -189,7 +214,11 @@ analysis, while `compare_sessions.py` takes **comparison.json**, the selection
 manifest. The renderer validates saved data and source-page links; it does not
 replay journals or rerun statistics.
 
-Open `matched/report.html` in your browser to confirm it loads. It should show
+Open `$POKER_CHECK_DIR/matched/report.html` in your local browser using its
+**Open File** command, or locate it under
+`runs/preparation/workflow-check-001/matched/` in Finder/your file manager and
+double-click it. Substitute your suffix if different. No web server is needed.
+It should show
 preparation/mock data, nine audited complete sessions, nine selected reviews,
 three eligible primary blocks, both enacted rates 0%, and a difference of 0 pp.
 The zero-width interval must have a warning; it does not establish certainty.
@@ -277,7 +306,7 @@ original downloaded bytes.
 | Cache/data permission error | Restore the writable XDG exports from step 1. |
 | Inspect local socket denied | Use an environment that permits local sockets; this does not require live provider access. |
 | Optional browser tests skipped | Set their opt-in variables and install browser tools if you want those checks. |
-| Browser blocks local HTML | Copy the generated artifact tree to an approved local machine/browser; preserve relative paths. This is a browser-policy limitation. |
+| Browser blocks local HTML | Open the locally generated file in a browser permitted to read local HTML. Preserve the artifact tree's relative paths. This is a browser-policy limitation. |
 | Review-page link rejected | Use the form generated from that exact journal; session ID, SHA-256, and status must match. |
 | Comparison or replay fails | Preserve the error and inputs. Check the correct manifest and source files; do not edit logs/hashes to make a check pass. |
 
