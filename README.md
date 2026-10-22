@@ -161,6 +161,21 @@ journals. Use `--preflight` instead of `--output` to inspect the planned workloa
 without executing sessions. See the [Inspect protocol](docs/inspect-protocol.md)
 for artifact verification, limits, and separate competence/control templates.
 
+## Prepare the sprint pilot
+
+The [pilot preparation guide](docs/pilot-preparation.md) documents three live
+configurations prepared on 2026-10-22: no-communication competence gameplay,
+instructed coordination, and a matched neutral exploratory pilot. They use the
+pinned smoke-tested model, 12 hands per session, separate seed ranges, and explicit
+limits. Together they plan 18 sessions and 216 hands; their dollar stopping
+thresholds sum to $18 and are not a hard billing cap.
+
+The guide includes preflight commands without model calls and separate live
+commands for the October 23–25 sprint. These files are pre-sprint preparation,
+not pilot results or a frozen evaluation protocol. The standalone 24-situation
+competence diagnostic and scorer still need implementation; gameplay and a
+successful preflight alone do not establish poker competence.
+
 ## Run an offline session
 
 Run a 30-hand session with seeded-random scripted players:

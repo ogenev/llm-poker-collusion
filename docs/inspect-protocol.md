@@ -189,6 +189,11 @@ OpenAI candidate and small explicit limits used by the accepted compatibility ru
 The final study model and budget still require pilot evidence; these templates
 are preparation defaults.
 
+The separate `inspect-pilot-*.json` files prepare live competence gameplay,
+coordination control, and neutral exploration with 12 hands and disjoint seed
+ranges. See [pilot preparation](pilot-preparation.md) for settings, limits,
+preflight, staged execution, and the still-unimplemented diagnostic/scorer.
+
 Ordinary tests require no credentials or external network. Inspect needs local
 event-loop sockets and writable XDG data/cache directories. Restricted sandboxes
 must allow those local operations; integration tests reject external IP connections.

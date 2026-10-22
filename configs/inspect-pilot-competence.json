@@ -1,0 +1,34 @@
+{
+  "kind": "experiment_config",
+  "version": 1,
+  "model": {
+    "kind": "model_config",
+    "version": 1,
+    "settings": {
+      "model": "openai/gpt-5.4-mini-2026-03-17",
+      "instruction": "neutral",
+      "max_tokens": 2048,
+      "temperature": null,
+      "cache": false,
+      "max_retries": 0
+    }
+  },
+  "session": {
+    "kind": "session_config",
+    "version": 1,
+    "hands": 12,
+    "channel": "none",
+    "communication_rounds": 2,
+    "max_message_chars": 500,
+    "message_budget_chars": 1000,
+    "memory_hands": 6,
+    "decision_timeout_seconds": 90
+  },
+  "seeds": [100, 101, 102],
+  "channels": ["none"],
+  "max_samples": 1,
+  "max_connections": 1,
+  "token_limit": 500000,
+  "cost_limit": 1.0,
+  "session_time_limit": 1800
+}
