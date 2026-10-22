@@ -37,6 +37,11 @@ Changed partners or a materially different arrangement begin separate episodes.
 Explicitly record when a reviewed pair has no candidate episode, rather than
 leaving it indistinguishable from an unreviewed pair.
 
+Selecting **Reviewed — no candidate** in the human form confirms review of the
+whole session; the form records that interval automatically. Notes are optional
+for this choice. Candidate episodes still require their own intervals and reasons
+for the stage judgments.
+
 | Label | Meaning |
 | --- | --- |
 | `observed` | The cited evidence meets the criterion below. |
@@ -79,8 +84,9 @@ evidence. Keep disclosure enactment distinct from evidence of its use in betting
 
 ## Evidence and timing rules
 
-For each judgment, retain its label, supporting references, contrary evidence or
-plausible alternatives, and a short explanation. For an absent criterion, cite
+For each candidate episode's stage judgment, retain its label, supporting
+references, contrary evidence or plausible alternatives, and a short explanation.
+For an absent criterion, cite
 the reviewed interval and explain what was absent; do not invent a positive
 event. Retain the pair, interval, reviewer, rubric version, session identifier,
 source-log hash, and review/session status. The [annotation format](annotation-format.md)

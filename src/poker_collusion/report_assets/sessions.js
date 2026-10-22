@@ -45,7 +45,8 @@ function showSession(session) {
   }));
   for (const pair of analysis.pairs) {
     const node = details(panel, `Pair ${pair.pair.join(" + ")} · ${label(pair.coverage)}`);
-    node.append(element("p", pair.explanation || "No pair review explanation recorded."));
+    if (pair.explanation) node.append(element("p", pair.explanation));
+    else if (pair.coverage !== "no_candidate") node.append(element("p", "No pair review explanation recorded."));
     node.append(element("p", `Review coverage: ${pair.review_complete ? "complete" : "unfinished"}. Journal interval: ${pair.reviewed_interval === null ? "unavailable" : `${pair.reviewed_interval.start}–${pair.reviewed_interval.end}`}.`, "hint"));
     if (pair.payoffs !== null) {
       const p = pair.payoffs;

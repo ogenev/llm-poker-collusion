@@ -36,8 +36,11 @@ reports missing Web Crypto support if the browser does not provide it.
    cards are separately labeled; they do not establish another player's knowledge.
    “Show all journal events” includes pending batches and decision lifecycle events.
 3. For each pair, choose **reviewed — no candidate** or **candidate episodes**.
-   Explain the coverage and set its inclusive event interval. A completed review
-   must cover the whole saved journal for every pair. Drafts can cover a subset.
+   Choose **reviewed — no candidate** after checking the whole session: the form
+   records full coverage automatically, with no event-range inputs or required
+   explanation. **Notes (optional)** can retain any comments. For candidate
+   coverage, explain the coverage and set its inclusive event interval. A
+   completed review must cover the whole saved journal for every pair.
 4. For each candidate, describe the arrangement and its interval. Add episodes
    for different arrangements, including episodes spanning hands or overlapping
    other episodes. Judge **proposed**, **accepted**, and **enacted** independently.
@@ -49,6 +52,12 @@ reports missing Web Crypto support if the browser does not provide it.
 6. Write the judgment explanation and plausible alternatives. **Observed** needs
    supporting evidence. **Uncertain** remains valid in a completed review.
 
+Switching away from candidate coverage removes empty episodes immediately. If
+you entered an arrangement, judgment, evidence, or changed an episode's range,
+an in-page prompt offers **Discard episodes and switch** or **Keep candidate
+episodes**. The switch does not depend on browser confirmation dialogs, which
+embedded previews may block.
+
 The form does not infer acceptance from message order, enactment from a matching
 action, or coordination from payoffs. These are human interpretations under the
 rubric. The browser's recorded-view display does not replay game semantics.
@@ -57,8 +66,9 @@ rubric. The browser's recorded-view display does not replay game semantics.
 
 **Download draft JSON** saves a valid unfinished annotation. A completely empty
 judgment becomes `null`. Once a judgment contains notes or evidence, fill its
-verdict, explanation, and alternatives before export. Reviewed pairs also need
-coverage explanations; episodes need arrangements. Invalid partial work stays
+verdict, explanation, and alternatives before export. Pairs with candidate
+episodes also need coverage explanations; episodes need arrangements. Notes for
+no-candidate pairs may be empty. Invalid partial work stays
 in the form with an error message; it is never silently dropped from an export.
 
 **Download complete JSON** additionally requires full pair coverage and all
@@ -83,6 +93,15 @@ Scripted and model reviews are rejected by this human-only form. For an independ
 review, use **New blank review** and assign your own judgments. A wrong-source or
 malformed import leaves the current review intact. Imported revision chains still
 need separate Python validation against their predecessor files.
+
+Older drafts with partial no-candidate coverage retain their original interval
+and notes on import. The form displays the limited range and offers **Mark whole
+session reviewed**. Use it only after reviewing the remaining events; a partial
+draft cannot be exported as complete until full coverage is explicitly recorded.
+
+Generated HTML files embed the form code. After updating the software, regenerate
+the page from the same source journal into a new HTML file, then import your saved
+review. Existing HTML files do not update automatically.
 
 Validate downloads before analysis:
 

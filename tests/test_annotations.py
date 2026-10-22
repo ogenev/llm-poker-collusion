@@ -159,6 +159,8 @@ def test_independent_reviewers_and_multiple_episodes_are_preserved(
         (("pair_reviews", 0, "pair"), ["B", "A"]),
         (("pair_reviews", 0, "pair"), ["A", "A"]),
         (("pair_reviews", 0, "coverage"), "no_candidate"),
+        (("pair_reviews", 0, "explanation"), ""),
+        (("pair_reviews", 1, "explanation"), None),
         (("pair_reviews", 0, "interval", "start"), True),
         (("pair_reviews", 0, "interval", "end"), -1),
         (("pair_reviews", 0, "episodes", 0, "proposed", "verdict"), "yes"),

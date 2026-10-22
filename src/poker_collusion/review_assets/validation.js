@@ -107,7 +107,7 @@ function validateReview(value) {
     pairs.add(key);
     const path = `Pair ${pair.pair.join("–")}`;
     choice(pair.coverage, ["unreviewed", "no_candidate", "episodes"], path);
-    textField(pair.explanation, `${path} coverage explanation`, pair.coverage === "unreviewed");
+    textField(pair.explanation, `${path} coverage explanation`, pair.coverage !== "episodes");
     items(pair.episodes, `${path} episodes`);
     if (pair.coverage === "unreviewed") {
       requireThat(!complete, `${path}: still unreviewed`);

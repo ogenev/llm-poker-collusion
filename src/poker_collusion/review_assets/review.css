@@ -49,6 +49,8 @@ pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 11px; line-heig
 .pair { border: 1px solid #d5dfd8; border-radius: 8px; margin-bottom: 14px; }
 .pair > summary { background: #f1f6f2; padding: 12px; font-weight: 650; border-radius: 8px; }
 .pair-body { padding: 12px; display: grid; gap: 12px; }
+.coverage-confirmation { border: 1px solid #d6bc8d; border-radius: 6px; padding: 10px; background: #fbf8ef; }
+.coverage-confirmation p { margin: 0 0 10px; }
 .interval { display: flex; flex-wrap: wrap; gap: 9px; align-items: end; }
 .interval input { width: 100px; }
 .episode { border-top: 2px solid #a5c1af; padding-top: 12px; display: grid; gap: 12px; }

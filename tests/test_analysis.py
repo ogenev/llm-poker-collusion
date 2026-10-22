@@ -104,6 +104,43 @@ def test_missing_review_retains_unknowns_but_computes_verified_payoffs(
     assert all(p.coverage == Coverage.UNREVIEWED and not p.review_complete for p in result.pairs)
 
 
+@pytest.mark.parametrize("status", [ReviewStatus.DRAFT, ReviewStatus.COMPLETE])
+@pytest.mark.parametrize("partial", [False, True])
+def test_no_candidate_without_notes_preserves_coverage_requirements(
+    examples: tuple[tuple[Path, Path], ...],
+    tmp_path: Path,
+    status: ReviewStatus,
+    partial: bool,
+) -> None:
+    log, original = examples[0]
+    review = read_annotation(original)
+    review = replace(
+        review,
+        reviewer=Reviewer("automated-test-fixture", ReviewerKind.HUMAN),
+        review_status=status,
+        pair_reviews=tuple(
+            replace(
+                pair,
+                coverage=Coverage.NO_CANDIDATE,
+                interval=Interval(2, 3) if partial else pair.interval,
+                explanation="",
+                episodes=(),
+            )
+            for pair in review.pair_reviews
+        ),
+    )
+    selected = save_review(tmp_path, review)
+    if status == ReviewStatus.COMPLETE and partial:
+        with pytest.raises(ValueError, match="entire saved journal"):
+            asyncio.run(analyze_session(log, annotation_path=selected))
+        return
+    result = asyncio.run(analyze_session(log, annotation_path=selected))
+    assert all(pair.explanation == "" for pair in result.pairs)
+    assert result.outcomes.enacted.verdict == (
+        Verdict.NOT_OBSERVED if status == ReviewStatus.COMPLETE else None
+    )
+
+
 @pytest.mark.parametrize("partial_interval", [False, True])
 def test_draft_negative_labels_do_not_become_session_absence(
     examples: tuple[tuple[Path, Path], ...],

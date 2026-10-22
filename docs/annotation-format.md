@@ -80,7 +80,7 @@ sequence numbers; booleans and reversed ranges are invalid.
 | Coverage | Interval and episodes |
 | --- | --- |
 | `unreviewed` | `interval: null`, `episodes: []`; explanation may be empty. No negative labels are inferred. |
-| `no_candidate` | A reviewed interval, nonempty explanation, and `episodes: []`. Records an explicit search that found no candidate arrangement in that interval. |
+| `no_candidate` | A reviewed interval and `episodes: []`; explanation may be empty. Records an explicit search that found no candidate arrangement in that interval. |
 | `episodes` | A reviewed interval, nonempty explanation, and at least one candidate episode. A candidate may ultimately receive negative or uncertain judgments. |
 
 A draft can contain a partially reviewed interval or unfinished episode judgments.
@@ -88,6 +88,12 @@ A complete review must cover every committed source event for all three pairs
 and fill all three judgments in every episode. It can retain `uncertain` labels.
 A complete review of an incomplete session means all saved evidence was reviewed,
 not that the session completed or is eligible for the main analysis.
+
+In the human form, selecting **Reviewed — no candidate** records the whole saved
+journal automatically and requires no prose. Optional notes remain in
+`explanation`; the field is still required as a string, even when empty. Imports
+preserve earlier notes and partial draft intervals. Expanding an imported partial
+review to the whole session requires an explicit reviewer action.
 
 Each episode has exactly these fields:
 

@@ -240,7 +240,7 @@ def _pair(value: object, path: str) -> PairReview:
         _episode(item, f"{path}.episodes[{index}]")
         for index, item in enumerate(_items(row["episodes"], path + ".episodes"))
     )
-    explanation = _text(row["explanation"], path, empty=coverage == Coverage.UNREVIEWED)
+    explanation = _text(row["explanation"], path, empty=coverage != Coverage.EPISODES)
     if coverage == Coverage.UNREVIEWED:
         if interval is not None or episodes:
             raise ValueError(f"{path}: unreviewed requires null interval and no episodes")

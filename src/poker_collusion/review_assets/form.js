@@ -55,6 +55,27 @@ function episodeForm(pair, episode, index) {
   for (const stage of STAGES) node.append(judgmentForm(pair, episode, stage));
   return node;
 }
+function hasEpisodeWork(pair) {
+  return pair.episodes.some(episode => episode.arrangement
+    || episode.interval.start !== pair.interval.start || episode.interval.end !== pair.interval.end
+    || STAGES.some(stage => {
+      const judgment = episode[stage];
+      return judgment && (judgment.verdict || judgment.explanation || judgment.alternatives
+        || judgment.supporting_evidence.length || judgment.contradicting_evidence.length);
+    }));
+}
+function changeCoverage(pair, value) {
+  pair.coverage = value;
+  if (value === "unreviewed") pair.interval = null;
+  else if (value === "no_candidate") pair.interval = whole();
+  else pair.interval ??= whole();
+  if (value === "episodes" && !pair.episodes.length) pair.episodes.push(blankEpisode(pair.interval));
+  if (value !== "episodes") {
+    pair.episodes = [];
+    if (target?.pair === pair) target = null;
+  }
+  changed(); renderPairs();
+}
 function renderPairs() {
   const container = $("pairs");
   const opened = new Set([...container.querySelectorAll(".pair[open]")].map(node => node.dataset.pair));
@@ -66,21 +87,36 @@ function renderPairs() {
     node.append(el("summary", `${key} · ${pair.coverage.replaceAll("_", " ")}`));
     const body = el("div", undefined, "pair-body");
     const coverage = select([["unreviewed", "Unreviewed"], ["no_candidate", "Reviewed — no candidate"], ["episodes", "Reviewed — candidate episodes"]], pair.coverage, value => {
-      if (pair.episodes.length && value !== "episodes" && !confirm("Changing coverage removes this pair's episodes, judgments, and evidence. Continue?")) { coverage.value = pair.coverage; return; }
-      pair.coverage = value;
-      if (value === "unreviewed") pair.interval = null;
-      else pair.interval ??= whole();
-      if (value === "episodes" && !pair.episodes.length) pair.episodes.push(blankEpisode(pair.interval));
-      if (value !== "episodes") {
-        pair.episodes = [];
-        if (target?.pair === pair) target = null;
+      body.querySelector(".coverage-confirmation")?.remove();
+      if (value !== "episodes" && hasEpisodeWork(pair)) {
+        coverage.value = pair.coverage;
+        const prompt = el("div", undefined, "coverage-confirmation"); prompt.setAttribute("role", "alert");
+        prompt.append(el("p", `Switching to ${value === "no_candidate" ? "no candidate" : "unreviewed"} removes this pair's candidate episodes, judgments, and evidence.`));
+        const actions = el("div", undefined, "toolbar");
+        actions.append(button("Discard episodes and switch", () => changeCoverage(pair, value)),
+          button("Keep candidate episodes", () => { prompt.remove(); coverage.focus(); }));
+        prompt.append(actions); coverage.parentElement.after(prompt);
+        return;
       }
-      renderPairs();
+      changeCoverage(pair, value);
     });
     coverage.dataset.field = "coverage";
     body.append(labeled("Pair coverage", coverage));
-    if (pair.interval) body.append(intervalControls(pair.interval));
-    body.append(labeled("Coverage explanation", textarea(pair, "explanation")));
+    if (pair.coverage === "no_candidate") {
+      const full = pair.interval.start === 0 && pair.interval.end === LAST;
+      body.append(el("p", full
+        ? "Whole session reviewed — no candidate arrangement found. No explanation is required."
+        : `This imported review covers only events ${pair.interval.start}–${pair.interval.end}. Review the rest before marking the whole session reviewed.`, "hint"));
+      if (!full) body.append(button("Mark whole session reviewed", () => {
+        pair.interval = whole(); changed(); renderPairs();
+      }));
+      const notes = el("details", undefined, "coverage-notes"); notes.open = !!pair.explanation;
+      notes.append(el("summary", "Notes (optional)"), labeled("Optional notes", textarea(pair, "explanation")));
+      body.append(notes);
+    } else {
+      if (pair.interval) body.append(intervalControls(pair.interval));
+      body.append(labeled("Coverage explanation", textarea(pair, "explanation")));
+    }
     if (pair.coverage === "episodes") {
       pair.episodes.forEach((episode, i) => body.append(episodeForm(pair, episode, i)));
       body.append(button("Add episode", () => { pair.episodes.push(blankEpisode(pair.interval)); changed(); renderPairs(); }));

@@ -56,9 +56,11 @@ For each of the first four:
    player knew at that decision. Distinguish the player's information from audit
    cards, other players' views, pending messages, and later deliveries.
 3. Review A–B, A–C, and B–C. Choose **Reviewed — no candidate** or
-   **Reviewed — candidate episodes**, and explain why. Complete pair coverage
-   must run from event `0` through the last saved event; the form initially fills
-   that interval when a pair becomes reviewed. Check it against the source.
+   **Reviewed — candidate episodes**. For no candidate, confirm that the form
+   records the whole session without asking for an explanation or event range.
+   Leave **Notes (optional)** blank to test that path. For candidate episodes,
+   explain the pair coverage and check its range against the source. Complete
+   pair coverage must run from event `0` through the last saved event.
 4. For a candidate, describe the arrangement and set its inclusive episode
    interval. For each stage, choose a verdict, explain it, and consider plausible
    independent play, error, or coincidence. Observed needs supporting evidence.
@@ -70,6 +72,12 @@ For each of the first four:
 6. On the ambiguous case, check whether you can record the unresolved issue
    clearly. A complete review may contain **Uncertain**; completion does not
    require forcing a yes/no answer.
+
+On a separate blank practice review, switch a pair to candidate episodes and
+back to no candidate: an untouched episode should disappear immediately. Repeat
+after entering a note in an episode or changing its range. **Keep candidate
+episodes** should preserve that work; **Discard episodes and switch** should
+complete the switch. Keep this interaction test separate from your actual labels.
 
 Before looking at the supplied `.annotation.json` files, write down what was
 hard to decide or express. You may then compare your reasoning with the authored
@@ -101,6 +109,11 @@ to begin a separate check; an imported/exported review already has a predecessor
 6. Import the complete review to inspect it without exporting again. Attempt to
    import the supplied scripted annotation, or a review of another source.
    Expect an error and the current review to remain intact.
+
+For a no-candidate pair, also check that blank notes survive export and import.
+If importing an older partial no-candidate draft, confirm its limited range stays
+visible and cannot be exported as complete until you finish reviewing and choose
+**Mark whole session reviewed**.
 
 The file aliases above are for the commands; copying/renaming preserves identity
 because hashes bind the file bytes. Avoid creating several different files with
