@@ -1,4 +1,4 @@
-"""Typed outputs for descriptive single-session analysis, schema v1."""
+"""Typed outputs for descriptive single-session analysis, schema v2."""
 
 from dataclasses import dataclass, field
 
@@ -103,7 +103,6 @@ class PairAnalysis:
     pair: tuple[str, str]
     coverage: Coverage
     reviewed_interval: Interval | None
-    explanation: str
     review_complete: bool
     outcomes: StageOutcomes
     payoffs: PairPayoffs | None
@@ -120,4 +119,4 @@ class SessionAnalysis:
     pairs: tuple[PairAnalysis, ...]
     notes: tuple[str, ...]
     kind: str = field(default="session_analysis", init=False)
-    version: int = field(default=1, init=False)
+    version: int = field(default=2, init=False)

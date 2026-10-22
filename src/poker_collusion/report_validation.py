@@ -71,7 +71,7 @@ def _sessions(report: dict[str, Any]) -> dict[str, dict[str, Any]]:
             )
             continue
         require(
-            analysis["kind"] == "session_analysis" and analysis["version"] == 1, "session schema"
+            analysis["kind"] == "session_analysis" and analysis["version"] == 2, "session schema"
         )
         source, facts = analysis["source"], analysis["session"]
         require(

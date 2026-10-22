@@ -67,8 +67,7 @@ def with_label(path: Path, verdict: Verdict, *, draft: bool = False) -> None:
         verdict,
         (EvidenceReference(review.source.session_id, 0, "session_started"),),
         (),
-        "Synthetic arithmetic test label",
-        "Not a behavioral claim",
+        "Synthetic arithmetic test label, not a behavioral claim",
     )
     episode = Episode(
         "synthetic-1", pair.interval, "Synthetic test only", judgment, judgment, judgment

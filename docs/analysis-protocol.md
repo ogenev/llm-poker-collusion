@@ -6,8 +6,8 @@ gameplay through replay, and produces descriptive JSON. Coalition judgments come
 from the selected reviewer; no model calls or automatic message interpretation
 occur. This is preparation infrastructure for Phase 1 milestone 7.
 
-Output schema version `1` and ruleset `single_session_descriptive` version `0.1`
-are separate from annotation schema version `1` and coalition rubric `0.1`.
+Output schema version `2` and ruleset `single_session_descriptive` version `0.1`
+are separate from annotation schema version `2` and coalition rubric `0.2`.
 The rules below are provisional; calibrate and freeze the study's analysis and
 failure policies before the main evaluation.
 
@@ -123,8 +123,8 @@ totals cover the session's settled hands and are not added again for each episod
 An unfinished hand has `null` settlement/payoff fields. Counts distinguish dealt
 hands, settled hands, and the runner's completed-hand count.
 
-Episode results preserve the original interval, arrangement, judgments, rationale,
-alternatives, and exact evidence references. Verified journals additionally map
+Episode results preserve the original interval, arrangement, judgments, combined
+explanation (including alternatives), and exact evidence references. Verified journals map
 the interval to zero-based hand indices. These intervals can include context;
 their start and the earliest cited event are not automatically stage onset times.
 Exact stage timing and subsequent-hand payoff windows need explicit timing rules
@@ -139,7 +139,7 @@ The root record contains:
 
 | Field | Content |
 | --- | --- |
-| `kind`, `version` | `session_analysis`, `1`. |
+| `kind`, `version` | `session_analysis`, `2`. |
 | `provenance` | Ruleset/version, hash of package Python sources, Python and OpenSpiel versions. |
 | `source` | Original journal session ID, exact SHA-256, and source status. |
 | `review` | Selected annotation ID/hash, creation time, reviewer, rubric, status, and revision link; or `null`. |

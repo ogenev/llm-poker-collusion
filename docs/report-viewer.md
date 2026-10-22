@@ -100,7 +100,7 @@ the existing form continues to reject scripted/model annotations as human work.
 
 ## Validation and limits
 
-The renderer accepts `session_comparison_analysis` schema v1 and policy v0.1.
+The renderer accepts `session_comparison_analysis` schema v2 and policy v0.1.
 It rejects unknown fields/versions, duplicate JSON keys, invalid nested types,
 non-finite numbers, inconsistent identities, block partitions, counts, units,
 and summary/member arithmetic. Integers outside JavaScript's exact range

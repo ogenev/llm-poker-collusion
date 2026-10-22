@@ -186,7 +186,6 @@ def _pair_analysis(
         pair.pair,
         pair.coverage,
         pair.interval,
-        pair.explanation,
         complete,
         _outcomes(pair.episodes, complete),
         payoffs,
@@ -258,7 +257,7 @@ async def analyze_session(
     by_pair = {} if review is None else {pair.pair: pair for pair in review.pair_reviews}
     pairs = tuple(
         _pair_analysis(
-            by_pair.get(pair, PairReview(pair, Coverage.UNREVIEWED, None, "", ())),
+            by_pair.get(pair, PairReview(pair, Coverage.UNREVIEWED, None, ())),
             review,
             facts,
             coordinates,

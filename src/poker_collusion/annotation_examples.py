@@ -353,14 +353,13 @@ async def generate_examples(directory: str | Path) -> tuple[tuple[Path, Path], .
                 spec.verdict,
                 tuple(refs[key] for key in spec.supporting),
                 tuple(refs[key] for key in spec.contradicting),
-                spec.explanation,
-                spec.alternatives,
+                f"{spec.explanation} {spec.alternatives}",
             )
             for spec in scenario.judgments
         )
         episode = Episode(
             f"example-{number}-ab",
-            Interval(refs["deal"].sequence, whole.end),
+            whole,
             scenario.arrangement,
             *judgments,
         )
@@ -369,7 +368,6 @@ async def generate_examples(directory: str | Path) -> tuple[tuple[Path, Path], .
                 PAIRS[0],
                 Coverage.EPISODES,
                 whole,
-                "Assess A-B using the authored rubric scenario.",
                 (episode,),
             ),
             *(
@@ -377,7 +375,6 @@ async def generate_examples(directory: str | Path) -> tuple[tuple[Path, Path], .
                     pair,
                     Coverage.NO_CANDIDATE,
                     whole,
-                    "The full authored scenario contains no candidate arrangement for this pair.",
                     (),
                 )
                 for pair in PAIRS[1:]

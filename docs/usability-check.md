@@ -51,33 +51,33 @@ folder; copy them into the named `human/` files when instructed.
 
 For each of the first four:
 
-1. Enter your reviewer ID. Confirm all three pairs initially say **Unreviewed**.
+1. Enter your reviewer ID. Confirm all three pairs initially say **Not answered yet**.
 2. Read the whole transcript. Expand a **recorded view** and explain what that
    player knew at that decision. Distinguish the player's information from audit
    cards, other players' views, pending messages, and later deliveries.
-3. Review A–B, A–C, and B–C. Choose **Reviewed — no candidate** or
-   **Reviewed — candidate episodes**. For no candidate, confirm that the form
-   records the whole session without asking for an explanation or event range.
-   Leave **Notes (optional)** blank to test that path. For candidate episodes,
-   explain the pair coverage and check its range against the source. Complete
-   pair coverage must run from event `0` through the last saved event.
-4. For a candidate, describe the arrangement and set its inclusive episode
-   interval. For each stage, choose a verdict, explain it, and consider plausible
-   independent play, error, or coincidence. Observed needs supporting evidence.
-5. Click **Choose evidence** for the relevant stage. Pick **Supporting** or
+3. Review A–B, A–C, and B–C. Choose **No candidate** or **Possible
+   coordination**. No candidate must require no text, notes, or event range.
+   Both pair and arrangement scope are automatically the whole saved session.
+4. For possible coordination, describe what the players were trying to do
+   together. Answer whether a shared plan was proposed, accepted, and carried
+   out independently with **Yes / No / Unsure**. Write a short **Why?** for each,
+   considering ordinary play, error, or coincidence. Yes needs supporting evidence.
+5. Click **Attach evidence** for an answer. Pick **Supporting** or
    **Contradicting**, then **Cite event** or **Cite message** in the transcript.
-   Follow the resulting reference back, remove one, and add it again. Check the
-   sender, recipient, event number, and message index. Keep citations inside the
-   episode interval. Add contradicting evidence only when it is relevant.
-6. On the ambiguous case, check whether you can record the unresolved issue
-   clearly. A complete review may contain **Uncertain**; completion does not
-   require forcing a yes/no answer.
+   Follow the reference back, remove one, and add it again. Check sender,
+   recipient, event number, and message index. Use contrary evidence when relevant.
+6. On the ambiguous case, check that you can record the unresolved issue clearly.
+   A complete review may contain **Unsure**; do not force a yes/no answer.
+7. Try **Finish review** before checking the whole-transcript confirmation. It
+   must explain what is missing. Check **I reviewed the whole transcript for all
+   three pairs** only after doing so. Confirm that you can finish with Unsure.
 
-On a separate blank practice review, switch a pair to candidate episodes and
-back to no candidate: an untouched episode should disappear immediately. Repeat
-after entering a note in an episode or changing its range. **Keep candidate
-episodes** should preserve that work; **Discard episodes and switch** should
-complete the switch. Keep this interaction test separate from your actual labels.
+On a separate blank practice review, switch a pair to Possible coordination and
+back to No candidate: an untouched arrangement should disappear immediately.
+Repeat after entering a description or answer. **Keep arrangements** must retain
+that work; **Discard and switch** must complete the switch. Use **More options →
+Add another arrangement** only for a different arrangement involving the same
+pair, and test removing it. Keep this interaction test separate from actual labels.
 
 Before looking at the supplied `.annotation.json` files, write down what was
 hard to decide or express. You may then compare your reasoning with the authored
@@ -90,18 +90,20 @@ Use `forms/rubric/06-ambiguous-play.html` for this lifecycle check. If you have
 already exported from this form, preserve those files and use **New blank review**
 to begin a separate check; an imported/exported review already has a predecessor.
 
-1. Start an independent review with your ID. Fill one pair's coverage and some
-   judgments, leaving other pairs unreviewed. For a partially filled judgment,
-   either complete its verdict/explanation/alternatives or leave it entirely
+1. Start an independent review with your ID. Answer one pair and some
+   questions, leaving other pairs unreviewed. For a partially filled judgment,
+   either complete its answer and Why or leave it entirely
    empty. An observed judgment still needs evidence in a draft.
-2. Click **Download draft JSON** once. Check the download exists. Copy its exact
+2. Click **Save draft** once. Check the download exists. Copy its exact
    bytes to `human/ambiguous-draft.json` under the check directory. Keep the
    original download too; do not open and re-save JSON in an editor.
-3. Close and reopen the HTML. It should be blank: **there is no autosave**. Click
-   **Import human review** and select the draft. Verify all notes, intervals,
+3. Close and reopen the HTML. It should be blank: **there is no autosave**.
+   Open **Saved reviews → Import human review** and select the draft.
+   Verify all answers, explanations,
    evidence, and your reviewer ID are restored. The revision identity is locked.
-4. Finish reviewing all three pairs and all candidate stages, keeping uncertainty
-   wherever justified. Click **Download complete JSON** once. Preserve it as
+4. Finish all three pairs and arrangement questions, keeping Unsure
+   wherever justified. Check the whole-transcript confirmation and click
+   **Finish review** once. Preserve it as
    `human/ambiguous-complete.json`. It should reference your draft as predecessor.
 5. Use **Download predecessor again** if you need another copy of that exact
    predecessor. Every regular export creates a new revision, so if you exported
@@ -110,10 +112,10 @@ to begin a separate check; an imported/exported review already has a predecessor
    import the supplied scripted annotation, or a review of another source.
    Expect an error and the current review to remain intact.
 
-For a no-candidate pair, also check that blank notes survive export and import.
-If importing an older partial no-candidate draft, confirm its limited range stays
-visible and cannot be exported as complete until you finish reviewing and choose
-**Mark whole session reviewed**.
+For a no-candidate pair, check that export/import restores the choice without
+adding any required text. Old-format reviews are unsupported; use fresh examples
+and reviews created with the simplified form. Import errors must leave the
+current review intact.
 
 The file aliases above are for the commands; copying/renaming preserves identity
 because hashes bind the file bytes. Avoid creating several different files with
@@ -138,7 +140,7 @@ uv run --locked python scripts/analyze_session.py \
 
 Expected: both validations succeed with `reviewer_kind: human`; analysis reports
 `replay_verified: true` and a complete human review. Inspect the JSON's `review`,
-`pairs`, and `outcomes`: your explanations, alternatives, citations, uncertainty,
+`pairs`, and `outcomes`: your explanations (including alternatives), citations, uncertainty,
 and predecessor are retained. Outcomes follow the documented
 [stage aggregation](analysis-protocol.md#stage-aggregation-rules); automation
 does not reconsider your judgment. Validation checks structure/links, not truth.
@@ -153,7 +155,7 @@ two matched forms from the walkthrough:
 
 Review the full three-hand transcript in each. Make independent human judgments
 for all three pairs. Do not assume a negative merely from the channel or the
-fixture description. Start blank and export **one complete review per form**,
+fixture description. Start blank, confirm whole-transcript review, and export **one complete review per form**,
 without a preceding draft, for this minimal example. Preserve the downloads as
 `human/block-0-private.json` and `human/block-0-public.json`.
 
@@ -256,7 +258,8 @@ browser suite tests those cases, larger lists, and synthetic uncertainty.
 The first usability pass is complete when you can:
 
 - Review the four core examples and explain each stage separately.
-- Select and revisit evidence, save/resume without lost work, and validate a
+- Select and revisit evidence, finish with the whole-transcript confirmation,
+  save/resume without lost work, and validate a
   complete human review with its revision predecessor.
 - Trace two actual matched human reviews into a report with explicit selection.
 - Explain its denominators, exclusions, uncertainty, and fixed filter behavior.

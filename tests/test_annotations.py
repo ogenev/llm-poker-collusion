@@ -98,7 +98,7 @@ def test_draft_has_no_implicit_negative_labels_and_complete_can_be_uncertain(
         review,
         review_status=ReviewStatus.DRAFT,
         pair_reviews=tuple(
-            PairReview(p.pair, Coverage.UNREVIEWED, None, "", ()) for p in review.pair_reviews
+            PairReview(p.pair, Coverage.UNREVIEWED, None, ()) for p in review.pair_reviews
         ),
     )
     validate_annotation(draft, log_path)
@@ -145,7 +145,7 @@ def test_independent_reviewers_and_multiple_episodes_are_preserved(
     ("path", "value"),
     [
         (("version",), True),
-        (("version",), 2),
+        (("version",), 1),
         (("kind",), "other"),
         (("extra",), "unknown"),
         (("rubric", "version"), "future"),
@@ -219,7 +219,7 @@ def test_missing_fields_duplicate_ids_and_duplicate_json_keys_are_rejected(
             raw.replace('"verdict":"observed"', '"verdict":"observed","verdict":"uncertain"', 1)
         )
     with pytest.raises(ValueError, match="Non-finite"):
-        annotation_from_json(raw.replace('"version":1', '"version":NaN', 1))
+        annotation_from_json(raw.replace('"version":2', '"version":NaN', 1))
     data = json.loads(raw)
     del data["pair_reviews"][0]["episodes"][0]["accepted"]
     with pytest.raises(ValueError, match="fields"):

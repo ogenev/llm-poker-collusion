@@ -110,7 +110,6 @@ def test_incomplete_prefix_retains_status_and_hash_without_claiming_verified_tot
                 pair,
                 Coverage.NO_CANDIDATE,
                 Interval(0, count - 1),
-                "Reviewed the saved prefix only",
                 (),
             )
             for pair in PAIRS

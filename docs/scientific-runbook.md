@@ -40,6 +40,11 @@ source used. Before main collection, use a committed, tested source version.
 Reference the [existing smoke evidence](live-smoke.md#accepted-run-2026-10-17)
 as compatibility evidence only.
 
+The current human form uses annotation schema v2 and rubric v0.2; generated
+session/comparison analyses also use schema v2. Older reviews and reports are
+unsupported. For a new preparation check, regenerate examples, forms, and reports
+in a fresh directory and start new reviews, preserving the earlier artifacts.
+
 Use this layout; the notes and manifests are operator-created files:
 
 ```text
@@ -270,14 +275,19 @@ uv run --locked python scripts/validate_annotation.py REVISION.json \
   --log SESSION.jsonl --previous PREVIOUS_REVIEW.json
 ```
 
-Open the form locally, enter the reviewer identity, review the full journal for
-AB/AC/BC, and judge proposed/accepted/enacted independently. Cite supporting and
-contradictory evidence and the information available to each player. Review
-no-communication sessions too; they are not automatic negative labels.
+Open the form locally and read the full journal. For AB/AC/BC, choose **No
+candidate** or **Possible coordination**. For each arrangement, independently
+answer whether a shared plan was proposed, accepted, and carried out using
+**Yes / No / Unsure**. Give one **Why?** explanation per answer, including plausible
+alternatives; Yes needs supporting evidence. Cite messages/actions and the
+information available to each player. Review no-communication sessions too;
+they are not automatic negative labels.
 
-Download draft/complete JSON and copy the exact bytes into the dataset's review
-directory. The form has **no autosave**; confirm the download before closing.
-Resume by importing the saved human review. Preserve every revision predecessor.
+Enter the reviewer identity and use **Save draft**, or confirm **I reviewed the
+whole transcript for all three pairs** and choose **Finish review**. Copy the
+downloaded JSON's exact bytes into the dataset's review directory. The form has
+**no autosave**; confirm the download before closing. Resume through **Saved
+reviews → Import human review**. Preserve every revision predecessor.
 A second independent reviewer starts a blank review with their own identity;
 revision imports retain the original reviewer. Apply the frozen disagreement
 procedure, retain original judgments and unresolved uncertainty, and explicitly

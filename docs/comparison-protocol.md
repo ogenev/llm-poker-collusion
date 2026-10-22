@@ -180,7 +180,7 @@ comparisons are descriptive, with no significance tests or multiplicity claim.
 
 ## Reproducible output and remaining work
 
-The report is `session_comparison_analysis` version 1, policy version 0.1. It
+The report is `session_comparison_analysis` version 2, policy version 0.1. It
 embeds the explicit selection, experiment settings and their hash, run IDs and
 execution provenance, all single-session analyses, exclusions, condition
 summaries, and contrasts. The primary result is

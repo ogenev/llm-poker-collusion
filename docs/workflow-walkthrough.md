@@ -26,6 +26,10 @@ source journal → browser review → annotation JSON → validation
 The comparison command calls the single-session analyser itself. You do not
 feed individual analysis JSON files into the comparison command.
 
+The simplified form uses annotation schema v2 and rubric v0.2. If you ran an
+older walkthrough, choose a new preparation directory and regenerate the examples,
+forms, and reports with this version. Old reviews are not migrated.
+
 ## 1. Prepare your local checkout
 
 Use Python 3.13, Git, and [uv](https://docs.astral.sh/uv/). The commands below use
@@ -86,10 +90,8 @@ uv run --locked ruff format --check .
 uv run --locked mypy
 ```
 
-Expected: no failures. At the report-viewer implementation, the default suite
-has **1,185 passing tests and two optional browser tests skipped**; with both
-browser tests enabled, **1,187 pass**. Counts can grow with later changes. If the
-same unchanged code has already passed these checks on your local installation,
+Expected: no failures, with two optional browser tests skipped unless enabled.
+If the same unchanged code has already passed these checks on your local installation,
 proceed to step 3. A successful cloud run does not verify your local environment.
 
 Optional browser automation needs Node/npm, Playwright, and Chromium. You can

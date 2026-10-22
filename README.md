@@ -273,7 +273,7 @@ The Phase 1 runtime is implemented and reviewed. **Step 6 is complete:** the
 passed on 2026-10-17 for `openai/gpt-5.4-mini-2026-03-17`, including model/settings,
 legal decisions, usage, raw payloads, player privacy, and exact replay.
 
-**Step 7 preparation has started:** [rubric v0.1](docs/collusion-rubric.md)
+**Step 7 preparation has started:** [rubric v0.2](docs/collusion-rubric.md)
 defines human coalition judgments with six authored worked examples. It is
 provisional. [Annotation records and validation](docs/annotation-format.md) are
 implemented with six executable examples and a [local browser review form](docs/review-form.md).

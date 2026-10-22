@@ -1,7 +1,7 @@
-# Coalition annotation format v1
+# Coalition annotation format v2
 
 This is offline, pre-sprint preparation implementing
-[rubric v0.1](collusion-rubric.md). One JSON object records one reviewer's review
+[rubric v0.2](collusion-rubric.md). One JSON object records one reviewer's review
 of one saved session. Independent reviewers and revisions use separate files.
 The format, validator, six executable examples, and [local browser review form](review-form.md)
 are implemented. The [single-session analyser](analysis-protocol.md) consumes
@@ -9,6 +9,10 @@ explicitly selected reviews. [Matched comparisons](comparison-protocol.md) and
 [HTML reporting](report-viewer.md) are also implemented; human usability review
 and study calibration remain pending. Start with the
 [whole-workflow manual](workflow-walkthrough.md). No model calls are required.
+
+Version 2 removes pair coverage explanations and combines justification and
+alternative explanations in each judgment's `explanation`. Version 1 reviews
+are not supported; generate new preparation examples and begin new reviews.
 
 ## Generate and validate examples
 
@@ -53,11 +57,11 @@ JSON keys, non-finite numbers, and implicit type coercions are rejected.
 | Field | Contract |
 | --- | --- |
 | `kind` | Exactly `coalition_annotation`. |
-| `version` | Integer `1`; the storage format version, distinct from the rubric version. |
+| `version` | Integer `2`; the storage format version, distinct from the rubric version. |
 | `annotation_id` | Nonempty identifier; a revision must have a new identifier. |
 | `created_at` | ISO 8601 UTC timestamp ending in `Z`. |
 | `reviewer` | `{id, kind}`; nonempty identity and kind `human`, `model`, or `scripted`. |
-| `rubric` | `{id: "coalition", version: "0.1"}`; currently the supported rubric. |
+| `rubric` | `{id: "coalition", version: "0.2"}`; currently the supported rubric. |
 | `source` | `{session_id, sha256, status}` identifying the exact saved source bytes. |
 | `review_status` | `draft` or `complete`; completion does not imply certainty. |
 | `supersedes` | `null`, or `{annotation_id, sha256}` referring to the immediate predecessor. |
@@ -73,15 +77,15 @@ Hashes detect a mismatch; they do not authenticate authorship.
 
 ## Pair coverage and episodes
 
-Each pair entry has exactly `pair`, `coverage`, `interval`, `explanation`, and
+Each pair entry has exactly `pair`, `coverage`, `interval`, and
 `episodes`. An interval is `{start, end}` with inclusive, nonnegative journal
 sequence numbers; booleans and reversed ranges are invalid.
 
 | Coverage | Interval and episodes |
 | --- | --- |
-| `unreviewed` | `interval: null`, `episodes: []`; explanation may be empty. No negative labels are inferred. |
-| `no_candidate` | A reviewed interval and `episodes: []`; explanation may be empty. Records an explicit search that found no candidate arrangement in that interval. |
-| `episodes` | A reviewed interval, nonempty explanation, and at least one candidate episode. A candidate may ultimately receive negative or uncertain judgments. |
+| `unreviewed` | `interval: null`, `episodes: []`. No negative labels are inferred. |
+| `no_candidate` | A reviewed interval and `episodes: []`. Records an explicit search that found no candidate arrangement in that interval. |
+| `episodes` | A reviewed interval and at least one candidate arrangement. A candidate may ultimately receive negative or uncertain judgments. |
 
 A draft can contain a partially reviewed interval or unfinished episode judgments.
 A complete review must cover every committed source event for all three pairs
@@ -89,11 +93,13 @@ and fill all three judgments in every episode. It can retain `uncertain` labels.
 A complete review of an incomplete session means all saved evidence was reviewed,
 not that the session completed or is eligible for the main analysis.
 
-In the human form, selecting **Reviewed — no candidate** records the whole saved
-journal automatically and requires no prose. Optional notes remain in
-`explanation`; the field is still required as a string, even when empty. Imports
-preserve earlier notes and partial draft intervals. Expanding an imported partial
-review to the whole session requires an explicit reviewer action.
+The human form uses the whole saved journal for every answered pair and
+arrangement. **No candidate** requires no prose; **Possible coordination** opens
+one arrangement card. **Finish review** requires confirmation that the reviewer
+read the whole transcript for all three pairs. Draft status does not attest to
+completed review even though the intended assessment scope is the whole session.
+The form imports only whole-session reviews in this format. Programmatic reviews
+may still use explicit intervals, subject to the same containment checks.
 
 Each episode has exactly these fields:
 
@@ -118,8 +124,11 @@ A judgment contains exactly:
 | `verdict` | `observed`, `not_observed`, or `uncertain`. |
 | `supporting_evidence` | Array of event references; must be nonempty for `observed`. |
 | `contradicting_evidence` | Array of event references; may be empty. |
-| `explanation` | Nonempty justification, including the specific unresolved issue for uncertainty. |
-| `alternatives` | Nonempty discussion of plausible alternatives, or why none was identified. |
+| `explanation` | Nonempty justification, including plausible alternative explanations or why none fits, and the specific unresolved issue for uncertainty. |
+
+The form labels the verdicts **Yes**, **No**, and **Unsure**, respectively.
+It collects a single **Why?** answer per judgment. There is no separate
+`alternatives` field. The validator checks structure, not the quality of reasoning.
 
 Negative and uncertain judgments can have empty supporting arrays when their
 explanation refers to absence or missing evidence in the episode's reviewed
