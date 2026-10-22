@@ -11,6 +11,10 @@ no provider credentials, paid model calls, or live experiments are needed.
 Initial dependency installation may need network access. Passing this walkthrough
 checks the plumbing, not model competence, human agreement, or research findings.
 
+For the scientific execution sequence after preparation, follow the
+[sprint runbook](scientific-runbook.md): qualification, exploration, protocol
+freeze, fresh main collection, human review, analysis, and the scientific report.
+
 ```text
 Inspect mock → game/model journals + Inspect log → saved-run verification
                                                  ↓

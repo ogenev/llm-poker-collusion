@@ -163,6 +163,12 @@ for artifact verification, limits, and separate competence/control templates.
 
 ## Prepare the sprint pilot
 
+Start with the [scientific sprint runbook](docs/scientific-runbook.md) for the
+end-to-end sequence: preparation → qualification → exploratory pilot → protocol
+freeze → fresh main runs → human review → analysis and scientific report. It
+connects commands, artifacts, and criteria for proceeding; main settings remain
+undecided until the pilot evidence is reviewed.
+
 The [pilot preparation guide](docs/pilot-preparation.md) documents three live
 configurations prepared on 2026-10-22: no-communication competence gameplay,
 instructed coordination, and a matched neutral exploratory pilot. They use the
@@ -172,9 +178,12 @@ thresholds sum to $18 and are not a hard billing cap.
 
 The guide includes preflight commands without model calls and separate live
 commands for the October 23–25 sprint. These files are pre-sprint preparation,
-not pilot results or a frozen evaluation protocol. The standalone 24-situation
-competence diagnostic and scorer still need implementation; gameplay and a
-successful preflight alone do not establish poker competence.
+not pilot results or a frozen evaluation protocol. The
+[minimal qualification check](docs/qualification-checklist.md) adds six basic
+action cases asked twice, scripted verification, and a human checklist. Its
+whole-check dollar stopping threshold is $0.25. A pass is a basic action screen;
+human gameplay and coordination review remain required. No live qualification
+results are implied by the implementation or successful preflight.
 
 ## Run an offline session
 

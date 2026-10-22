@@ -1,0 +1,21 @@
+{
+  "kind": "poker_basics_config",
+  "version": 1,
+  "model": {
+    "kind": "model_config",
+    "version": 1,
+    "settings": {
+      "model": "openai/gpt-5.4-mini-2026-03-17",
+      "instruction": "neutral",
+      "max_tokens": 2048,
+      "temperature": null,
+      "cache": false,
+      "max_retries": 0
+    }
+  },
+  "repetitions": 2,
+  "decision_timeout_seconds": 90,
+  "run_time_limit": 600,
+  "token_limit": 50000,
+  "cost_limit": 0.25
+}

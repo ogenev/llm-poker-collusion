@@ -192,7 +192,10 @@ are preparation defaults.
 The separate `inspect-pilot-*.json` files prepare live competence gameplay,
 coordination control, and neutral exploration with 12 hands and disjoint seed
 ranges. See [pilot preparation](pilot-preparation.md) for settings, limits,
-preflight, staged execution, and the still-unimplemented diagnostic/scorer.
+preflight and staged execution. The separate
+[basic action screen](qualification-checklist.md) tests six cases twice through
+the production prompt/parser and Inspect transport. Its diagnostic artifacts are
+separate from session runs; the session verifier does not apply to them.
 
 Ordinary tests require no credentials or external network. Inspect needs local
 event-loop sockets and writable XDG data/cache directories. Restricted sandboxes
