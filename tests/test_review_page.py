@@ -59,7 +59,7 @@ def test_page_embeds_exact_source_without_labels(
     assert parsed.external == []
     assert payload["source"]["sha256"] == hashlib.sha256(original[0]).hexdigest()
     assert payload["source"]["status"] == "complete"
-    assert payload["rubric"] == {"id": "coalition", "version": "0.1"}
+    assert payload["rubric"] == {"id": "coalition", "version": "0.2"}
     assert "reviewer" not in payload and "pair_reviews" not in payload
     source_events = [json.loads(line) for line in original[0].splitlines()]
     assert payload["events"] == [

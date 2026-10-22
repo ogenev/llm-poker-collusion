@@ -30,12 +30,18 @@ async function importReview(file) {
     const review = validateReview(strictJSON(new TextDecoder("utf-8", {fatal: true}).decode(bytes)));
     requireThat(review.reviewer.kind === "human",
       "This form resumes human reviews only. Scripted/model labels are not imported into human work. Start a blank independent review.");
+    for (const pair of review.pair_reviews) {
+      const scopes = [pair.interval, ...pair.episodes.map(episode => episode.interval)].filter(Boolean);
+      requireThat(scopes.every(bounds => bounds.start === 0 && bounds.end === LAST),
+        "This form uses whole-session reviews. Start a new review for this transcript.");
+    }
     const sha256 = await digest(bytes);
     if (dirty && !confirm("Importing replaces unsaved form changes. Continue?")) return;
     pairs = clone(review.pair_reviews);
     for (const pair of pairs) for (const episode of pair.episodes) for (const stage of STAGES) episode[stage] ??= blankJudgment();
     previous = {review, sha256, name: file.name, bytes}; target = null; dirty = false;
     $("reviewer-id").value = review.reviewer.id;
+    $("whole-session").checked = review.review_status === "complete";
     renderPairs(); revisionInfo();
     notice("Imported human review. Its next export will be a new revision. Validate earlier revision links separately with Python.");
   } catch (error) { notice(`Import failed: ${error.message}`, true); }
@@ -52,7 +58,7 @@ async function exportReview(status) {
     downloadBytes(bytes, name);
     previous = {review, sha256, name, bytes}; dirty = false; revisionInfo();
     notice(`Download requested: ${name}. Confirm it saved and keep it: the next export revises this file. Use “Download predecessor again” to retry a canceled download. Python validation still required.`);
-  } catch (error) { notice(`Cannot export: ${error.message}. Drafts may leave a judgment entirely blank, but partially filled judgments need a verdict, explanation, and alternatives.`, true); }
+  } catch (error) { notice(`Cannot save: ${error.message}`, true); }
   finally { lock(false); }
 }
 $("import-review").addEventListener("change", event => importReview(event.target.files[0]));
@@ -62,10 +68,11 @@ $("download-previous").addEventListener("click", () => {
   if (previous && !busy) downloadBytes(previous.bytes, previous.name);
 });
 $("reviewer-id").addEventListener("input", changed);
+$("whole-session").addEventListener("change", changed);
 $("new-review").addEventListener("click", () => {
   if ((dirty || previous) && !confirm("Start a blank independent review? Download any changes you want to keep first.")) return;
   pairs = blankPairs(); previous = null; target = null; dirty = false;
-  $("reviewer-id").value = ""; renderPairs(); revisionInfo();
+  $("reviewer-id").value = ""; $("whole-session").checked = false; renderPairs(); revisionInfo();
   notice("New independent human review. All pairs are unreviewed.");
 });
 window.addEventListener("beforeunload", event => {

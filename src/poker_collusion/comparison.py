@@ -203,7 +203,7 @@ async def compare_sessions(manifest_path: str | Path) -> dict[str, Any]:
     provenance = replace(_provenance(), ruleset="matched_session_comparison", ruleset_version="0.1")
     result: dict[str, Any] = {
         "kind": "session_comparison_analysis",
-        "version": 1,
+        "version": 2,
         "provenance": asdict(provenance),
         "selection": json.loads(payload),
         "dataset_role": manifest.dataset_role,

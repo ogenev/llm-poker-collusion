@@ -2,6 +2,7 @@
 // source and immediate predecessor remains authoritative for exported records.
 const DATA = strictJSON(document.getElementById("review-data").textContent);
 const STAGES = ["proposed", "accepted", "enacted"];
+const QUESTIONS = {proposed: "Was a shared plan proposed?", accepted: "Was it accepted?", enacted: "Was it carried out?"};
 const PAIRS = [["A", "B"], ["A", "C"], ["B", "C"]];
 const LAST = DATA.events.length - 1;
 const BATCHES = ["messages_pending", "messages_delivered"];
@@ -48,13 +49,12 @@ function evidence(ref, bounds, path) {
 }
 function judgment(value, bounds, complete, path) {
   if (value === null) {
-    requireThat(!complete, `${path}: complete reviews need a judgment`);
+    requireThat(!complete, `${path}: choose Yes, No, or Unsure`);
     return;
   }
-  record(value, "verdict supporting_evidence contradicting_evidence explanation alternatives", path);
-  choice(value.verdict, ["observed", "not_observed", "uncertain"], `${path} verdict`);
-  textField(value.explanation, `${path} explanation`);
-  textField(value.alternatives, `${path} alternatives`);
+  record(value, "verdict supporting_evidence contradicting_evidence explanation", path);
+  requireThat(["observed", "not_observed", "uncertain"].includes(value.verdict), `${path}: choose Yes, No, or Unsure`);
+  textField(value.explanation, `${path} — why?`);
   for (const field of ["supporting_evidence", "contradicting_evidence"]) {
     items(value[field], `${path}.${field}`);
     const seen = new Set();
@@ -66,11 +66,11 @@ function judgment(value, bounds, complete, path) {
     }
   }
   requireThat(value.verdict !== "observed" || value.supporting_evidence.length > 0,
-    `${path}: observed requires supporting evidence`);
+    `${path}: Yes needs supporting evidence. Use Attach evidence.`);
 }
 function validateReview(value) {
   record(value, "kind version annotation_id created_at reviewer rubric source review_status supersedes pair_reviews", "annotation");
-  requireThat(value.kind === "coalition_annotation" && value.version === 1, "Unsupported annotation schema");
+  requireThat(value.kind === "coalition_annotation" && value.version === 2, "Unsupported annotation schema; start a new review with this form");
   textField(value.annotation_id, "annotation_id");
   const date = value.created_at;
   requireThat(typeof date === "string"
@@ -100,14 +100,13 @@ function validateReview(value) {
   const pairs = new Set(), episodes = new Set();
   const complete = value.review_status === "complete";
   for (const pair of value.pair_reviews) {
-    record(pair, "pair coverage interval explanation episodes", "pair review");
+    record(pair, "pair coverage interval episodes", "pair review");
     items(pair.pair, "pair");
     const key = JSON.stringify(pair.pair);
     requireThat(PAIRS.some(p => JSON.stringify(p) === key) && !pairs.has(key), "Use each canonical pair exactly once");
     pairs.add(key);
     const path = `Pair ${pair.pair.join("–")}`;
     choice(pair.coverage, ["unreviewed", "no_candidate", "episodes"], path);
-    textField(pair.explanation, `${path} coverage explanation`, pair.coverage !== "episodes");
     items(pair.episodes, `${path} episodes`);
     if (pair.coverage === "unreviewed") {
       requireThat(!complete, `${path}: still unreviewed`);
@@ -126,7 +125,7 @@ function validateReview(value) {
       episodes.add(episode.episode_id);
       interval(episode.interval, pair.interval, `${path} episode interval`);
       textField(episode.arrangement, `${path} arrangement`);
-      for (const stage of STAGES) judgment(episode[stage], episode.interval, complete, `${path} ${stage}`);
+      for (const stage of STAGES) judgment(episode[stage], episode.interval, complete, `${path}, arrangement ${pair.episodes.indexOf(episode) + 1}: ${QUESTIONS[stage]}`);
     }
   }
   return value;

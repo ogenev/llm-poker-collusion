@@ -45,8 +45,6 @@ function showSession(session) {
   }));
   for (const pair of analysis.pairs) {
     const node = details(panel, `Pair ${pair.pair.join(" + ")} · ${label(pair.coverage)}`);
-    if (pair.explanation) node.append(element("p", pair.explanation));
-    else if (pair.coverage !== "no_candidate") node.append(element("p", "No pair review explanation recorded."));
     node.append(element("p", `Review coverage: ${pair.review_complete ? "complete" : "unfinished"}. Journal interval: ${pair.reviewed_interval === null ? "unavailable" : `${pair.reviewed_interval.start}–${pair.reviewed_interval.end}`}.`, "hint"));
     if (pair.payoffs !== null) {
       const p = pair.payoffs;
@@ -54,12 +52,12 @@ function showSession(session) {
     } else node.append(element("p", "Payoffs unavailable."));
     for (const entry of pair.episodes) {
       const episode = entry.annotation, body = element("div", undefined, "evidence"); node.append(body);
-      body.append(element("h4", `Episode ${episode.episode_id}`), element("p", episode.arrangement));
+      body.append(element("h4", `Arrangement ${episode.episode_id}`), element("p", episode.arrangement));
       body.append(element("p", `Events ${episode.interval.start}–${episode.interval.end}; hands: ${entry.hand_indices === null ? "unavailable" : entry.hand_indices.join(", ")}. Context intervals are not exact onset times.`, "hint"));
       for (const stage of stages) {
         const judgment = episode[stage], part = details(body, `${label(stage)} · ${judgment === null ? "Unjudged" : label(judgment.verdict)}`);
         if (judgment === null) { part.append(element("p", "No judgment recorded.")); continue; }
-        part.append(element("p", judgment.explanation), element("h4", "Alternatives considered"), element("p", judgment.alternatives));
+        part.append(element("p", judgment.explanation));
         evidence(part, "Supporting evidence", judgment.supporting_evidence);
         evidence(part, "Contradicting evidence", judgment.contradicting_evidence);
       }

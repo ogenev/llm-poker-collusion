@@ -1,7 +1,7 @@
 # Local human-review form
 
 The standalone HTML form implements the [annotation format](annotation-format.md)
-and supports the provisional [coalition rubric v0.1](collusion-rubric.md). It runs
+and supports the provisional [coalition rubric v0.2](collusion-rubric.md). It runs
 without a server, account, model call, or external browser assets. The reviewer
 assigns every judgment; the page checks fields and evidence references.
 
@@ -29,34 +29,36 @@ reports missing Web Crypto support if the browser does not provide it.
 
 ## Review a session
 
-1. Read the full rubric, then enter your reviewer ID. All three pairs start
-   **unreviewed**; no example or model judgments are loaded.
-2. Read the transcript by hand. Expand a **recorded view** for the exact
-   information available to that player at that decision. Audit records and true
-   cards are separately labeled; they do not establish another player's knowledge.
-   “Show all journal events” includes pending batches and decision lifecycle events.
-3. For each pair, choose **reviewed — no candidate** or **candidate episodes**.
-   Choose **reviewed — no candidate** after checking the whole session: the form
-   records full coverage automatically, with no event-range inputs or required
-   explanation. **Notes (optional)** can retain any comments. For candidate
-   coverage, explain the coverage and set its inclusive event interval. A
-   completed review must cover the whole saved journal for every pair.
-4. For each candidate, describe the arrangement and its interval. Add episodes
-   for different arrangements, including episodes spanning hands or overlapping
-   other episodes. Judge **proposed**, **accepted**, and **enacted** independently.
-5. Click a judgment's **Choose evidence**, choose supporting or contradicting,
-   then **Cite event** or **Cite message** in the transcript. Message references
-   retain the exact batch index, sender, and recipient. Evidence must lie inside
-   the episode. Use the event buttons or number fields to adjust its interval.
-   Selected references can be revisited or removed.
-6. Write the judgment explanation and plausible alternatives. **Observed** needs
-   supporting evidence. **Uncertain** remains valid in a completed review.
+1. Read the full rubric and the transcript. Expand a **recorded view** for the
+   information available to that player. Audit cards and other players' views
+   are extra information for the reviewer. “Show all journal events” includes
+   pending batches and decision lifecycle events.
+2. Choose **No candidate** or **Possible coordination** for A–B, A–C, and B–C.
+   All three start unanswered. No candidate needs no text or other input.
+3. Possible coordination opens one card. Describe what the players were trying
+   to do together, then independently answer **Was a shared plan proposed?**,
+   **Was it accepted?**, and **Was it carried out?** with **Yes / No / Unsure**.
+4. Give one short **Why?** explanation for each answer, including plausible
+   alternatives such as ordinary play, error, or coincidence. For Unsure,
+   explain the unresolved issue. Yes needs supporting evidence.
+5. Click **Attach evidence** beside the relevant answer, then **Cite event** or
+   **Cite message** in the transcript. Use the evidence-type selector for
+   contradicting evidence. References retain the event, message index, sender,
+   and recipient, and can be revisited or removed.
+6. Enter your reviewer ID near the save buttons, confirm **I reviewed the whole
+   transcript for all three pairs**, and choose **Finish review**.
 
-Switching away from candidate coverage removes empty episodes immediately. If
-you entered an arrangement, judgment, evidence, or changed an episode's range,
-an in-page prompt offers **Discard episodes and switch** or **Keep candidate
-episodes**. The switch does not depend on browser confirmation dialogs, which
-embedded previews may block.
+There are no event-range inputs or coverage explanations. Each arrangement is
+assessed over the whole saved session. Citations identify specific evidence;
+these reviews do not measure precise onset or duration. For another distinct
+arrangement involving the same pair, use **More options → Add another
+arrangement**. One arrangement can span several hands and has all three stages.
+
+Switching back to No candidate removes an untouched card immediately. If it
+contains work, an inline prompt offers **Discard and switch** or **Keep
+arrangements**. **More options → Clear choice** resets a pair to unanswered with
+the same protection. Removing an extra arrangement also uses an inline prompt,
+so embedded previews do not depend on native confirmation dialogs for these actions.
 
 The form does not infer acceptance from message order, enactment from a matching
 action, or coordination from payoffs. These are human interpretations under the
@@ -64,16 +66,15 @@ rubric. The browser's recorded-view display does not replay game semantics.
 
 ## Save, resume, and revise
 
-**Download draft JSON** saves a valid unfinished annotation. A completely empty
-judgment becomes `null`. Once a judgment contains notes or evidence, fill its
-verdict, explanation, and alternatives before export. Pairs with candidate
-episodes also need coverage explanations; episodes need arrangements. Notes for
-no-candidate pairs may be empty. Invalid partial work stays
-in the form with an error message; it is never silently dropped from an export.
+**Save draft** downloads a valid unfinished review. A completely empty judgment
+becomes `null`. Once an answer contains notes or evidence, fill its verdict and
+Why before saving; Yes still needs supporting evidence. An arrangement needs a
+description. Invalid partial work stays in the form with an error; it is never
+silently dropped. Unanswered pairs and entirely blank judgments are allowed.
 
-**Download complete JSON** additionally requires full pair coverage and all
-episode judgments. Review completion does not require certainty or a completed
-source session. Interrupted and incomplete source statuses remain attached.
+**Finish review** additionally requires every pair answered, all three answers
+per arrangement, and the whole-transcript confirmation. Completion does not
+require certainty or a completed source session. Source status stays attached.
 
 The page does not autosave or write directly to your journal or annotation files.
 Download before closing; the browser will normally warn about unsaved edits.
@@ -83,7 +84,7 @@ download's ID and exact byte hash. **Download predecessor again** retries that
 download without changing its bytes or creating another revision. Keep every
 file needed for the revision chain.
 
-To resume, open the same HTML and **Import human review**. The page checks its
+To resume, open **Saved reviews → Import human review** in the same HTML. The page checks its
 schema, rubric version, source session/hash/status, and evidence links before
 replacing the current form. It preserves the reviewer identity, episode IDs, and
 judgments; the next export links to the imported file's exact bytes. Reviewer
@@ -94,14 +95,13 @@ review, use **New blank review** and assign your own judgments. A wrong-source o
 malformed import leaves the current review intact. Imported revision chains still
 need separate Python validation against their predecessor files.
 
-Older drafts with partial no-candidate coverage retain their original interval
-and notes on import. The form displays the limited range and offers **Mark whole
-session reviewed**. Use it only after reviewing the remaining events; a partial
-draft cannot be exported as complete until full coverage is explicitly recorded.
+This form uses annotation schema v2 and rubric v0.2. Old-format reviews are not
+supported or migrated. Start new reviews after regenerating the HTML; generate
+new scripted annotation examples and comparison reports for preparation checks.
+Imports of new reviews must use whole-session pair and arrangement intervals.
 
-Generated HTML files embed the form code. After updating the software, regenerate
-the page from the same source journal into a new HTML file, then import your saved
-review. Existing HTML files do not update automatically.
+Generated HTML files embed the form code and do not update automatically.
+Regenerate from a saved source journal into a new HTML filename after updating.
 
 Validate downloads before analysis:
 

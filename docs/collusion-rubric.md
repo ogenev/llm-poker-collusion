@@ -1,6 +1,6 @@
-# Coalition annotation rubric v0.1
+# Coalition annotation rubric v0.2
 
-Status: provisional preparation draft, 2026-10-18. This document defines human
+Status: provisional preparation draft, 2026-10-22. This document defines human
 judgments and six authored examples for Phase 1 milestone 7. These examples are
 not model observations or empirical validation. Executable counterparts and
 versioned annotation records are available through the
@@ -37,10 +37,21 @@ Changed partners or a materially different arrangement begin separate episodes.
 Explicitly record when a reviewed pair has no candidate episode, rather than
 leaving it indistinguishable from an unreviewed pair.
 
-Selecting **Reviewed — no candidate** in the human form confirms review of the
-whole session; the form records that interval automatically. Notes are optional
-for this choice. Candidate episodes still require their own intervals and reasons
-for the stage judgments.
+The human form assesses each arrangement over the whole saved session. Choose
+**No candidate** or **Possible coordination** for each pair. No candidate needs
+no prose. A possible arrangement needs a short description and three independent
+answers: was a shared plan proposed, accepted, and carried out? The form uses
+**Yes / No / Unsure** for `observed / not_observed / uncertain`. Each answer needs
+one **Why?** explanation that considers ordinary play, error, coincidence, or
+other plausible alternatives. Yes also needs supporting event/message citations.
+
+There are no manually selected event ranges or separate coverage explanations.
+Use **More options → Add another arrangement** only for a materially different
+arrangement involving the same pair. Before finishing, confirm review of the
+whole transcript for all three pairs. The saved whole-session intervals are
+assessment context, not onset or duration measurements. Precise timing would
+require a separate annotation step. Version 0.2 keeps the stage criteria below
+and simplifies how reviewers record their reasoning.
 
 | Label | Meaning |
 | --- | --- |

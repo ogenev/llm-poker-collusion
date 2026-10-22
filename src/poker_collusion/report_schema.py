@@ -127,7 +127,7 @@ class Primary:
 @dataclass
 class ComparisonReport:
     kind: Literal["session_comparison_analysis"]
-    version: Literal[1]
+    version: Literal[2]
     provenance: AnalysisProvenance
     selection: dict[str, object]
     dataset_role: Literal["preparation", "pilot", "evaluation"]

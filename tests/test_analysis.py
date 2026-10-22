@@ -63,7 +63,7 @@ def test_six_examples_have_expected_outcomes_and_traceable_payoffs(
     originals = (log.read_bytes(), annotation.read_bytes())
     result = asyncio.run(analyze_session(log, annotation_path=annotation))
     expected = read_annotation(annotation)
-    assert result.kind == "session_analysis" and result.version == 1
+    assert result.kind == "session_analysis" and result.version == 2
     assert result.source == expected.source
     assert result.review is not None
     assert result.review.sha256 == hashlib.sha256(originals[1]).hexdigest()
@@ -123,7 +123,6 @@ def test_no_candidate_without_notes_preserves_coverage_requirements(
                 pair,
                 coverage=Coverage.NO_CANDIDATE,
                 interval=Interval(2, 3) if partial else pair.interval,
-                explanation="",
                 episodes=(),
             )
             for pair in review.pair_reviews
@@ -135,7 +134,6 @@ def test_no_candidate_without_notes_preserves_coverage_requirements(
             asyncio.run(analyze_session(log, annotation_path=selected))
         return
     result = asyncio.run(analyze_session(log, annotation_path=selected))
-    assert all(pair.explanation == "" for pair in result.pairs)
     assert result.outcomes.enacted.verdict == (
         Verdict.NOT_OBSERVED if status == ReviewStatus.COMPLETE else None
     )
@@ -175,7 +173,7 @@ def test_mixed_episodes_keep_uncertainty_and_unfinished_work_without_double_coun
     review = read_annotation(original)
     pair = review.pair_reviews[0]
     episode = pair.episodes[0]
-    unknown = Judgment(Verdict.UNCERTAIN, (), (), "Ambiguous evidence", "Independent play")
+    unknown = Judgment(Verdict.UNCERTAIN, (), (), "Ambiguous evidence; independent play possible")
     episodes: tuple[Episode, ...] = (
         replace(episode, episode_id="uncertain", enacted=unknown),
         replace(episode, episode_id="unfinished", proposed=None, accepted=None, enacted=None),
@@ -210,7 +208,7 @@ def test_partial_pair_coverage_prevents_session_negative(
         review_status=ReviewStatus.DRAFT,
         pair_reviews=(
             *review.pair_reviews[:2],
-            PairReview(PAIRS[2], Coverage.UNREVIEWED, None, "", ()),
+            PairReview(PAIRS[2], Coverage.UNREVIEWED, None, ()),
         ),
     )
     result = asyncio.run(analyze_session(log, annotation_path=save_review(tmp_path, review)))
@@ -239,7 +237,9 @@ def test_stages_are_independent_and_pair_order_is_canonical(
     log, original = examples[3]
     review = read_annotation(original)
     pair = review.pair_reviews[0]
-    negative = Judgment(Verdict.NOT_OBSERVED, (), (), "No explicit proposal", "Tacit behavior")
+    negative = Judgment(
+        Verdict.NOT_OBSERVED, (), (), "No explicit proposal; consider tacit behavior"
+    )
     pair = replace(
         pair, episodes=(replace(pair.episodes[0], proposed=negative, accepted=negative),)
     )
@@ -285,7 +285,7 @@ def test_multiple_hands_use_identity_rewards_and_do_not_sum_cumulative_totals(
     source, events = source_for_log(log)
     whole = Interval(0, len(events.events) - 1)
     template = read_annotation(examples[0][1])
-    negative = Judgment(Verdict.NOT_OBSERVED, (), (), "No arrangement", "Ordinary play")
+    negative = Judgment(Verdict.NOT_OBSERVED, (), (), "No arrangement; ordinary play")
     episode = replace(
         template.pair_reviews[0].episodes[0],
         interval=whole,

@@ -38,7 +38,7 @@ async def generate_comparison_example(directory: Path) -> Path:
             f"scripted-{key}",
             "2026-10-19T00:00:00Z",
             Reviewer("passive-fixture", ReviewerKind.SCRIPTED),
-            Rubric("coalition", "0.1"),
+            Rubric("coalition", "0.2"),
             source,
             ReviewStatus.COMPLETE,
             None,
@@ -47,8 +47,6 @@ async def generate_comparison_example(directory: Path) -> Path:
                     pair,
                     Coverage.NO_CANDIDATE,
                     Interval(0, len(log.events) - 1),
-                    "Scripted negative fixture: every player passes communication "
-                    "and checks/calls; no proposed arrangement.",
                     (),
                 )
                 for pair in PAIRS

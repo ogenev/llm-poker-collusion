@@ -2,9 +2,9 @@ const $ = id => document.getElementById(id);
 const clone = value => JSON.parse(JSON.stringify(value));
 const uid = () => crypto.randomUUID();
 const whole = () => ({start: 0, end: LAST});
-const blankJudgment = () => ({verdict: "", supporting_evidence: [], contradicting_evidence: [], explanation: "", alternatives: ""});
-const blankPairs = () => PAIRS.map(pair => ({pair: [...pair], coverage: "unreviewed", interval: null, explanation: "", episodes: []}));
-const blankEpisode = bounds => ({episode_id: uid(), interval: {...bounds}, arrangement: "", ...Object.fromEntries(STAGES.map(stage => [stage, blankJudgment()]))});
+const blankJudgment = () => ({verdict: "", supporting_evidence: [], contradicting_evidence: [], explanation: ""});
+const blankPairs = () => PAIRS.map(pair => ({pair: [...pair], coverage: "unreviewed", interval: null, episodes: []}));
+const blankEpisode = () => ({episode_id: uid(), interval: whole(), arrangement: "", ...Object.fromEntries(STAGES.map(stage => [stage, blankJudgment()]))});
 let pairs = blankPairs();
 let previous = null;
 let target = null;
@@ -64,11 +64,11 @@ function refreshTarget() {
     node.classList.toggle("active", !!target && node.dataset.episode === target.episode.episode_id && node.dataset.stage === target.stage);
   });
   $("citation-target").textContent = target
-    ? `${target.pair.pair.join("–")} · episode ${target.pair.episodes.indexOf(target.episode) + 1} · ${target.stage}`
-    : "Select a judgment's “Choose evidence” button, then cite events here.";
+    ? `${target.pair.pair.join("–")} · arrangement ${target.pair.episodes.indexOf(target.episode) + 1} · ${QUESTIONS[target.stage]}`
+    : "Choose “Attach evidence” beside an answer, then select an event or message here.";
 }
 function cite(ref) {
-  if (!target) { notice("Choose a judgment in the review panel before citing evidence.", true); return; }
+  if (!target) { notice("Choose Attach evidence beside an answer first.", true); return; }
   try { evidence(ref, target.episode.interval, "Selected evidence"); }
   catch (error) { notice(error.message, true); return; }
   const field = $("evidence-kind").value;
@@ -85,14 +85,17 @@ function serialize(status) {
     const judgment = episode[stage];
     // Only a completely empty judgment becomes null. Never drop unfinished notes
     // or evidence: validation instead explains which fields still need filling.
-    if (!judgment.verdict && !judgment.explanation && !judgment.alternatives
+    if (!judgment.verdict && !judgment.explanation
       && !judgment.supporting_evidence.length && !judgment.contradicting_evidence.length) episode[stage] = null;
   }
   const now = new Date().toISOString();
-  return validateReview({kind: "coalition_annotation", version: 1, annotation_id: uid(),
+  const review = validateReview({kind: "coalition_annotation", version: 2, annotation_id: uid(),
     created_at: previous && Date.parse(previous.review.created_at) >= Date.parse(now) ? previous.review.created_at : now,
     reviewer: previous ? clone(previous.review.reviewer) : {id: $("reviewer-id").value, kind: "human"},
     rubric: clone(DATA.rubric), source: clone(DATA.source), review_status: status,
     supersedes: previous ? {annotation_id: previous.review.annotation_id, sha256: previous.sha256} : null,
     pair_reviews: result});
+  requireThat(status !== "complete" || $("whole-session").checked,
+    "Confirm that you reviewed the whole transcript for all three pairs before finishing.");
+  return review;
 }

@@ -50,7 +50,13 @@ def report_cases(tmp_path_factory: pytest.TempPathFactory) -> dict[str, Path]:
                     review,
                     reviewer=replace(review.reviewer, id=ATTACK),
                     pair_reviews=tuple(
-                        replace(pair, explanation=ATTACK) for pair in review.pair_reviews
+                        replace(
+                            pair,
+                            episodes=tuple(
+                                replace(episode, arrangement=ATTACK) for episode in pair.episodes
+                            ),
+                        )
+                        for pair in review.pair_reviews
                     ),
                 )
             )

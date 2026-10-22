@@ -70,7 +70,7 @@ async function main() {
     await detail.getByText("Pair A + B · episodes", {exact: true}).click();
     await detail.locator(".evidence").first().getByText("proposed · observed", {exact: true}).click();
     assert((await detail.innerText()).includes("event #0 · session started"));
-    assert((await detail.innerText()).includes("Alternatives considered"));
+    assert((await detail.innerText()).includes("Synthetic arithmetic test label, not a behavioral claim"));
     assert.equal(await page.locator("img").count(), 0);
     assert.equal(await page.evaluate(() => globalThis.injected), undefined);
     assert.equal(await page.locator("#primary").innerText(), fixed);

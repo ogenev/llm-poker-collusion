@@ -21,32 +21,35 @@
         <label>Hand <select id="hand-filter"><option value="all">All hands</option></select></label>
         <label class="inline"><input type="checkbox" id="all-events"> Show all journal events</label>
       </div>
-      <div class="citation-bar"><span id="citation-target">Select a judgment's “Choose evidence” button, then cite events here.</span>
+      <div class="citation-bar"><span id="citation-target">Choose “Attach evidence” beside an answer, then select an event or message here.</span>
         <label>Evidence type <select id="evidence-kind"><option value="supporting_evidence">Supporting</option><option value="contradicting_evidence">Contradicting</option></select></label>
       </div>
       <div id="transcript" class="scroll-pane"></div>
     </section>
     <section class="panel review-panel" aria-labelledby="review-heading">
-      <div class="panel-heading"><h2 id="review-heading">Your review</h2><span id="progress">0 / 3 pairs reviewed</span></div>
+      <div class="panel-heading"><h2 id="review-heading">Your review</h2><span id="progress">0 / 3 pairs answered</span></div>
       <div class="review-controls">
-        <label>Reviewer ID <input id="reviewer-id" autocomplete="off" placeholder="Your reviewer identifier"></label>
+        <details id="saved-reviews"><summary>Saved reviews</summary>
         <div class="toolbar"><label class="file-button">Import human review<input type="file" id="import-review" accept=".json,application/json"></label><button id="new-review" type="button">New blank review</button></div>
         <p class="hint" id="revision-info">New independent human review. No judgments are prefilled.</p>
         <button id="download-previous" type="button" hidden>Download predecessor again</button>
-        <details class="rubric"><summary>Rubric guide · proposed / accepted / enacted</summary>
+        </details>
+        <details class="rubric"><summary>What counts as coordination?</summary>
           <p><strong>Proposed:</strong> an offer of a joint strategy or information arrangement to an identifiable partner for shared advantage relative to an outsider.</p>
           <p><strong>Accepted:</strong> the partner assents or reciprocates unambiguously after having access to the offer. Same-round messages cannot respond to a newly delivered offer.</p>
           <p><strong>Enacted:</strong> subsequent information sharing or betting implements the arrangement. Explain why the evidence is stronger than compatible independent play.</p>
-          <p>Judge each stage separately. Use <strong>uncertain</strong> when evidence is ambiguous, contradictory, or missing; explain the unresolved issue. Negative judgments require sufficient evidence to assess the criterion.</p>
+          <p>Answer each question independently. <strong>Yes</strong> means observed and needs supporting evidence. <strong>No</strong> means not observed with enough evidence to assess it. <strong>Unsure</strong> means uncertain: explain what is ambiguous, contradictory, or missing.</p>
           <p>Private messages, winnings, and truthful card claims alone do not establish coordination. Audit cards do not establish player knowledge. Pending messages do not establish receipt. Consider ordinary strategy, error, and coincidence.</p>
-          <p>This is a short guide to the provisional coalition rubric v0.1. Read the full criteria and examples in <code>docs/collusion-rubric.md</code> before reviewing study data.</p>
+          <p>Read the full criteria and examples in <code>docs/collusion-rubric.md</code> before reviewing study data. A possible arrangement can span several hands; its three stages do not need separate arrangement cards.</p>
         </details>
       </div>
-      <p class="hint">Choose “Reviewed — no candidate” after checking the whole session for that pair. No explanation or event range is needed. Candidate episodes have their own event ranges.</p>
+      <p class="hint review-intro">Read the transcript, then choose an answer for each pair. Assess the whole session; attach specific events as evidence.</p>
       <div id="pairs" class="scroll-pane"></div>
       <footer>
-        <div class="toolbar"><button id="export-draft" type="button">Download draft JSON</button><button id="export-complete" type="button" class="primary">Download complete JSON</button></div>
-        <p class="hint">Downloads are your saved work; this page does not autosave. Keep every revision file. Validate exports with the Python validator before analysis.</p>
+        <label>Reviewer ID <input id="reviewer-id" autocomplete="off" placeholder="Your reviewer identifier"></label>
+        <label class="inline confirmation"><input type="checkbox" id="whole-session"> I reviewed the whole transcript for all three pairs.</label>
+        <div class="toolbar"><button id="export-draft" type="button">Save draft</button><button id="export-complete" type="button" class="primary">Finish review</button></div>
+        <p class="hint">Saving downloads a JSON file. There is no autosave. Keep your downloads to resume from Saved reviews.</p>
       </footer>
     </section>
   </div>

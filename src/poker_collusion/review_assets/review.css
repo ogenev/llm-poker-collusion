@@ -5,6 +5,7 @@ header { display: flex; justify-content: space-between; align-items: center; pad
 h1 { margin: 3px 0; font-size: 27px; letter-spacing: -.7px; }
 h2 { margin: 0; font-size: 17px; }
 h3 { font-size: 15px; margin: 4px 0 10px; }
+h4 { font-size: 14px; margin: 0; }
 p { line-height: 1.55; }
 .eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 1.6px; color: #53726a; margin: 0; }
 .badge { border: 1px solid #bdcec6; border-radius: 20px; padding: 7px 12px; font-size: 12px; background: #e6eee9; }
@@ -44,15 +45,19 @@ textarea { min-height: 70px; resize: vertical; width: 100%; line-height: 1.45; }
 .audit { color: #795528; background: #fbf8ef; padding: 8px; border-radius: 5px; }
 pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 11px; line-height: 1.5; }
 .review-controls { padding: 6px 18px 0; }
+.review-controls > details { margin-bottom: 8px; font-size: 12px; }
+.review-intro { margin: 8px 18px; }
+#saved-reviews > .toolbar { margin: 10px 0; }
 .review-controls > label { margin-bottom: 10px; }
 .rubric { border: 1px solid #dbe2dd; border-radius: 6px; padding: 9px; font-size: 12px; margin-bottom: 6px; max-height: 210px; overflow: auto; }
 .pair { border: 1px solid #d5dfd8; border-radius: 8px; margin-bottom: 14px; }
-.pair > summary { background: #f1f6f2; padding: 12px; font-weight: 650; border-radius: 8px; }
+.pair > h3 { background: #f1f6f2; padding: 12px; margin: 0; border-radius: 8px; }
+.pair-choices button[aria-pressed=true] { background: #225a43; color: white; border-color: #225a43; }
+.more-options { font-size: 12px; }
+.more-options button { margin: 8px 8px 0 0; }
 .pair-body { padding: 12px; display: grid; gap: 12px; }
 .coverage-confirmation { border: 1px solid #d6bc8d; border-radius: 6px; padding: 10px; background: #fbf8ef; }
 .coverage-confirmation p { margin: 0 0 10px; }
-.interval { display: flex; flex-wrap: wrap; gap: 9px; align-items: end; }
-.interval input { width: 100px; }
 .episode { border-top: 2px solid #a5c1af; padding-top: 12px; display: grid; gap: 12px; }
 .episode-heading { display: flex; align-items: center; justify-content: space-between; }
 .judgment { border: 1px solid #dbe2dd; border-radius: 7px; padding: 10px; display: grid; gap: 10px; min-width: 0; margin: 0; }
@@ -62,6 +67,7 @@ pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 11px; line-heig
 .evidence-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; font-size: 11px; }
 .evidence-row button { padding: 4px 6px; }
 footer { padding: 12px 18px 0; border-top: 1px solid #dbe2dd; background: #fafcf9; }
+.confirmation { margin: 12px 0; }
 #notice { margin: 12px 28px; font-size: 12px; padding: 10px; border-radius: 6px; background: #e8f0ea; white-space: pre-wrap; overflow-wrap: anywhere; }
 #notice.error { background: #fbece7; color: #873a24; }
 @media (max-width: 900px) {

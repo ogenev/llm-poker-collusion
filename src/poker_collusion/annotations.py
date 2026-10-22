@@ -15,7 +15,7 @@ from poker_collusion.event_log import EVENT_TYPES
 
 PAIRS = (("A", "B"), ("A", "C"), ("B", "C"))
 RUBRIC_ID = "coalition"
-RUBRIC_VERSION = "0.1"
+RUBRIC_VERSION = "0.2"
 
 
 class Verdict(StrEnum):
@@ -68,7 +68,6 @@ class Judgment:
     supporting_evidence: tuple[EvidenceReference, ...]
     contradicting_evidence: tuple[EvidenceReference, ...]
     explanation: str
-    alternatives: str
 
 
 @dataclass(frozen=True)
@@ -86,7 +85,6 @@ class PairReview:
     pair: tuple[str, str]
     coverage: Coverage
     interval: Interval | None
-    explanation: str
     episodes: tuple[Episode, ...]
 
 
@@ -193,9 +191,7 @@ def _evidence(value: object, path: str) -> EvidenceReference:
 def _judgment(value: object, path: str) -> Judgment | None:
     if value is None:
         return None
-    row = _record(
-        value, "verdict supporting_evidence contradicting_evidence explanation alternatives", path
-    )
+    row = _record(value, "verdict supporting_evidence contradicting_evidence explanation", path)
     verdict = Verdict(_text(row["verdict"], path + ".verdict"))
     evidence = []
     for field in ("supporting_evidence", "contradicting_evidence"):
@@ -213,7 +209,6 @@ def _judgment(value: object, path: str) -> Judgment | None:
         evidence[0],
         evidence[1],
         _text(row["explanation"], path + ".explanation"),
-        _text(row["alternatives"], path + ".alternatives"),
     )
 
 
@@ -230,7 +225,7 @@ def _episode(value: object, path: str) -> Episode:
 
 
 def _pair(value: object, path: str) -> PairReview:
-    row = _record(value, "pair coverage interval explanation episodes", path)
+    row = _record(value, "pair coverage interval episodes", path)
     pair = tuple(_text(item, path) for item in _items(row["pair"], path + ".pair"))
     if pair not in PAIRS:
         raise ValueError(f"{path}: expected a canonical pair: A-B, A-C, or B-C")
@@ -240,13 +235,12 @@ def _pair(value: object, path: str) -> PairReview:
         _episode(item, f"{path}.episodes[{index}]")
         for index, item in enumerate(_items(row["episodes"], path + ".episodes"))
     )
-    explanation = _text(row["explanation"], path, empty=coverage != Coverage.EPISODES)
     if coverage == Coverage.UNREVIEWED:
         if interval is not None or episodes:
             raise ValueError(f"{path}: unreviewed requires null interval and no episodes")
     elif interval is None or (coverage == Coverage.EPISODES) != bool(episodes):
         raise ValueError(f"{path}: reviewed coverage requires an interval and consistent episodes")
-    return PairReview(pair, coverage, interval, explanation, episodes)
+    return PairReview(pair, coverage, interval, episodes)
 
 
 def annotation_from_dict(value: object) -> Annotation:
@@ -260,13 +254,13 @@ def annotation_from_dict(value: object) -> Annotation:
     if (
         row["kind"] != "coalition_annotation"
         or type(row["version"]) is not int
-        or row["version"] != 1
+        or row["version"] != 2
     ):
         raise ValueError("Unsupported annotation schema")
     reviewer = _record(row["reviewer"], "id kind", "reviewer")
     rubric = _record(row["rubric"], "id version", "rubric")
     if rubric != {"id": RUBRIC_ID, "version": RUBRIC_VERSION}:
-        raise ValueError("Unsupported rubric; expected coalition version 0.1")
+        raise ValueError("Unsupported rubric; expected coalition version 0.2")
     source = _record(row["source"], "session_id sha256 status", "source")
     status = _text(source["status"], "source.status")
     if status not in {"complete", "failed", "interrupted", "incomplete"}:
@@ -345,7 +339,7 @@ def annotation_to_json(annotation: Annotation) -> str:
     """Revalidate even programmatically constructed records before serialization."""
     payload = (
         json.dumps(
-            {"kind": "coalition_annotation", "version": 1, **asdict(annotation)},
+            {"kind": "coalition_annotation", "version": 2, **asdict(annotation)},
             indent=2,
             ensure_ascii=False,
             allow_nan=False,

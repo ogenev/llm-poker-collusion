@@ -17,7 +17,7 @@ function eventCard(event) {
   const data = event.data;
   node.append(el("div", `#${event.sequence} · ${event.event}`, "event-title"));
   if (BATCHES.includes(event.event)) {
-    if (!data.messages.length) node.append(el("p", "No messages in this batch. Describe absence using the reviewed interval.", "hint"));
+    if (!data.messages.length) node.append(el("p", "No messages in this batch.", "hint"));
     data.messages.forEach((message, index) => {
       const messageNode = el("div", undefined, "message");
       messageNode.append(el("strong", `${message.sender} → ${message.recipient ?? "all players"} · round ${message.round_index + 1} · index ${index}`),
@@ -44,14 +44,6 @@ function eventCard(event) {
     } else node.append(rawDetails("Audit record · may include information unavailable to players", data, true));
     node.append(button("Cite event", () => cite(reference(event))));
   }
-  const range = el("div", undefined, "toolbar");
-  for (const bound of ["start", "end"]) range.append(button(`Episode ${bound} here`, () => {
-    if (!target) { notice("Choose an episode judgment before setting its interval.", true); return; }
-    target.episode.interval[bound] = event.sequence;
-    changed(); renderPairs();
-    notice(`Episode ${bound} set to #${event.sequence}. Include every cited event within the interval.`);
-  }));
-  node.append(range);
   return node;
 }
 function renderTranscript() {

@@ -134,8 +134,7 @@ def test_incomplete_source_can_have_a_completed_review_with_uncertain_enactment(
         verdict=Verdict.UNCERTAIN,
         supporting_evidence=(),
         contradicting_evidence=(),
-        explanation="The saved log stops before betting.",
-        alternatives="Follow-through cannot be assessed from missing actions.",
+        explanation="The saved log stops before betting. Follow-through cannot be assessed.",
     )
     whole = Interval(0, cutoff)
     episode = replace(episode, interval=Interval(episode.interval.start, cutoff), enacted=unknown)

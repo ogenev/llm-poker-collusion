@@ -117,7 +117,7 @@ def test_invalid_reports_fail_before_creating_html(
     report = json.loads(report_cases["mixed" if case == "exclusion" else "base"].read_text())
     primary = report["contrasts"][0]["estimates"]["enacted"]
     if case == "version":
-        report["version"] = 2
+        report["version"] = 1
     elif case == "bool_version":
         report["version"] = True
     elif case == "unknown_field":
@@ -160,7 +160,7 @@ def test_invalid_reports_fail_before_creating_html(
         primary["exclusions"][0]["reasons"] = {"private": ["invented"]}
     payload = json.dumps(report)
     if case == "duplicate_key":
-        payload = payload.replace('"version": 1', '"version": 1, "version": 1', 1)
+        payload = payload.replace('"version": 2', '"version": 2, "version": 2', 1)
     source = tmp_path / "report.json"
     source.write_text(payload)
     with pytest.raises(ValueError):
