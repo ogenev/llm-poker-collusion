@@ -18,7 +18,8 @@ def scripted_output(
     else:
         actions = view["poker"]["legal_actions"]
         decision = {"type": "bet", "action": "check" if "check" in actions else "call"}
-    output = ModelOutput.from_content("mockllm/model", json.dumps(decision))
+    content = {"decision": decision} if config.response_schema is not None else decision
+    output = ModelOutput.from_content("mockllm/model", json.dumps(content))
     # Supplying usage prevents the mock from downloading a tokenizer. These
     # numbers test metering only and must never be interpreted as pilot costs.
     output.usage = ModelUsage(input_tokens=100, output_tokens=10, total_tokens=110)

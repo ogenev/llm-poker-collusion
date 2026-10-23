@@ -12,6 +12,7 @@ from inspect_ai.model import ModelUsage
 
 from poker_collusion.event_log import read_log
 from poker_collusion.experiment_config import ExperimentConfig
+from poker_collusion.inspect_transport import generation_config
 from poker_collusion.model_adapter import _read_object, parse_response
 from poker_collusion.model_log import verify_model_links
 from poker_collusion.records import Channel, DealSchedule
@@ -79,9 +80,12 @@ def _check_call(
     if event.output.model not in (config.model.model, config.model.model.partition("/")[2]):
         issues.append("Returned model identifier differs; resolve aliases before qualification")
     settings = event.config
+    expected_schema = generation_config(config.model, config.max_connections).response_schema
     if (
         settings.max_tokens != config.model.max_tokens
         or settings.temperature != config.model.temperature
+        or settings.reasoning_effort != config.model.reasoning_effort
+        or settings.response_schema != expected_schema
         or settings.max_connections != config.max_connections
         or settings.max_retries != 0
         or settings.cache is not False
@@ -95,6 +99,22 @@ def _check_call(
         issues.append("Saved model output differs from Inspect output")
     if event.call is None or not event.call.request or not event.call.response:
         issues.append("Raw provider request/response payload is missing")
+    elif config.model.model.startswith("openai/"):
+        expected_format = (
+            {
+                "type": "json_schema",
+                "json_schema": {
+                    "name": expected_schema.name,
+                    "schema": expected_schema.json_schema.model_dump(exclude_none=True),
+                    "description": expected_schema.description,
+                    "strict": True,
+                },
+            }
+            if expected_schema is not None
+            else None
+        )
+        if event.call.request.get("response_format") != expected_format:
+            issues.append("Raw provider response format differs from configuration")
     usage = event.output.usage
     if usage is None or usage.total_tokens <= 0:
         issues.append("Token usage is missing or invalid")
@@ -234,7 +254,9 @@ async def verify_saved_sample(
         )
         if call["status"] == "returned" and call.get("response_error") is None:
             try:
-                decision = parse_response(event.output.completion)
+                decision = parse_response(
+                    event.output.completion, response_format=config.model.response_format
+                )
             except ValueError:
                 issues.append(f"Request {request}: malformed response")
             else:

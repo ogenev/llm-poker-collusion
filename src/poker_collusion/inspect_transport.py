@@ -14,13 +14,15 @@ from inspect_ai.model import (
     GenerateConfig,
     Model,
     ModelOutput,
+    ResponseSchema,
     get_model,
 )
-from inspect_ai.util import span
+from inspect_ai.util import JSONSchema, span
 
 from poker_collusion.model_adapter import GenerateText, ModelConfig, ModelRequest
 from poker_collusion.model_log import ModelJournal
 from poker_collusion.records import DecisionParseError
+from poker_collusion.response_schema import SCHEMA_NAME, decision_schema
 from poker_collusion.session_audit import current_request_id
 
 
@@ -44,6 +46,17 @@ def generation_config(config: ModelConfig, max_connections: int) -> GenerateConf
     return GenerateConfig(
         max_tokens=config.max_tokens,
         temperature=config.temperature,
+        reasoning_effort=config.reasoning_effort,
+        response_schema=(
+            ResponseSchema(
+                name=SCHEMA_NAME,
+                json_schema=JSONSchema.model_validate(decision_schema()),
+                description="A poker decision.",
+                strict=True,
+            )
+            if config.response_format == "strict_json_schema"
+            else None
+        ),
         max_retries=0,
         cache=False,
         max_connections=max_connections,

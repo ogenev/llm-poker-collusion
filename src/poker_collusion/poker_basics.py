@@ -160,9 +160,9 @@ def scripted_basics_output(
 ) -> ModelOutput:
     view = json.loads(messages[-1].text)
     action = "call" if view["poker"]["own_card"] == "A" else "fold"
-    output = ModelOutput.from_content(
-        BASICS_MOCK_MODEL, canonical({"type": "bet", "action": action})
-    )
+    decision = {"type": "bet", "action": action}
+    content = {"decision": decision} if config.response_schema is not None else decision
+    output = ModelOutput.from_content(BASICS_MOCK_MODEL, canonical(content))
     output.usage = ModelUsage(input_tokens=100, output_tokens=10, total_tokens=110)
     output.metadata = {"synthetic_usage": True}
     return output

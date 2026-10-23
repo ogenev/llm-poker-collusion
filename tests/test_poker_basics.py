@@ -23,6 +23,7 @@ from poker_collusion.poker_basics_run import prepare_basics, run_basics
 from poker_collusion.pricing import configure_model_cost
 from poker_collusion.prompts import Instruction, render_prompt
 from poker_collusion.records import Action
+from poker_collusion.response_schema import ResponseFormat, decision_schema
 
 pytestmark = pytest.mark.usefixtures("inspect_runtime")
 
@@ -264,8 +265,12 @@ def test_recording_failure_cannot_pass(tmp_path: Path, monkeypatch: pytest.Monke
     assert read_model_log(tmp_path / "run" / "model.jsonl").status == "incomplete"
 
 
-def test_provider_adapter_records_all_twelve_raw_responses_without_network(tmp_path: Path) -> None:
+@pytest.mark.parametrize("response_format", ["text", "strict_json_schema"])
+def test_provider_adapter_records_all_twelve_raw_responses_without_network(
+    tmp_path: Path, response_format: ResponseFormat
+) -> None:
     settings = config()
+    settings = replace(settings, model=replace(settings.model, response_format=response_format))
     configure_model_cost(settings.model.model, Path("configs/openai-smoke-pricing.json"))
     requests: list[dict[str, Any]] = []
 
@@ -275,9 +280,15 @@ def test_provider_adapter_records_all_twelve_raw_responses_without_network(tmp_p
         assert [message["role"] for message in body["messages"]] == ["developer", "user"]
         assert body["max_completion_tokens"] == 2048 and body["n"] == 1
         assert "tools" not in body and "temperature" not in body
+        if response_format == "strict_json_schema":
+            assert body["response_format"]["json_schema"]["strict"] is True
+            assert body["response_format"]["json_schema"]["schema"] == decision_schema()
+        else:
+            assert "response_format" not in body
         view = json.loads(body["messages"][1]["content"])
+        decision = {"type": "bet", "action": "call" if view["poker"]["own_card"] == "A" else "fold"}
         content = json.dumps(
-            {"type": "bet", "action": "call" if view["poker"]["own_card"] == "A" else "fold"}
+            {"decision": decision} if response_format == "strict_json_schema" else decision
         )
         return httpx.Response(
             200,

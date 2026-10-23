@@ -163,6 +163,16 @@ for artifact verification, limits, and separate competence/control templates.
 
 ## Prepare the sprint pilot
 
+Keep dated research decisions, experiment notes, evidence links, and open
+questions in the [research log](docs/research-log.md).
+
+The current sprint candidate is **GPT-6.1 Sol with explicit medium reasoning**.
+Use the [basic-check configuration](configs/qualification-basics-gpt-6.1-sol-medium.json),
+[gameplay configuration](configs/inspect-pilot-competence-gpt-6.1-sol-medium.json),
+and [pricing file](configs/openai-gpt-6.1-sol-pricing.json) for this qualification.
+The log records results and remaining human review; the earlier GPT-5.4 mini
+configurations below remain preparation history.
+
 Start with the [scientific sprint runbook](docs/scientific-runbook.md) for the
 end-to-end sequence: preparation → qualification → exploratory pilot → protocol
 freeze → fresh main runs → human review → analysis and scientific report. It
@@ -295,4 +305,5 @@ remain Phase 2.
 Write generated runs under `runs/` (ignored), separated into preparation, pilot,
 sprint evaluation, and Phase 2 confirmatory data. Preserve exact schedules and
 configuration with each run. The live smoke artifacts are preparation evidence;
-no competence/control pilot or sprint evaluation data has been collected.
+current qualification results are tracked in the [research log](docs/research-log.md).
+Main sprint evaluation data has not yet been collected.

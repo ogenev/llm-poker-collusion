@@ -198,6 +198,31 @@ def test_missing_raw_payload_is_visible_in_report(run_directory: Path) -> None:
     )
 
 
+def test_reasoning_mismatch_in_consistent_journals_does_not_verify(run_directory: Path) -> None:
+    path = next((run_directory / "inspect").glob("*.eval"))
+    log = read_eval_log(str(path), resolve_attachments="full")
+    assert log.samples
+    sample = log.samples[0]
+    event = next(e for e in sample.events if isinstance(e, ModelEvent))
+    event.config.reasoning_effort = "medium"  # The run requested provider-default effort.
+    write_eval_log(log, str(path))
+    journal = run_directory / "sessions" / sample.metadata["session_id"] / "model.jsonl"
+    rows = [json.loads(line) for line in journal.read_text().splitlines()]
+    for row in rows:
+        if row["event"] == "call_finished":
+            for captured in row["data"]["model_events"]:
+                if captured["uuid"] == event.uuid:
+                    captured["config"]["reasoning_effort"] = "medium"
+    journal.write_text("".join(canonical(row) + "\n" for row in rows))
+    report = asyncio.run(verify_run(run_directory))
+    assert not report["passed"]
+    assert any(
+        "Generation settings" in issue
+        for session in report["sessions"]
+        for issue in session["issues"]
+    )
+
+
 @pytest.mark.parametrize(
     ("overrides", "valid"),
     [

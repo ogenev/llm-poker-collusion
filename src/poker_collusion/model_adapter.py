@@ -9,7 +9,8 @@ from __future__ import annotations
 import json
 import math
 from collections.abc import Awaitable, Callable
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
+from typing import Literal
 
 from poker_collusion.prompts import Instruction, Prompt, render_prompt
 from poker_collusion.records import (
@@ -22,8 +23,11 @@ from poker_collusion.records import (
     PlayerView,
     require_int,
 )
+from poker_collusion.response_schema import ResponseFormat, validate_response_format
 from poker_collusion.serialization import canonical, digest
 from poker_collusion.session_audit import Decider
+
+type ReasoningEffort = Literal["none", "minimal", "low", "medium", "high", "xhigh", "max"]
 
 
 def _unique_object(pairs: list[tuple[str, object]]) -> dict[str, object]:
@@ -59,6 +63,8 @@ class ModelConfig:
     temperature: float | None = None
     cache: bool = False
     max_retries: int = 0
+    reasoning_effort: ReasoningEffort | None = None
+    response_format: ResponseFormat = "text"
 
     def __post_init__(self) -> None:
         if type(self.model) is not str or not self.model or any(c.isspace() for c in self.model):
@@ -82,9 +88,25 @@ class ModelConfig:
             raise ValueError("Response caching must be disabled")
         if require_int(self.max_retries, "max_retries") != 0:
             raise ValueError("This increment permits zero retries only")
+        if self.reasoning_effort is not None and (
+            type(self.reasoning_effort) is not str
+            or self.reasoning_effort
+            not in ("none", "minimal", "low", "medium", "high", "xhigh", "max")
+        ):
+            raise ValueError("Unsupported reasoning effort")
+        validate_response_format(self.response_format)
 
     def to_json(self) -> str:
-        return canonical({"kind": "model_config", "version": 1, "settings": self})
+        settings = asdict(self)
+        version = 3
+        if self.response_format == "text":
+            settings.pop("response_format")
+            version = 2
+        if self.response_format == "text" and self.reasoning_effort is None:
+            # Preserve old configuration bytes and hashes for saved evidence.
+            settings.pop("reasoning_effort")
+            version = 1
+        return canonical({"kind": "model_config", "version": version, "settings": settings})
 
     @classmethod
     def from_json(cls, text: str) -> ModelConfig:
@@ -93,19 +115,28 @@ class ModelConfig:
             set(data) != {"kind", "version", "settings"}
             or data["kind"] != "model_config"
             or type(data["version"]) is not int
-            or data["version"] != 1
+            or data["version"] not in (1, 2, 3)
         ):
             raise ValueError("Unsupported model configuration record")
         settings = data["settings"]
-        if not isinstance(settings, dict) or set(settings) != {
+        fields = {
             "model",
             "instruction",
             "max_tokens",
             "temperature",
             "cache",
             "max_retries",
-        }:
+        }
+        if data["version"] in (2, 3):
+            fields.add("reasoning_effort")
+        if data["version"] == 3:
+            fields.add("response_format")
+        if not isinstance(settings, dict) or set(settings) != fields:
             raise ValueError("Invalid model configuration fields")
+        if data["version"] == 2 and settings["reasoning_effort"] is None:
+            raise ValueError("Version 2 requires explicit reasoning effort")
+        if data["version"] == 3 and settings["response_format"] != "strict_json_schema":
+            raise ValueError("Version 3 requires strict_json_schema response format")
         return cls(**{**settings, "instruction": Instruction(settings["instruction"])})
 
     @property
@@ -124,7 +155,7 @@ class ModelRequest:
 type GenerateText = Callable[[ModelRequest], Awaitable[str]]
 
 
-def parse_response(response: str) -> Decision:
+def parse_response(response: str, *, response_format: ResponseFormat = "text") -> Decision:
     """Decode the exact response shape; the session validates phase and legality.
 
     Never extract JSON from prose, repair an answer, or substitute an action.
@@ -132,8 +163,13 @@ def parse_response(response: str) -> Decision:
     """
     if type(response) is not str:
         raise TypeError("The text generator must return a built-in string")
+    validate_response_format(response_format)
     try:
         data = _read_object(response)
+        if response_format == "strict_json_schema":
+            if set(data) != {"decision"} or not isinstance(data["decision"], dict):
+                raise ValueError("Expected exactly one decision object in the structured wrapper")
+            data = data["decision"]
         if data.get("type") == "pass" and set(data) == {"type"}:
             return PassDecision()
         if data.get("type") == "bet" and set(data) == {"type", "action"}:
@@ -160,7 +196,9 @@ def model_decider(config: ModelConfig, generate: GenerateText) -> Decider:
     """
 
     async def decide(view: PlayerView) -> Decision:
-        request = ModelRequest(config, render_prompt(view, config.instruction))
-        return parse_response(await generate(request))
+        request = ModelRequest(
+            config, render_prompt(view, config.instruction, response_format=config.response_format)
+        )
+        return parse_response(await generate(request), response_format=config.response_format)
 
     return decide

@@ -49,8 +49,13 @@ Explicit fair-play instructions remain Phase 2.
 
 ## Model configuration
 
-`ModelConfig` validates the following fields and round-trips a version 1 JSON
-record. Unknown or missing saved fields, duplicate JSON keys, and incompatible
+`ModelConfig` validates the following fields. Provider-default reasoning uses
+the original version 1 JSON record, preserving its canonical bytes and hashes.
+Explicit reasoning uses version 2, which requires a non-null `reasoning_effort`.
+Opt-in strict structured output uses version 3, with `response_format` set to
+`strict_json_schema` and an explicit `reasoning_effort` field (which may be null).
+The default text format preserves version 1/2 bytes and hashes unchanged.
+Unknown or missing saved fields, duplicate JSON keys, and incompatible
 versions are rejected. `config.sha256` hashes the canonical configuration record;
 `prompt.sha256` hashes the exact system/user content pair, including whitespace.
 The Inspect model-call audit retains both hashes.
@@ -63,8 +68,16 @@ The Inspect model-call audit retains both hashes.
 | `temperature` | `None` | Omit, or finite nonnegative number; booleans rejected |
 | `cache` | `False` | Response reuse must remain disabled |
 | `max_retries` | 0 | Zero retries only in this increment |
+| `reasoning_effort` | `None` | Omit, or `none`, `minimal`, `low`, `medium`, `high`, `xhigh`, `max`; model support must be checked |
+| `response_format` | `text` | `text` or opt-in `strict_json_schema`; v3 requires the latter |
 
-`temperature=None` means not explicitly requested. Supported settings, provider
+`temperature=None` and `reasoning_effort=None` mean not explicitly requested.
+Inspect receives explicit reasoning effort in its generation configuration;
+the model journal records it and saved-run verification checks it. Inspect's
+OpenAI Chat Completions transport sends it as `reasoning_effort`; transport tests
+check the actual request body. Provider-default runs remain distinguishable from
+explicit settings even when a documented default has the same value.
+Supported settings, provider
 defaults, model resolution, and actual token limits must be checked and recorded
 in the live compatibility check. These fields do not claim provider
 compatibility or enforce a budget inside an arbitrary injected generator.
@@ -99,6 +112,24 @@ fails with `INVALID_DECISION`. Its failure detail is the existing phase-specific
 validation error; the parser exception has a more specific diagnostic when used
 directly. JSON that parses but specifies an illegal decision also fails validation.
 There are no repair calls, fallback decisions, or automatic reruns.
+
+With `response_format: "strict_json_schema"`, each exact decision above is
+wrapped in one required `decision` object, for example
+`{"decision":{"type":"message","text":"hello","recipient":null}}`.
+The prompt shows this wire format, and Inspect sends a strict response schema
+through OpenAI's `response_format` parameter. Every object prohibits extra
+properties and requires its fields, including the nullable public recipient.
+The parser requires the wrapper only in this mode, retains malformed raw text,
+and still applies the same decision and game validation. The schema does not
+choose a legal action, restrict recipients to a player's eligible partners, or
+replace message-length checks. Refusals, truncations and transport errors still
+fail; no repairs or retries are added. Both offline fixtures support the wrapper.
+
+The model journal records the schema and raw payload; saved-run verification
+checks the Inspect schema and, for OpenAI calls, the raw response format.
+This opt-in intervention changes configuration/source provenance and needs its
+own compatibility evidence. It does not retroactively repair earlier attempts
+or establish competence or coordination.
 
 Generator exceptions or non-string returns are `AGENT_ERROR`; timeouts remain
 `TIMEOUT`. Cancellation propagates as `SessionInterrupted` after child requests

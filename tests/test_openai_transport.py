@@ -7,13 +7,18 @@ from typing import Any, cast
 
 import httpx
 import pytest
+from inspect_ai.event import ModelEvent
+from inspect_ai.log import read_eval_log, write_eval_log
 
 from poker_collusion.experiment import run_experiment
 from poker_collusion.experiment_config import ExperimentConfig
-from poker_collusion.inspect_transport import configured_model
+from poker_collusion.inspect_transport import configured_model, generation_config
+from poker_collusion.model_adapter import ModelConfig
 from poker_collusion.model_log import read_model_log
 from poker_collusion.pricing import configure_model_cost
 from poker_collusion.records import Channel
+from poker_collusion.response_schema import SCHEMA_NAME, ResponseFormat, decision_schema
+from poker_collusion.serialization import canonical
 from poker_collusion.verification import verify_run
 
 pytestmark = pytest.mark.usefixtures("inspect_runtime")
@@ -21,24 +26,71 @@ pytestmark = pytest.mark.usefixtures("inspect_runtime")
 
 @pytest.mark.parametrize(
     "outcome",
-    ["valid", "cached", "malformed", "refusal", "truncated", "rate_limit", "wrong_model", "usage"],
+    [
+        "valid",
+        "cached",
+        "malformed",
+        "missing_recipient",
+        "refusal",
+        "truncated",
+        "rate_limit",
+        "wrong_model",
+        "usage",
+        "schema_mismatch",
+        "schema_strict_false",
+        "raw_format_mismatch",
+        "raw_schema_weakening",
+    ],
 )
-def test_openai_sdk_transport_and_audits_without_network(tmp_path: Path, outcome: str) -> None:
+@pytest.mark.parametrize("explicit_reasoning", [False, True])
+@pytest.mark.parametrize("response_format", ["text", "strict_json_schema"])
+def test_openai_sdk_transport_and_audits_without_network(
+    tmp_path: Path, outcome: str, explicit_reasoning: bool, response_format: ResponseFormat
+) -> None:
     config = ExperimentConfig.from_json(Path("configs/inspect-live-smoke.json").read_text())
-    configure_model_cost(config.model.model, Path("configs/openai-smoke-pricing.json"))
+    pricing = "configs/openai-smoke-pricing.json"
+    if explicit_reasoning:
+        config = replace(
+            config,
+            model=replace(
+                config.model, model="openai/gpt-6.1-sol", reasoning_effort="medium", max_tokens=4096
+            ),
+            cost_limit=1.0,
+        )
+        pricing = "configs/openai-gpt-6.1-sol-pricing.json"
+    config = replace(config, model=replace(config.model, response_format=response_format))
+    configure_model_cost(config.model.model, Path(pricing))
+    provider_model = config.model.model.partition("/")[2]
     successful = outcome in ("valid", "cached")
     if not successful:
-        config = replace(config, session=replace(config.session, hands=1), channels=(Channel.NONE,))
+        channel = Channel.PUBLIC if outcome == "missing_recipient" else Channel.NONE
+        config = replace(config, session=replace(config.session, hands=1), channels=(channel,))
     requests: list[dict[str, Any]] = []
 
     def respond(request: httpx.Request) -> httpx.Response:
         assert request.url.host == "api.openai.com" and request.url.path == "/v1/chat/completions"
         body = json.loads(request.content)
         requests.append(body)
-        assert body["model"] == "gpt-5.4-mini-2026-03-17"
-        assert body["max_completion_tokens"] == 2048 and body["n"] == 1
+        assert body["model"] == provider_model
+        assert body["max_completion_tokens"] == config.model.max_tokens and body["n"] == 1
+        if explicit_reasoning:
+            assert body["reasoning_effort"] == "medium"
+        else:
+            assert "reasoning_effort" not in body
         assert "max_tokens" not in body
         assert "temperature" not in body and "tools" not in body
+        if response_format == "strict_json_schema":
+            assert body["response_format"] == {
+                "type": "json_schema",
+                "json_schema": {
+                    "name": SCHEMA_NAME,
+                    "schema": decision_schema(),
+                    "description": "A poker decision.",
+                    "strict": True,
+                },
+            }
+        else:
+            assert "response_format" not in body
         assert [m["role"] for m in body["messages"]] == ["developer", "user"]
         view = json.loads(body["messages"][1]["content"])
         if outcome == "rate_limit":
@@ -56,7 +108,13 @@ def test_openai_sdk_transport_and_audits_without_network(tmp_path: Path, outcome
             }
         else:
             decision = {"type": "bet", "action": view["poker"]["legal_actions"][0]}
-        content = "not JSON" if outcome == "malformed" else json.dumps(decision)
+        if outcome == "missing_recipient":
+            del decision["recipient"]
+        content = json.dumps(
+            {"decision": decision} if response_format == "strict_json_schema" else decision
+        )
+        if outcome == "malformed":
+            content = "not JSON"
         # Synthetic sizing from the actual English/JSON payload, at three UTF-8
         # bytes per token plus chat framing. This is not provider-measured usage,
         # but exercises realistic context growth without downloading a tokenizer.
@@ -102,6 +160,8 @@ def test_openai_sdk_transport_and_audits_without_network(tmp_path: Path, outcome
                 http_client=client,
             )
             await run_experiment(config, tmp_path / "run", model=model)
+        if outcome.startswith(("schema_", "raw_")):
+            damage_response_schema(tmp_path / "run", outcome, response_format)
         return await verify_run(tmp_path / "run")
 
     report = asyncio.run(run())
@@ -138,7 +198,7 @@ def test_openai_sdk_transport_and_audits_without_network(tmp_path: Path, outcome
                 ]
                 assert event["call"]["request"]["messages"] == messages
                 assert any(request["messages"] == messages for request in requests)
-                assert event["call"]["response"]["model"] == "gpt-5.4-mini-2026-03-17"
+                assert event["call"]["response"]["model"] == provider_model
     elif outcome == "wrong_model":
         assert any(
             "Returned model identifier differs" in issue
@@ -147,6 +207,64 @@ def test_openai_sdk_transport_and_audits_without_network(tmp_path: Path, outcome
     elif outcome == "usage":
         assert report["sessions"][0]["status"] == "complete"
         assert any("Token usage" in issue for issue in report["sessions"][0]["issues"])
+    elif outcome.startswith(("schema_", "raw_")):
+        expected = (
+            "Generation settings"
+            if outcome.startswith("schema_")
+            else "Raw provider response format"
+        )
+        assert report["sessions"][0]["status"] == "complete"
+        assert any(expected in issue for issue in report["sessions"][0]["issues"])
     else:
-        assert len(requests) == 1  # Including retryable HTTP 429: no SDK retry.
+        assert len(requests) == (3 if outcome == "missing_recipient" else 1)
+        # Public round siblings complete once; there is no response repair or retry.
         assert report["sessions"][0]["status"] == "failed"
+
+
+def damage_response_schema(directory: Path, outcome: str, response_format: ResponseFormat) -> None:
+    """Alter both stored copies so artifact equality alone cannot catch the mismatch."""
+    path = next((directory / "inspect").glob("*.eval"))
+    log = read_eval_log(str(path), resolve_attachments="full")
+    assert log.samples
+    sample = log.samples[0]
+    event = next(e for e in sample.events if isinstance(e, ModelEvent))
+    if outcome == "schema_mismatch":
+        other_format: ResponseFormat = (
+            "text" if response_format == "strict_json_schema" else "strict_json_schema"
+        )
+        other = ModelConfig("model", response_format=other_format)
+        event.config.response_schema = generation_config(other, 1).response_schema
+    elif outcome == "schema_strict_false":
+        other = ModelConfig("model", response_format="strict_json_schema")
+        schema = generation_config(other, 1).response_schema
+        assert schema is not None
+        schema.strict = False
+        event.config.response_schema = schema
+    else:
+        assert event.call and isinstance(event.call.request, dict)
+        if outcome == "raw_format_mismatch":
+            event.call.request["response_format"] = {"type": "json_object"}
+        else:
+            schema_record = cast(dict[str, Any], decision_schema())
+            schema_record["properties"]["decision"]["anyOf"][2]["required"].remove("recipient")
+            event.call.request["response_format"] = {
+                "type": "json_schema",
+                "json_schema": {
+                    "name": SCHEMA_NAME,
+                    "schema": schema_record,
+                    "description": "A poker decision.",
+                    "strict": True,
+                },
+            }
+    write_eval_log(log, str(path))
+    journal = directory / "sessions" / sample.metadata["session_id"] / "model.jsonl"
+    rows = [json.loads(line) for line in journal.read_text().splitlines()]
+    for row in rows:
+        if row["event"] == "call_finished":
+            for captured in row["data"]["model_events"]:
+                if captured["uuid"] == event.uuid:
+                    captured["config"] = event.config.model_dump(mode="json")
+                    captured["call"] = (
+                        None if event.call is None else event.call.model_dump(mode="json")
+                    )
+    journal.write_text("".join(canonical(row) + "\n" for row in rows))
