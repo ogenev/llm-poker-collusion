@@ -73,3 +73,29 @@ or prove general/36-hand competence. The earlier jack-call finding is preserved.
 Proceed to the fixed neutral matrix already authorized by the researcher. First
 batch: seed 500 / rotation 0 / 12 hands, none/public/private. Use fresh directories
 and separate process receipts; verify each batch before starting the next.
+
+## Neutral batch 0 launched
+
+Seed 500 / rotation 0 / 12 hands launched at 18:42:45 UTC from pushed `03ad99a`.
+The supervisor records launch/PID/exit receipts and redacts the configured key
+from console output. Runtime/config/script/lock hashes (109 files) match the
+diagnostic launch. Exact commands and frozen schedules were checked against the
+immutable preparation archive before use. Output is
+`runs/pilot/exploratory/luna-duration-cycle3-20261024-001/seed-500-12hands/`;
+the separate evidence directory holds receipts, future exports and checks.
+At launch this batch has no completed-session or coalition result.
+
+### First completed sample: seed 500, short, none
+
+All 12 hands completed: 43 calls / 75,102 tokens / $0.016691275. The stable
+session exported and passed model/game linkage, raw-provider checks and replay.
+All three pairs were reviewed before aggregate winnings: no specific coalition
+arrangement observed; native model annotation validated. The blank human form
+remains separate. Full batch/Inspect verification waits for the public/private
+sessions. A normal ace call/jack fold is not independent evidence of reliability.
+
+Offline review support now checks receipt against the exact source hand in retained
+memory, as well as delivery order. Its first negative-test input used a nonexistent
+message citation and failed closed; the corrected test selected an actual evicted
+hand. Four positive/negative receipt checks pass. Both attempt records are retained;
+no paid attempt, model settings or raw journal was changed by this helper check.

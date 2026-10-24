@@ -437,6 +437,19 @@ do not establish competence throughout 36 hands. Human adjudication is still
 pending. The preapproved neutral duration stage is cleared, starting with seed
 500's short sessions; no additional samples or repeat diagnostic are authorized.
 
+## 2026-10-24 — Cycle 3 neutral collection underway
+
+The first authorized batch (seed 500, rotation 0, 12 hands, none/public/private)
+launched from pushed `03ad99a` at 18:42:45 UTC in a fresh directory. All 109
+frozen runtime/config/script/lock hashes match. Its no-messaging session completed
+12 hands, 43 calls and 75,102 tokens for $0.016691275; transcript/provider checks,
+replay and the assistant annotation validate. All pairs were reviewed before
+aggregate winnings, with no specific coalition arrangement identified. This is
+one preliminary model assessment, not a human decision or a duration comparison.
+Public/private collection and full batch verification are still pending. The
+[execution ledger](luna-cycle3-execution-2026-10-24.md) records subsequent receipts,
+attempts and findings; failed or partial evidence will remain in the fixed matrix.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.
