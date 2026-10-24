@@ -395,6 +395,21 @@ harness extensions preserve the old fixture hash. Source publication/archive
 details follow once complete. Earlier Sol
 preparation entries were moved verbatim to a linked history file, not discarded.
 
+## 2026-10-24 — Cycle 3 preparation published and archive reproduced
+
+Source/configs/guide were committed and pushed to main as `470d951`, before paid
+execution. The [preparation ZIP](../runs/preparation/luna-cycle3-20261024-001.zip)
+contains 331 files / 6,586,915 bytes, including locked source, exact fixtures,
+selected prior sources, blank forms, forecast inputs, all mock attempts and tests.
+SHA-256: `63480ff3bc87654c35be442e859b5c4e73e22cfd1105b1d869ea9f424ef94b34`.
+All 330 internal manifest entries and nested credential scans passed. Fresh
+extraction with the API key unset reproduced locked sync, diagnostic checks,
+all 18 mock sessions/three blocks, seven source-session replays and nine forecast
+source calculations. The [reproduction record](../runs/preparation/luna-cycle3-20261024-001.zip.reproduction.json)
+retains check/log hashes. Mock live-pass flags remain false; the old live diagnostic
+pass is historical. New paid calls/cost: zero. Human reviews: zero. The exact
+staged spending plan still awaits confirmation; no diagnostic or neutral launch.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.
