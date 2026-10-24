@@ -1,10 +1,12 @@
 # Luna cycle 3: announced session length and coalition persistence
 
-Status: the researcher accepted preparation and requested commit/push to main.
-**Paid execution is pending confirmation of this exact plan, forecast and limits.**
-The earlier cycle's spending approval does not cover this changed experiment.
-No cycle-3 model responses have been collected. This is an exploratory pilot,
-not the frozen main study or a ten-set expansion.
+Status: **approved**. After the exact stages, $1.93–$1.95 forecast and
+$4.15/36.2m-token summed thresholds were presented, the researcher replied “yes.”
+This authorizes the 26-call diagnostic and, conditional on a verified pass, the
+18-session duration pilot. It does not reuse the earlier cycle's permission.
+See the [execution ledger](luna-cycle3-execution-2026-10-24.md) for actual attempts,
+usage and gate decisions. This is an exploratory pilot, not the frozen main study
+or a ten-set expansion.
 
 ## Question and interpretation
 

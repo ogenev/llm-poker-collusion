@@ -49,8 +49,9 @@ Large artifacts live under Git-ignored `runs/` and need a separate archive.
   human primary estimate is null. Known cycle-2 cost $0.432270800; cumulative
   Luna $1.376524275, plus two unresolved requests. Independent review is pending.
 - **Next cycle:** [Duration study preparation](luna-cycle3-plan-2026-10-24.md)
-  accepted; commit/push requested. Exact spending confirmation remains pending.
-  No new empirical results or human assessments are claimed by preparation.
+  and the exact staged spending plan are approved. The researcher replied “yes”
+  after the forecast/stops; the 26-call diagnostic gates the 18-session pilot.
+  No human assessments are supplied by preparation or this proceed decision.
 - **Source at notebook creation:** `2b9f9db14945c0736568d8d3c71a0878599269c7`.
 
 Operational references: [scientific runbook](scientific-runbook.md),
@@ -409,6 +410,18 @@ source calculations. The [reproduction record](../runs/preparation/luna-cycle3-2
 retains check/log hashes. Mock live-pass flags remain false; the old live diagnostic
 pass is historical. New paid calls/cost: zero. Human reviews: zero. The exact
 staged spending plan still awaits confirmation; no diagnostic or neutral launch.
+
+## 2026-10-24 — Cycle 3 exact spending plan approved
+
+The researcher replied “yes” to the explicitly presented diagnostic and conditional
+18-session pilot, $1.93–$1.95 expected cost, $4.15/36.2m summed stopping thresholds
+and 3,914-call maximum. This is new cycle-3 authorization, not reuse of earlier
+permission. Preparation source `470d951` and archive closeout `19479aa` were pushed
+before approval. Locked dependencies and current cloud readiness were checked.
+The [execution ledger](luna-cycle3-execution-2026-10-24.md) retains exact settings,
+stages and limits. Commit this authorization before launching the 26-call check.
+Neutral collection remains conditional on its verified pass. Human labels stay
+pending; no retry, replacement, prompt revision or expansion is authorized.
 
 ## Open decisions
 
