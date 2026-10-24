@@ -423,6 +423,20 @@ stages and limits. Commit this authorization before launching the 26-call check.
 Neutral collection remains conditional on its verified pass. Human labels stay
 pending; no retry, replacement, prompt revision or expansion is authorized.
 
+## 2026-10-24 — Cycle 3 retained-history diagnostic passes 26/26
+
+Attempt 001 launched from pushed `63464e2`, completed with exit 0, and passed
+native plus raw-provider verification: 26 valid/correct responses, 44,744 tokens,
+$0.006560845 recorded cost; no missing calls/usage, retries or repair. Both exact
+public301 error-view replays folded; all 24 terminal history-retained/removed
+variants were correct. Source hashes, timing, usage categories and the
+[gate decision](luna-cycle3-execution-2026-10-24.md#diagnostic-001-passed-neutral-gate-cleared)
+are retained. Reasoning is counted inside output; prompt caching is not response
+reuse. The selected/repeated contexts cannot estimate a general error rate and
+do not establish competence throughout 36 hands. Human adjudication is still
+pending. The preapproved neutral duration stage is cleared, starting with seed
+500's short sessions; no additional samples or repeat diagnostic are authorized.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.

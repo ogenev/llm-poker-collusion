@@ -49,3 +49,27 @@ provider/usage verification before neutral collection. The original nonterminal
 replay criterion concerns immediate-hand behavior, not all future incentives.
 At this entry, no paid request has yet been dispatched. Launch/exit receipts,
 console, raw evidence and verification will record actual outcomes.
+
+## Diagnostic 001 passed; neutral gate cleared
+
+Launched from committed/pushed `63464e2` at 18:39:30 UTC. The supervised command
+completed with exit 0. All 26 responses were valid and met the frozen criterion;
+native verification and an additional raw-provider/input/schema/usage audit pass.
+No missing calls, usage, retries or substituted fixtures. Both exact error replays
+folded; all twelve terminal retained-history and twelve removed-history responses
+were correct. Recorded usage: **44,744 tokens / $0.006560845**.
+
+Token components: 10,492 ordinary input, 13,427 cache-read, 13,427 cache-write,
+7,398 output; 6,652 reasoning tokens are included in output. Prompt caching is
+separate from disabled response reuse. This remains a metered estimate, not an
+invoice. All stop thresholds were respected.
+
+The [gate record](../runs/pilot/qualification/luna-history-20261024-001-evidence/diagnostic-gate.json)
+binds the exact source/evidence hashes and process timestamps. This is assistant
+verification of the researcher's preapproved objective gate, not a human review.
+The outcome-selected, repeated fixed contexts do not estimate rare-error frequency
+or prove general/36-hand competence. The earlier jack-call finding is preserved.
+
+Proceed to the fixed neutral matrix already authorized by the researcher. First
+batch: seed 500 / rotation 0 / 12 hands, none/public/private. Use fresh directories
+and separate process receipts; verify each batch before starting the next.
