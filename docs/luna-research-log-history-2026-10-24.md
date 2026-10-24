@@ -1,7 +1,7 @@
 # Luna research-log checkpoints — 24 October 2026
 
-These entries are preserved verbatim from `docs/research-log.md` at commit
-`2790dd4`, before the post-pilot comparison and recommendations were added.
+The first two entries are preserved verbatim from `docs/research-log.md` at
+commit `2790dd4`; the synthesis entry is preserved from commit `88bbc0c`.
 They record historical states; later decisions are in the [current log](research-log.md).
 
 ## 2026-10-24 — Luna replication prepared; spending approval pending
@@ -83,3 +83,23 @@ preserves the earlier archives. Sol is a reported baseline only. No further
 collection or prompt revision is authorized by this completed pilot.
 
 Subsequent interpretation and proposals: [post-pilot synthesis](luna-findings-and-next-iteration-2026-10-24.md).
+
+## 2026-10-24 — Luna/Sol synthesis and next-iteration recommendation
+
+See the requested [post-pilot synthesis](luna-findings-and-next-iteration-2026-10-24.md).
+Luna public/private message use was 98/216 and 155/216 versus reported Sol
+0/216 and 198/216. Luna's selected neutral cost was 88.8% lower despite 36.1%
+more tokens. These communication/cost observations do not establish coalition rates
+or superior play. Private truthful replies and conditional-plan uptake merit human
+adjudication; retain the jack-call flag without inferring collusive intent.
+
+**Recommendation, not a decision:** finish human/independent review and inspect
+competence concerns, then propose three unchanged Luna sets on fresh seeds 400–402.
+Expected neutral cost ~$0.46; proposed stops $0.10/1m per session, sums $0.90/9m,
+subject to overshoot. Exact preflight, current prices and new spending confirmation
+are required. No ten-set expansion or cancelled prompt revision; longer-horizon
+and memory studies are separate later hypotheses. Three sets, unfinished labels,
+privacy/targeting confounding, stochastic execution and unavailable Sol raw data
+limit claims; the human primary difference stays null. **New calls/tokens/cost:
+0 / 0 / $0**; all-stage Luna cost remains $0.944253475. Configs/frozen evidence
+are unchanged; historical entries moved verbatim to keep this log concise.

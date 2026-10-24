@@ -30,11 +30,11 @@ Large artifacts live under Git-ignored `runs/` and need a separate archive.
   reports completed qualification and nine neutral sessions, with human coalition
   labels pending. Its ignored raw evidence is unavailable in this cloud checkout;
   historical claims below are reported records, not independently reverified here.
-- **Next action:** Human adjudication of the [completed Luna pilot](luna-neutral-iteration-report-2026-10-24.md),
-  including plausible private sharing/conditional-plan candidates and one jack-call
-  flag. Public/private message use was 98/216 versus 155/216; this is not a coalition
-  rate. The user authorized assistant gameplay verification and later neutral
-  collection; formal human labels and independent second review remain outstanding.
+- **Review:** The [delegated assistant review](luna-assistant-adjudication-2026-10-24.md)
+  is complete: 15 validated model annotations / 45 pairs, all three gameplay
+  sessions and the jack-call diagnostic. Controls show information enactment in
+  both channels; neutral private cases remain uncertain. Human labels and an
+  independent second review remain distinct and outstanding.
   [Next-iteration recommendations](luna-findings-and-next-iteration-2026-10-24.md) remain unapproved.
 - **Source at notebook creation:** `2b9f9db14945c0736568d8d3c71a0878599269c7`.
 
@@ -475,23 +475,27 @@ failures. [Report and frozen archive](luna-neutral-iteration-report-2026-10-24.m
 
 ## 2026-10-24 — Luna/Sol synthesis and next-iteration recommendation
 
-See the requested [post-pilot synthesis](luna-findings-and-next-iteration-2026-10-24.md).
-Luna public/private message use was 98/216 and 155/216 versus reported Sol
-0/216 and 198/216. Luna's selected neutral cost was 88.8% lower despite 36.1%
-more tokens. These communication/cost observations do not establish coalition rates
-or superior play. Private truthful replies and conditional-plan uptake merit human
-adjudication; retain the jack-call flag without inferring collusive intent.
+The [verbatim historical entry](luna-research-log-history-2026-10-24.md#2026-10-24--lunasol-synthesis-and-next-iteration-recommendation)
+and [synthesis](luna-findings-and-next-iteration-2026-10-24.md) preserve the comparison,
+costs and unapproved next-iteration proposal. No new calls; Sol raw data unavailable.
 
-**Recommendation, not a decision:** finish human/independent review and inspect
-competence concerns, then propose three unchanged Luna sets on fresh seeds 400–402.
-Expected neutral cost ~$0.46; proposed stops $0.10/1m per session, sums $0.90/9m,
-subject to overshoot. Exact preflight, current prices and new spending confirmation
-are required. No ten-set expansion or cancelled prompt revision; longer-horizon
-and memory studies are separate later hypotheses. Three sets, unfinished labels,
-privacy/targeting confounding, stochastic execution and unavailable Sol raw data
-limit claims; the human primary difference stays null. **New calls/tokens/cost:
-0 / 0 / $0**; all-stage Luna cost remains $0.944253475. Configs/frozen evidence
-are unchanged; historical entries moved verbatim to keep this log concise.
+## 2026-10-24 — Researcher delegates review step 1 to the assistant
+
+Request: “do 1 for me as human assistant now.” Completed the substantive review;
+[report, judgments and archive](luna-assistant-adjudication-2026-10-24.md) preserve
+provenance as **model**, unblinded and not independent. All 18 trajectories were
+reread/replayed; 15 validated coalition annotations cover 45 pairs/63 candidates.
+All 12 basic answers were rechecked. Controls show information enactment in all
+six sessions, with inconsistent betting promises and an unsupported relay.
+Neutral private cases remain uncertain; conditional uptake in 301/302 does not
+establish enactment. The jack call loses one extra chip this hand; no transfer
+pact was identified. Adequate for exploration is an assistant judgment.
+The native matched comparator excludes model reviews; no bypass was made and
+human primary difference stays null. Three matched sets, reviewer exposure,
+unresolved arrangements and unavailable Sol raw data constrain inference.
+Independent review is outstanding. A fresh archive preserves earlier evidence
+and blank forms. **New calls/tokens/cost: 0 / 0 / $0**; total stays $0.944253475.
+No new collection authorized. Validation and preparation issues are in the report.
 
 ## Open decisions
 

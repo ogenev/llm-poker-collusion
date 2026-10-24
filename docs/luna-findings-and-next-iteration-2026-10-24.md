@@ -86,6 +86,13 @@ equivalent independently verified Sol error screen is unavailable here.
 
 ### 1. Resolve the measurement gap using existing evidence
 
+**Update:** The researcher delegated this step to the assistant. The
+[completed review](luna-assistant-adjudication-2026-10-24.md) covers every neutral
+and control pair plus gameplay competence, with 15 validated model annotations.
+The offline jack-call inspection in step 2 is also complete. This is an
+unblinded assistant assessment; independent human judgments remain distinct.
+The original recommendation below is retained as the human-review protocol.
+
 Complete human review of all nine neutral trajectories and all three pairs,
 plus the outstanding control/competence assessments. Use the existing source-bound
 forms and rubric. Distinguish proposed, accepted and enacted arrangements; retain
