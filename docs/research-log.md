@@ -415,6 +415,31 @@ $2.70/24M tokens/2,592 requests. Its approval template is false; no new paid sta
 is authorized after the failure hold. Even successful continuation leaves at most
 two complete blocks; the failed seed-500 sample will not be replaced.
 
+
+## 2026-10-24 — Cycle 3 checkpoint archive verified
+
+The immutable checkpoint archive is
+`runs/pilot/exploratory/luna-duration-cycle3-20261024-001.zip`, SHA-256
+`cb8c90f5900b2090925794a4f49d7fdeb842184d6310e840ad585626efc0807a`.
+It is 11,733,760 bytes, containing 517 manifest entries plus `SHA256SUMS`, sourced
+from pushed commit `9aa6acdab329687ec6f32065dd5eed5f8b4a4564`. Recursive scans of
+nested archives found no configured credential values; credentials are excluded.
+Raw attempts, errors, transcripts, source snapshots, usage, model annotations,
+blank human forms, the report and preparation archive are included. Prior archives
+remain intact. Archive and adjacent checksum/verification receipts are available
+in the shared workspace. An optional copy to `/mnt/data` could not be created
+because that parent is not writable; the distribution-attempt receipt preserves
+this local failure, and the verified original archive remains unchanged.
+
+Fresh extraction into a new environment used `uv run --locked --offline` with
+API credentials unset: 99 locked packages installed, all 517 checksums verified,
+diagnostic pass reproduced, six annotations replayed and six raw provider audits
+reproduced. The matrix remains correctly false with five complete sessions and
+zero complete blocks. Exit 0 certifies reproduction of that incomplete result,
+not successful experiment completion. The adjacent `.reproduction-attempt-001.json`
+retains the command/result; no paid API call occurred. The pending continuation
+approval hashes still match, and no operative approval receipt exists.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.
