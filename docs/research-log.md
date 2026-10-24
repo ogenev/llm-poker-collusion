@@ -24,9 +24,11 @@ Large artifacts live under Git-ignored `runs/` and need a separate archive.
   Earlier formatting, cost, and token-limit failures remain in the attempt
   ledger. The researcher assessed coordination examples as adequate in both
   conditions and explicitly authorized the neutral pilot; full annotations and
-  second-human checks remain outstanding. The first neutral attempt was rejected
-  by the API organization spend limit before any hand completed. Main settings
-  are not frozen.
+  second-human checks remain outstanding. Neutral attempt 001 was blocked by the
+  API spend limit; attempt 002 completed two matched sets before the researcher
+  paused collection. A fresh third set completed on 2026-10-24, preserving the
+  partial attempt separately. All nine selected sessions are complete; human
+  labels remain pending and main settings are not frozen.
 - **Selected model to try:** `openai/gpt-6.1-sol`, chosen by the researcher on
   2026-10-23. This supersedes the initial recommendation.
 - **Evidence:** The default, medium, and strict-medium basic checks passed 12/12.
@@ -476,18 +478,52 @@ the conditions and highlights verified examples and counterexamples for review.
 
 ## 2026-10-23 — Human coordination assessment and neutral pilot
 
-The researcher reviewed the examples, assessed coordination as adequate in both
-public/private conditions, and explicitly authorized nine neutral sessions with
-Sol and medium reasoning. The exact assessment, review-scope limitations, fixed
-fresh-seed plan, and prospective **$7.96 estimate ($6–$10 planning range)** are
-recorded in the [neutral pilot record](neutral-pilot-2026-10-23.md). Retain strict
-schemas and use equal $2/1m-token thresholds across conditions. Full human pair
-annotations and second-person checks have not been supplied. This authorization
-advances exploratory collection; main-study settings remain unfrozen. Attempt 001
-then failed on all 21 initial requests with `organization_spend_limit_exceeded`:
-zero completed hands, no usage/cost supplied. The account limit must be increased
-before a fresh attempt; no repeat is running. The linked pilot record retains
-the failures and distinguishes missing billing data from the recorded $0 sum.
+The researcher judged public/private coordination examples adequate and authorized
+nine neutral sessions with Sol/medium/strict. The [pilot record](neutral-pilot-2026-10-23.md)
+preserves the exact assessment, fresh seeds, equal $2/1m-token limits, prospective
+**$7.96 estimate ($6–$10 range)**, and Luna comparison without a model switch.
+Full human pair annotations and second reviews remained pending; main settings
+were unfrozen. Attempt 001 failed all 21 initial requests on the organization
+spend limit: zero hands, no usage/cost supplied. Attempt 002 completed six sessions
+(72 hands), then paused on request during third-set none after six hands; third
+public/private were unstarted. Recorded cost was $2.838760 with incomplete billing.
+Assistant review found 0 public and 132 private messages and no convincing
+coalition in those two matched sets. Four verified examples and the cancelled
+run's verification limitations remain in the pilot record; human labels were pending.
+
+## 2026-10-24 — Third neutral set completed
+
+The researcher authorized completion with Sol/medium. The [amendment](neutral-pilot-2026-10-23.md#third-set-completion-amendment--2026-10-24)
+retains the partial attempt and original seed-302 deals/rotation; model, prompts,
+and limits stayed fixed. All three sessions passed replay/provider/full-run checks:
+36 hands, 271 calls, $1.3366775. The pilot has nine complete sessions / 108 hands and a
+[combined review index](../runs/pilot/exploratory/gpt-6.1-sol-medium-strict-neutral-20261024-set3-evidence/review-all-sets.md).
+The [assistant review](neutral-pilot-2026-10-23.md#third-set-assistant-review-and-three-set-synthesis--2026-10-24)
+found no convincing third-set coalition. Accurate relays in hands 7/11 deserve
+human scrutiny; all 28 explicit own-card claims were false. Third-set messages:
+public 0, private 66; across three sets: 0/216 versus 198/216 opportunities.
+Channel use differs descriptively; a coalition-rate difference is not established.
+Human labels remain pending. Costs, validation, and reporting limits are in the pilot record.
+
+## 2026-10-24 — Prompt review and proposed next iteration
+
+The [prompt review](prompt-review-2026-10-24.md) audits all 850 requests in the
+nine complete sessions and links exact saved prompt examples. Communication
+instructions explicitly describe public/private delivery; betting requests omit
+an explicit channel, and only six hands are retained. Public broadcasts and
+private addressed messages differ in audience selection as well as visibility.
+Proposals: finish human review, make channel context explicit throughout a new
+version, then collect ten fresh matched sets with Sol/medium; test directed-public
+messaging, duration, and memory separately. These choices remain provisional.
+Only offline review and documentation were performed; no experiment was launched.
+
+## 2026-10-24 — Neutral iteration report
+
+Created the [iteration report](neutral-pilot-iteration-report-2026-10-24.md),
+covering the nine-session design, message counts, key examples, costs, collection
+provenance, limitations, and proposed follow-ups. Source hashes and aggregate
+figures were rechecked. Coalition findings remain preliminary assistant judgments;
+human labels are pending. No model calls or new experiment settings were applied.
 
 ## Open decisions
 
