@@ -31,16 +31,19 @@ class SessionFailedError(RuntimeError):
     """Inspect should expose a failed poker session as a sample error."""
 
 
-def experiment_plan(config: ExperimentConfig) -> dict[str, object]:
+def experiment_plan(
+    config: ExperimentConfig, *, block_index: int | None = None
+) -> dict[str, object]:
     """Describe the planned workload and stopping thresholds without model calls."""
+    blocks = config.selected_blocks(block_index)
     info = get_model_info(config.model.model)
     pricing = info.cost.model_dump() if info is not None and info.cost is not None else None
     if config.cost_limit is not None and pricing is None:
         raise ValueError("A cost limit requires Inspect pricing for the selected model")
-    sessions = len(config.seeds) * len(config.channels)
+    sessions = len(blocks) * len(config.channels)
     # Three-player Kuhn has at most five betting actions per hand.
     calls = (
-        len(config.seeds)
+        len(blocks)
         * config.session.hands
         * sum(
             5 + (0 if channel == Channel.NONE else 3 * config.session.communication_rounds)
@@ -51,6 +54,7 @@ def experiment_plan(config: ExperimentConfig) -> dict[str, object]:
         "model": config.model.model,
         "config_sha256": digest(json.loads(config.to_json())),
         "sessions": sessions,
+        "selected_block_indices": list(blocks),
         "hands_per_session": config.session.hands,
         "maximum_decision_calls": calls,
         "max_samples": config.max_samples,
@@ -173,13 +177,19 @@ def poker_solver(config: ExperimentConfig, output_dir: str, run_id: str) -> Solv
 
 
 def poker_task(
-    config: ExperimentConfig, output_dir: Path, run_id: str, model: Model | None = None
+    config: ExperimentConfig,
+    output_dir: Path,
+    run_id: str,
+    model: Model | None = None,
+    *,
+    block_index: int | None = None,
 ) -> Task:
     if model is not None and str(model) != config.model.model:
         raise ValueError("Injected model differs from experiment configuration")
-    experiment_plan(config)
+    experiment_plan(config, block_index=block_index)
     samples = []
-    for index, seed in enumerate(config.seeds):
+    for index in config.selected_blocks(block_index):
+        seed = config.seeds[index]
         schedule = generate_schedule(seed, config.session.hands, initial_rotation=index % 3)
         block_id = f"{run_id}-block-{index}"
         for channel in config.channels:
@@ -211,16 +221,21 @@ def poker_task(
             "run_id": run_id,
             "instruction": config.model.instruction.value,
             "experiment_config": json.loads(config.to_json()),
+            "block_index": block_index,
         },
     )
 
 
 async def run_experiment(
-    config: ExperimentConfig, output_dir: Path, *, model: Model | None = None
+    config: ExperimentConfig,
+    output_dir: Path,
+    *,
+    model: Model | None = None,
+    block_index: int | None = None,
 ) -> list[EvalLog]:
     """Run a fresh attempt; output directories are exclusive and never resumed."""
     run_id = uuid4().hex
-    task = poker_task(config, output_dir, run_id, model)
+    task = poker_task(config, output_dir, run_id, model, block_index=block_index)
     output_dir.mkdir(parents=True, exist_ok=False)
     with DurableJsonl(output_dir / "run.jsonl") as manifest:
         manifest.write(
@@ -232,7 +247,8 @@ async def run_experiment(
                 "config": json.loads(config.to_json()),
                 "config_sha256": digest(json.loads(config.to_json())),
                 "provenance": provenance(),
-                "plan": experiment_plan(config),
+                "block_index": block_index,
+                "plan": experiment_plan(config, block_index=block_index),
             }
         )
         logs = await eval_async(

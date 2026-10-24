@@ -157,6 +157,14 @@ uv run --locked python scripts/run_experiment.py configs/inspect-offline.json --
 uv run --locked python scripts/verify_run.py runs/preparation/inspect-001
 ```
 
+To run one original matched block in a fresh output directory, add
+`--block-index N` (zero-based), including during `--preflight`. This selects all
+configured channels for that block while retaining its original seed, sample IDs,
+and seat rotation; shortening the seed list would change the rotation. The
+selection is saved in the run manifest and Inspect metadata and verified offline.
+This is a new attempt, not recovery of an interrupted session. Document any
+replacement decision before collecting responses and retain the previous attempt.
+
 The command prints session statuses and Inspect log paths. Open a returned `.eval`
 path with `uv run --locked inspect view PATH`. For a selected session directory:
 

@@ -80,6 +80,14 @@ class ExperimentConfig:
             }
         )
 
+    def selected_blocks(self, block_index: int | None = None) -> tuple[int, ...]:
+        """Select original block positions without renumbering seeds or rotations."""
+        if block_index is None:
+            return tuple(range(len(self.seeds)))
+        if not 0 <= require_int(block_index, "block_index") < len(self.seeds):
+            raise ValueError("block_index is outside the configured seed list")
+        return (block_index,)
+
     @classmethod
     def from_json(cls, text: str) -> ExperimentConfig:
         data = _read_object(text)

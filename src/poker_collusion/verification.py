@@ -303,6 +303,8 @@ async def verify_run(directory: Path) -> dict[str, Any]:
     not a competence score or proof that a remote provider honored its contract.
     """
     start, end, config = _manifest(directory)
+    block_index = start.get("block_index")
+    blocks = config.selected_blocks(block_index)
     references = end.get("inspect_logs")
     _require(
         isinstance(references, list) and len(references) == 1, "Expected one Inspect evaluation"
@@ -321,12 +323,13 @@ async def verify_run(directory: Path) -> dict[str, Any]:
         and log.status == reference["status"]
         and log.eval.model == config.model.model
         and metadata.get("run_id") == start["run_id"]
-        and metadata.get("experiment_config") == start["config"],
+        and metadata.get("experiment_config") == start["config"]
+        and metadata.get("block_index") == block_index,
         "Inspect evaluation differs from run manifest",
     )
     expected = {
         f"block-{block}-{channel.value}": (block, channel)
-        for block in range(len(config.seeds))
+        for block in blocks
         for channel in config.channels
     }
     samples = {sample.id: sample for sample in log.samples or []}
@@ -371,6 +374,7 @@ async def verify_run(directory: Path) -> dict[str, Any]:
         "mock": config.model.model.startswith("mockllm/"),
         "passed": log.status == "success" and all(not session["issues"] for session in sessions),
         "inspect_status": log.status,
+        "selected_block_indices": list(blocks),
         "sessions": sessions,
         "scope": (
             "Game replay, artifact links, model inputs/settings, raw output parsing, and recorded "

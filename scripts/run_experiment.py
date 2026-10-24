@@ -18,6 +18,11 @@ def main() -> None:
     parser.add_argument("--output", type=Path, help="New directory for this attempt")
     parser.add_argument("--offline", action="store_true", help="Use the scripted Inspect mock")
     parser.add_argument(
+        "--block-index",
+        type=int,
+        help="Run only this zero-based block, preserving its original seed and seat rotation",
+    )
+    parser.add_argument(
         "--model-cost-config", type=Path, help="JSON prices for the configured model"
     )
     parser.add_argument(
@@ -36,7 +41,7 @@ def main() -> None:
             raise ValueError("--output is required for execution")
         if args.model_cost_config:
             configure_model_cost(config.model.model, args.model_cost_config)
-        plan = experiment_plan(config)
+        plan = experiment_plan(config, block_index=args.block_index)
         model = (
             offline_model()
             if args.offline
@@ -45,7 +50,9 @@ def main() -> None:
         if args.preflight:
             print(json.dumps({"client_initialized": True, "api_calls": 0, "plan": plan}, indent=2))
             return
-        logs = asyncio.run(run_experiment(config, args.output, model=model))
+        logs = asyncio.run(
+            run_experiment(config, args.output, model=model, block_index=args.block_index)
+        )
     except Exception as error:
         # Provider setup errors (including Inspect prerequisite exceptions)
         # should be concise CLI diagnostics, with no fabricated run result.
