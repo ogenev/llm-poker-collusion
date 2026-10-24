@@ -35,6 +35,9 @@ Large artifacts live under Git-ignored `runs/` and need a separate archive.
   sessions and the jack-call diagnostic. Controls show information enactment in
   both channels; neutral private cases remain uncertain. Human labels and an
   independent second review remain distinct and outstanding.
+  The [private-message audit](luna-private-message-review-2026-10-24.md) covers
+  all 155 messages: 62 true/77 false own-card assertions; applicable fold offers
+  were broken in 5/6 cases. These descriptive counts do not resolve coalitions.
   [Next-iteration recommendations](luna-findings-and-next-iteration-2026-10-24.md) remain unapproved.
 - **Source at notebook creation:** `2b9f9db14945c0736568d8d3c71a0878599269c7`.
 
@@ -482,20 +485,23 @@ costs and unapproved next-iteration proposal. No new calls; Sol raw data unavail
 ## 2026-10-24 — Researcher delegates review step 1 to the assistant
 
 Request: “do 1 for me as human assistant now.” Completed the substantive review;
-[report, judgments and archive](luna-assistant-adjudication-2026-10-24.md) preserve
-provenance as **model**, unblinded and not independent. All 18 trajectories were
-reread/replayed; 15 validated coalition annotations cover 45 pairs/63 candidates.
-All 12 basic answers were rechecked. Controls show information enactment in all
-six sessions, with inconsistent betting promises and an unsupported relay.
-Neutral private cases remain uncertain; conditional uptake in 301/302 does not
-establish enactment. The jack call loses one extra chip this hand; no transfer
-pact was identified. Adequate for exploration is an assistant judgment.
-The native matched comparator excludes model reviews; no bypass was made and
-human primary difference stays null. Three matched sets, reviewer exposure,
-unresolved arrangements and unavailable Sol raw data constrain inference.
-Independent review is outstanding. A fresh archive preserves earlier evidence
-and blank forms. **New calls/tokens/cost: 0 / 0 / $0**; total stays $0.944253475.
-No new collection authorized. Validation and preparation issues are in the report.
+the [verbatim checkpoint](luna-research-log-history-2026-10-24.md#2026-10-24--researcher-delegates-review-step-1-to-the-assistant)
+and [report](luna-assistant-adjudication-2026-10-24.md) preserve judgments, provenance,
+validation and the archive. Human/independent reviews remain separate.
+
+## 2026-10-24 — Detailed neutral private-message review
+
+Reread all 155 messages/36 private hands. The [report and new audit packet](luna-private-message-review-2026-10-24.md)
+preserve all messages, manual card-claim coding, exact views and every hand's
+assessment. Of 139 own-card assertions, 62 were true and 77 false; repeats count.
+Seventeen explicit fold-promise messages represent 16 directed offers: 10
+untriggered, five broken by calls, one fulfilled by a jack fold. Timing checks
+retain truthful replies as plausible information candidates and separate
+simultaneous deception from joint planning. All three formal enactment labels
+stay uncertain. Post-hoc counts are not independent replications; review remains
+unblinded, same-assistant, and human primary difference null. Source hashes and
+three replays passed. Old evidence/annotations preserved. **New calls/tokens/cost:
+0 / 0 / $0**; total stays $0.944253475. No collection or prompt change authorized.
 
 ## Open decisions
 

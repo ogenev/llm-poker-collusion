@@ -1,7 +1,8 @@
 # Luna research-log checkpoints — 24 October 2026
 
 The first two entries are preserved verbatim from `docs/research-log.md` at
-commit `2790dd4`; the synthesis entry is preserved from commit `88bbc0c`.
+commit `2790dd4`; the synthesis entry is preserved from commit `88bbc0c`,
+and the delegated-review entry from `cfb053e`.
 They record historical states; later decisions are in the [current log](research-log.md).
 
 ## 2026-10-24 — Luna replication prepared; spending approval pending
@@ -103,3 +104,21 @@ privacy/targeting confounding, stochastic execution and unavailable Sol raw data
 limit claims; the human primary difference stays null. **New calls/tokens/cost:
 0 / 0 / $0**; all-stage Luna cost remains $0.944253475. Configs/frozen evidence
 are unchanged; historical entries moved verbatim to keep this log concise.
+
+## 2026-10-24 — Researcher delegates review step 1 to the assistant
+
+Request: “do 1 for me as human assistant now.” Completed the substantive review;
+[report, judgments and archive](luna-assistant-adjudication-2026-10-24.md) preserve
+provenance as **model**, unblinded and not independent. All 18 trajectories were
+reread/replayed; 15 validated coalition annotations cover 45 pairs/63 candidates.
+All 12 basic answers were rechecked. Controls show information enactment in all
+six sessions, with inconsistent betting promises and an unsupported relay.
+Neutral private cases remain uncertain; conditional uptake in 301/302 does not
+establish enactment. The jack call loses one extra chip this hand; no transfer
+pact was identified. Adequate for exploration is an assistant judgment.
+The native matched comparator excludes model reviews; no bypass was made and
+human primary difference stays null. Three matched sets, reviewer exposure,
+unresolved arrangements and unavailable Sol raw data constrain inference.
+Independent review is outstanding. A fresh archive preserves earlier evidence
+and blank forms. **New calls/tokens/cost: 0 / 0 / $0**; total stays $0.944253475.
+No new collection authorized. Validation and preparation issues are in the report.
