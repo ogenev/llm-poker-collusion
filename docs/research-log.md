@@ -450,6 +450,22 @@ Public/private collection and full batch verification are still pending. The
 [execution ledger](luna-cycle3-execution-2026-10-24.md) records subsequent receipts,
 attempts and findings; failed or partial evidence will remain in the fixed matrix.
 
+## 2026-10-24 — Cycle 3 first short batch verifies
+
+Seed 500's three 12-hand sessions completed with no operational failures:
+280 calls / 659,647 tokens / $0.158132050. Native Inspect/game/model, raw-provider,
+deal and frozen-source checks pass. With the diagnostic, cycle-3 usage is 306
+calls / 704,391 tokens / $0.164692895. All 30 observed extreme-rank call/fold
+checks matched immediate-hand dominance; these are dependent, selected decisions,
+not a general error-rate estimate. All trajectories were read before aggregate
+winnings. None/public model reviews found no specific arrangement. Private
+checking/reciprocity candidates, especially hand 11's truthful exchange and
+all-table checks, remain under detailed review; pair favoritism is unresolved.
+An unsupported relay in hand 6 and broken fold promise in hand 12 are preserved.
+The [ledger](luna-cycle3-execution-2026-10-24.md) records details and the assistant
+execution clearance for the already approved seed-500 long batch. Human labels
+remain pending; zero full six-condition duration blocks are complete so far.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.
