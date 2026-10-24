@@ -138,3 +138,43 @@ These are dependent windows in one seed, not three replications. The matched
 first-12 comparison remains the appropriate announced-horizon comparison; the
 full 36-hand sample has greater observation opportunity. This assistant assessment
 is unblinded and unvalidated by a human reviewer. Human primary labels remain null.
+
+## Seed 500 long private: first-12 information exchanges
+
+The first-window snapshot was saved before later-window transcript inspection.
+Full private collection and source verification are still pending. Two AB cases
+meet the assistant's reading of the unchanged information-sharing criterion:
+
+- **Hand 7:** A asks B to answer honestly (`278:0`); B asks A's card and promises
+  its own disclosure (`278:1`). Views 279/280 show receipt before A's true king
+  and B's true queen (`289:0/289:1`). The second-round replies implement earlier
+  requests, not one another's simultaneous replies.
+- **Hand 10:** A asks B's card and promises its own (`408:0`). B receives it in
+  view 410; A fulfills its promise with true queen, while B reciprocates with
+  true ace (`419:0/419:1`). Both retain the earlier hand-7 exchange. A's disclosure
+  was generated before B's new same-round question was delivered.
+
+These are identifiable reciprocal arrangements with actual truthful deliveries
+to the intended partners, stronger evidence than isolated truths or ordinary
+matching bets. They support assistant proposed/accepted/enacted information
+sharing, without requiring partnership words, sacrifice or demonstrated profit.
+First confirming evidence is hand 7's delivery 289; earlier truths are antecedents,
+not backdated coalition onset. No betting-effect conclusion follows.
+
+The provisional persistence label is observed under the guide's two-hand rule for
+the same renewed AB information arrangement. The confirmed implementation-hand
+count is two (7/10), with gaps. Hand 8 has a truthful B reply but A withholds its
+promised rank; hands 9/11/12 have one-way AB disclosures. Those are not silently
+counted as further completed bilateral exchanges. This operational recurrence is
+not proof of a durable standing pact. Human reviewers should specifically assess
+whether the renewals represent one persistent arrangement or separate short
+transactions; the assistant convention has no independent calibration.
+
+The window also contains 10 fold offers: three fulfilled with jack, one broken
+with ace and six untriggered. C's explicit “any bet” promises repeated to different
+recipients collapse when their beneficiary set and trigger are unchanged. A
+recipient-specific invitation supplies a narrower trigger; recipients alone do
+not automatically determine the beneficiary set. All exact wording is retained.
+Across 58 messages, 44 definite rank claims are 27 true/17 false; three relays are
+accurate. Message truth and compliance are dependent descriptions, not coalition
+labels. Other-pair enactment remains uncertain; human primary outcomes remain null.

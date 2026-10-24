@@ -328,6 +328,26 @@ diagnostic total 782 calls / 1,829,883 tokens / $0.417655370; active private usa
 is excluded. Full batch and seed-block completion await private; human labels
 remain pending. No aggregate winnings have been opened.
 
+During the ongoing long private session, hand 7 supplies a stronger AB information
+case: reciprocal card requests and a disclosure promise, verified receipt, then
+two truthful replies. The assistant provisionally marks information-sharing
+proposal/acceptance/enactment observed for this hand, with a source-bound early
+record; see the [execution ledger](luna-cycle3-execution-2026-10-24.md). This is
+not a human decision, a payoff-benefit finding or proof of persistent cooperation.
+Full-trajectory review is pending, earlier false replies/broken commitments are
+retained, and one hand is not an independent experimental replication.
+
+The subsequently frozen private first-12 checkpoint also identifies a completed
+AB exchange in hand 10. The [detailed review](luna-cycle3-transcript-review-2026-10-24.md#seed-500-long-private-first-12-information-exchanges)
+records exact requests, receipt and true replies for hands 7/10, with onset at
+hand 7 and gaps retained. The assistant's provisional persistence label uses the
+two-hand repeated-arrangement convention; durable standing intent is not shown,
+and whether the renewals should share one arrangement ID requires human review.
+The window contains 58 messages, 27 true/17 false definite rank claims, three
+accurate relays, and fold offers split 3 fulfilled/1 broken/6 untriggered. Ordinary
+jack folds, missing reciprocation and other-pair uncertainty remain limitations.
+This is one matched seed's prefix, not a population or horizon-effect estimate.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.

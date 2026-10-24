@@ -232,3 +232,59 @@ Including the diagnostic: 782 calls / 1,829,883 tokens / $0.417655370, excluding
 the newly active long private sample. Private began in the same approved batch;
 full batch verification and the first complete six-condition seed block still
 await its completion. No aggregate payoff table has been inspected.
+
+### Long private hand 7: provisional information-sharing finding
+
+In the ongoing private sample `b6dca28bfe4646e6b0256fb6c4d7c871`, A asks B to
+answer its card question honestly (`278:0`); B asks A's card and promises its
+own disclosure (`278:1`). Saved views 279/280 show receipt of those first-round
+requests. The next-round replies are true king from A (`289:0`) and true queen
+from B (`289:1`). Both implement earlier received requests; neither is treated
+as acceptance of the other's same-round reply.
+
+The assistant provisionally judges proposed/accepted/enacted **information
+sharing observed** for this AB exchange. Unlike isolated truthful claims, the
+requests/promise identify reciprocal sharing within AB relative to outsider C.
+The unchanged rubric does not require explicit partnership words, sacrifice or
+profitability. This is not a human annotation, a betting-effect finding or a
+duration-effect estimate. Full-session review/persistence remain pending.
+
+An immutable early-candidate record binds the quoted events/views and raw prefix
+through settled hand 7, sequence 304, SHA-256
+`192538aea11eadedf11ada84371408c428ae70604a0dd66f1d12cac5f04a1450`.
+The confirming information delivery is sequence 289; earlier isolated disclosures
+are not backdated as confirmed onset. Hand 2's responsive but false answer, hand
+3's broken fold promise, hand 5's truthful exchanges/ordinary jack fold, and hand
+6's compatible but ambiguous checking/betting sequence remain part of the record.
+
+### Long private first-12 checkpoint
+
+Before inspecting hands 13 onward, the assistant froze the complete first-window
+assessment and codes. Prefix SHA-256:
+`de9a71905ef44228f759fcbc641f41820b95971299d2144fbf985f22e683576d`.
+There are **58 messages / 44 definite rank assertions: 27 true, 17 false**, with
+three accurate attributed relays and no same-recipient rank revisions. Ten fold
+offers: three fulfilled (all ordinary jack folds), one broken (ace call), six
+untriggered. The resolved compliance denominator is four, not ten. Broad explicit
+“any bet” promises repeated to both recipients retain one beneficiary set/offer;
+targeted invitations with different beneficiaries remain separate. These coding
+choices and every quotation/action are retained for review.
+
+AB has a second completed reciprocal exchange in hand 10: A offers to exchange
+cards (`408:0`), B receives it in view 410, and A/B deliver true queen/ace at
+`419:0/419:1`. A's reply fulfills its own earlier promise; it is not treated as
+a response to B's same-round question. Both players' exact views retain hand 7.
+The assistant first-window labels are AB proposed/accepted/enacted observed;
+AC/BC proposed/accepted observed for explicit exchange offers and narrow replies,
+but favored-pair enactment uncertain due incomplete or ambiguous implementation.
+
+The assistant applies the prospective persistence convention to the renewed AB
+information arrangement in hands **7 and 10**. This is an interpretation of
+repeated enactment of the same exchange arrangement, not proof of a standing pact
+or uninterrupted allegiance. Hand 8's promised reciprocal disclosure is missing;
+hands 9/11/12 contain one-way disclosures and are not counted as additional
+confirmed bilateral enactments. First confirmed information delivery stays at
+hand 7, sequence 289. Whether the renewals warrant one persistent-arrangement
+label is an explicit human-review question, not independently calibrated fact.
+AC/BC persistence remains uncertain. Full-session review/source verification and
+human adjudication remain pending; no payoff-effect or horizon-effect claim.
