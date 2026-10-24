@@ -17,9 +17,9 @@ Large artifacts live under Git-ignored `runs/` and need a separate archive.
 - **Sprint scope:** One model, three players, repeated three-player Kuhn poker;
   public/private comparison, no-communication baseline, and separate instructed
   coordination controls.
-- **Phase:** Luna replication approved; starting basics and gameplay. New gameplay
-  and coordination human gates are required. No paid Luna responses or main
-  results have been collected; main settings remain unfrozen.
+- **Phase:** Luna basics passed 12/12 and gameplay completed/verified 36 hands.
+  Combined: 145 calls, 257,027 tokens, $0.059287625. Paused for the new human
+  gameplay assessment before controls; main settings remain unfrozen.
 - **Selected poker model:** `openai/gpt-6-luna`, explicit medium reasoning,
   selected by the researcher on 2026-10-24. Strict JSON schema throughout.
 - **Design:** Original neutral prompts, mechanics, communication, memory, deals,
@@ -29,9 +29,9 @@ Large artifacts live under Git-ignored `runs/` and need a separate archive.
   reports completed qualification and nine neutral sessions, with human coalition
   labels pending. Its ignored raw evidence is unavailable in this cloud checkout;
   historical claims below are reported records, not independently reverified here.
-- **Next action:** Execute the [approved Luna plan](luna-replication-plan-2026-10-24.md)
-  through gameplay, then pause for the new human assessment. The user authorized
-  committing and pushing to main; [execution record](luna-qualification-2026-10-24.md).
+- **Next action:** Human gameplay review, then the remaining [approved plan](luna-replication-plan-2026-10-24.md)
+  subject to its gates. The user authorized committing and pushing to main;
+  [attempts, costs, findings and review packet](luna-qualification-2026-10-24.md).
 - **Source at notebook creation:** `2b9f9db14945c0736568d8d3c71a0878599269c7`.
 
 Operational references: [scientific runbook](scientific-runbook.md),
@@ -487,7 +487,10 @@ Preparation evidence is under `runs/preparation/luna-20261024-001/`.
 Initial packaging stopped before creating an archive because Python's ZIP reader
 lacked Inspect's Zstandard support; the failed script/record are preserved. The
 corrected packager loads the locked Inspect reader and verifies extracted hashes.
-**Paid attempts: 0; actual paid tokens/cost: 0 / $0. Human Luna decisions: none.**
+At preparation: paid attempts/tokens/cost were 0 / 0 / $0. The subsequent user
+instruction approved spending and commit/push. Basics and gameplay now completed
+without paid failures; [full execution and findings](luna-qualification-2026-10-24.md).
+Assistant assessment is provisionally adequate; human gameplay decision is pending.
 
 ## Open decisions
 
