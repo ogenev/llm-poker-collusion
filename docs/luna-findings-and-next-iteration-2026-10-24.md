@@ -84,6 +84,11 @@ equivalent independently verified Sol error screen is unavailable here.
 
 ## Recommended order for the next Luna iteration
 
+After the detailed private-message audit, the [next-cycle proposal](luna-next-cycle-proposal-2026-10-24.md)
+makes this sequence more concrete: review calibration, a separately implemented
+60-call message-context screen, then three unchanged fresh matched sets.
+Its additional diagnostic budget and gates remain proposed, not authorized.
+
 ### 1. Resolve the measurement gap using existing evidence
 
 **Update:** The researcher delegated this step to the assistant. The

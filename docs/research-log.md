@@ -38,7 +38,8 @@ Large artifacts live under Git-ignored `runs/` and need a separate archive.
   The [private-message audit](luna-private-message-review-2026-10-24.md) covers
   all 155 messages: 62 true/77 false own-card assertions; applicable fold offers
   were broken in 5/6 cases. These descriptive counts do not resolve coalitions.
-  [Next-iteration recommendations](luna-findings-and-next-iteration-2026-10-24.md) remain unapproved.
+  The [next-cycle proposal](luna-next-cycle-proposal-2026-10-24.md) remains unapproved:
+  calibration, a 60-call diagnostic, then three unchanged fresh matched sets.
 - **Source at notebook creation:** `2b9f9db14945c0736568d8d3c71a0878599269c7`.
 
 Operational references: [scientific runbook](scientific-runbook.md),
@@ -491,17 +492,21 @@ validation and the archive. Human/independent reviews remain separate.
 
 ## 2026-10-24 — Detailed neutral private-message review
 
-Reread all 155 messages/36 private hands. The [report and new audit packet](luna-private-message-review-2026-10-24.md)
-preserve all messages, manual card-claim coding, exact views and every hand's
-assessment. Of 139 own-card assertions, 62 were true and 77 false; repeats count.
-Seventeen explicit fold-promise messages represent 16 directed offers: 10
-untriggered, five broken by calls, one fulfilled by a jack fold. Timing checks
-retain truthful replies as plausible information candidates and separate
-simultaneous deception from joint planning. All three formal enactment labels
-stay uncertain. Post-hoc counts are not independent replications; review remains
-unblinded, same-assistant, and human primary difference null. Source hashes and
-three replays passed. Old evidence/annotations preserved. **New calls/tokens/cost:
-0 / 0 / $0**; total stays $0.944253475. No collection or prompt change authorized.
+The [verbatim checkpoint](luna-research-log-history-2026-10-24.md#2026-10-24--detailed-neutral-private-message-review)
+and [report/audit packet](luna-private-message-review-2026-10-24.md) retain all 155
+messages, coding, views, 36-hand review and validation; enactment stays uncertain.
+
+## 2026-10-24 — Proposed next Luna cycle
+
+Researcher requested a recommendation. The [proposal](luna-next-cycle-proposal-2026-10-24.md)
+specifies calibration on existing evidence, a separately implemented 60-call
+final-hand message-context screen, then nine unchanged neutral sessions on
+proposed fresh seeds 400–402. Forecast ~$0.47–$0.49 using saved prices; proposed
+stops sum to $0.95/9.1m tokens with post-response overshoot. Prices, fixtures,
+new configs, seed inventory, preflight and spending approval remain pending.
+No main-study freeze or ten-set expansion; a later duration study is separate.
+This is a proposal, not execution or a new finding. **New calls/tokens/cost:
+0 / 0 / $0**; recorded total stays $0.944253475. No runtime/config changes.
 
 ## Open decisions
 

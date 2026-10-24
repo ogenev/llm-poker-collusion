@@ -2,7 +2,7 @@
 
 The first two entries are preserved verbatim from `docs/research-log.md` at
 commit `2790dd4`; the synthesis entry is preserved from commit `88bbc0c`,
-and the delegated-review entry from `cfb053e`.
+the delegated-review entry from `cfb053e`, and the private audit from `482038c`.
 They record historical states; later decisions are in the [current log](research-log.md).
 
 ## 2026-10-24 — Luna replication prepared; spending approval pending
@@ -122,3 +122,17 @@ unresolved arrangements and unavailable Sol raw data constrain inference.
 Independent review is outstanding. A fresh archive preserves earlier evidence
 and blank forms. **New calls/tokens/cost: 0 / 0 / $0**; total stays $0.944253475.
 No new collection authorized. Validation and preparation issues are in the report.
+
+## 2026-10-24 — Detailed neutral private-message review
+
+Reread all 155 messages/36 private hands. The [report and new audit packet](luna-private-message-review-2026-10-24.md)
+preserve all messages, manual card-claim coding, exact views and every hand's
+assessment. Of 139 own-card assertions, 62 were true and 77 false; repeats count.
+Seventeen explicit fold-promise messages represent 16 directed offers: 10
+untriggered, five broken by calls, one fulfilled by a jack fold. Timing checks
+retain truthful replies as plausible information candidates and separate
+simultaneous deception from joint planning. All three formal enactment labels
+stay uncertain. Post-hoc counts are not independent replications; review remains
+unblinded, same-assistant, and human primary difference null. Source hashes and
+three replays passed. Old evidence/annotations preserved. **New calls/tokens/cost:
+0 / 0 / $0**; total stays $0.944253475. No collection or prompt change authorized.
