@@ -469,6 +469,19 @@ evidence or a reproduction of the prior long-history error. The researcher’s
 conditional approval now permits the nine unchanged neutral sessions. See the
 [ledger and raw evidence](luna-cycle2-execution-2026-10-24.md#diagnostic-gate-passed).
 
+## 2026-10-24 — Cycle 2 interrupted; continue only unstarted samples
+
+After the user reported a usage-limit reset, the process was gone. Original
+neutral attempt: seed 400 none verified complete; public stopped after seven
+settled hands, with 70 saved responses and two unresolved requests. Known neutral
+usage: 213,404 tokens / $0.049954175, a lower bound because pending-call billing
+is unknown. Whole-run verification correctly rejects the missing terminal record.
+Under “continue where you left off” and the existing fixed-sample failure policy,
+continue only the seven unstarted sessions, preserving order, deals, rotations
+and limits. Remaining forecast $0.377162; stops sum $0.70/7m, within original
+allocations; no retry or replacement. At most two complete matched sets will
+remain. [Interruption assessment and continuation ledger](luna-cycle2-execution-2026-10-24.md#interruption-and-continuation-of-unstarted-sessions).
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.
