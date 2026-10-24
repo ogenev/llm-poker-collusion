@@ -3,10 +3,11 @@
 Status: preparation accepted by the researcher (“ok lets do that and keep
 updating the research journal”), with “commit snd push first” explicitly requiring
 source publication before paid execution. This document makes the earlier
-[proposal](luna-next-cycle-proposal-2026-10-24.md) concrete. **New paid calls: zero.
-Confirmation of this exact staged plan remains pending**, under the researcher's
-original instruction to present the run plan, costs and stops before spending.
-The completed first cycle's permission is not reused as a new spending grant.
+[proposal](luna-next-cycle-proposal-2026-10-24.md) concrete. **Approved:** after the exact
+staged plan, costs and stop limits were presented, the researcher replied “yes.”
+This authorizes the diagnostic and, only on a verified pass, the nine neutral
+sessions. See the [execution ledger](luna-cycle2-execution-2026-10-24.md) for every
+attempt and actual usage. The first cycle's permission was not reused.
 
 ## Model, compatibility and unchanged experiment
 

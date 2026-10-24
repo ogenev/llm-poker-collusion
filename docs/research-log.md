@@ -40,8 +40,9 @@ Large artifacts live under Git-ignored `runs/` and need a separate archive.
   were broken in 5/6 cases. These descriptive counts do not resolve coalitions.
   The researcher accepted [cycle 2 preparation](luna-cycle2-plan-2026-10-24.md):
   calibration, a separate 60-call diagnostic, then three unchanged fresh matched
-  sets on seeds 400–402. Code/configs are prepared; exact spending confirmation
-  remains pending. New paid calls: zero; human calibration remains outstanding.
+  sets on seeds 400–402. The researcher approved the exact spending plan;
+  [execution](luna-cycle2-execution-2026-10-24.md) is starting with the diagnostic.
+  Independent human calibration remains outstanding.
 - **Source at notebook creation:** `2b9f9db14945c0736568d8d3c71a0878599269c7`.
 
 Operational references: [scientific runbook](scientific-runbook.md),
@@ -447,49 +448,16 @@ No main-study freeze or ten-set expansion; a later duration study is separate.
 This is a proposal, not execution or a new finding. **New calls/tokens/cost:
 0 / 0 / $0**; recorded total stays $0.944253475. No runtime/config changes.
 
-## 2026-10-24 — Cycle 2 accepted; executable preparation and publication
+## 2026-10-24 — Cycle 2 preparation and authorization
 
-Researcher: “ok lets do that and keep updating the research journal,” then
-“commit snd push first.” Commit `6e6e1ab` publishes the tested harness/configs/docs
-on remote main. [Preparation archive](../runs/preparation/luna-cycle2-20261024-001.zip)
-contains 42 files; its [SHA-256/checksums](../runs/preparation/luna-cycle2-20261024-001.zip.sha256)
-and nested credential scan passed. This is preparation evidence, not new paid data.
-The [exact staged plan](luna-cycle2-plan-2026-10-24.md) preserves Luna/medium,
-strict JSON and original neutral prompts/settings. Separate diagnostic: 30
-final-hand rank/seat/context fixtures twice, 60 calls. New neutral config changes
-only seeds to 400/401/402, with rotations 0/1/2, nine sessions and 108 hands.
-Available inventory: four previous experiment manifests, no seed conflicts;
-unavailable external evidence is outside that check. Sol/first-cycle files stay intact.
-
-Official prices/compatibility rechecked: $0.10 input/$0.50 output/$0.01 cache-read/
-$0.125 cache-write per million, standard short context; medium and strict outputs
-supported without tools. Non-generating model metadata GET succeeded at 14:31 UTC.
-Both client preflights report zero calls. Forecast $0.01–$0.03 diagnostic plus
-$0.4562 neutral, about $0.47–$0.49 total. Stops: diagnostic $0.05/100k tokens;
-neutral $0.10/1m per session, sums $0.95/9.1m including diagnostic, post-response
-overshoot possible. Max 1,032 calls; 90s/decision, 1,200s screen, 1,800s/session.
-The all-60-correct verified gate blocks neutral after any diagnostic failure.
-
-Prepared seven blank source-bound calibration forms and the
-[prospective coding guide](luna-cycle2-coding-guide-2026-10-24.md), with secondary
-coding for both message channels. Independent human calibration is pending;
-existing assistant work is not renamed human, and human primary analysis remains
-unavailable. Preserve uncertainty, separate cycles, and use three matched sets
-as the new sample. No new coalition finding, main freeze or ten-set expansion.
-
-Preparation: `uv sync --locked` passed. Initial focused tests 10/10 passed;
-initial lint/import/line-length issues and one mypy type-narrowing issue were
-fixed. An initial web find used an unsupported argument; the corrected read
-verified official documentation, without paid calls. Full suite: 1,405 passed,
-2 browser checks skipped (no UI change); dependency deprecation warnings remain.
-Later raw-payload checks exposed optional-JSON typing issues, now fixed. Final
-focused tests: 13 passed; Ruff/format/mypy passed; saved mock 60/60 verified,
-live qualification false; 78 baseline runtime/config/lock files unchanged. Evidence:
-[`runs/preparation/luna-cycle2-20261024-001/`](../runs/preparation/luna-cycle2-20261024-001/).
-The new verifier links frozen inputs, saved raw requests/responses, Inspect,
-decisions and usage; mocks cannot qualify the live model. Failed preparation
-records are preserved. **New paid calls/tokens/cost: 0 / 0 / $0**; historical
-Luna total remains $0.944253475. Await exact-plan spending confirmation.
+The [verbatim preparation entry](luna-research-log-history-2026-10-24.md#2026-10-24--cycle-2-accepted-executable-preparation-and-publication)
+preserves fixtures, pricing, tests, failures, source publication and the archive.
+After the exact staged costs/limits were presented, the researcher replied
+“yes,” approving the 60-decision diagnostic and nine new neutral sessions only
+if it passes. Execution follows the [approved plan](luna-cycle2-plan-2026-10-24.md)
+and [attempt/usage ledger](luna-cycle2-execution-2026-10-24.md). Runtime/source
+is unchanged from published `7c568cc`; fresh directories, no retries/replacements.
+This proceed decision does not supply independent human calibration or labels.
 
 ## Open decisions
 
