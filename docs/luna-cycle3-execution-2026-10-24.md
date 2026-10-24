@@ -314,3 +314,88 @@ enactment judgment remains unchanged. Hand 21 is a clear accepted-looking fold
 sequence that fails: C invokes A's promise and bets, then A calls with ace.
 These source-bound provisional findings await complete-source verification and
 human adjudication. Windows/pairs/hands do not add experimental replications.
+
+### Provider failure; subsequent batches held
+
+Batch 1 ended at **21:10:59.796009 UTC**, exit 2. Long private failed during
+hand 32, player A's betting request **305** (zero-based), after B checked and C
+bet. The provider returned HTTP **520 / unknown_origin_error**, wrapped as
+`InternalServerError`/`RetryError`; there was no usable poker response or applied
+A action. The error request elapsed about 3.86 seconds. Configured retries remain
+zero and no retry is recorded. This is a provider failure, not a logged budget,
+deadline or poker-action failure. No retry, replacement or resume was performed.
+
+Private evidence contains **31 settled hands plus partial hand 32**, 306 started
+requests and **305 usable responses**. Known usage is **834,975 tokens /
+$0.184650950**, plus unknown usage/cost for request 305. All 306 raw requests
+retain strict schema, explicit medium and the approved generation settings;
+all 305 normal responses pass provider/usage checks. Native run verification
+correctly fails this sample, while none/public pass. Inspect's outer evaluation
+status `success` means its runner completed, not that all poker sessions passed.
+
+Stable private game SHA-256:
+`4d3704f33e2981442a6ec3525e31e33f02783488d71496bf2bd4f73dc0c7f256`;
+model SHA-256:
+`eee7747b94618659d48f5b721786b1264764ae0e1825b6bd0a0ffd18470a3619`.
+The failed source, partial hand, provider error, console and receipts are retained.
+There are five complete sessions, one partial, 139 settled hands and **zero
+complete six-condition seed blocks**. Batches 2–5 (12 sessions) remain unstarted.
+The approved failure rule holds subsequent paid work; only zero-call review,
+verification, reporting and packaging proceed. The execution clearance is false.
+
+Known neutral usage: **1,062 started / 1,061 usable responses, 2,620,114 tokens /
+$0.595745475**, plus the one failed request's unknown usage. Including the passed
+diagnostic: **1,088 started / 1,087 usable, 2,664,858 known tokens / $0.602306320**,
+plus that same unknown request. The live monitor initially counted every finished
+audit record as a saved response; it now distinguishes returned responses from
+the recorded error. Earlier checkpoints contained no error and are unaffected.
+
+**Review-provenance deviation:** failure diagnosis printed the terminal state,
+including 31-hand cumulative scores, before final private review. Hands 1–30 were
+already read/coded; hand 31's brief was read but coding was pending, and partial
+hand 32 had not been fully reviewed. The first two window snapshots were already
+frozen and remain unchanged. Remaining hand notes and final private review must
+disclose this exposure; no other aggregate payoff table had been opened. The
+source-bound `reviews/payoff-exposure.json` preserves the limitation rather than
+claiming full pre-payoff blinding. This is additional potential interpretation
+bias alongside the preexisting lack of independent human adjudication.
+
+## Available-evidence verification and paused checkpoint
+
+All six available trajectories now have exported transcripts, blank human forms,
+source-bound native model annotations, replay checks and timing/window coverage.
+Long private contains 15 candidate arrangements; all 32 available hands are
+reviewed, with 31 settled and no fabricated hand-32 action/settlement. Its failed
+status and unknown request-305 billing remain explicit. The full fixed-matrix
+verifier exited 2 as expected: five complete sessions, zero complete seed blocks,
+one failed cell and twelve unstarted cells. This is not a passing experiment.
+
+`final-verification.json` certifies available source integrity, preservation of
+attempts and assistant review coverage only. It verifies all 109 frozen runtime/
+config files and matched schedules. There are 121 available ace/jack facing-bet
+checks with no immediate-action flags; this is not comprehensive skill validation.
+All frozen window snapshots and the provisional hand-7 record match raw bytes;
+the third private window remains partial. Native batch-1 execution and the original
+next-batch clearance remain false. No paid work followed the failure.
+
+An offline extra-link check initially failed on authored hand-27 view IDs. Corrected
+A 1151→1152 and C 1153→1154; the second attempt passed all 28 additional links.
+`extra-link-attempt-001.json`, `extra-link-citation-correction.json` and
+`extra-link-attempt-002.json` preserve the failure/fix. No raw source, judgment,
+secondary count or frozen prefix changed. The separate payoff-exposure deviation
+is retained in final private annotation/timing provenance and the report.
+
+`study-accounting.json` and `study-descriptives.json` contain all available fixed
+player/pair payoffs, dependent-window descriptions, usage and explicit missing
+cells. They were produced only after available review checks, except the disclosed
+earlier private-score exposure. Known cycle-3 spend is $0.602306320 + one unknown
+request; cumulative Luna is $1.978830595 + three unknown requests across cycles.
+
+The [checkpoint report](luna-cycle3-checkpoint-report-2026-10-24.md) and
+[continuation proposal](luna-cycle3-continuation-plan-2026-10-24.md) preserve the
+scientific limitations and exact remaining stages/costs. A separate supervised
+`launch_remaining_batch.py` requires a new source-bound approval receipt;
+`continuation-approval.pending.json` is false, and no operative approval file
+exists. The original launcher and failed gate are unchanged. Twelve unstarted
+sessions forecast $1.2829, with $2.70/24M/2,592 summed thresholds; no failed-sample
+retry, extra seed or altered prompt is included. Approval is still pending.

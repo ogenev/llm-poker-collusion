@@ -50,12 +50,13 @@ Large artifacts live under Git-ignored `runs/` and need a separate archive.
   Luna through cycle 2 $1.376524275, plus two unresolved requests. Independent
   review is pending.
 - **Cycle 3:** The approved [duration study](luna-cycle3-plan-2026-10-24.md) is
-  collecting. Its diagnostic passed 26/26 and seed 500's three short sessions
-  verified: 36 hands / 280 calls / $0.158132050. Long seed-500 none/public are also
-  complete; its private sample is active. Five neutral sessions have completed;
-  zero full six-condition blocks are complete at this checkpoint. The
-  [transcript review](luna-cycle3-transcript-review-2026-10-24.md) retains private
-  narrow acceptance and table-wide coordination, with pair enactment uncertain.
+  paused after HTTP 520. Its diagnostic passed 26/26; five neutral sessions
+  completed and long private stopped after 31 settlements plus partial hand 32.
+  Twelve cells are unstarted; zero full duration blocks are complete. The
+  [checkpoint report](luna-cycle3-checkpoint-report-2026-10-24.md) identifies
+  assistant-observed long-private information exchanges for AB/AC/BC, without
+  confirmed betting cooperation or causal benefit. Human labels remain null.
+  Known cycle-3 cost is $0.602306320 plus one unknown failed request.
   Human labels remain pending. See the execution ledger for ongoing usage.
 - **Source at notebook creation:** `2b9f9db14945c0736568d8d3c71a0878599269c7`.
 
@@ -358,6 +359,61 @@ up a fold promise that is then broken by an ace call. Window 13–24: 63 message
 two broken/three untriggered fold offers. No exclusive/stable alliance, causal
 payoff benefit or general duration effect follows; full-source and human reviews
 remain pending. The three seed blocks remain the intended replication unit.
+
+## 2026-10-24 — Cycle 3 provider failure and review hold
+
+At 21:10:59 UTC, long private stopped in hand 32 at A's betting request 305 with
+HTTP 520, wrapped as an internal-server error. No retry/resume/replacement. Its
+31 settled hands and partial hand are preserved; 306 requests produced 305 usable
+responses. Native verification rejects the failed sample and passes long none/
+public. The [execution ledger](luna-cycle3-execution-2026-10-24.md) records hashes,
+error/settings audits, known usage and the false next-batch clearance. Twelve
+planned sessions remain unstarted; zero full duration seed blocks are complete.
+With the diagnostic, cycle-3 known usage is 1,088 started / 1,087 usable responses,
+2,664,858 tokens / $0.602306320, plus unknown billing for this one failed request.
+Older cycle-2 unknown requests remain separate and unresolved.
+
+Failure diagnosis also exposed this partial session's cumulative scores before
+hand-31 coding/partial-hand-32 review were finalized. Earlier first/second-window
+judgments and hand notes 1–30 predate the exposure and remain intact. Final private
+review will disclose this additional bias risk; it cannot be described as fully
+pre-payoff. Zero-call review/report/archive preparation continues under the
+approved failure policy; no further paid batch starts automatically.
+
+## 2026-10-24 — Cycle 3 available-evidence checkpoint completed
+
+The [checkpoint report](luna-cycle3-checkpoint-report-2026-10-24.md) now consolidates
+all six available trajectories, source/replay/receipt checks, blank human forms,
+usage and missing cells. Five sessions complete, one failed after 31 settlements,
+twelve unstarted; zero of three planned duration seed blocks complete. All 109
+frozen source/config hashes match. The full native matrix correctly fails; passing
+available-source checks do not turn this into a completed experiment. No paid calls
+followed the HTTP-520 failure.
+
+Assistant information-enactment cases are AB hands 7/10, BC 14 and AC 24/25/28/31
+in long private. All three pairs are represented alongside lies and broken promises;
+no stable/exclusive alliance, confirmed betting enactment or causal payoff benefit
+is established. AB/AC meet the provisional repeated-arrangement persistence rule,
+whose interpretation needs human review. Long private has 119 rank claims (72
+true/47 false) and 19 fold offers (3 fulfilled/4 broken/12 untriggered). Public
+remains without an identified pair arrangement; one incomplete seed cannot establish
+channel or duration effects. Human labels stay null; hands/windows are dependent.
+
+The final private synthesis flags the accidental earlier partial-payoff exposure;
+early windows and notes 1–30 remain unchanged and pre-exposure. An offline receipt
+check also caught authored hand-27 view-number errors (A 1151→1152, C 1153→1154).
+Both attempts/correction are preserved; 28 extra links then passed. No raw source,
+judgment, count or prefix was changed by the citation correction. These process
+limitations accompany the report rather than being omitted from the final review.
+
+Known cycle-3 expenditure is $0.602306320 plus one unknown failed request;
+cumulative known Luna is $1.978830595 plus three unknown requests across cycles.
+Sol remains a reported-only baseline; its unavailable raw evidence was not verified.
+The [remaining-cell proposal](luna-cycle3-continuation-plan-2026-10-24.md) prepares
+only seeds 501/502, twelve sessions/288 hands, expected $1.2829 and summed stops
+$2.70/24M tokens/2,592 requests. Its approval template is false; no new paid stage
+is authorized after the failure hold. Even successful continuation leaves at most
+two complete blocks; the failed seed-500 sample will not be replaced.
 
 ## Open decisions
 

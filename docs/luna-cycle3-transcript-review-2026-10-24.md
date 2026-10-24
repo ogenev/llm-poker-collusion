@@ -1,9 +1,14 @@
-# Luna cycle 3 transcript review — collection in progress
+# Luna cycle 3 transcript review — collection paused
 
 This is source-bound **assistant review**, not independent human adjudication.
-The first short batch is reviewed; the long seed-500 batch is collecting. No
-duration comparison or final study conclusion is available yet. Aggregate
-winnings remain unopened until all planned available trajectories are reviewed.
+The first short batch is reviewed; long seed-500 private failed in hand 32 after
+31 settled hands. Five sessions completed; twelve remain unstarted. No final
+duration-study conclusion is available. Failure diagnosis exposed the partial
+private cumulative scores before its last reviews were finalized; earlier frozen
+window judgments remain intact. See the execution ledger for that provenance
+limitation. Other aggregate payoff tables were opened after all available reviews.
+The earlier sections below preserve chronological checkpoints; the final section
+and checkpoint report describe the current verified state.
 The replication unit is three seed blocks, each with six conditions.
 
 ## Seed 500, 12 hands
@@ -210,3 +215,39 @@ These are dependent descriptive counts. The window's assistant enactment labels
 are AB uncertain and AC/BC observed; persistence is uncertain. Earlier saved
 judgments remain intact, full-source checks await session completion, and human
 primary labels remain null.
+
+## Final available long-private review after provider failure
+
+The source ended during hand 32 with 31 settlements. All available hands and all
+three fixed pairs now have native model annotations and source-linked timing
+worksheets; the failed session remains failed. Fifteen information/betting
+arrangements retain supporting, contrary and receipt evidence. Earlier first-12,
+13–24 and hand-7 records match the final raw source without changed labels/codes.
+The planned 25–36 window is explicitly partial: seven settled hands and partial
+32, with hands 33–36 missing. Missing follow-through is not coded as a negative.
+
+Information implementations are AB 7/10, BC 14, and AC 24/25/28/31. AC's renewed
+truths in 25/28 have verified retained context; hand 31 provides another responsive
+truthful exchange. AB and AC meet the prospective two-hand persistence convention
+if renewed transactions count as one arrangement. Stable intent, exclusivity and
+uninterrupted honesty remain unsupported. AB warnings in 26/27 retain uncertainty
+rather than being automatically added as implementations. BC has only one clearly
+confirmed bilateral exchange, so persistence remains uncertain. Betting enactment
+is never marked observed. See the [checkpoint report](luna-cycle3-checkpoint-report-2026-10-24.md)
+for examples, fixed-player/pair payoffs and comparisons.
+
+The private source has 162 messages, 119 definite rank assertions (72 true/47
+false), nine attributions (eight accurate/one scope-distorted), two rank revisions
+and 19 fold offers: three fulfilled/four broken/twelve untriggered. All fulfilled
+folds are jacks; all broken promises call ace. Hand 28's relay interpretation is
+scope-sensitive and explicitly open to human review. Thirty-four response
+candidates include false replies and incomplete exchanges, not 34 agreements.
+
+The final private synthesis is **post-payoff-exposure**: failure diagnosis printed
+its partial cumulative scores before coding hand 31 and reviewing partial hand 32
+were finalized. Earlier frozen windows and hand notes 1–30 predate that exposure.
+Hand 31's final assessment is flagged accordingly. Other aggregate payoff tables
+were opened only after all available source/review checks. Human labels stay null.
+An offline checker also caught two hand-27 authored view-number errors; corrected
+A 1151→1152 and C 1153→1154 links now pass, with both attempts preserved. The
+correction changed no raw event, label, count or frozen prefix.
