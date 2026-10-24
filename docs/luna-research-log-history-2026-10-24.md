@@ -82,3 +82,4 @@ verification. The packet includes prior Luna qualification/control evidence and
 preserves the earlier archives. Sol is a reported baseline only. No further
 collection or prompt revision is authorized by this completed pilot.
 
+Subsequent interpretation and proposals: [post-pilot synthesis](luna-findings-and-next-iteration-2026-10-24.md).
