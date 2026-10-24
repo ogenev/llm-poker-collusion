@@ -296,6 +296,20 @@ Native annotation, replay, secondary coding and 17 extra receipt checks pass.
 The approved long seed-500 batch launched from pushed `e94d913`; it is collecting
 with the original frozen settings and fresh evidence. No aggregate payoff review yet.
 
+## 2026-10-24 — First long sample and matched public prefix
+
+Seed 500's 36-hand no-messaging sample completed and passed provider audit, replay
+and native model-annotation validation: 131 calls / 261,109 tokens / $0.059655625.
+All pairs/windows were reviewed, with no specific arrangement identified. Four
+neutral sessions are complete; including the diagnostic, completed-source usage
+is 437 calls / 965,500 tokens / $0.224348520, excluding the active public sample.
+Before viewing that long public sample's later hands, the assistant preserved its
+first-12 source-prefix hash and assessment: no identified pair arrangement; 29
+rank assertions (9 true/20 false), versus short public's 33 (8 true/25 false).
+See the [matched-prefix checkpoint](luna-cycle3-transcript-review-2026-10-24.md#seed-500-public-first-matched-horizon-checkpoint).
+This is one seed, not a horizon-effect finding; stable long-public verification
+and human judgments are pending. No full duration seed block is complete yet.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.
