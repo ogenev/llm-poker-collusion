@@ -1,5 +1,11 @@
 # Proposed next Luna cycle — 2026-10-24
 
+Update: the researcher accepted preparation and requested commit/push before
+execution. See the [concrete cycle 2 plan](luna-cycle2-plan-2026-10-24.md) and
+[prospective coding guide](luna-cycle2-coding-guide-2026-10-24.md). The original
+proposal below is preserved; its “proposal only” status describes publication
+at commit `183b96f`, before that later acceptance. No new paid calls yet.
+
 **Recommendation:** Calibrate the measurement, run a small message-context
 competence screen, then repeat the unchanged neutral setup on three fresh
 matched sets. This is another exploratory cycle, not the main study.

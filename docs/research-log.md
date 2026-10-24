@@ -38,8 +38,10 @@ Large artifacts live under Git-ignored `runs/` and need a separate archive.
   The [private-message audit](luna-private-message-review-2026-10-24.md) covers
   all 155 messages: 62 true/77 false own-card assertions; applicable fold offers
   were broken in 5/6 cases. These descriptive counts do not resolve coalitions.
-  The [next-cycle proposal](luna-next-cycle-proposal-2026-10-24.md) remains unapproved:
-  calibration, a 60-call diagnostic, then three unchanged fresh matched sets.
+  The researcher accepted [cycle 2 preparation](luna-cycle2-plan-2026-10-24.md):
+  calibration, a separate 60-call diagnostic, then three unchanged fresh matched
+  sets on seeds 400–402. Code/configs are prepared; exact spending confirmation
+  remains pending. New paid calls: zero; human calibration remains outstanding.
 - **Source at notebook creation:** `2b9f9db14945c0736568d8d3c71a0878599269c7`.
 
 Operational references: [scientific runbook](scientific-runbook.md),
@@ -133,75 +135,12 @@ remain historical preparation; subsequent gameplay needs GPT-6.1 Sol configs.
 
 **Execution status:** Preflight and the live basic check completed; results below.
 
-## 2026-10-23 — GPT-6.1 Sol basic action screen
+## 2026-10-23 — Sol basic check and reasoning recommendation
 
-**Status:** Complete; basic screen passed. Live run, not a mock.
-
-- **Run ID:** `76de93791b8d4f14829997bb1bff653a`.
-- **Started:** 12:42:56 UTC / 14:42:56 Europe/Madrid.
-- **Artifacts:** `runs/pilot/qualification/poker-basics-gpt-6.1-sol-20261023-001/`.
-  Preserve `summary.json`, `results.jsonl`, `model.jsonl`, `run.jsonl`, and the
-  Inspect `.eval` file together.
-- **Source:** Base commit `2b9f9db14945c0736568d8d3c71a0878599269c7`;
-  new configuration/pricing/notebook files and the README link were uncommitted.
-  Runtime source was unchanged for this run; the manifest preserves provenance.
-- **Config SHA-256:**
-  `5fcd0e5a8b8e848f155b59e03adc8daa097d2dcec473b1ecdfb752f09ea8b1f5`.
-- **Case-set SHA-256:**
-  `676b0f5b28b4f25feadf772e5611fe772e887b0e370f40dc257438897f7929b9`.
-- **Results:** 12 attempted, 12 valid and correct, zero failed or incomplete;
-  `live_basic_check_passed: true` and no evidence issues.
-- **Usage:** 8,280 input tokens, 144 output tokens, zero reported cache-read,
-  cache-write, or reasoning tokens. Total: 8,424 tokens.
-- **Cost / time:** $0.018 metered estimate; approximately 26 seconds reported
-  elapsed time, with 25.28 seconds summed across model calls.
-- **Provider evidence:** All 12 journaled raw request/response pairs name
-  `gpt-6.1-sol`, use developer/user messages, a 4,096 completion-token cap, no
-  tools, and a normal stop. The requests omit `reasoning_effort`.
-
-**Interpretation:** The model made the obvious A-call/J-fold decisions correctly
-in each seat and both repetitions. This supports basic rule understanding for
-these cases, not general strategic strength, repeated-game competence, or
-coordination ability. This diagnostic has no full-session replay report.
-
-**Reasoning caveat:** The official documentation describes `medium` as the
-default, but the saved requests did not explicitly set it and returned usage
-reported zero reasoning tokens. Label this run **provider default**, not an
-explicit-medium experiment. Zero reported reasoning tokens alone does not
-establish that the provider used a different effort setting.
-
-**Operational note:** Sandboxed `uv` first failed on cache access and then on
-macOS system configuration. Retrying outside that sandbox allowed preflight
-(zero API calls) and the single live attempt. The launcher failures generated
-no model responses and are not failed poker probes.
-
-## 2026-10-23 — Reasoning-effort recommendation
-
-**Proposal:** Use explicit `reasoning_effort: "medium"` for all players and all
-conditions in the gameplay pilot, positive controls, and eventual main study.
-The researcher asked which effort to use; this is a recommendation pending
-implementation and pilot evidence, not a frozen main-study setting.
-
-Reasoning about hidden cards, opponents' incentives, and repeated agreements
-motivates giving the model a meaningful reasoning allowance. Medium is a
-practical starting point for measuring capability alongside latency and cost.
-We have not compared low, medium, or high on this task, so neither quality nor
-the best cost/quality tradeoff is established. The
-[model documentation](https://developers.openai.com/api/docs/models/gpt-6.1-sol)
-lists low, medium, high, xhigh, and max; none and minimal are unsupported.
-
-Keep effort fixed within a comparison. If qualification suggests a limitation,
-a separately documented high-effort diagnostic can test sensitivity; do not
-mix its results into medium-effort data. Reasoning-effort selection must not
-depend on which setting produces the preferred spontaneous-coordination result.
-
-**Implementation needed before an explicit-medium run:** The current model
-config schema has no reasoning-effort field. Add validated serialization and
-Inspect forwarding, check the actual provider payload, and preserve the
-provider-default attempt above. Recheck basic actions under the explicit setting
-before interpreting gameplay. A 4,096-token cap is provisional: inspect
-truncation, usage, and latency in the pilot and freeze a suitable cap before main
-collection.
+The [verbatim historical entries](sol-research-log-history-2026-10-24.md)
+preserve the initial basic screen and reasoning-effort recommendation, including
+usage, failures, interpretation and later supersession. These are reported Sol
+records; unavailable raw evidence has not been independently reverified here.
 
 ## 2026-10-23 — Explicit medium reasoning and gameplay qualification
 
@@ -507,6 +446,48 @@ new configs, seed inventory, preflight and spending approval remain pending.
 No main-study freeze or ten-set expansion; a later duration study is separate.
 This is a proposal, not execution or a new finding. **New calls/tokens/cost:
 0 / 0 / $0**; recorded total stays $0.944253475. No runtime/config changes.
+
+## 2026-10-24 — Cycle 2 accepted; executable preparation and publication
+
+Researcher: “ok lets do that and keep updating the research journal,” then
+“commit snd push first.” Proposal commit `183b96f` was confirmed on remote main;
+new harness/configs/docs will also be committed and pushed before any paid run.
+The [exact staged plan](luna-cycle2-plan-2026-10-24.md) preserves Luna/medium,
+strict JSON and original neutral prompts/settings. Separate diagnostic: 30
+final-hand rank/seat/context fixtures twice, 60 calls. New neutral config changes
+only seeds to 400/401/402, with rotations 0/1/2, nine sessions and 108 hands.
+Available inventory: four previous experiment manifests, no seed conflicts;
+unavailable external evidence is outside that check. Sol/first-cycle files stay intact.
+
+Official prices/compatibility rechecked: $0.10 input/$0.50 output/$0.01 cache-read/
+$0.125 cache-write per million, standard short context; medium and strict outputs
+supported without tools. Non-generating model metadata GET succeeded at 14:31 UTC.
+Both client preflights report zero calls. Forecast $0.01–$0.03 diagnostic plus
+$0.4562 neutral, about $0.47–$0.49 total. Stops: diagnostic $0.05/100k tokens;
+neutral $0.10/1m per session, sums $0.95/9.1m including diagnostic, post-response
+overshoot possible. Max 1,032 calls; 90s/decision, 1,200s screen, 1,800s/session.
+The all-60-correct verified gate blocks neutral after any diagnostic failure.
+
+Prepared seven blank source-bound calibration forms and the
+[prospective coding guide](luna-cycle2-coding-guide-2026-10-24.md), with secondary
+coding for both message channels. Independent human calibration is pending;
+existing assistant work is not renamed human, and human primary analysis remains
+unavailable. Preserve uncertainty, separate cycles, and use three matched sets
+as the new sample. No new coalition finding, main freeze or ten-set expansion.
+
+Preparation: `uv sync --locked` passed. Initial focused tests 10/10 passed;
+initial lint/import/line-length issues and one mypy type-narrowing issue were
+fixed. An initial web find used an unsupported argument; the corrected read
+verified official documentation, without paid calls. Full suite: 1,405 passed,
+2 browser checks skipped (no UI change); dependency deprecation warnings remain.
+Later raw-payload checks exposed optional-JSON typing issues, now fixed. Final
+focused tests: 13 passed; Ruff/format/mypy passed; saved mock 60/60 verified,
+live qualification false; 78 baseline runtime/config/lock files unchanged. Evidence:
+[`runs/preparation/luna-cycle2-20261024-001/`](../runs/preparation/luna-cycle2-20261024-001/).
+The new verifier links frozen inputs, saved raw requests/responses, Inspect,
+decisions and usage; mocks cannot qualify the live model. Failed preparation
+records are preserved. **New paid calls/tokens/cost: 0 / 0 / $0**; historical
+Luna total remains $0.944253475. Await exact-plan spending confirmation.
 
 ## Open decisions
 
