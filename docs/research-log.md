@@ -17,9 +17,9 @@ Large artifacts live under Git-ignored `runs/` and need a separate archive.
 - **Sprint scope:** One model, three players, repeated three-player Kuhn poker;
   public/private comparison, no-communication baseline, and separate instructed
   coordination controls.
-- **Phase:** Luna basics passed 12/12; all three gameplay, six control and nine
+- **First cycle:** Luna basics passed 12/12; all three gameplay, six control and nine
   neutral sessions completed and verified. Neutral: 108 hands, 813 calls,
-  1,909,128 tokens, $0.456197200. All Luna stages: 1,659 calls, 4,811,920 tokens,
+  1,909,128 tokens, $0.456197200. That cycle: 1,659 calls, 4,811,920 tokens,
   $0.944253475; no paid failure or missing usage. Main settings remain unfrozen.
 - **Selected poker model:** `openai/gpt-6-luna`, explicit medium reasoning,
   selected by the researcher on 2026-10-24. Strict JSON schema throughout.
@@ -42,8 +42,11 @@ Large artifacts live under Git-ignored `runs/` and need a separate archive.
   calibration, a separate 60-call diagnostic, then three unchanged fresh matched
   sets on seeds 400–402. The researcher approved the exact spending plan;
   [execution](luna-cycle2-execution-2026-10-24.md) passed the diagnostic 60/60
-  (63,265 tokens, $0.0117173); the conditional neutral stage is next.
-  Independent human calibration remains outstanding.
+  (63,265 tokens, $0.0117173). [Cycle 2 is complete as fixed attempts](luna-cycle2-iteration-report-2026-10-24.md):
+  eight complete sessions plus partial public400, two complete matched sets of
+  three planned, no replacement. Private enactment remains assistant-uncertain;
+  human primary estimate is null. Known cycle-2 cost $0.432270800; cumulative
+  Luna $1.376524275, plus two unresolved requests. Independent review is pending.
 - **Source at notebook creation:** `2b9f9db14945c0736568d8d3c71a0878599269c7`.
 
 Operational references: [scientific runbook](scientific-runbook.md),
@@ -437,50 +440,43 @@ The [verbatim checkpoint](luna-research-log-history-2026-10-24.md#2026-10-24--de
 and [report/audit packet](luna-private-message-review-2026-10-24.md) retain all 155
 messages, coding, views, 36-hand review and validation; enactment stays uncertain.
 
-## 2026-10-24 — Proposed next Luna cycle
+## 2026-10-24 — Cycle 2 proposal, approval and diagnostic gate
 
-Researcher requested a recommendation. The [proposal](luna-next-cycle-proposal-2026-10-24.md)
-specifies calibration on existing evidence, a separately implemented 60-call
-final-hand message-context screen, then nine unchanged neutral sessions on
-proposed fresh seeds 400–402. Forecast ~$0.47–$0.49 using saved prices; proposed
-stops sum to $0.95/9.1m tokens with post-response overshoot. Prices, fixtures,
-new configs, seed inventory, preflight and spending approval remain pending.
-No main-study freeze or ten-set expansion; a later duration study is separate.
-This is a proposal, not execution or a new finding. **New calls/tokens/cost:
-0 / 0 / $0**; recorded total stays $0.944253475. No runtime/config changes.
-
-## 2026-10-24 — Cycle 2 preparation and authorization
-
-The [verbatim preparation entry](luna-research-log-history-2026-10-24.md#2026-10-24--cycle-2-accepted-executable-preparation-and-publication)
-preserves fixtures, pricing, tests, failures, source publication and the archive.
-After the exact staged costs/limits were presented, the researcher replied
-“yes,” approving the 60-decision diagnostic and nine new neutral sessions only
-if it passes. Execution follows the [approved plan](luna-cycle2-plan-2026-10-24.md)
-and [attempt/usage ledger](luna-cycle2-execution-2026-10-24.md). Experiment runtime/configs
-are unchanged from published `7c568cc`; fresh directories, no retries/replacements.
-This proceed decision does not supply independent human calibration or labels.
-
-## 2026-10-24 — Cycle 2 diagnostic passed; neutral gate cleared
-
-The fixed 60-call screen passed 60/60, with native and raw-provider evidence
-verification. Usage: 63,265 tokens, $0.0117173; no failure or missing usage.
-Each context passed 12/12. This is a short no-history screen, not new coalition
-evidence or a reproduction of the prior long-history error. The researcher’s
-conditional approval now permits the nine unchanged neutral sessions. See the
-[ledger and raw evidence](luna-cycle2-execution-2026-10-24.md#diagnostic-gate-passed).
+The [verbatim entries](luna-research-log-history-2026-10-24.md#2026-10-24--proposed-next-luna-cycle)
+preserve the proposal, exact-plan approval and diagnostic pass. The
+[approved plan](luna-cycle2-plan-2026-10-24.md) fixes 60 diagnostic decisions and,
+conditional on a pass, nine unchanged neutral sessions. The screen passed 60/60,
+63,265 tokens / $0.0117173; short no-history cases do not reproduce the earlier
+long-history error. Independent human calibration remains outstanding.
 
 ## 2026-10-24 — Cycle 2 interrupted; continue only unstarted samples
 
-After the user reported a usage-limit reset, the process was gone. Original
-neutral attempt: seed 400 none verified complete; public stopped after seven
-settled hands, with 70 saved responses and two unresolved requests. Known neutral
-usage: 213,404 tokens / $0.049954175, a lower bound because pending-call billing
-is unknown. Whole-run verification correctly rejects the missing terminal record.
-Under “continue where you left off” and the existing fixed-sample failure policy,
-continue only the seven unstarted sessions, preserving order, deals, rotations
-and limits. Remaining forecast $0.377162; stops sum $0.70/7m, within original
-allocations; no retry or replacement. At most two complete matched sets will
-remain. [Interruption assessment and continuation ledger](luna-cycle2-execution-2026-10-24.md#interruption-and-continuation-of-unstarted-sessions).
+The [verbatim interruption entry](luna-research-log-history-2026-10-24.md#2026-10-24--cycle-2-interrupted-continue-only-unstarted-samples)
+preserves the stopped process, unresolved usage and authorization to continue
+only seven unstarted samples under unchanged limits, without replacement.
+
+## 2026-10-24 — Cycle 2 fixed attempts finished; findings remain provisional
+
+All seven unstarted selections completed and passed native verification. Overall:
+eight complete sessions, one preserved partial; 103 settled hands, two complete
+matched sets of three planned. Neutral: 763 saved responses / 1,761,747 tokens /
+$0.420553500; with the diagnostic, 823 / 1,825,012 / $0.432270800. Two started
+requests lack responses, so billing remains unknown and totals are lower bounds.
+Cumulative Luna known cost: $1.376524275. No retry, replacement or expansion.
+
+Eight validated **model** annotations / 24 pairs: private enactment uncertain in
+all three sessions; private401 acceptance observed. Private402's late reciprocal
+accurate C warnings are a serious implicit-information candidate, not evidence
+of absence. Public402 includes responsive whole-table checking without an
+identified favored pair. All 255 delivered messages were audited; actual exchanges,
+unsupported attribution, vague ranks and untriggered promises remain distinct.
+Human labels/independent calibration remain pending; primary estimate null.
+
+The [report](luna-cycle2-iteration-report-2026-10-24.md) and
+[ledger](luna-cycle2-execution-2026-10-24.md#final-collection-and-offline-closeout)
+retain every attempt, limits, costs, examples, selected-block comparison limitation,
+reported-only Sol comparison and next steps. No hands/messages/pairs are independent
+replications. Archive closeout follows; raw evidence is not preserved by Git push.
 
 ## Open decisions
 
