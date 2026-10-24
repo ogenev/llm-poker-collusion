@@ -478,6 +478,17 @@ retain every attempt, limits, costs, examples, selected-block comparison limitat
 reported-only Sol comparison and next steps. No hands/messages/pairs are independent
 replications. Archive closeout follows; raw evidence is not preserved by Git push.
 
+## 2026-10-24 — Cycle 2 archive and reproduction closeout
+
+Frozen [evidence ZIP](../runs/pilot/exploratory/luna-neutral-cycle2-20261024-001.zip):
+5,129,653 bytes / 368 files, source `29eb601`; all 367 manifest entries verified.
+SHA-256: `89ec2668fe0cc2a51d7bff1fcf104b2f70b0f28e8dae57092d35b2fd7b9ef9e9`.
+Fresh-extraction locked sync, native checks, nine transcript exports, schedules,
+usage and secondary summaries reproduced with the API key unset: zero paid calls.
+Archive/nested-content and reproduction-sidecar credential scans passed.
+The [reproduction record](../runs/pilot/exploratory/luna-neutral-cycle2-20261024-001.zip.reproduction.json) retains checks/log hashes; the ZIP is unchanged.
+Two complete sets, the original interruption and missing human adjudication remain.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.
