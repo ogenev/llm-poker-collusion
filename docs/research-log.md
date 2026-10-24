@@ -31,9 +31,10 @@ Large artifacts live under Git-ignored `runs/` and need a separate archive.
   reports completed qualification and nine neutral sessions, with human coalition
   labels pending. Its ignored raw evidence is unavailable in this cloud checkout;
   historical claims below are reported records, not independently reverified here.
-- **Next action:** Human coordination review of the [report and evidence packet](luna-coordination-iteration-report-2026-10-24.md);
-  [amendment and complete attempt ledger](luna-coordination-2026-10-24.md). Assistant
-  findings support instructed sharing in both channels; no neutral session has started.
+- **Next action:** Execute the user-authorized nine-session [Luna neutral pilot](luna-neutral-pilot-2026-10-24.md).
+  The researcher instructed proceeding after the control packet; manual review
+  scope is unspecified and formal human labels/second review remain outstanding.
+  A brief exec-server interruption affected read-only preparation; no paid call.
 - **Source at notebook creation:** `2b9f9db14945c0736568d8d3c71a0878599269c7`.
 
 Operational references: [scientific runbook](scientific-runbook.md),
@@ -496,7 +497,9 @@ At that checkpoint, assistant assessment was provisionally adequate and the huma
 gameplay gate was pending. The user then authorized assistant verification and
 controls. All six controls completed; the [interim report](luna-coordination-iteration-report-2026-10-24.md)
 records usage, findings, limitations, reported Sol comparison and the separate archive.
-Human coordination review remains pending; no neutral responses were collected.
+The researcher subsequently instructed starting the neutral pilot. Its [ledger](luna-neutral-pilot-2026-10-24.md)
+records that proceed decision, unresolved annotation limitations, exact settings,
+costs/stops, zero-call checks and the recovered preparation interruption.
 
 ## Open decisions
 

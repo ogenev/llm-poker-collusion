@@ -171,7 +171,8 @@ and strict JSON schema**. The [staged Luna plan](docs/luna-replication-plan-2026
 links separate configs and pricing, preserves the original prompts and schedules,
 and records the approved spending plan and review gates. Basics, gameplay and all
 six controls completed and verified; the user authorized assistant gameplay
-verification. Human coordination review remains pending before neutral collection.
+verification. The researcher has now [authorized the neutral pilot](docs/luna-neutral-pilot-2026-10-24.md);
+formal human annotations and independent review remain outstanding.
 See the [Luna qualification record](docs/luna-qualification-2026-10-24.md) and
 [control report and evidence archive](docs/luna-coordination-iteration-report-2026-10-24.md).
 
