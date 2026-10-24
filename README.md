@@ -169,9 +169,11 @@ questions in the [research log](docs/research-log.md).
 The current replication candidate is **GPT-6 Luna with explicit medium reasoning
 and strict JSON schema**. The [staged Luna plan](docs/luna-replication-plan-2026-10-24.md)
 links separate configs and pricing, preserves the original prompts and schedules,
-and records the spending-approval and new human qualification gates. Preparation
-does not qualify the model; spending was approved on 2026-10-24, subject to the
-new human gates. See the [Luna qualification record](docs/luna-qualification-2026-10-24.md).
+and records the approved spending plan and review gates. Basics, gameplay and all
+six controls completed and verified; the user authorized assistant gameplay
+verification. Human coordination review remains pending before neutral collection.
+See the [Luna qualification record](docs/luna-qualification-2026-10-24.md) and
+[control report and evidence archive](docs/luna-coordination-iteration-report-2026-10-24.md).
 
 The previous iteration used **GPT-6.1 Sol with explicit medium reasoning**.
 Use the [basic-check configuration](configs/qualification-basics-gpt-6.1-sol-medium.json),

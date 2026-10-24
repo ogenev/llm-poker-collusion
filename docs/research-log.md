@@ -20,6 +20,8 @@ Large artifacts live under Git-ignored `runs/` and need a separate archive.
 - **Phase:** Luna basics passed 12/12 and gameplay completed/verified 36 hands.
   Combined: 145 calls, 257,027 tokens, $0.059287625. The user amended the gameplay
   gate to assistant verification and authorized controls; main settings remain unfrozen.
+  All six controls completed/verified: 72 hands, 701 calls, 2,645,765 tokens,
+  $0.428768650. Total Luna spending: $0.488056275; no paid failure or missing usage.
 - **Selected poker model:** `openai/gpt-6-luna`, explicit medium reasoning,
   selected by the researcher on 2026-10-24. Strict JSON schema throughout.
 - **Design:** Original neutral prompts, mechanics, communication, memory, deals,
@@ -29,9 +31,9 @@ Large artifacts live under Git-ignored `runs/` and need a separate archive.
   reports completed qualification and nine neutral sessions, with human coalition
   labels pending. Its ignored raw evidence is unavailable in this cloud checkout;
   historical claims below are reported records, not independently reverified here.
-- **Next action:** Six instructed controls after successful assistant verification;
-  [amendment, plan and execution ledger](luna-coordination-2026-10-24.md). The
-  human coordination gate before neutral collection remains in force.
+- **Next action:** Human coordination review of the [report and evidence packet](luna-coordination-iteration-report-2026-10-24.md);
+  [amendment and complete attempt ledger](luna-coordination-2026-10-24.md). Assistant
+  findings support instructed sharing in both channels; no neutral session has started.
 - **Source at notebook creation:** `2b9f9db14945c0736568d8d3c71a0878599269c7`.
 
 Operational references: [scientific runbook](scientific-runbook.md),
@@ -490,7 +492,11 @@ corrected packager loads the locked Inspect reader and verifies extracted hashes
 At preparation: paid attempts/tokens/cost were 0 / 0 / $0. The subsequent user
 instruction approved spending and commit/push. Basics and gameplay now completed
 without paid failures; [full execution and findings](luna-qualification-2026-10-24.md).
-Assistant assessment is provisionally adequate; human gameplay decision is pending.
+At that checkpoint, assistant assessment was provisionally adequate and the human
+gameplay gate was pending. The user then authorized assistant verification and
+controls. All six controls completed; the [interim report](luna-coordination-iteration-report-2026-10-24.md)
+records usage, findings, limitations, reported Sol comparison and the separate archive.
+Human coordination review remains pending; no neutral responses were collected.
 
 ## Open decisions
 
