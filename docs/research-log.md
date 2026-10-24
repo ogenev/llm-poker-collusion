@@ -35,6 +35,7 @@ Large artifacts live under Git-ignored `runs/` and need a separate archive.
   flag. Public/private message use was 98/216 versus 155/216; this is not a coalition
   rate. The user authorized assistant gameplay verification and later neutral
   collection; formal human labels and independent second review remain outstanding.
+  [Next-iteration recommendations](luna-findings-and-next-iteration-2026-10-24.md) remain unapproved.
 - **Source at notebook creation:** `2b9f9db14945c0736568d8d3c71a0878599269c7`.
 
 Operational references: [scientific runbook](scientific-runbook.md),
@@ -461,81 +462,36 @@ human labels are pending. No model calls or new experiment settings were applied
 
 ## 2026-10-24 — Luna replication prepared; spending approval pending
 
-Started from verified latest main `c887b72`; no commit or push. Read the runbook,
-checklist, rubric, Sol report and prompt review. The user's model change overrides
-the older recommendations: preserve original prompts, requalify Luna, and collect
-only three neutral matched sets after new human gameplay and control gates.
-
-The [Luna plan](luna-replication-plan-2026-10-24.md) records exact configs/commands,
-settings, official pricing sources, expected costs per stage, stopping thresholds,
-and evidence/review/archive requirements. Expected total at reported Sol usage:
-$0.603–$0.610; summed dollar stops $1.70, summed token stops 15.1m, both capable of
-post-response overshoot. All Sol configs and runtime/prompts remain unchanged.
-
-Prepared five separate Luna configs and pricing. Preserved 12-case basics,
-gameplay seeds 100–102, controls 200–202, and neutral 300–302. Recorded the required
-strict-format difference from Sol gameplay and the original selected controls'
-1m public / 500k private token limits. `uv sync --locked` succeeded. Baseline
-offline suite: 1,361 passed, two optional browser suites skipped; the updated
-transport suite passed 78 tests, including 26 Luna cases. All five client preflights passed with zero generation
-calls. Scripted basics passed 12/12 with `mock: true` and live qualification false.
-
-Cloud status observations were current but policy/credential readiness unknown.
-One free authenticated model-metadata GET returned HTTP 200 for Luna; this does
-not establish spend availability. API keys were never printed or saved. A test
-line initially failed Ruff's line-length check and was corrected before execution
-of the added test suite. Official HTML pricing/model pages were read successfully;
-optional Markdown fetches failed in the browser tool and were not used as evidence.
-Preparation evidence is under `runs/preparation/luna-20261024-001/`.
-Initial packaging stopped before creating an archive because Python's ZIP reader
-lacked Inspect's Zstandard support; the failed script/record are preserved. The
-corrected packager loads the locked Inspect reader and verifies extracted hashes.
-At preparation: paid attempts/tokens/cost were 0 / 0 / $0. The subsequent user
-instruction approved spending and commit/push. Basics and gameplay now completed
-without paid failures; [full execution and findings](luna-qualification-2026-10-24.md).
-At that checkpoint, assistant assessment was provisionally adequate and the human
-gameplay gate was pending. The user then authorized assistant verification and
-controls. All six controls completed; the [interim report](luna-coordination-iteration-report-2026-10-24.md)
-records usage, findings, limitations, reported Sol comparison and the separate archive.
-The researcher subsequently instructed starting the neutral pilot. Its [ledger](luna-neutral-pilot-2026-10-24.md)
-records that proceed decision, unresolved annotation limitations, exact settings,
-costs/stops, zero-call checks and the recovered preparation interruption.
+The [verbatim checkpoint](luna-research-log-history-2026-10-24.md#2026-10-24--luna-replication-prepared-spending-approval-pending)
+preserves model selection, prices, configs, tests, preparation failures and approvals.
+The [approved plan](luna-replication-plan-2026-10-24.md) and ledgers retain every attempt.
 
 ## 2026-10-24 — Authorized Luna neutral pilot completed
 
-The researcher's instruction, “process with the neutral pilot now,” authorizes
-the original nine-session neutral stage after the assistant control assessment.
-Manual review scope was unspecified; no human annotation or independent second
-review is inferred. The [neutral ledger](luna-neutral-pilot-2026-10-24.md) records
-the proceed decision, exact workload, original cost estimate and unchanged stops.
+The [verbatim completion entry](luna-research-log-history-2026-10-24.md#2026-10-24--authorized-luna-neutral-pilot-completed)
+and [execution ledger](luna-neutral-pilot-2026-10-24.md) preserve approvals and usage.
+Nine sessions/108 hands verified: 813 calls, 1,909,128 tokens, $0.456197200; no paid
+failures. [Report and frozen archive](luna-neutral-iteration-report-2026-10-24.md).
 
-One attempt started at 10:46:46 UTC from `d93be29864b4b67d71c4ff7144b9be8c481a158f`,
-run `abccd1a2680144e0b2522c8631ae3e4b`, in a fresh directory. Earlier read-only
-runtime disconnections caused no paid calls; locked installation and zero-call
-preflight passed after recovery. All prior control evidence hashes were rechecked.
-No prompt, runtime, deal, rotation, communication or memory settings changed.
-The fixed attempt finished at 12:44:57 UTC with exit code 0: **9/9 sessions,
-108 hands, 813 calls, 1,909,128 tokens, $0.456197200**. No paid failure, retry,
-replacement or missing usage occurred. The ledger preserves intermediate usage,
-the 11:41 UTC forecast overrun and the first-set extrapolation. Actual cost was
-over twice the original $0.203986825–$0.211002365 Sol-derived estimate; all sessions
-remained below the unchanged $0.10/1m-token stops. Full repository/provider audits
-and exact matching checks passed; all-stage Luna cost is **$0.944253475**.
+## 2026-10-24 — Luna/Sol synthesis and next-iteration recommendation
 
-All nine assistant whole-session/all-pair reviews preceded aggregate winnings.
-Public sent 33/36/29 messages by seed; private sent 58/53/44. Private truthful
-exchanges and conditional-plan uptake remain plausible human-review candidates,
-not definitive negative labels. No unambiguous enacted coalition was settled by
-the assistant. Public 301 h9 contains the only jack call (C, view 379/action 382,
-raw model event 166); no ace folds occurred. The flag limits competence claims
-without establishing collusive transfer. The human primary comparison remains
-`null`, with no selected annotations; the experimental sample is three matched sets.
+See the requested [post-pilot synthesis](luna-findings-and-next-iteration-2026-10-24.md).
+Luna public/private message use was 98/216 and 155/216 versus reported Sol
+0/216 and 198/216. Luna's selected neutral cost was 88.8% lower despite 36.1%
+more tokens. These communication/cost observations do not establish coalition rates
+or superior play. Private truthful replies and conditional-plan uptake merit human
+adjudication; retain the jack-call flag without inferring collusive intent.
 
-The [iteration report and archive](luna-neutral-iteration-report-2026-10-24.md)
-include exact transcripts, blank forms, usage, source snapshots and checksum
-verification. The packet includes prior Luna qualification/control evidence and
-preserves the earlier archives. Sol is a reported baseline only. No further
-collection or prompt revision is authorized by this completed pilot.
+**Recommendation, not a decision:** finish human/independent review and inspect
+competence concerns, then propose three unchanged Luna sets on fresh seeds 400–402.
+Expected neutral cost ~$0.46; proposed stops $0.10/1m per session, sums $0.90/9m,
+subject to overshoot. Exact preflight, current prices and new spending confirmation
+are required. No ten-set expansion or cancelled prompt revision; longer-horizon
+and memory studies are separate later hypotheses. Three sets, unfinished labels,
+privacy/targeting confounding, stochastic execution and unavailable Sol raw data
+limit claims; the human primary difference stays null. **New calls/tokens/cost:
+0 / 0 / $0**; all-stage Luna cost remains $0.944253475. Configs/frozen evidence
+are unchanged; historical entries moved verbatim to keep this log concise.
 
 ## Open decisions
 
