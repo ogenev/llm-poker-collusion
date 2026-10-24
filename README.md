@@ -171,8 +171,12 @@ and strict JSON schema**. The [staged Luna plan](docs/luna-replication-plan-2026
 links separate configs and pricing, preserves the original prompts and schedules,
 and records the approved spending plan and review gates. Basics, gameplay and all
 six controls completed and verified; the user authorized assistant gameplay
-verification. The researcher has now [authorized the neutral pilot](docs/luna-neutral-pilot-2026-10-24.md);
-formal human annotations and independent review remain outstanding.
+verification. The authorized neutral pilot also completed: **nine sessions,
+three matched sets, 108 hands**, with all evidence checks passing. The
+[Luna iteration report and downloadable evidence](docs/luna-neutral-iteration-report-2026-10-24.md)
+cover public/private message use, possible private coordination, the reported Sol
+comparison and $0.456197200 neutral cost. Formal human annotations and independent
+review remain outstanding; no coalition-rate difference is estimated.
 See the [Luna qualification record](docs/luna-qualification-2026-10-24.md) and
 [control report and evidence archive](docs/luna-coordination-iteration-report-2026-10-24.md).
 

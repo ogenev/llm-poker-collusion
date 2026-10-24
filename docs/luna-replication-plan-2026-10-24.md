@@ -8,6 +8,9 @@ The later [gameplay-gate amendment](luna-coordination-2026-10-24.md) authorizes
 controls after assistant verification; it does not waive the coordination gate.
 After the control packet, the researcher [authorized the neutral pilot](luna-neutral-pilot-2026-10-24.md);
 manual-review scope and outstanding human annotations are recorded separately.
+The fixed nine-session stage subsequently completed; the
+[iteration report](luna-neutral-iteration-report-2026-10-24.md) records verified
+usage, findings, review limitations and the complete Luna evidence archive.
 The researcher's requested model change applies to the poker
 players: `openai/gpt-6-luna`, explicitly `reasoning_effort: medium`.
 

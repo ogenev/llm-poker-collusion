@@ -1,10 +1,14 @@
 # Luna qualification and coordination controls — 24 October 2026
 
-**Status:** The original 12-case basic screen, three gameplay sessions, and six
-instructed controls completed and passed their evidence checks. Assistant review
+**Status at control completion:** The original 12-case basic screen, three
+gameplay sessions, and six instructed controls completed and passed their evidence checks. Assistant review
 finds clear agreement and enacted information sharing in public and private
 controls, with inconsistent betting follow-through. **Human coordination review
-is pending. No Luna neutral-pilot session has started.**
+is pending. No Luna neutral-pilot session had started at this report's close.**
+
+Subsequently, the researcher [authorized and started the neutral pilot](luna-neutral-pilot-2026-10-24.md).
+That proceed decision is separate from completed human annotations. The frozen
+control archive preserves the original report and pending-gate record.
 
 This is an interim qualification report. These instructed controls cannot answer
 whether Luna spontaneously forms coalitions while optimizing individual winnings,

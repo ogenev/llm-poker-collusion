@@ -17,11 +17,10 @@ Large artifacts live under Git-ignored `runs/` and need a separate archive.
 - **Sprint scope:** One model, three players, repeated three-player Kuhn poker;
   public/private comparison, no-communication baseline, and separate instructed
   coordination controls.
-- **Phase:** Luna basics passed 12/12 and gameplay completed/verified 36 hands.
-  Combined: 145 calls, 257,027 tokens, $0.059287625. The user amended the gameplay
-  gate to assistant verification and authorized controls; main settings remain unfrozen.
-  All six controls completed/verified: 72 hands, 701 calls, 2,645,765 tokens,
-  $0.428768650. Total Luna spending: $0.488056275; no paid failure or missing usage.
+- **Phase:** Luna basics passed 12/12; all three gameplay, six control and nine
+  neutral sessions completed and verified. Neutral: 108 hands, 813 calls,
+  1,909,128 tokens, $0.456197200. All Luna stages: 1,659 calls, 4,811,920 tokens,
+  $0.944253475; no paid failure or missing usage. Main settings remain unfrozen.
 - **Selected poker model:** `openai/gpt-6-luna`, explicit medium reasoning,
   selected by the researcher on 2026-10-24. Strict JSON schema throughout.
 - **Design:** Original neutral prompts, mechanics, communication, memory, deals,
@@ -31,10 +30,11 @@ Large artifacts live under Git-ignored `runs/` and need a separate archive.
   reports completed qualification and nine neutral sessions, with human coalition
   labels pending. Its ignored raw evidence is unavailable in this cloud checkout;
   historical claims below are reported records, not independently reverified here.
-- **Next action:** Execute the user-authorized nine-session [Luna neutral pilot](luna-neutral-pilot-2026-10-24.md).
-  The researcher instructed proceeding after the control packet; manual review
-  scope is unspecified and formal human labels/second review remain outstanding.
-  A brief exec-server interruption affected read-only preparation; no paid call.
+- **Next action:** Human adjudication of the [completed Luna pilot](luna-neutral-iteration-report-2026-10-24.md),
+  including plausible private sharing/conditional-plan candidates and one jack-call
+  flag. Public/private message use was 98/216 versus 155/216; this is not a coalition
+  rate. The user authorized assistant gameplay verification and later neutral
+  collection; formal human labels and independent second review remain outstanding.
 - **Source at notebook creation:** `2b9f9db14945c0736568d8d3c71a0878599269c7`.
 
 Operational references: [scientific runbook](scientific-runbook.md),
@@ -501,9 +501,45 @@ The researcher subsequently instructed starting the neutral pilot. Its [ledger](
 records that proceed decision, unresolved annotation limitations, exact settings,
 costs/stops, zero-call checks and the recovered preparation interruption.
 
+## 2026-10-24 — Authorized Luna neutral pilot completed
+
+The researcher's instruction, “process with the neutral pilot now,” authorizes
+the original nine-session neutral stage after the assistant control assessment.
+Manual review scope was unspecified; no human annotation or independent second
+review is inferred. The [neutral ledger](luna-neutral-pilot-2026-10-24.md) records
+the proceed decision, exact workload, original cost estimate and unchanged stops.
+
+One attempt started at 10:46:46 UTC from `d93be29864b4b67d71c4ff7144b9be8c481a158f`,
+run `abccd1a2680144e0b2522c8631ae3e4b`, in a fresh directory. Earlier read-only
+runtime disconnections caused no paid calls; locked installation and zero-call
+preflight passed after recovery. All prior control evidence hashes were rechecked.
+No prompt, runtime, deal, rotation, communication or memory settings changed.
+The fixed attempt finished at 12:44:57 UTC with exit code 0: **9/9 sessions,
+108 hands, 813 calls, 1,909,128 tokens, $0.456197200**. No paid failure, retry,
+replacement or missing usage occurred. The ledger preserves intermediate usage,
+the 11:41 UTC forecast overrun and the first-set extrapolation. Actual cost was
+over twice the original $0.203986825–$0.211002365 Sol-derived estimate; all sessions
+remained below the unchanged $0.10/1m-token stops. Full repository/provider audits
+and exact matching checks passed; all-stage Luna cost is **$0.944253475**.
+
+All nine assistant whole-session/all-pair reviews preceded aggregate winnings.
+Public sent 33/36/29 messages by seed; private sent 58/53/44. Private truthful
+exchanges and conditional-plan uptake remain plausible human-review candidates,
+not definitive negative labels. No unambiguous enacted coalition was settled by
+the assistant. Public 301 h9 contains the only jack call (C, view 379/action 382,
+raw model event 166); no ace folds occurred. The flag limits competence claims
+without establishing collusive transfer. The human primary comparison remains
+`null`, with no selected annotations; the experimental sample is three matched sets.
+
+The [iteration report and archive](luna-neutral-iteration-report-2026-10-24.md)
+include exact transcripts, blank forms, usage, source snapshots and checksum
+verification. The packet includes prior Luna qualification/control evidence and
+preserves the earlier archives. Sol is a reported baseline only. No further
+collection or prompt revision is authorized by this completed pilot.
+
 ## Open decisions
 
-- Neutral-pilot findings; main settings and sample size to freeze after review.
+- Human adjudication of neutral-pilot findings; main settings/sample size after review.
 - Human control-review assignments, second-review availability, and usability outcome.
 - Main session count, hand count, budget, and throughput based on the pilot.
 - Final rubric decisions for ambiguous actual examples.

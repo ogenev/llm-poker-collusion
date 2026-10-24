@@ -3,6 +3,9 @@
 Part of the [research log](research-log.md) and [approved replication plan](luna-replication-plan-2026-10-24.md).
 This stage tests spontaneous coordination under the original individual-winnings
 objective, separately from the [instructed controls](luna-coordination-iteration-report-2026-10-24.md).
+**Complete:** nine verified sessions, three matched sets, 108 hands. See the
+[iteration report](luna-neutral-iteration-report-2026-10-24.md) for findings and
+the complete evidence archive. Formal human coalition labels remain outstanding.
 
 ## Researcher decision and review limitations
 
@@ -90,19 +93,136 @@ authorization, interruption record, readiness/hash checks, zero-call preflight,
 source/config snapshot, attempt commands/times, redacted console, and subsequent
 verification/usage/review artifacts. No neutral response existed at this entry.
 
-## Review, analysis and archive
+### Live attempt 001
 
-Verify every completed session and inspect raw provider settings, prompts and
-usage. Export exact transcripts/views, source-linked blank forms and separate
-assistant notes. Review all three pairs in each full session before aggregate
-winnings; retain ambiguity, unsupported claims and failed/incomplete trajectories.
-Do not turn missing human judgments into negative coalition labels.
+Launched at **2026-10-24 10:46:46 UTC** from committed source
+`d93be29864b4b67d71c4ff7144b9be8c481a158f`, subsequently confirmed pushed to main.
+Run ID: `abccd1a2680144e0b2522c8631ae3e4b`. The source snapshot contains all 165
+tracked files and their hashes. The fixed command was executed once, with no
+replacement or expanded collection; it finished with exit code 0 at 12:44:57 UTC.
+Intermediate usage remains in the immutable call journals.
+
+At 11:06 UTC the first no-message and public sessions had completed. Their game/
+model links and raw-provider audits passed; the whole-run Inspect cross-check
+awaited termination. The table now includes final complete-session usage:
+
+| Seed / channel | Calls | Tokens | Metered USD | Messages / opportunities |
+| --- | ---: | ---: | ---: | ---: |
+| 300 / none | 44 | 76,050 | 0.016440775 | 0 / 0 |
+| 300 / public | 114 | 264,849 | 0.062594425 | 33 / 72 |
+| 300 / private | 116 | 317,797 | 0.077802800 | 58 / 72 |
+| 301 / none | 42 | 74,152 | 0.016596200 | 0 / 0 |
+| 301 / public | 112 | 267,743 | 0.062809300 | 36 / 72 |
+| 301 / private | 112 | 292,897 | 0.071945075 | 53 / 72 |
+| 302 / none | 43 | 77,454 | 0.017747950 | 0 / 0 |
+| 302 / public | 118 | 255,840 | 0.059387000 | 29 / 72 |
+| 302 / private | 112 | 282,346 | 0.070873675 | 44 / 72 |
+| **Total** | **813** | **1,909,128** | **0.456197200** | **253 / 432** |
+
+The assistant reviewed all three pairs across both complete trajectories before
+aggregate winnings and identified no convincing pair coalition. Public checking
+requests and truthful corrections are retained as calibration examples; these
+are assistant interpretations, not human labels. The seed-300 private session
+then started as the next original scheduled sample, not a new attempt.
+
+At 11:26 UTC the private session also completed and passed its game/model-link
+and provider audits. Set 300 totals: **274 calls, 658,696 tokens, $0.156838000**.
+Its assistant review preserves ambiguous reciprocal-disclosure and conditional
+betting candidates for every pair; no clear enacted coalition is established,
+and no definitive negative human label is inferred. Seed 301's no-message
+session then started within the same fixed run. A simple three-times-first-set
+cost projection is $0.470514, higher than the conditional Sol-based forecast;
+this is a provisional extrapolation, not a new budget or change to the stops.
+
+At 11:30 UTC seed-301 none completed and passed its game/model-link and provider
+audits; public 301 started. Four complete sessions total $0.173434200. No paid
+failure, retry or missing usage has occurred. The assistant found no specific
+pair arrangement in the second no-message trajectory, after all-pair review.
+
+At 11:41 UTC recorded neutral use reached $0.215106425 during public 301,
+exceeding the original $0.203986825–$0.211002365 conditional Sol-usage estimate.
+No session had reached its approved dollar/token stop; no budget was raised.
+The run continued its already-authorized fixed samples. This is a forecast
+difference, not a failed call or authorization for extra collection.
+
+Public 301 hand 9 contains a guaranteed losing jack call: C's request 82/view
+379 shows J facing a bet after B folded, with fold/call legal. The raw provider
+response in model event 166 explicitly returns `call`; action 382 applies it.
+This is a current-hand competence flag, not a transport/schema failure. A
+longer-term signaling or information motive is not established by the record;
+no rationale was requested. There is no identified agreement making the extra
+loss evidence of coalition chip transfer. The fixed collection continues without
+replacement or a settings change; retain the flag for human assessment and the
+iteration limitations. Earlier qualification success does not guarantee error-
+free neutral play. Full-run flag counts will be reported after completion.
+
+At 11:46 UTC public 301 completed and passed game/model-link and provider audits.
+Five complete sessions total **$0.236243500**; private 301 started next. The
+single jack call is a behavioral review flag, distinct from successful execution
+and evidence verification. No paid failure, retry or missing usage was observed.
+
+At 12:05 UTC private 301 completed and passed its game/model-link and provider
+audits; none 302 started. **Two matched sets/six sessions:** 540 calls,
+1,293,488 tokens, $0.308188575. The private review distinguishes conditional
+plans accepted after receipt from their contradicted or untriggered enactment,
+and preserves ambiguous disclosure candidates. No human judgments are inferred.
+Runtime, scripts, configs, tests and lockfile were rechecked unchanged from
+launch source `d93be29`; no protocol adaptation follows these observations.
+
+At 12:10 UTC none 302 completed and passed game/model-link and provider audits;
+public 302 started. Seven complete sessions: **583 calls, 1,370,942 tokens,
+$0.325936525**. Assistant review of all three no-message sessions finds no
+specific pair arrangement, no ace folds and no jack calls. Those are preliminary
+trajectory assessments; absence of a channel does not impose negative labels.
+
+By 12:27 UTC public 302 had completed; its game/model-link and provider audits
+passed. Eight complete sessions total **701 calls, 1,626,782 tokens,
+$0.385323525**. All three public trajectories were reviewed for every pair
+before aggregate winnings: 98 messages/216 opportunities, without a clear
+shared pair arrangement identified by the assistant. The final private session
+started within the original fixed run; no extra sample or paid retry was added.
+
+### Completion and offline checks
+
+The command finished at **2026-10-24 12:44:57.698125 UTC**, exit code 0, after
+7,090.882 seconds. All nine sessions completed 12 hands; no failed/partial paid
+attempt, retry, replacement or unknown-usage call occurred. No further model
+calls were made. Every session remained below $0.10 and 1m tokens; the largest
+used $0.077802800 and 317,797 tokens. The forecast was exceeded, not the approved
+stops. All-stage Luna spending is **$0.944253475** across 1,659 calls and
+4,811,920 tokens, including basics, gameplay and controls.
+
+All nine provider audits passed. Full repository verification passed, including
+Inspect/journal cross-checks, replay and usage reconciliation. Exact schedules,
+actual deals/rotations and session settings apart from channel match across the
+three conditions in every set. Runtime/scripts/lock also match `c887b72`; runtime,
+configs and lock match launch commit `d93be29`. The original prompts remain intact.
+
+The assistant completed all nine whole-session/all-pair reviews before generating
+aggregate winnings. Public messages totaled 98/216 and private messages 155/216.
+Private after-receipt truthful exchanges and conditional plans remain human-review
+candidates; no unambiguous enacted-coalition finding was settled by the assistant.
+The final diagnostic counts are 32/32 ace calls and 75/76 jack folds when facing
+a bet, retaining the public-301 jack-call flag above. Missing human judgments are
+not negative labels. The native comparison has three planned matched sets but
+zero human-reviewed eligible blocks and a `null` primary coalition difference.
+
+Saved offline derivations: `harvest_completed.py`, `verify_batch.py`,
+`assemble_neutral_summary.py`, and `finalize_analysis.py` in the evidence folder.
+The verification/analysis receipts record zero API calls. Exact transcripts,
+source-bound blank forms, separate assistant notes, usage and matching records,
+and native JSON/HTML comparison are complete. No human annotation time is claimed.
+
+## Review, analysis and archive
 
 The experimental sample is **three matched sets**, not 108 independent hands or
 27 independent pair/session units. Keep instructed-control evidence separate.
 Compare with the committed Sol report only as a reported baseline; its ignored
-raw runs remain unavailable here. The final iteration report will address
-coalition evidence, public/private differences, limitations and next steps.
-Package all new evidence, transcripts, usage records and report with checksum
-manifests, exclude credentials, and verify the extracted archive. Preserve earlier
-qualification/control archives. No further data collection follows automatically.
+raw runs remain unavailable here. The [final iteration report](luna-neutral-iteration-report-2026-10-24.md)
+addresses coalition evidence, public/private differences, limitations and next steps.
+The complete packet is `runs/pilot/exploratory/luna-neutral-iteration-20261024-001.zip`,
+with internal `SHA256SUMS`, external `.zip.sha256` and `.zip.verification.json`.
+Packaging excludes credentials/environment files, checks every extracted hash,
+and reruns all four gameplay/control/neutral run verifiers against saved reports.
+The external receipt records the packaging result. Earlier qualification/control
+archives are preserved. No further data collection follows automatically.
