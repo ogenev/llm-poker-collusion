@@ -166,3 +166,11 @@ the diagnostic links fixtures, calls, strict schema/medium settings, raw payload
 Inspect records, decisions, pricing and summary usage; synthetic runs remain
 marked mock. Partial or corrupt evidence cannot pass. Keep failed preparation
 logs, all future paid attempts and any later plan amendment.
+
+Source/configs were committed and pushed to main as `6e6e1ab` before any paid
+execution. The [preparation archive](../runs/preparation/luna-cycle2-20261024-001.zip)
+contains 42 files (776,923 bytes), including that source snapshot, fixtures,
+blank calibration forms, tests and mock evidence. Its internal checksum manifest
+and nested credential scan passed. SHA-256:
+`2a1e7e46a7221969942b54b451aba63052b0f90dfc86a0873422566b7bfd0de6`.
+This closeout note follows the frozen archive; it creates no new model response.

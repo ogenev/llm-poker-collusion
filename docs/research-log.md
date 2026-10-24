@@ -450,8 +450,10 @@ This is a proposal, not execution or a new finding. **New calls/tokens/cost:
 ## 2026-10-24 — Cycle 2 accepted; executable preparation and publication
 
 Researcher: “ok lets do that and keep updating the research journal,” then
-“commit snd push first.” Proposal commit `183b96f` was confirmed on remote main;
-new harness/configs/docs will also be committed and pushed before any paid run.
+“commit snd push first.” Commit `6e6e1ab` publishes the tested harness/configs/docs
+on remote main. [Preparation archive](../runs/preparation/luna-cycle2-20261024-001.zip)
+contains 42 files; its [SHA-256/checksums](../runs/preparation/luna-cycle2-20261024-001.zip.sha256)
+and nested credential scan passed. This is preparation evidence, not new paid data.
 The [exact staged plan](luna-cycle2-plan-2026-10-24.md) preserves Luna/medium,
 strict JSON and original neutral prompts/settings. Separate diagnostic: 30
 final-hand rank/seat/context fixtures twice, 60 calls. New neutral config changes
