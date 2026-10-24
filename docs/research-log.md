@@ -41,7 +41,8 @@ Large artifacts live under Git-ignored `runs/` and need a separate archive.
   The researcher accepted [cycle 2 preparation](luna-cycle2-plan-2026-10-24.md):
   calibration, a separate 60-call diagnostic, then three unchanged fresh matched
   sets on seeds 400–402. The researcher approved the exact spending plan;
-  [execution](luna-cycle2-execution-2026-10-24.md) is starting with the diagnostic.
+  [execution](luna-cycle2-execution-2026-10-24.md) passed the diagnostic 60/60
+  (63,265 tokens, $0.0117173); the conditional neutral stage is next.
   Independent human calibration remains outstanding.
 - **Source at notebook creation:** `2b9f9db14945c0736568d8d3c71a0878599269c7`.
 
@@ -455,9 +456,18 @@ preserves fixtures, pricing, tests, failures, source publication and the archive
 After the exact staged costs/limits were presented, the researcher replied
 “yes,” approving the 60-decision diagnostic and nine new neutral sessions only
 if it passes. Execution follows the [approved plan](luna-cycle2-plan-2026-10-24.md)
-and [attempt/usage ledger](luna-cycle2-execution-2026-10-24.md). Runtime/source
-is unchanged from published `7c568cc`; fresh directories, no retries/replacements.
+and [attempt/usage ledger](luna-cycle2-execution-2026-10-24.md). Experiment runtime/configs
+are unchanged from published `7c568cc`; fresh directories, no retries/replacements.
 This proceed decision does not supply independent human calibration or labels.
+
+## 2026-10-24 — Cycle 2 diagnostic passed; neutral gate cleared
+
+The fixed 60-call screen passed 60/60, with native and raw-provider evidence
+verification. Usage: 63,265 tokens, $0.0117173; no failure or missing usage.
+Each context passed 12/12. This is a short no-history screen, not new coalition
+evidence or a reproduction of the prior long-history error. The researcher’s
+conditional approval now permits the nine unchanged neutral sessions. See the
+[ledger and raw evidence](luna-cycle2-execution-2026-10-24.md#diagnostic-gate-passed).
 
 ## Open decisions
 

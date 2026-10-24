@@ -24,11 +24,31 @@ during same-day preparation; no settings or rate changes were introduced.
 
 | Stage / fresh directory | Status | Calls / tokens / metered cost |
 | --- | --- | --- |
-| `runs/pilot/qualification/luna-context-20261024-001` | Approved; launch pending | Pending |
-| `runs/pilot/exploratory/luna-neutral-cycle2-20261024-001` | Blocked until diagnostic passes | 0 / 0 / $0 |
+| `runs/pilot/qualification/luna-context-20261024-001` | Passed 60/60; started 14:57:36 UTC, source `f70267c` | 60 / 63,265 / $0.0117173 |
+| `runs/pilot/exploratory/luna-neutral-cycle2-20261024-001` | Diagnostic gate passed; launch pending | Pending |
 
 All attempts, partial records and failures will be preserved. No human labels
 or independent calibration results are inferred from approval. Review remains
 assistant-descriptive unless genuine human annotations are supplied. The new
 experimental sample is three matched sets; keep this cycle separate from the
 first pilot and from the reported Sol baseline.
+
+First repetition completed 30/30 correctly. At the interim check, 33/33 finished
+responses were correct, with complete usage and no interruption. This is not the
+final gate result; neutral remains blocked pending all 60 and offline verification.
+
+## Diagnostic gate passed
+
+All 60 fixed decisions passed, 12/12 in each context, with no failed, invalid,
+interrupted, retried or missing-usage response. Run ID:
+`a726c647cea544d7ac1c3d1effda6228`. Native diagnostic verification and the saved
+Luna provider audit both passed, including raw request/prompt/schema/medium
+settings, response identity, standard service tier, cost and Inspect linkage.
+Usage: 49,788 input + 13,477 output = 63,265 tokens; 11,791 reasoning tokens are
+already inside output. No cached input. Metered cost $0.0117173.
+
+[Evidence and full decision transcript](../runs/pilot/qualification/luna-context-20261024-001-evidence/review.md)
+retain every prompt, response and usage record. This short no-history screen
+does not reproduce the first pilot's long-context jack error or estimate its
+rare-error probability. It adds no coalition observation and changes no prior
+labels. The conditional neutral stage is now authorized without another prompt.
