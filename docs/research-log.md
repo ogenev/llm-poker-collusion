@@ -18,8 +18,8 @@ Large artifacts live under Git-ignored `runs/` and need a separate archive.
   public/private comparison, no-communication baseline, and separate instructed
   coordination controls.
 - **Phase:** Luna basics passed 12/12 and gameplay completed/verified 36 hands.
-  Combined: 145 calls, 257,027 tokens, $0.059287625. Paused for the new human
-  gameplay assessment before controls; main settings remain unfrozen.
+  Combined: 145 calls, 257,027 tokens, $0.059287625. The user amended the gameplay
+  gate to assistant verification and authorized controls; main settings remain unfrozen.
 - **Selected poker model:** `openai/gpt-6-luna`, explicit medium reasoning,
   selected by the researcher on 2026-10-24. Strict JSON schema throughout.
 - **Design:** Original neutral prompts, mechanics, communication, memory, deals,
@@ -29,9 +29,9 @@ Large artifacts live under Git-ignored `runs/` and need a separate archive.
   reports completed qualification and nine neutral sessions, with human coalition
   labels pending. Its ignored raw evidence is unavailable in this cloud checkout;
   historical claims below are reported records, not independently reverified here.
-- **Next action:** Human gameplay review, then the remaining [approved plan](luna-replication-plan-2026-10-24.md)
-  subject to its gates. The user authorized committing and pushing to main;
-  [attempts, costs, findings and review packet](luna-qualification-2026-10-24.md).
+- **Next action:** Six instructed controls after successful assistant verification;
+  [amendment, plan and execution ledger](luna-coordination-2026-10-24.md). The
+  human coordination gate before neutral collection remains in force.
 - **Source at notebook creation:** `2b9f9db14945c0736568d8d3c71a0878599269c7`.
 
 Operational references: [scientific runbook](scientific-runbook.md),

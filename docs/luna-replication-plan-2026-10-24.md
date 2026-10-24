@@ -4,6 +4,8 @@ Prepared 24 October 2026 (Europe/Madrid). This is an exploratory replication of
 the original iteration, not a frozen main study. The researcher approved this plan
 and authorized committing, pushing to main, and starting on 24 October 2026.
 The [qualification record](luna-qualification-2026-10-24.md) tracks execution and gates.
+The later [gameplay-gate amendment](luna-coordination-2026-10-24.md) authorizes
+controls after assistant verification; it does not waive the coordination gate.
 The researcher's requested model change applies to the poker
 players: `openai/gpt-6-luna`, explicitly `reasoning_effort: medium`.
 

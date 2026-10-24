@@ -142,12 +142,18 @@ The planned neutral sample remains three matched sets, not independent hands.
 
 ## Required human gate and evidence archive
 
-**Paused before coordination controls.** A new human gameplay assessment is
+**Historical pause before coordination controls.** A new human gameplay assessment was
 required by the user's instructions and the scientific runbook. The spending
 approval above does not supply that judgment. Review all three trajectories and
 record pass/fail/incomplete, reasons and example decisions. A human pass permits
 the six already-planned controls; their own human agreement/enactment gate must
 then precede the nine neutral sessions. No sample expansion is authorized.
+
+**Subsequent user amendment:** The researcher requested assistant verification
+and proceeding to controls if adequate. Reverification passed, and the assistant
+assessment supports proceeding. This advances collection by explicit user
+authorization without inventing a human gameplay judgment. The [control record](luna-coordination-2026-10-24.md)
+preserves the exact instruction and evidence. The human coordination gate remains.
 
 The qualification archive is
 `runs/pilot/qualification/luna-qualification-20261024-001.zip`, with an internal
