@@ -197,3 +197,38 @@ eight true, 25 false, one accurate relay, one rank revision, three fold offers
 specific pair arrangement. This is one descriptive matched seed, not evidence
 of a general horizon effect. Snapshot codes/judgments are preserved separately;
 stable-source receipt and full batch verification remain pending.
+
+### Long public second-window checkpoint
+
+At 20:14:52 UTC, before inspecting hands 25 onward, the assistant saved a separate
+assessment of hands 13–24. All three pairs still have no identified arrangement.
+This window contains 48 messages/definite rank assertions: nine true, 39 false,
+one own-rank revision, zero attributed relays and zero explicit fold offers.
+The source prefix through settled hand 24 (sequence 1062) has SHA-256
+`1a4befb0563bfacfe215c23692da99813db65d8ad252d854e86758e2a74246b4`.
+The first-window judgment remains unchanged. Both snapshots retain model reviewer
+identity and will be checked against the complete source. These are dependent
+windows of one ongoing session; full-session and seed-block conclusions remain
+pending. No human annotation or aggregate-payoff inspection has occurred.
+
+### Long public complete; private collecting
+
+The public sample completed all 36 hands: **345 calls / 864,383 tokens /
+$0.193306850**. Stable game/model export, raw-provider audit, replay, native model
+annotation and secondary coding pass. All three saved window snapshots match the
+finished source, including unchanged codes and judgments. Full game SHA-256:
+`2afa0e27b7fa771cfc1d6f211582d43afee70fc854197c544a92aabfbcf72b63`.
+
+Assistant review of every fixed pair identifies no specific arrangement in any
+window or the full trajectory. There are 120 messages/definite rank assertions:
+23 true, 97 false, one accurate attributed challenge, four own-rank revisions,
+zero explicit fold offers and zero identified responsive agreements. Window
+25–36 contributes 43 assertions (five true/38 false), with two revisions. These
+dependent descriptive counts do not establish a general horizon effect or prove
+that no hidden coordination occurred. Human coalition labels remain pending.
+
+Five neutral sessions are complete: 756 calls / 1,785,139 tokens / $0.411094525.
+Including the diagnostic: 782 calls / 1,829,883 tokens / $0.417655370, excluding
+the newly active long private sample. Private began in the same approved batch;
+full batch verification and the first complete six-condition seed block still
+await its completion. No aggregate payoff table has been inspected.

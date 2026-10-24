@@ -51,7 +51,8 @@ Large artifacts live under Git-ignored `runs/` and need a separate archive.
   review is pending.
 - **Cycle 3:** The approved [duration study](luna-cycle3-plan-2026-10-24.md) is
   collecting. Its diagnostic passed 26/26 and seed 500's three short sessions
-  verified: 36 hands / 280 calls / $0.158132050. The long seed-500 batch is active;
+  verified: 36 hands / 280 calls / $0.158132050. Long seed-500 none/public are also
+  complete; its private sample is active. Five neutral sessions have completed;
   zero full six-condition blocks are complete at this checkpoint. The
   [transcript review](luna-cycle3-transcript-review-2026-10-24.md) retains private
   narrow acceptance and table-wide coordination, with pair enactment uncertain.
@@ -309,6 +310,23 @@ rank assertions (9 true/20 false), versus short public's 33 (8 true/25 false).
 See the [matched-prefix checkpoint](luna-cycle3-transcript-review-2026-10-24.md#seed-500-public-first-matched-horizon-checkpoint).
 This is one seed, not a horizon-effect finding; stable long-public verification
 and human judgments are pending. No full duration seed block is complete yet.
+
+The long public hands 13–24 checkpoint is also preserved before later-hand review:
+48 definite rank assertions (9 true/39 false), one own-rank revision, no explicit
+fold offer and no identified pair arrangement. Its source-prefix hash and counts
+are in the [execution ledger](luna-cycle3-execution-2026-10-24.md). This second
+window is dependent within the same session; it adds no independent replication.
+
+The long public session subsequently completed and passed stable-source/provider,
+replay, native model-annotation and secondary-code checks: 345 calls / 864,383
+tokens / $0.193306850. All three saved window snapshots match the final source
+with unchanged judgments. Across 36 hands: 120 rank assertions (23 true/97 false),
+one accurate attributed challenge, four revisions, no explicit fold offer and no
+identified pair arrangement. The [completed public review](luna-cycle3-transcript-review-2026-10-24.md#seed-500-long-public-completed-trajectory)
+retains each window and its limitations. Five completed neutral sessions plus the
+diagnostic total 782 calls / 1,829,883 tokens / $0.417655370; active private usage
+is excluded. Full batch and seed-block completion await private; human labels
+remain pending. No aggregate winnings have been opened.
 
 ## Open decisions
 
