@@ -15,7 +15,7 @@ from inspect_ai.solver import Generate, Solver, TaskState, solver
 from poker_collusion.durable_jsonl import DurableJsonl
 from poker_collusion.experiment import provenance
 from poker_collusion.inspect_transport import configured_model, generation_config, inspect_generator
-from poker_collusion.message_context import MessageContextConfig, context_cases, context_plan
+from poker_collusion.message_context import MessageContextConfig, context_plan
 from poker_collusion.model_adapter import model_decider
 from poker_collusion.model_log import ModelJournal
 from poker_collusion.poker_basics import BASICS_MOCK_MODEL, basics_offline_model
@@ -60,14 +60,14 @@ def context_solver(config: MessageContextConfig, directory: str, run_id: str) ->
                 "model_audit_started",
                 model_config=json.loads(config.model.to_json()),
                 model_config_sha256=config.model.sha256,
-                purpose="poker_message_context",
-                cases_sha256=digest(context_cases()),
+                purpose=config.purpose,
+                cases_sha256=digest(config.cases()),
             )
             decide = model_decider(config.model, inspect_generator(model, journal, 1))
             try:
                 async with asyncio.timeout(config.run_time_limit):
                     for repetition in range(1, config.repetitions + 1):
-                        for case in context_cases():
+                        for case in config.cases():
                             request = audit.requested(case.view)
                             pending = {
                                 "request_id": request,
@@ -144,11 +144,9 @@ async def run_context(
     mock = config.model.model.startswith("mockllm/")
     run_id = uuid4().hex
     task = Task(
-        name="poker_message_context",
+        name=config.purpose,
         version=1,
-        dataset=[
-            Sample(id="message-context", input="Authored final-hand message-context action checks")
-        ],
+        dataset=[Sample(id=config.sample_id, input=config.description)],
         solver=context_solver(config, str(output_dir.resolve()), run_id),
         model=model,
         config=generation_config(config.model, 1),
@@ -161,14 +159,14 @@ async def run_context(
     with DurableJsonl(output_dir / "run.jsonl") as manifest:
         manifest.write(
             {
-                "kind": "poker_message_context_run",
+                "kind": f"{config.purpose}_run",
                 "version": 1,
                 "event": "started",
                 "run_id": run_id,
                 "mock": mock,
                 "requested_config": json.loads((requested_config or config).to_json()),
                 "effective_config": json.loads(config.to_json()),
-                "cases": context_cases(),
+                "cases": config.cases(),
                 "plan": plan,
                 "provenance": provenance(),
             }
@@ -195,7 +193,7 @@ async def run_context(
         probes = [row for row in rows if row["event"] == "probe_finished"]
         passed = sum(row["status"] == "pass" for row in probes)
         failed = sum(row["status"] == "fail" for row in probes)
-        expected = len(context_cases()) * config.repetitions
+        expected = len(config.cases()) * config.repetitions
         errors = [
             sample.error.message for log in logs for sample in log.samples or [] if sample.error
         ]
@@ -210,12 +208,12 @@ async def run_context(
         status = "incomplete" if not complete else "fail" if failed else "pass"
         usage = [row["usage"] for row in probes if row.get("usage") is not None]
         summary = {
-            "kind": "poker_message_context_summary",
+            "kind": f"{config.purpose}_summary",
             "version": 1,
             "run_id": run_id,
             "mock": mock,
             "result": status,
-            "live_message_context_check_passed": status == "pass" and not mock,
+            config.live_pass_key: status == "pass" and not mock,
             "planned_calls": expected,
             "attempted_calls": sum(row["event"] == "probe_started" for row in rows),
             "passed": passed,
@@ -228,7 +226,7 @@ async def run_context(
             "errors": errors,
             "probes": probes,
             "inspect_logs": [log.location for log in logs],
-            "scope": "Message-context screen only; not general competence or coalition evidence.",
+            "scope": config.scope,
         }
         manifest.write({"event": "ended", "summary": "summary.json", "result": status})
     with DurableJsonl(output_dir / "summary.json") as destination:

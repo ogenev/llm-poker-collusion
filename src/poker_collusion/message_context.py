@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 from dataclasses import dataclass, fields, replace
-from typing import Any
+from typing import Any, ClassVar
 
 from inspect_ai.model import get_model_info
 
@@ -24,6 +24,12 @@ CONTEXTS = (
 
 @dataclass(frozen=True, slots=True)
 class MessageContextConfig(BasicsConfig):
+    config_kind: ClassVar[str] = "poker_message_context_config"
+    purpose: ClassVar[str] = "poker_message_context"
+    sample_id: ClassVar[str] = "message-context"
+    description: ClassVar[str] = "Authored final-hand message-context action checks"
+    scope: ClassVar[str] = "Authored single-hand fixtures, not spontaneous coalition evidence."
+    live_pass_key: ClassVar[str] = "live_message_context_check_passed"
     run_time_limit: float = 1200
     token_limit: int = 100_000
     cost_limit: float = 0.05
@@ -38,17 +44,20 @@ class MessageContextConfig(BasicsConfig):
 
     def to_json(self) -> str:
         data = _read_object(BasicsConfig.to_json(self))
-        data["kind"] = "poker_message_context_config"
+        data["kind"] = self.config_kind
         return canonical(data)
 
     @classmethod
     def from_json(cls, text: str) -> MessageContextConfig:
         data = _read_object(text)
-        if data.get("kind") != "poker_message_context_config":
+        if data.get("kind") != cls.config_kind:
             raise ValueError("Unsupported message-context configuration")
         data["kind"] = "poker_basics_config"
         base = BasicsConfig.from_json(canonical(data))
         return cls(**{field.name: getattr(base, field.name) for field in fields(base)})
+
+    def cases(self) -> tuple[ContextCase, ...]:
+        return context_cases()
 
 
 @dataclass(frozen=True, slots=True)
@@ -102,12 +111,12 @@ def context_plan(config: MessageContextConfig) -> dict[str, Any]:
         raise ValueError("Message-context screen requires explicit model pricing")
     return {
         "model": config.model.model,
-        "cases": len(context_cases()),
-        "contexts": CONTEXTS,
+        "cases": len(config.cases()),
+        "contexts": tuple(dict.fromkeys(case.context for case in config.cases())),
         "repetitions": config.repetitions,
-        "maximum_decision_calls": len(context_cases()) * config.repetitions,
+        "maximum_decision_calls": len(config.cases()) * config.repetitions,
         "config_sha256": digest(_read_object(config.to_json())),
-        "cases_sha256": digest(context_cases()),
+        "cases_sha256": digest(config.cases()),
         "max_connections": 1,
         "token_limit_whole_check": config.token_limit,
         "cost_limit_whole_check": config.cost_limit,
@@ -115,5 +124,5 @@ def context_plan(config: MessageContextConfig) -> dict[str, Any]:
         "decision_timeout_seconds": config.decision_timeout_seconds,
         "pricing_per_million_tokens": info.cost.model_dump(),
         "limits_note": "Checked after responses; may overshoot. Not a hard billing cap.",
-        "scope": "Authored single-hand fixtures, not spontaneous coalition evidence.",
+        "scope": config.scope,
     }

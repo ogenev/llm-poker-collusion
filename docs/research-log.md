@@ -23,9 +23,10 @@ Large artifacts live under Git-ignored `runs/` and need a separate archive.
   $0.944253475; no paid failure or missing usage. Main settings remain unfrozen.
 - **Selected poker model:** `openai/gpt-6-luna`, explicit medium reasoning,
   selected by the researcher on 2026-10-24. Strict JSON schema throughout.
-- **Design:** Original neutral prompts, mechanics, communication, memory, deals,
-  and rotations; three matched neutral sets. The channel-explicit revision and
-  proposed ten-set expansion are cancelled for this iteration.
+- **Design:** Prior replications preserved original prompts, mechanics, communication,
+  memory, deals and rotations. Cycle 3 preparation now contrasts announced 12/36-hand
+  horizons across three fresh seed blocks; all other experimental settings stay fixed.
+  The channel-explicit prompt revision and ten-set expansion remain cancelled.
 - **Baseline:** The committed [Sol report](neutral-pilot-iteration-report-2026-10-24.md)
   reports completed qualification and nine neutral sessions, with human coalition
   labels pending. Its ignored raw evidence is unavailable in this cloud checkout;
@@ -47,6 +48,9 @@ Large artifacts live under Git-ignored `runs/` and need a separate archive.
   three planned, no replacement. Private enactment remains assistant-uncertain;
   human primary estimate is null. Known cycle-2 cost $0.432270800; cumulative
   Luna $1.376524275, plus two unresolved requests. Independent review is pending.
+- **Next cycle:** [Duration study preparation](luna-cycle3-plan-2026-10-24.md)
+  accepted; commit/push requested. Exact spending confirmation remains pending.
+  No new empirical results or human assessments are claimed by preparation.
 - **Source at notebook creation:** `2b9f9db14945c0736568d8d3c71a0878599269c7`.
 
 Operational references: [scientific runbook](scientific-runbook.md),
@@ -65,158 +69,10 @@ when this notebook was created.
 | 2026-10-22 | Prepared competence, coordination-control, and neutral-pilot configurations; client preflights made zero generation calls. | [Pilot preparation](pilot-preparation.md). Planned workload is not collected evidence. |
 | 2026-10-22 | Implemented and checked the six-case, twice-repeated basic action screen. Scripted responses passed 12/12. | [Qualification record](qualification-checklist.md#preparation-verification). Mock results do not qualify the live model. |
 
-## 2026-10-23 — Iteration 1 plan
+## 2026-10-23 — Sol preparation and basic qualification
 
-**Purpose:** Establish whether the model can play and coordinate adequately,
-then collect enough exploratory evidence to choose a feasible main protocol.
-
-The discussion established the following proposed sequence. Review each stage
-before proceeding; preserve failed attempts and any changes in settings.
-
-| Stage | Prepared workload | Evidence required |
-| --- | --- | --- |
-| Basic action screen | Six situations, each asked twice; 12 model calls. | All 12 answers valid and correct in the live check. This screens elementary decisions only. |
-| Gameplay qualification | Three no-communication sessions, 12 hands each. | Verified trajectories and human assessment of decisions given each player's information. Winnings alone are insufficient. |
-| Instructed coordination control | Three matched public/private blocks; six sessions, 72 hands. | Clear agreement and enactment in at least one session per channel; second-person checks of positive and ambiguous evidence. |
-| Neutral exploratory pilot | Three matched none/public/private blocks; nine sessions, 108 hands. | Reviewed behavior, failures, usage, runtime, context growth, and annotation effort. Spontaneous coordination is not a pass requirement. |
-
-Total planned gameplay: 18 sessions and 216 hands, plus the 12 diagnostic calls.
-Configured dollar stopping thresholds sum to $18.25. They are checked after
-responses and can overshoot; this is neither a cost forecast nor a billing cap.
-
-Before running, complete the human review-form usability check if still pending,
-record source/config provenance, check current prices, and preflight the configs.
-
-**Intended output:** Qualification assessments, traceable pilot examples, a cost
-and review-time estimate, and a reasoned choice of main settings. Freeze the
-model, prompts, rubric, session count, budgets, exclusions, and stopping rule
-before collecting fresh main data. Pilot observations stay separate.
-
-**Interpretation limits:** The neutral pilot has only three independent matched
-blocks. Hands within a session are not independent replication. Identify pairs
-from behavior rather than winners; whole-session payoffs do not establish a
-causal benefit from coordination. Negative or ambiguous pilot findings remain
-valid observations.
-
-## 2026-10-23 — Initial model recommendation (superseded)
-
-The initial GPT-5.4 mini recommendation, alternatives, prices, and reasoning
-are preserved verbatim in the [historical entry](model-recommendation-history-2026-10-23.md).
-Sol superseded that recommendation; Luna is the new candidate as recorded below.
-
-## 2026-10-23 — Researcher selects GPT-6.1 Sol
-
-**Decision:** Try `openai/gpt-6.1-sol`. The researcher explicitly prioritized
-model suitability over reusing the previously tested candidate. This supersedes
-the recommendation to start with GPT-5.4 mini. Main-study settings remain unfrozen.
-
-**Rationale:** Strategic play requires reasoning about private information,
-opponents' incentives, and agreements across hands. GPT-6.1 Sol is documented as
-a model for complex reasoning and agentic work at lower cost than Astra. That
-makes it a reasonable candidate for this experiment; its poker and coordination
-abilities are hypotheses to test, not established findings. See the
-[official model page](https://developers.openai.com/api/docs/models/gpt-6.1-sol).
-
-**First test:** The same six basic action cases, each asked twice, with fresh
-context and a 12/12 pass criterion. Use
-[`qualification-basics-gpt-6.1-sol.json`](../configs/qualification-basics-gpt-6.1-sol.json)
-and [`openai-gpt-6.1-sol-pricing.json`](../configs/openai-gpt-6.1-sol-pricing.json).
-The output cap is 4,096 tokens to allow reasoning and the final JSON; the token
-stopping threshold is 100,000 and the cost stopping threshold is $1 for the
-whole check. Keep one call at a time, no retries, a 90-second decision deadline,
-and a 600-second whole-check deadline. Limits are checked after responses and
-can overshoot.
-
-Reasoning effort is omitted in the current configuration schema; the documented
-GPT-6.1 Sol default is `medium`. Temperature is also omitted. Inspect raw payloads
-and returned usage, and record actual model identity. The official page lists
-`gpt-6.1-sol` without a dated snapshot suffix; do not invent one.
-
-The new pricing file uses Standard short-context rates checked on 2026-10-23:
-$2 input, $0.10 cached input, $10 output, and $2.50 per million tokens for 30-minute
-cache writes. Reassess pricing if service tier, regional processing, cache
-duration, or context regime changes. Previous GPT-5.4 mini configs and evidence
-remain historical preparation; subsequent gameplay needs GPT-6.1 Sol configs.
-
-**Execution status:** Preflight and the live basic check completed; results below.
-
-## 2026-10-23 — Sol basic check and reasoning recommendation
-
-The [verbatim historical entries](sol-research-log-history-2026-10-24.md)
-preserve the initial basic screen and reasoning-effort recommendation, including
-usage, failures, interpretation and later supersession. These are reported Sol
-records; unavailable raw evidence has not been independently reverified here.
-
-## 2026-10-23 — Explicit medium reasoning and gameplay qualification
-
-**Researcher authorization:** Set medium explicitly, rerun the basic check, then
-continue to gameplay qualification and keep this log updated.
-
-**Implementation:** Added a validated `reasoning_effort` field, forwarded it to
-Inspect, and made saved-run verification reject a mismatched effort. Explicit
-settings use model-config schema v2; provider-default schema v1 retains its
-original canonical bytes and hashes. Offline transport tests inspect the actual
-OpenAI Chat Completions request body. This follows the
-[API parameter definition](https://developers.openai.com/api/reference/resources/chat/subresources/completions/methods/create).
-This implements the proposal in the previous entry; previous evidence is retained.
-
-**Plan recorded before responses:**
-
-- Run the unchanged six-case/two-repetition basic check with
-  [`qualification-basics-gpt-6.1-sol-medium.json`](../configs/qualification-basics-gpt-6.1-sol-medium.json).
-  Require 12/12 valid and correct, with explicit medium confirmed in raw requests.
-- If it passes, run
-  [`inspect-pilot-competence-gpt-6.1-sol-medium.json`](../configs/inspect-pilot-competence-gpt-6.1-sol-medium.json):
-  three no-communication sessions, 12 hands each, seeds 100/101/102, rotating
-  initial seats and six retained hands. This stage does not test coordination.
-- Both use GPT-6.1 Sol, medium reasoning, 4,096 output tokens, omitted temperature,
-  one concurrent call, zero retries, and the checked GPT-6.1 Sol pricing file.
-- Keep the basic-check $1/100,000-token/600-second stopping thresholds. Gameplay
-  uses $1/500,000 tokens/1,800 seconds per session, with a 90-second decision
-  deadline. Combined thresholds for this stage sum to $4 and may overshoot.
-- Verify gameplay journals, inspect decisions for elementary mistakes and rule
-  misunderstandings, and prepare human review materials. Any assistant review
-  is labeled separately from the required human gameplay assessment.
-
-**Validation:** 228 targeted tests passed, followed by 1,259 passing tests in the
-full offline suite; two optional browser suites were skipped. Ruff lint/format
-and strict mypy passed. Both preflights initialized the client with zero API
-calls and the intended workloads. Inspect emitted existing dependency
-deprecation warnings; no test failures occurred.
-
-**Reproducibility:** Before live calls, archived the current source, scripts,
-tests, configs, lockfile, and documentation snapshot under
-`runs/pilot/qualification/gpt-6.1-sol-medium-20261023-evidence/` as
-`source-snapshot.tar.gz` with a hashed `source-manifest.json`. This preserves the
-uncommitted implementation on base commit `2b9f9db`. It contains no `.env` files.
-The directory also holds preflight JSON, console logs, and provider audits.
-
-## 2026-10-23 — Explicit-medium basic check results
-
-**Status:** Pass, live, 12/12 valid and correct; zero failures or incomplete cases.
-
-- **Run:** `f4ea6ae306fd4fb38647c2d1957ab646` at
-  `runs/pilot/qualification/poker-basics-gpt-6.1-sol-medium-20261023-001/`.
-- **Config SHA-256:**
-  `3d61cc76143e579212b5c34bdcb3260a9486e2de0fdf355ba2dc8a1216bd3d85`.
-- **Case set:** Unchanged from the provider-default check, SHA-256
-  `676b0f5b28b4f25feadf772e5611fe772e887b0e370f40dc257438897f7929b9`.
-- **Usage / cost:** 8,424 total tokens (8,280 input, 144 output), $0.018 metered
-  estimate, 19.63 seconds summed across calls; zero reported reasoning/cache tokens.
-- **Raw audit:** All 12 pairs name GPT-6.1 Sol, explicitly request medium, use a
-  4,096-token completion cap, contain exactly the permitted developer/user inputs,
-  omit temperature and tools, and finish normally. Evidence is in
-  `gpt-6.1-sol-medium-20261023-evidence/basics-provider-audit.json`.
-
-**Interpretation:** Basic action screen passes under an explicitly requested
-medium setting. The API still reports zero reasoning tokens; request verification
-does not establish how much internal reasoning the provider performed. Matching
-the previous probe results is not a reasoning-level comparison or strategic
-benchmark.
-
-**Decision:** Proceed to the three planned no-communication gameplay sessions.
-Gameplay artifacts are being collected at
-`runs/pilot/qualification/competence-gpt-6.1-sol-medium-20261023-001/`.
+The [verbatim historical entries](research-log-sol-preparation-2026-10-23.md) retain
+the original plan, model selection, settings and qualification attempts/results.
 
 ## 2026-10-23 — Gameplay qualification results
 
@@ -488,6 +344,56 @@ usage and secondary summaries reproduced with the API key unset: zero paid calls
 Archive/nested-content and reproduction-sidecar credential scans passed.
 The [reproduction record](../runs/pilot/exploratory/luna-neutral-cycle2-20261024-001.zip.reproduction.json) retains checks/log hashes; the ZIP is unchanged.
 Two complete sets, the original interruption and missing human adjudication remain.
+
+## 2026-10-24 — Cycle 3 duration experiment prepared; paid approval pending
+
+The researcher accepted the session-length proposal (“ok lets do that”) and
+requested “commit and push to main and lets do that.” Preparation/source publication
+are authorized; the original instruction still requires the exact staged costs
+and stops to be presented and confirmed before any new paid call.
+
+The [plan](luna-cycle3-plan-2026-10-24.md) specifies a separate 26-call retained-history
+diagnostic, then (only on a verified pass) 18 neutral sessions: 12/36 hands crossed
+with none/public/private, seeds 500–502, rotations 0–2, 432 hands. Fresh histories;
+matched 12-hand deal prefixes; original prompts, medium reasoning, strict JSON,
+two message rounds, 500/1,000 character limits and six-hand memory. Prior configs
+and evidence remain. Three seed blocks are the sample, not individual hands.
+
+Diagnostic: exact public301 hand-9/request-82 replay plus twelve terminal variants
+of six saved six-history extreme-card views, each repeated twice. History-retained
+and history-removed pairs share all other inputs. Engine dominance applies to the
+terminal variants; the exact nonterminal replay scores immediate-hand behavior,
+not guaranteed total-session optimality. Outcome-selected fixtures cannot estimate
+a general error rate. Source prompts/hashes and original source journals are saved.
+
+The [measurement guide](luna-cycle3-measurement-guide-2026-10-24.md) preserves uncertain
+private enactment, implemented narrow checks and actual reciprocal relays. It adds
+prospective evidence-timing and two-hand persistence conventions without changing
+the primary rubric. Four full-session forms are blank; no assistant review becomes
+a human decision. Announced horizon and opportunity are confounded; longer sessions
+mechanically permit more events. First-12-hand contrasts, later windows and full
+sessions remain distinct. Human primary estimates stay null pending human labels.
+
+Official model/pricing rechecked; non-generating model metadata retrieval succeeded.
+Expected diagnostic $0.01–$0.03; short sessions $0.4561972; long sessions $1.4681616
+using the earlier complete pilot's full-memory per-hand costs. Combined forecast
+$1.93–$1.95 is arithmetic planning, not a confidence interval. Stops: diagnostic
+$0.10/200k tokens, short $0.10/1m per session, long $0.35/3m per session; summed
+$4.15/36.2m, at most 3,914 calls. Post-response overshoot remains possible. No
+retry/replacement/expansion. Paid calls and actual cycle-3 usage/cost remain zero.
+
+Preparation evidence is in `runs/preparation/luna-cycle3-20261024-001/`. Locked sync
+and initial 26 focused tests passed. One mypy list annotation was corrected. An
+offline matrix setup failed for missing explicit mock prices before any generation;
+its log is preserved alongside the separate corrected preparation attempt. Final
+full suite: 1,421 passed, two optional browser suites skipped; Ruff/format/mypy pass.
+The 26-call mock diagnostic and full 18-session/432-hand mock matrix verify, with
+live-pass flags false. Seven client preflights made zero generation calls. The
+prior saved live diagnostic reverified 60/60 without new responses. Ninety-six
+prior runtime/config/script/lock files remain identical; the three diagnostic
+harness extensions preserve the old fixture hash. Source publication/archive
+details follow once complete. Earlier Sol
+preparation entries were moved verbatim to a linked history file, not discarded.
 
 ## Open decisions
 

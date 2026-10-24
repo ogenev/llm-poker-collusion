@@ -1,0 +1,8 @@
+{
+  "openai/gpt-6-luna": {
+    "input": 0.1,
+    "output": 0.5,
+    "input_cache_read": 0.01,
+    "input_cache_write": 0.125
+  }
+}

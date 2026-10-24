@@ -10,7 +10,7 @@ from inspect_ai.log import read_eval_log_async
 from inspect_ai.model import ModelUsage
 
 from poker_collusion.experiment_config import ExperimentConfig
-from poker_collusion.message_context import MessageContextConfig, context_cases
+from poker_collusion.message_context import MessageContextConfig
 from poker_collusion.model_adapter import parse_response
 from poker_collusion.model_log import read_model_log
 from poker_collusion.prompts import render_prompt
@@ -50,28 +50,30 @@ def _event_record(event: ModelEvent) -> dict[str, Any]:
     }
 
 
-async def verify_context(directory: Path) -> dict[str, Any]:
+async def verify_context(
+    directory: Path, *, config_type: type[MessageContextConfig] = MessageContextConfig
+) -> dict[str, Any]:
     """No generation. Incomplete/corrupt evidence raises; a wrong answer cannot pass."""
     manifest = _rows(directory / "run.jsonl")
     _require(len(manifest) == 2, "Incomplete run manifest")
     start, end = manifest
     _require(
-        start.get("kind") == "poker_message_context_run"
+        start.get("kind") == f"{config_type.purpose}_run"
         and start.get("version") == 1
         and start.get("event") == "started"
         and end.get("event") == "ended"
         and end.get("summary") == "summary.json",
         "Invalid diagnostic manifest",
     )
-    config = MessageContextConfig.from_json(canonical(start["effective_config"]))
-    requested = MessageContextConfig.from_json(canonical(start["requested_config"]))
+    config = config_type.from_json(canonical(start["effective_config"]))
+    requested = config_type.from_json(canonical(start["requested_config"]))
     mock = config.model.model.startswith("mockllm/")
     _require(start["mock"] == mock, "Mock flag differs from effective model")
     effective_data, requested_data = json.loads(config.to_json()), json.loads(requested.to_json())
     if mock:
         requested_data["model"]["settings"]["model"] = config.model.model
     _require(effective_data == requested_data, "Requested/effective settings differ")
-    cases = context_cases()
+    cases = config.cases()
     expected = [(rep, case) for rep in range(1, config.repetitions + 1) for case in cases]
     _require(start["cases"] == json.loads(canonical(cases)), "Frozen fixtures differ")
     plan = start["plan"]
@@ -85,7 +87,7 @@ async def verify_context(directory: Path) -> dict[str, Any]:
     _require(len(summary_rows) == 1, "Expected one summary")
     summary = summary_rows[0]
     _require(
-        summary["kind"] == "poker_message_context_summary"
+        summary["kind"] == f"{config.purpose}_summary"
         and summary["version"] == 1
         and summary["run_id"] == start["run_id"]
         and summary["mock"] == mock,
@@ -95,7 +97,7 @@ async def verify_context(directory: Path) -> dict[str, Any]:
     _require(audit.status == "complete" and audit.session_id == start["run_id"], "Incomplete audit")
     header = audit.events[0].data
     _require(
-        header.get("purpose") == "poker_message_context"
+        header.get("purpose") == config.purpose
         and header.get("model_config_sha256") == config.model.sha256
         and header.get("cases_sha256") == digest(cases),
         "Audit settings or fixture hash differ",
@@ -117,7 +119,7 @@ async def verify_context(directory: Path) -> dict[str, Any]:
     )
     sample = (log.samples or [])[0]
     _require(
-        sample.error is None and sample.id == "message-context" and sample.epoch == 1,
+        sample.error is None and sample.id == config.sample_id and sample.epoch == 1,
         "Unexpected/failed Inspect sample",
     )
     events = [event for event in sample.events if isinstance(event, ModelEvent)]
@@ -257,7 +259,7 @@ async def verify_context(directory: Path) -> dict[str, Any]:
         == len(expected)
         and summary["total_tokens"] == total_usage.total_tokens
         and math.isclose(summary["metered_cost"], sum(costs), abs_tol=1e-12)
-        and summary["live_message_context_check_passed"] == (not failed and not mock),
+        and summary[config.live_pass_key] == (not failed and not mock),
         "Summary does not reconcile",
     )
     _require(
@@ -268,7 +270,7 @@ async def verify_context(directory: Path) -> dict[str, Any]:
     return {
         "passed": not issues and not failed,
         "mock": mock,
-        "live_message_context_check_passed": not issues and not failed and not mock,
+        config.live_pass_key: not issues and not failed and not mock,
         "run_id": start["run_id"],
         "calls": len(expected),
         "correct": passed,

@@ -1,0 +1,44 @@
+{
+  "kind": "experiment_config",
+  "version": 1,
+  "model": {
+    "kind": "model_config",
+    "version": 3,
+    "settings": {
+      "model": "openai/gpt-6-luna",
+      "instruction": "neutral",
+      "max_tokens": 4096,
+      "temperature": null,
+      "cache": false,
+      "max_retries": 0,
+      "reasoning_effort": "medium",
+      "response_format": "strict_json_schema"
+    }
+  },
+  "session": {
+    "kind": "session_config",
+    "version": 1,
+    "hands": 36,
+    "channel": "none",
+    "communication_rounds": 2,
+    "max_message_chars": 500,
+    "message_budget_chars": 1000,
+    "memory_hands": 6,
+    "decision_timeout_seconds": 90
+  },
+  "seeds": [
+    500,
+    501,
+    502
+  ],
+  "channels": [
+    "none",
+    "public",
+    "private"
+  ],
+  "max_samples": 1,
+  "max_connections": 1,
+  "token_limit": 3000000,
+  "cost_limit": 0.35,
+  "session_time_limit": 5400
+}
