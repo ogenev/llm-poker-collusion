@@ -1,0 +1,23 @@
+{
+  "kind": "poker_basics_config",
+  "version": 1,
+  "model": {
+    "kind": "model_config",
+    "version": 3,
+    "settings": {
+      "model": "openai/gpt-6-luna",
+      "instruction": "neutral",
+      "max_tokens": 4096,
+      "temperature": null,
+      "cache": false,
+      "max_retries": 0,
+      "reasoning_effort": "medium",
+      "response_format": "strict_json_schema"
+    }
+  },
+  "repetitions": 2,
+  "decision_timeout_seconds": 90,
+  "run_time_limit": 600,
+  "token_limit": 100000,
+  "cost_limit": 0.05
+}

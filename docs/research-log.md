@@ -17,26 +17,21 @@ Large artifacts live under Git-ignored `runs/` and need a separate archive.
 - **Sprint scope:** One model, three players, repeated three-player Kuhn poker;
   public/private comparison, no-communication baseline, and separate instructed
   coordination controls.
-- **Phase:** Explicit-medium basics and three gameplay sessions are complete and
-  verified. The researcher assessed gameplay as adequate; gameplay qualification
-  passed. The user-approved strict-format revision passed its basic recheck;
-  all three selected public and three private controls completed and verified.
-  Earlier formatting, cost, and token-limit failures remain in the attempt
-  ledger. The researcher assessed coordination examples as adequate in both
-  conditions and explicitly authorized the neutral pilot; full annotations and
-  second-human checks remain outstanding. Neutral attempt 001 was blocked by the
-  API spend limit; attempt 002 completed two matched sets before the researcher
-  paused collection. A fresh third set completed on 2026-10-24, preserving the
-  partial attempt separately. All nine selected sessions are complete; human
-  labels remain pending and main settings are not frozen.
-- **Selected model to try:** `openai/gpt-6.1-sol`, chosen by the researcher on
-  2026-10-23. This supersedes the initial recommendation.
-- **Evidence:** The default, medium, and strict-medium basic checks passed 12/12.
-  Explicit-medium gameplay completed 36 hands and 138 calls with exact replay;
-  no A-fold/J-call flags. It cost $0.528151 including explicit-medium basics.
-  Human review supports proceeding to neutral exploration. The selected controls
-  completed 72 hands; strategic strength and causal benefit remain unestablished.
-  No main results have been collected.
+- **Phase:** Luna replication approved; starting basics and gameplay. New gameplay
+  and coordination human gates are required. No paid Luna responses or main
+  results have been collected; main settings remain unfrozen.
+- **Selected poker model:** `openai/gpt-6-luna`, explicit medium reasoning,
+  selected by the researcher on 2026-10-24. Strict JSON schema throughout.
+- **Design:** Original neutral prompts, mechanics, communication, memory, deals,
+  and rotations; three matched neutral sets. The channel-explicit revision and
+  proposed ten-set expansion are cancelled for this iteration.
+- **Baseline:** The committed [Sol report](neutral-pilot-iteration-report-2026-10-24.md)
+  reports completed qualification and nine neutral sessions, with human coalition
+  labels pending. Its ignored raw evidence is unavailable in this cloud checkout;
+  historical claims below are reported records, not independently reverified here.
+- **Next action:** Execute the [approved Luna plan](luna-replication-plan-2026-10-24.md)
+  through gameplay, then pause for the new human assessment. The user authorized
+  committing and pushing to main; [execution record](luna-qualification-2026-10-24.md).
 - **Source at notebook creation:** `2b9f9db14945c0736568d8d3c71a0878599269c7`.
 
 Operational references: [scientific runbook](scientific-runbook.md),
@@ -90,73 +85,9 @@ valid observations.
 
 ## 2026-10-23 — Initial model recommendation (superseded)
 
-**Status: superseded by the researcher's GPT-6.1 Sol choice below.** The initial
-recommendation is retained to preserve the decision history.
-
-Start qualification and the first exploratory iteration with
-`openai/gpt-5.4-mini-2026-03-17`, the same snapshot for all three players and all
-conditions. Retain it for the sprint's main study only if qualification and
-practical throughput are adequate.
-
-### Rationale
-
-1. **Existing integration evidence.** The recorded smoke run checked legal
-   responses, private player inputs, exact replay, raw provider payloads, model
-   identity, and usage. Starting here reduces integration uncertainty during the
-   sprint. These checks do not establish poker strength.
-2. **A dated snapshot.** The configured identifier matches the snapshot listed
-   in the [official model documentation](https://developers.openai.com/api/docs/models/gpt-5.4-mini).
-   Pinning it makes the study target explicit; it does not make sampling
-   deterministic or guarantee indefinite availability.
-3. **Feasible initial cost.** Its standard token rates remain consistent with our
-   pricing file. The prior smoke run was inexpensive, although longer histories
-   and different behavior prevent simply extrapolating its cost to the study.
-4. **An empirical selection gate.** Adequacy for this small game must be tested
-   through gameplay and instructed controls. General coding or reasoning claims
-   do not demonstrate poker competence or a tendency to coordinate.
-
-### Current alternatives considered
-
-Official documentation and prices checked on 2026-10-23. Rates below are USD per
-million tokens at Standard processing rates and short context; cache writes,
-regional premiums, different tiers, and token consumption can change total cost.
-
-| Candidate | Input | Cached input | Output | Role considered |
-| --- | ---: | ---: | ---: | --- |
-| GPT-5.4 mini | $0.75 | $0.075 | $4.50 | Initial candidate with a dated snapshot and local compatibility evidence. |
-| GPT-6 Luna | $0.10 | $0.01 | $0.50 | Lower token-price alternative if experiment volume becomes the constraint; requires compatibility and qualification checks here. |
-| GPT-6.1 Sol | $2.00 | $0.10 | $10.00 | Candidate to investigate if the current model shows substantive competence limitations; poker superiority is untested. |
-
-Sources: [official API pricing](https://developers.openai.com/api/docs/pricing),
-[GPT-6 Luna](https://developers.openai.com/api/docs/models/gpt-6-luna), and
-[GPT-6.1 Sol](https://developers.openai.com/api/docs/models/gpt-6.1-sol).
-The GPT-6 pages currently list identifiers without dated suffixes. Account
-access, behavior, latency, and usage for these alternatives were not tested.
-This is a focused comparison within our existing provider integration, not a
-benchmark of all available models or providers.
-
-The recommendation therefore rests on existing integration evidence and the
-qualification plan. GPT-5.4 mini is not the lowest-price model in this comparison.
-GPT-6.1 Sol's documented positioning for more demanding work makes it a candidate
-for a capability check, not evidence that it will coordinate more successfully.
-
-### Settings and reconsideration rule
-
-The prepared configurations use a 2,048-token output cap, omit temperature and
-reasoning effort, disable sampled-response reuse, and allow no retries. The
-current GPT-5.4 mini documentation lists default reasoning effort as `none`;
-the preparation smoke run recorded zero reasoning tokens. The resulting study
-would characterize this configuration, not all reasoning settings of the model.
-
-If qualification fails, first distinguish API/parser/budget problems from
-substantive gameplay or coordination failures. Document any prompt, reasoning,
-output-budget, or model change and requalify the revised configuration in a new
-attempt. Do not switch models merely because a neutral pilot lacks spontaneous
-coordination. Choose and freeze the main configuration before main responses.
-
-**Action in this entry:** Created the notebook, checked current documentation,
-and recorded the recommendation. No live model calls or experiment-configuration
-changes were made for this entry.
+The initial GPT-5.4 mini recommendation, alternatives, prices, and reasoning
+are preserved verbatim in the [historical entry](model-recommendation-history-2026-10-23.md).
+Sol superseded that recommendation; Luna is the new candidate as recorded below.
 
 ## 2026-10-23 — Researcher selects GPT-6.1 Sol
 
@@ -524,6 +455,39 @@ covering the nine-session design, message counts, key examples, costs, collectio
 provenance, limitations, and proposed follow-ups. Source hashes and aggregate
 figures were rechecked. Coalition findings remain preliminary assistant judgments;
 human labels are pending. No model calls or new experiment settings were applied.
+
+## 2026-10-24 — Luna replication prepared; spending approval pending
+
+Started from verified latest main `c887b72`; no commit or push. Read the runbook,
+checklist, rubric, Sol report and prompt review. The user's model change overrides
+the older recommendations: preserve original prompts, requalify Luna, and collect
+only three neutral matched sets after new human gameplay and control gates.
+
+The [Luna plan](luna-replication-plan-2026-10-24.md) records exact configs/commands,
+settings, official pricing sources, expected costs per stage, stopping thresholds,
+and evidence/review/archive requirements. Expected total at reported Sol usage:
+$0.603–$0.610; summed dollar stops $1.70, summed token stops 15.1m, both capable of
+post-response overshoot. All Sol configs and runtime/prompts remain unchanged.
+
+Prepared five separate Luna configs and pricing. Preserved 12-case basics,
+gameplay seeds 100–102, controls 200–202, and neutral 300–302. Recorded the required
+strict-format difference from Sol gameplay and the original selected controls'
+1m public / 500k private token limits. `uv sync --locked` succeeded. Baseline
+offline suite: 1,361 passed, two optional browser suites skipped; the updated
+transport suite passed 78 tests, including 26 Luna cases. All five client preflights passed with zero generation
+calls. Scripted basics passed 12/12 with `mock: true` and live qualification false.
+
+Cloud status observations were current but policy/credential readiness unknown.
+One free authenticated model-metadata GET returned HTTP 200 for Luna; this does
+not establish spend availability. API keys were never printed or saved. A test
+line initially failed Ruff's line-length check and was corrected before execution
+of the added test suite. Official HTML pricing/model pages were read successfully;
+optional Markdown fetches failed in the browser tool and were not used as evidence.
+Preparation evidence is under `runs/preparation/luna-20261024-001/`.
+Initial packaging stopped before creating an archive because Python's ZIP reader
+lacked Inspect's Zstandard support; the failed script/record are preserved. The
+corrected packager loads the locked Inspect reader and verifies extracted hashes.
+**Paid attempts: 0; actual paid tokens/cost: 0 / $0. Human Luna decisions: none.**
 
 ## Open decisions
 

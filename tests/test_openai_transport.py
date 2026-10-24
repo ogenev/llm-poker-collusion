@@ -42,22 +42,25 @@ pytestmark = pytest.mark.usefixtures("inspect_runtime")
         "raw_schema_weakening",
     ],
 )
-@pytest.mark.parametrize("explicit_reasoning", [False, True])
+@pytest.mark.parametrize("explicit_model", [None, "gpt-6.1-sol", "gpt-6-luna"])
 @pytest.mark.parametrize("response_format", ["text", "strict_json_schema"])
 def test_openai_sdk_transport_and_audits_without_network(
-    tmp_path: Path, outcome: str, explicit_reasoning: bool, response_format: ResponseFormat
+    tmp_path: Path, outcome: str, explicit_model: str | None, response_format: ResponseFormat
 ) -> None:
     config = ExperimentConfig.from_json(Path("configs/inspect-live-smoke.json").read_text())
     pricing = "configs/openai-smoke-pricing.json"
-    if explicit_reasoning:
+    if explicit_model:
         config = replace(
             config,
             model=replace(
-                config.model, model="openai/gpt-6.1-sol", reasoning_effort="medium", max_tokens=4096
+                config.model,
+                model=f"openai/{explicit_model}",
+                reasoning_effort="medium",
+                max_tokens=4096,
             ),
             cost_limit=1.0,
         )
-        pricing = "configs/openai-gpt-6.1-sol-pricing.json"
+        pricing = f"configs/openai-{explicit_model}-pricing.json"
     config = replace(config, model=replace(config.model, response_format=response_format))
     configure_model_cost(config.model.model, Path(pricing))
     provider_model = config.model.model.partition("/")[2]
@@ -73,7 +76,7 @@ def test_openai_sdk_transport_and_audits_without_network(
         requests.append(body)
         assert body["model"] == provider_model
         assert body["max_completion_tokens"] == config.model.max_tokens and body["n"] == 1
-        if explicit_reasoning:
+        if explicit_model:
             assert body["reasoning_effort"] == "medium"
         else:
             assert "reasoning_effort" not in body

@@ -166,10 +166,17 @@ for artifact verification, limits, and separate competence/control templates.
 Keep dated research decisions, experiment notes, evidence links, and open
 questions in the [research log](docs/research-log.md).
 
-The current sprint candidate is **GPT-6.1 Sol with explicit medium reasoning**.
+The current replication candidate is **GPT-6 Luna with explicit medium reasoning
+and strict JSON schema**. The [staged Luna plan](docs/luna-replication-plan-2026-10-24.md)
+links separate configs and pricing, preserves the original prompts and schedules,
+and records the spending-approval and new human qualification gates. Preparation
+does not qualify the model; spending was approved on 2026-10-24, subject to the
+new human gates. See the [Luna qualification record](docs/luna-qualification-2026-10-24.md).
+
+The previous iteration used **GPT-6.1 Sol with explicit medium reasoning**.
 Use the [basic-check configuration](configs/qualification-basics-gpt-6.1-sol-medium.json),
 [gameplay configuration](configs/inspect-pilot-competence-gpt-6.1-sol-medium.json),
-and [pricing file](configs/openai-gpt-6.1-sol-pricing.json) for this qualification.
+and [pricing file](configs/openai-gpt-6.1-sol-pricing.json) as historical records.
 The log records results and remaining human review; the earlier GPT-5.4 mini
 configurations below remain preparation history.
 
