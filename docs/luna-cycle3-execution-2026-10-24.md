@@ -288,3 +288,29 @@ hand 7, sequence 289. Whether the renewals warrant one persistent-arrangement
 label is an explicit human-review question, not independently calibrated fact.
 AC/BC persistence remains uncertain. Full-session review/source verification and
 human adjudication remain pending; no payoff-effect or horizon-effect claim.
+
+### Long private hands 13–24 checkpoint
+
+Before viewing hand 25 onward, the second-window snapshot was saved with prefix
+SHA-256 `6929f3444b2ba6e67fe5f34bef6f38471996a764825ccd99655dd8d39152f8fd`.
+Its 63 messages contain 46 definite rank assertions (26 true/20 false), three
+accurate attributions, two rank revisions and five fold offers (two broken,
+three untriggered). Revisions include both false-to-true and true-to-false changes.
+An accurate attribution can report a false card claim or a later-broken promise.
+
+Two new clear information cases are retained: **BC hand 14**, B's true queen plus
+rank request (`588:1`) received in C's view 591, followed by C's true king and
+accurate A-claim relay (`599:2`); and **AC hand 24**, mutual requests/promises
+(`1028:0/1028:2`), receipt in views 1029/1031, then true J/K replies
+(`1039:0/1039:2`). First confirming deliveries are 599 and 1039, without
+backdating earlier ambiguous truths. All three pairs have now supplied at least
+one assistant-observed information case somewhere in this ongoing session.
+This is not evidence of an exclusive or uniformly truthful alliance.
+
+Within this second window, assistant enacted labels are AB uncertain, AC/BC
+observed; persistence remains uncertain. Possible AB continuation in hand 14
+coexists with false or incomplete later exchanges. The first-window AB repeated
+enactment judgment remains unchanged. Hand 21 is a clear accepted-looking fold
+sequence that fails: C invokes A's promise and bets, then A calls with ace.
+These source-bound provisional findings await complete-source verification and
+human adjudication. Windows/pairs/hands do not add experimental replications.

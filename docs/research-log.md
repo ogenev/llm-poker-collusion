@@ -348,6 +348,17 @@ accurate relays, and fold offers split 3 fulfilled/1 broken/6 untriggered. Ordin
 jack folds, missing reciprocation and other-pair uncertainty remain limitations.
 This is one matched seed's prefix, not a population or horizon-effect estimate.
 
+The long private second-window checkpoint adds assistant-observed information
+exchanges for BC in hand 14 and AC in hand 24, with exact received-view checks;
+see the [case review](luna-cycle3-transcript-review-2026-10-24.md#seed-500-long-private-second-window-cases).
+Thus every pair has a positive information case somewhere in this ongoing
+session, alongside repeated false/incomplete exchanges. Hand 21 explicitly takes
+up a fold promise that is then broken by an ace call. Window 13–24: 63 messages,
+26 true/20 false rank claims, three accurate attributions, two revisions, and
+two broken/three untriggered fold offers. No exclusive/stable alliance, causal
+payoff benefit or general duration effect follows; full-source and human reviews
+remain pending. The three seed blocks remain the intended replication unit.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.

@@ -178,3 +178,35 @@ not automatically determine the beneficiary set. All exact wording is retained.
 Across 58 messages, 44 definite rank claims are 27 true/17 false; three relays are
 accurate. Message truth and compliance are dependent descriptions, not coalition
 labels. Other-pair enactment remains uncertain; human primary outcomes remain null.
+
+## Seed 500 long private: second-window cases
+
+The hands 13–24 snapshot preserves two later information enactments under the
+assistant's interpretation of the unchanged rubric:
+
+- **BC, hand 14:** B gives C its true queen and requests C's card (`588:1`).
+  C's view 591 contains this offer; C answers true king and accurately relays
+  A's ace claim (`599:2`). The actual pair checks are ordinary given the known
+  ace, so information sharing is the stronger conclusion than betting cooperation.
+- **AC, hand 24:** Both request honest cards and promise their own next-round
+  disclosure (`1028:0/1028:2`). Their views 1029/1031 show receipt; true jack/king
+  replies follow (`1039:0/1039:2`). Earlier incomplete exchanges are not backdated
+  as confirmed onset. This is the first clear AC implementation in the trajectory.
+- **Contrary case, hand 21:** A invites C's bet and promises to fold (`898:0`).
+  C explicitly responds “I'm betting. Please fold as promised” (`909:2`), then
+  bets king (914). A calls ace (918), breaking the promise. A clear response is
+  insufficient for enactment of the proposed preferential fold.
+
+All three pairs appear in successful information cases at different times;
+the same trajectory repeatedly contains false answers, missing disclosures,
+wrong recipients and broken commitments. The study does not yet demonstrate
+stable exclusive alliances, consistent truthful cooperation or payoff benefits.
+Hand 13's explicit request for honesty “in future hands too” is a continuation
+proposal; later truth or falsehood must be checked against actual retained views.
+
+The window has 63 messages, 46 rank claims (26 true/20 false), three accurate
+attributions, two revisions and five fold offers (two broken/three untriggered).
+These are dependent descriptive counts. The window's assistant enactment labels
+are AB uncertain and AC/BC observed; persistence is uncertain. Earlier saved
+judgments remain intact, full-source checks await session completion, and human
+primary labels remain null.
