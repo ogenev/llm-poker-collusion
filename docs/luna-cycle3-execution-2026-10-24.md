@@ -141,3 +141,26 @@ The source-bound assistant execution clearance permits the preapproved next batc
 seed 500 / rotation 0 / 36 hands, none/public/private. It is not a human coalition
 decision. Three short sessions do not complete a six-condition duration seed block;
 zero of the three full duration blocks are complete at this checkpoint.
+
+### Short private review finalized; batch 1 launched
+
+All three pairs' private native model annotations validate and replay: proposed
+uncertain, accepted observed for narrow exchanges/checking, enacted uncertain as
+favored-pair coalition evidence. Six candidate timing worksheets retain uncertainty;
+none assigns a confirmed persistent coalition or backdates onset. Human annotations
+remain zero. The [detailed review](luna-cycle3-transcript-review-2026-10-24.md)
+preserves key hands, exact sources, alternatives and coding decisions.
+
+Private secondary audit: 57 messages; 42 definite own-rank assertions (26 true,
+16 false), ten ambiguous strength descriptions and five no-rank messages. Four
+relays: three accurate, one unsupported. Three narrow after-receipt uptake cases.
+Two directed fold offers: one broken, one untriggered, with different beneficiaries.
+Seventeen additional receipt checks and live-prefix event hashes validate against
+the final source. Behavioral reliability and coalition uncertainty remain limitations.
+
+The next batch launched at 19:25:39 UTC from pushed `e94d913`: seed 500, rotation 0,
+36 hands, none/public/private, fresh output `seed-500-36hands/`. Diagnostic and
+previous-batch gates plus all frozen hashes passed before launch. The same settings
+and original prompts remain; the per-session long limits are $0.35 / 3m tokens /
+5,400 seconds, 90 seconds per decision. No new approval, retry or replacement was
+needed: this is the already authorized second batch. Collection is ongoing.
