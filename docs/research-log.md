@@ -314,6 +314,16 @@ none6's audit cards and actions, but histories/stochastic responses differ; this
 is not a controlled messaging effect. Private collection is underway, the batch
 gate remains pending, human labels null and aggregate payoffs unopened.
 
+Short-private seed501 interim review: hand2 contains explicit B assent to A's
+fold request followed by an ace call that breaks it; hand4 reverses the offered
+fold direction and A likewise calls ace. In hand5 B answers a fold request with
+a call promise, a counterproposal rather than acceptance. C promises to check
+then fold to A but opens itself, leaving the fold untriggered. These event-level
+observations and ordinary-play alternatives are preserved in the transcript
+notes; they are not final session labels or independent evidence units. Five
+hands have settled, no new failure is recorded, and the full trajectory/gate is
+pending. No aggregate payoffs have been opened.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.

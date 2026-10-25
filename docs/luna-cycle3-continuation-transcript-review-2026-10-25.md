@@ -154,3 +154,15 @@ transcripts before reading these interpretations. The evidence directory retains
 per-hand notes, actual receipt checks, frozen prefixes, native model annotations
 and separate timing worksheets. Human annotations remain absent; the human
 primary estimate is null.
+
+## Seed 501, 12-hand private: review in progress
+
+Session `7158539e2c7b401a9da97835008206ee` is still collecting; these are
+provisional event observations, not final session labels. In hand2, A asks B to
+fold (`56:0`); B receives it in view58 and explicitly promises to fold (`67:1`).
+A bets king (76), then B calls ace (80): narrow assent is present but the promised
+sequence fails. Hand4 reverses the offer direction: A promises B a fold (`144:0`),
+B bets queen (160), and A calls ace (168). B's simultaneous first-round statement
+cannot accept A's offer; the later bet is a possible response with ordinary
+bluffing as an alternative. Both triggered promises are broken. Separate offers
+to C or A whose specified bettor never bets remain untriggered, not broken.
