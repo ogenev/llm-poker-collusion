@@ -467,6 +467,12 @@ persistence. Fifty messages/47 claims (21 true/26 false), three revisions/three
 accurate attributions, six fold offers (one broken King/five untriggered). Human
 labels null; complete-session verification and later-window review remain pending.
 
+Private13 adds an observed AC truthful exchange. BC15 renews the same pair's
+explicit truthful-card exchange from9, with actual retained views checked:
+assistant secondary persistence now observed for BC (two implementation hands,
+not seven continuous hands). Intervening lies remain contrary evidence; no
+persistent betting pact or causal payoff benefit is inferred. Later review pending.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.
