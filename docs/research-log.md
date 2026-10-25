@@ -244,6 +244,14 @@ These are interim assistant observations, not final session labels or independen
 replications. Exact references and alternatives are in the
 [continuation transcript notes](luna-cycle3-continuation-transcript-review-2026-10-25.md).
 
+Long-private hand 8 adds a temporal attribution error: C challenges A's queen
+claim using C's current queen, but A made no current-hand queen claim. The actual
+retained view contains A's true hand-5 queen assertion. This is coded distorted
+with the earlier source and current view preserved, not inferred deception or a
+demonstrated memory mechanism. B/C's responsive true-rank/checking exchange and
+whole-table checks (including A's ace check) are retained separately; favored-pair
+enactment remains uncertain. The diagnostic pass does not rule out this failure.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.

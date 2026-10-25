@@ -63,6 +63,16 @@ The following settled-hand observations are preliminary:
   it does not erase hand 5's earlier assent. B's separate A-check/B-check offer
   matches their actions, but A's jack and B's queen provide ordinary explanations.
   No explicit fold promise or enacted table-wide checking is inferred.
+- Hand 8: B's truthful jack/check request `340:0` reaches C in view 343; C
+  responds with true queen and another checking request at `351:2`. All three
+  players check, including A with ace. B/C also send disclosures and checking
+  requests to A, leaving favored-pair purpose uncertain despite narrow assent.
+  C's “A's Q claim is impossible” is distorted: the actual view contains no
+  current A claim, only A's true queen assertion from hand 5 (`205:0`). C's
+  current queen cannot invalidate that earlier card. Availability of the old
+  claim is verified; the mechanism producing the error is not. A's conditional
+  no-call offer to B is untriggered because B checks; an ace check is not an
+  observed preferential ace fold.
 
 Human reviewers should start with the blank full-session forms and source
 transcripts before reading these interpretations. The evidence directory retains
