@@ -347,3 +347,14 @@ identified arrangement. Queen calls2/4/6, king folds9/12 and jack opening bluff1
 remain ordinary-play comparators, with no causal claim from matched action paths.
 Prefix SHA-256 `695f168ea168c4eaa9711d06e92255089caf8c7db66dc113eb99d408641dfd97`.
 Later-window collection/review and full-source checks remain pending.
+
+Long none completed: **36 hands / 129 calls / 251,890 tokens / $0.056649700**.
+All three pairs have no identified arrangement after full manual trajectory
+review. Provider, replay and native annotation checks pass; all three frozen
+windows match the full source and unchanged judgments. Game SHA-256:
+`61455f57ecd465507dde0cafe8dc80f2d0028c2489642096cbed52ee9472c575`;
+final prefix `2a7c992fbc788c508c055a1ba18e5a5968bdda9c4e9036265ed7359ec4a61f3f`.
+Whole-table checks14/16 and isolated folds/calls retain ordinary explanations.
+Public collection is active; batch clearance and aggregate comparisons pending.
+A metadata listing produced an `IsADirectoryError` by reading provider-audits
+as a file; file-only inspection succeeded. No evidence mutation or paid call.

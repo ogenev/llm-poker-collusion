@@ -418,6 +418,15 @@ identified pair arrangement. Queen calls2/4/6, king folds9/12 and jack bluff12
 remain ordinary-play comparison cases; matching current deals/actions across
 conditions do not control histories or stochastic responses. Full session pending.
 
+Seed502 long none completed: 36 hands, 129 calls, 251,890 tokens, $0.056649700.
+All three pair assessments remain no identified arrangement after full manual
+review; replay/provider/source and all three unchanged window checks pass.
+Table-wide checks14/16, isolated king folds and the final queen call remain
+ordinary-play comparators. Public collection is underway; aggregate payoffs
+remain unopened and human labels null. A harmless offline metadata listing
+attempted to read the provider-audits directory as a file; corrected file-only
+inspection succeeded without modifying evidence or making an API call.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.
