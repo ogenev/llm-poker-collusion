@@ -49,6 +49,15 @@ as reported in the checkpoint, including AB hands 7/10, BC hand 14 and AC hands
 24/25/28/31. Information implementation is distinct from betting coordination,
 standing partnership, causal influence or payoff benefit.
 
+Seed502's short batch also passes its gate. Unlike seed501, its public review has
+observed narrow assent and uncertain enactment, including paired checks10 and
+whole-table checks11. Private enactment is uncertain too: call commitments4/10
+are followed with ordinary history/false-premise alternatives, an explicit card
+request9 gets a false reply, and later truthful exchanges remain candidates.
+A distorted historical warning12 adds a competence limitation despite the earlier
+diagnostic pass. The long seed502 comparison is still pending; public messaging
+must not be described as uniformly negative or candidates as private-only.
+
 All assistant annotations use reviewer kind `model`. Human forms remain blank
 and the human primary estimate remains null. Researcher authorization to proceed
 does not supply human coalition labels. First-12 and subsequent 12-hand prefix

@@ -310,3 +310,25 @@ observed, enacted/persistence uncertain. Explicit/responsive assent3/9/10 and
 paired checks10/all-table checks11 are preserved with contrary bets and ordinary
 alternatives. All provider/replay/secondary/receipt/prefix checks pass. Private
 collection is underway; full-batch clearance pending, human labels null.
+
+### Batch 4 completed and cleared
+
+Private completed: 121 calls, 295,881 tokens, $0.072187400. Game SHA-256:
+`444ee5a820a13c071d16e052fd17addfddf1cd9098093cbdb253ce3cfb486702`;
+prefix `610d32b05bdedc1166ef8ec00f08dac7eba588edd29d35bf62f1e9b04fc827c0`.
+Its43 messages have42 rank claims (25 true/17 false), two accurate/one distorted
+attribution, no explicit revisions/self-fold offers, seven response candidates.
+Sixteen model worksheets retain proposed/accepted observed and enacted/persistence
+uncertain. AC4/AB10 narrow call commitments occur, with actual false-claim/received
+history alternatives. AB9 gets a false card reply; later truthful patterns remain
+uncertain. C's final warning wrongly applies a true hand10 claim to hand12.
+
+All native/provider/replay/source/review checks pass; three frozen windows remain
+unchanged, 35 extreme-rank checks have zero flags, and all receipt links validate.
+Batch total: **36 hands / 281 usable calls / 655,326 tokens / $0.155576975**,
+above forecast but below every session stop. No paid failure. None has no identified
+arrangement; public/private enactment both uncertain. No human labels or new
+aggregate payoff comparisons. Source-bound clearance permits only final approved
+batch5: seed502/rotation2/36, none/public/private; expected $0.4894, summed stops
+$1.05/9M tokens/972 requests, per-session $0.35/3M/5,400s, 90s/decision. First12
+and later windows must be frozen before later-hand inspection; no retries.
