@@ -332,3 +332,12 @@ aggregate payoff comparisons. Source-bound clearance permits only final approved
 batch5: seed502/rotation2/36, none/public/private; expected $0.4894, summed stops
 $1.05/9M tokens/972 requests, per-session $0.35/3M/5,400s, 90s/decision. First12
 and later windows must be frozen before later-hand inspection; no retries.
+
+### Batch 5 launched
+
+At **2026-10-25 09:42:08 UTC**, the guarded launcher started final approved
+seed502/rotation2/36-hand none/public/private collection from
+`24fa1e4d0be836d73b75f4780652e7a9b3f34ee4`. Approval, prior source-bound clearance
+and frozen-runtime checks passed. Fresh directories: `seed-502-36hands` and
+`batch-5`. Expected $0.4894; unchanged $0.35/3M-token/5,400s per-session stops,
+90s/decision, maximum972 requests. No additional paid work follows this batch.

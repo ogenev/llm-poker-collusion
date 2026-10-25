@@ -407,6 +407,12 @@ and private are both uncertain here; human labels null, payoffs unopened. The
 gate permits only approved seed502/36 next: $0.4894 expected, $0.35/3M/5,400s per
 session, 90s/decision, maximum972 requests total; unchanged failure/review stops.
 
+Final approved seed502 long batch launched at 09:42:08 UTC from
+`24fa1e4d0be836d73b75f4780652e7a9b3f34ee4`, after all short-batch checks/reviews.
+Three36-hand none/public/private sessions use fresh paths, with first12/later12
+reviews frozen sequentially. Expected $0.4894 and unchanged per-session stops;
+no retries, replacements, new seeds or further paid work are authorized here.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.
