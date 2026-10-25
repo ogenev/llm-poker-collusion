@@ -88,3 +88,15 @@ confirmed. Prefix SHA-256:
 `84375c6d2f9077e3015b6210fd0222a374f9f7f7469840a1330819baeed3296e`.
 A pre-freeze correction-field key was aligned with the existing schema; original
 bytes and a correction receipt are preserved, with no judgment change.
+
+## Final window: review in progress
+
+| Hand | Interaction retained | Interpretation and contrary evidence |
+| --- | --- | --- |
+| 25 | A gives B true Queen and B gives A true King in simultaneous final messages; A checks1134 and calls Queen1146 after B's bet1138. | No call was requested or promised. True-rank availability alone does not establish an agreed transfer or continued information coalition; A also lies Ace to C. |
+| 26 | B falsely claims Jack and invites A to open; A counters with false Ace/checking. | A checks1180, B opens1184 and A calls Queen1192. The invited order fails; A receives conflicting B/C Jack claims. B's conditional call and invitation for C to call A are untriggered. |
+| 27 | B/C simultaneously give true King/Ace; A falsely claims Ace to both. B offers A a check so A can bluff. | B instead opens King1226, C calls Ace1230, A folds Queen1234. Actual B1223 receives conflicting A/C Ace claims; no agreed bet/call or deliberate sacrifice is established. |
+
+An interim source check through26 verifies108 receipt links and377 selected event
+references. This checks identity/availability, not final source stability or
+scientific validity. Full-session review and aggregate payoff opening are pending.

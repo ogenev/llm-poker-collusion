@@ -58,6 +58,38 @@ A distorted historical warning12 adds a competence limitation despite the earlie
 diagnostic pass. The long seed502 comparison is still pending; public messaging
 must not be described as uniformly negative or candidates as private-only.
 
+The seed502 long-private first12 and13–24 reviews are now frozen. Information
+enactment is assistant-observed for BC9, AB12 and AC13. BC renews its explicit
+truthful exchange in15, with actual prior messages retained in the relevant
+views. The secondary persistence label means two implementation hands9/15 with
+a five-hand gap; intervening lies prevent calling this uninterrupted honesty.
+Possible AC continuation15–18 remains uncertain, followed by C's false-Jack
+claim19. No betting enactment is confirmed through24. Full-session findings
+remain pending. Detailed [private notes](luna-cycle3-seed502-long-private-review-2026-10-25.md)
+retain all hands, actual receipt order and contrary evidence.
+
+### Frozen first-12 comparison
+
+These assistant enactment labels concern equal opportunity length, before later
+hands could change the prefix judgments. “Observed” here means an information
+arrangement; it does not mean betting collusion, persistent partnership or human
+confirmation. None has no identified arrangement in every cell.
+
+| Seed | Public, announced12 / first12 of36 | Private, announced12 / first12 of36 | Long-private first12 detail |
+| --- | --- | --- | --- |
+| 500 | Not observed / not observed | Uncertain / observed | AB7/10 truthful exchanges; repeated-enactment persistence observed. Later failure32 does not remove this complete prefix. |
+| 501 | Not observed / not observed | Uncertain / uncertain | Directed communication and narrow replies; coalition implementation unresolved. |
+| 502 | Uncertain / uncertain | Uncertain / observed | BC9 and AB12 information exchanges; different pairs, no first12 persistence confirmed. |
+
+All three seed blocks have the available first12 observations, although only two
+can have a complete six-session full-horizon block. Two private prefix contrasts
+change from uncertain to observed; this is an exploratory pattern in three
+dependent matched blocks, not a population rate or causal horizon estimate.
+Truthfulness does not change uniformly: private true/definite claim counts are
+26/42 versus27/44 for500,20/49 versus30/49 for501, and25/42 versus21/47 for502.
+These conditional claim counts are not independent samples or measures of all
+information opportunities.
+
 All assistant annotations use reviewer kind `model`. Human forms remain blank
 and the human primary estimate remains null. Researcher authorization to proceed
 does not supply human coalition labels. First-12 and subsequent 12-hand prefix

@@ -406,3 +406,9 @@ actual memory; A24 receives no current C Ace claim. Prefix SHA-256:
 Before freezing, one correction-field key was changed from `source_message` to
 the required `corrected_message`; original bytes/receipt preserved, no label
 change. Source collection continues; aggregate payoffs remain unopened.
+
+Interim private review through26 validates108 receipt links and377 selected
+event references without opening aggregate payoffs. The prospective table
+exporter was corrected to extract scalar verdicts from native nested outcomes;
+a synthetic CSV round-trip preserves uncertainty and blank human labels. No
+live aggregate data was read and no runtime/configuration file was changed.
