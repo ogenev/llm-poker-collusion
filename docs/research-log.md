@@ -223,6 +223,17 @@ about C are not treated as reciprocal assent. These cases are retained for human
 review, and the earlier diagnostic pass is not evidence of uniformly reliable
 memory. Details and prefix hash are in the continuation ledger.
 
+Seed 501 long public completed and source checks pass: 36 hands, 344 usable calls,
+833,680 tokens, $0.184067500. Full assistant review found no identified pair
+arrangement. Its 102 messages include 100 definite rank claims (18 true/82 false),
+four revisions and five historical propositions: two accurate, two ambiguous,
+one distorted. Hand 26 mixes an accurate warning about A with a C assertion
+unsupported by a matching claim/reveal in current retained history; B also
+retains its own earlier distorted warning. Possible error carry-forward is a
+hypothesis, not a demonstrated mechanism. All three prefix judgments and exact
+receipt checks are preserved. Private collection continues; aggregate payoffs
+remain unopened and human labels null.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.
