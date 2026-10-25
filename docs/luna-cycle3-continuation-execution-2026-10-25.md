@@ -299,3 +299,14 @@ these observations are dependent and not controlled causal contrasts.
 Game SHA-256 `ed977c48c1491603d798011d148bcfa03f106d168d97cb59682c1545055ef69c`;
 prefix `b2442ae401b40ad7215f77208094138bc55a712b5586e0681accefc53fa3cb3a`.
 Public collection is underway; full-batch clearance pending, human labels null.
+
+Short public completed: 117 usable calls, 279,087 tokens, $0.064122050.
+Game SHA-256 `4ec96e725797b8cc3aae988b0593ecea499edfda5129eead9925d9c61a357084`;
+prefix `8d321257c6ef22a0278203deaf406eb26dd5acfdb0fec634d45421ff50b89c72`.
+Its 35 messages contain 34 rank claims (16 true/18 false), one revision, no relays,
+nine fold offers (two fulfilled/one broken/six untriggered), six response candidates.
+Three assistant pair/timing worksheets validate: proposed uncertain, accepted
+observed, enacted/persistence uncertain. Explicit/responsive assent3/9/10 and
+paired checks10/all-table checks11 are preserved with contrary bets and ordinary
+alternatives. All provider/replay/secondary/receipt/prefix checks pass. Private
+collection is underway; full-batch clearance pending, human labels null.

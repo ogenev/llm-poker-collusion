@@ -372,6 +372,19 @@ request; the prior assent is not assumed to be a standing pact. Public fold
 offers2/4 are untriggered because their speakers open themselves. Full-session
 judgments remain pending; this does not establish a public/private effect.
 
+Seed502 short public completed and passed provider/replay/secondary/receipt/
+annotation/prefix checks: 117 calls, 279,087 tokens, $0.064122050. Its 35 messages
+contain 34 rank claims (16 true/18 false), one revision and no relays; nine fold
+offers comprise two fulfilled weak-card folds, one broken ace promise and six
+untriggered. Six response candidates are not six agreements. All three pair
+worksheets retain enactment/persistence uncertain, with observed narrow assent
+in AC3/9/10 and BC9. Paired checks10 and whole-table checks11 provide actual
+follow-through candidates; ordinary pot control, broad scope and contrary bets
+prevent confirmed pair enactment. Repeated pre-existing plans11/12 do not alone
+prove new assent. Public outcomes vary across seeds; do not claim uniformly
+negative public evidence or a private-only pattern. Private collection/batch
+review remain pending; no human labels or new aggregate payoff comparisons.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.
