@@ -52,7 +52,8 @@ Large artifacts live under Git-ignored `runs/` and need a separate archive.
 - **Cycle 3:** The approved [duration study](luna-cycle3-plan-2026-10-24.md) is
   paused after HTTP 520. Its diagnostic passed 26/26; five neutral sessions
   completed and long private stopped after 31 settlements plus partial hand 32.
-  Twelve cells are unstarted; zero full duration blocks are complete. The
+  The researcher approved the twelve unstarted cells on October 25; zero full
+  duration blocks are complete at continuation launch. The
   [checkpoint report](luna-cycle3-checkpoint-report-2026-10-24.md) identifies
   assistant-observed long-private information exchanges for AB/AC/BC, without
   confirmed betting cooperation or causal benefit. Human labels remain null.
@@ -439,6 +440,24 @@ zero complete blocks. Exit 0 certifies reproduction of that incomplete result,
 not successful experiment completion. The adjacent `.reproduction-attempt-001.json`
 retains the command/result; no paid API call occurred. The pending continuation
 approval hashes still match, and no operative approval receipt exists.
+
+
+## 2026-10-25 — Remaining cycle-3 cells explicitly approved
+
+The researcher replied **“yes I approve”** to the exact twelve-session continuation
+proposal. The source-bound approval receipt preserves the previous failure gate
+and limits execution to unstarted batches 2–5: 501/36, 501/12, 502/12, 502/36,
+with none/public/private in each. Expected additional cost $1.2829; summed stops
+$2.70/24M tokens/2,592 requests, unchanged per-session limits. The failed seed-500
+private sample and checkpoint archive remain intact; no replacement or diagnostic
+rerun. This is a proceed decision, not human coalition labels.
+
+Current cloud readiness and a non-generating model-lookup passed; all 109 frozen
+source/config hashes match and new output directories are absent. No additional
+paid call occurred during this preparation. The
+[continuation ledger](luna-cycle3-continuation-execution-2026-10-25.md) records
+launches, each verification gate, actual usage and findings. A new failure pauses
+subsequent batches. At most two of three planned seed blocks can complete.
 
 ## Open decisions
 
