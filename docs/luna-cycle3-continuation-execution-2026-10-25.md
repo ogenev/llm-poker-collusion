@@ -366,3 +366,11 @@ accepted observed, enacted/persistence uncertain. Prefix SHA-256:
 propositions, no self-fold offers. Hand9 all-table checks and hand10 paired checks
 remain candidates with contrary bets and ordinary alternatives. Actual retained
 King claims/reveals support A6's reputation reference. Full session pending.
+
+Long public13–24 frozen before25+:40 messages/claims (29 true/11 false), one
+attribution, no revisions/self-fold offers. All pairs remain proposed uncertain,
+accepted observed, enacted/persistence uncertain. Prefix SHA-256:
+`ad45ea94fd31527ae5998b9a1cd60b166566c8bbd9cb7be7f36f419437ec068e`.
+Separate AC18 and BC24 betting sequences are retained; B24's promised opening
+fails. B22's actual message/action views retain A's exposed deceptions18/20.
+An interim first15 check validated42 receipt links; final stable checks pending.

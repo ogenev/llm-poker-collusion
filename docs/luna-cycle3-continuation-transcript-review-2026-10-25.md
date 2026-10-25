@@ -327,3 +327,24 @@ The first12 contain52 messages/51 claims (32 true/19 false), three revisions,
 ten attributed propositions and no self-fold offers. Attribution counts include
 both received Jack claims in A's single hand12 conflict warning. Full review
 remains pending; earlier prefix labels will not be overwritten by later evidence.
+
+Second window13–24 is now frozen with all pair enactment/persistence uncertain.
+It contains40 messages/claims (29 true/11 false), one accurate attribution and no
+rank revisions/self-fold offers. In13 C responds to A's checking plan and both
+check578/582 before B's announced ace bet. In14 A/B check628/632 before C's
+contrary king bet. These compatible sequences retain ordinary pot-control
+alternatives and public table scope.
+
+AC18 is a separate check-then-bet candidate: A's planned bluff (`788:0`) predates
+C's invitation (`788:2`); A confirms it (`799:0`) after receipt. C checks808,
+A bluffs jack812 and C calls king820. New assent and shared advantage remain
+uncertain. In22 B explicitly promises to call A (`979:1`) after A's true ace/fold
+request, and calls king992. This opposes the requested fold. B's actual views970/
+989 both retain A's false-Ace/Jack reveal18 and false-Jack/Ace reveal20, providing
+a concrete ordinary distrust alternative without establishing a causal mechanism.
+
+BC24 is a different invited-bet sequence: C's false-Jack/checking invitation
+(`1056:0`) gets B's false-Ace/bet reply (`1067:1`). B checks1072 instead, then
+C opens ace1076. Narrow assent is observed but the promised B opening is not
+enacted. These cases are kept separate from broad checking and from self-fold
+offers. No new aggregate payoffs have been opened; final session review pending.

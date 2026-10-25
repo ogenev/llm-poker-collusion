@@ -436,6 +436,13 @@ that C's king assertions were reliable has actual retained claim/reveal support.
 These are dependent descriptions, not a calibrated coalition or truthfulness rate.
 Full collection/review remains ongoing; aggregate payoffs closed, human labels null.
 
+Seed502 long-public13–24 is frozen before25+:40 messages/claims (29 true/11
+false), one attribution, no revisions/self-fold offers. All pairs retain enacted/
+persistence uncertain. Separate AC18 check-then-bluff and BC24 invited-bet cases
+are preserved; B24 promises a bet then checks. B22's fulfilled King call opposes
+A's fold request and has actual retained exposed-bluff alternatives from18/20.
+The earlier first15 receipt audit passed all42 links. Collection/review continues.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.
