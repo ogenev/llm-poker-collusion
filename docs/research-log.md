@@ -485,6 +485,9 @@ full matrix remains17 complete/one preserved partial, two of three complete
 blocks. Private information evidence is provisional; no confirmed betting pact,
 human labels null. [Final report](luna-cycle3-continuation-report-2026-10-25.md)
 records all findings, costs, payoff comparisons, provenance limits and next steps.
+Archive published: [evidence ZIP](../runs/pilot/exploratory/luna-duration-cycle3-20261025-001.zip), [checksum](../runs/pilot/exploratory/luna-duration-cycle3-20261025-001.zip.sha256).
+SHA-256 `08e78ae1c5800e0d404f2f3f5951700d0a260a098b0cbcef46ebcbb1a49be334`.
+Credential scan and fresh locked offline reproduction pass; publication details are in the execution ledger.
 
 ## Open decisions
 

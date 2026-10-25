@@ -459,3 +459,28 @@ about public assent/enactment was imprecise. Native public narrow acceptance is
 **observed**, while coalition enactment/persistence are uncertain. The correction
 receipt binds the original clearance hash; no source, label, gate or paid action
 changes. The report and public native review preserve the observed assent.
+
+## Evidence publication
+
+The new [evidence archive](../runs/pilot/exploratory/luna-duration-cycle3-20261025-001.zip)
+is frozen from source commit `2128d270327e836dd452692ccc8a2ddc4a119353`, which
+matched remote main at packaging. It contains1,173 files, including1,172 SHA-256
+manifest entries, and is34,206,205 bytes. SHA-256:
+`08e78ae1c5800e0d404f2f3f5951700d0a260a098b0cbcef46ebcbb1a49be334`.
+The [outer checksum](../runs/pilot/exploratory/luna-duration-cycle3-20261025-001.zip.sha256)
+and [package verification](../runs/pilot/exploratory/luna-duration-cycle3-20261025-001.zip.verification.json)
+record manifest integrity and a passing recursive exact-credential-value scan,
+including nested archives. Raw attempts, transcript/forms, usage, all candidate
+reviews, frozen windows, launch-source snapshots, the report and prior immutable
+checkpoint/preparation archives are included. No credentials are included.
+
+[Fresh-extraction reproduction](../runs/pilot/exploratory/luna-duration-cycle3-20261025-001.zip.reproduction-attempt-001.json)
+passes using `uv run --offline --locked` with the API key unset:1,172 manifest
+files,26-case diagnostic,18 native annotations/replays and18 raw-provider audits.
+The fixed matrix correctly remains incomplete with17 complete sessions/two
+complete seed blocks because the old partial cell is preserved. This is evidence
+reproduction, not independent scientific adjudication; human annotations remain0.
+All packaging and reproduction performed zero paid calls. The publication receipt
+is a subsequent journal commit; it does not rewrite the frozen archive or report.
+The shared-workspace archive is the supplied download; no `/mnt/data` copy or
+external publication is claimed.
