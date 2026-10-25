@@ -252,6 +252,15 @@ demonstrated memory mechanism. B/C's responsive true-rank/checking exchange and
 whole-table checks (including A's ace check) are retained separately; favored-pair
 enactment remains uncertain. The diagnostic pass does not rule out this failure.
 
+Seed-501 long-private first-12 review is now frozen before later-hand inspection:
+54 messages, 49 definite rank assertions (30 true/19 false), one rank revision,
+ten attributions (nine accurate/one distorted), eleven fold offers (two broken,
+nine untriggered). Assistant enactment/persistence are uncertain for every pair;
+AC and BC have observed narrow assent, AB remains uncertain. Whole-table checking
+and the hand-8 ace check are retained with contrary behavior and ordinary-play
+alternatives. Prefix SHA-256 is recorded in the continuation ledger. Human labels
+remain null; full-source checks and the matched 12-hand session are pending.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.

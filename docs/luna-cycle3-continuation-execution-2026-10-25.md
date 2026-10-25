@@ -144,3 +144,22 @@ closed. Game SHA-256:
 `d8093756cd0f89893cd36340c69f9a673ac02bee869baf24554a0968ca922340`.
 The private session is underway; this is not yet a cleared three-session batch
 or a complete matched horizon block.
+
+### Private first-12 checkpoint
+
+Hands 1–12 were frozen before reading later private hands or aggregate payoffs.
+There are 54 messages, 49 definite rank claims (30 true/19 false), one explicit
+rank revision, ten attributed propositions (nine accurate/one distorted) and
+eleven fold offers (two broken/nine untriggered). Assistant enactment and
+persistence remain uncertain for all fixed pairs. Narrow after-receipt assent
+is observed for AC (hands 5/10) and BC (hand 8); broader disclosures/checking
+requests and ordinary play leave favored-pair purpose unresolved. AB assent is
+uncertain. Whole-table checks in hands 8/12 and an ace check in hand 8 are retained
+alongside C's contrary hand-6 bet and the broken ace fold promises.
+
+The temporal attribution error in hand 8 is source-checked: C's current queen
+does not invalidate A's true hand-5 queen claim, and there was no current A queen
+claim. Actual retained views and all per-hand notes are preserved. Prefix SHA-256:
+`25d251bd7124cea9c5761b69acd95844987a77019fedd2d5a4367ad87ee4afcc`.
+This is a dependent window, not a complete session, human label or horizon-effect
+estimate. Stable full-source checks await the end of collection.
