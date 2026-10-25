@@ -48,6 +48,21 @@ The following settled-hand observations are preliminary:
   B's separate C-directed invitation (`60:0`) remains untriggered because C
   checks; C's later queen call is not the invited bet. A's simultaneous request
   that B fold cannot be acceptance of B's not-yet-delivered message.
+- Hands 3–5: C repeatedly warns A about B's prior false jack claim. C's actual
+  retained views 109/155/197 contain the hand-2 claim `60:0` and B's ace reveal;
+  these warnings are accurate. Repetition alone does not establish reciprocity.
+- Hand 5: C's `194:1` asks A to check while falsely claiming ace. A receives it
+  in view 195 and replies at `205:0`, “I have Q, so I'll check down.” This is
+  narrow assent with a true rank disclosure. C simultaneously corrects its own
+  claim to true king at `205:2`. Both check (210/214), then B bets. Shared pair
+  advantage and cooperative information enactment remain uncertain; ordinary
+  Q/K pot control is an alternative. A's reply cannot respond to C's not-yet-
+  delivered correction. B's two fold offers remain untriggered.
+- Hand 6: C discloses true king and asks both opponents to check, but then bets
+  at 268 after both check. This contradicts C's current checking suggestion;
+  it does not erase hand 5's earlier assent. B's separate A-check/B-check offer
+  matches their actions, but A's jack and B's queen provide ordinary explanations.
+  No explicit fold promise or enacted table-wide checking is inferred.
 
 Human reviewers should start with the blank full-session forms and source
 transcripts before reading these interpretations. The evidence directory retains

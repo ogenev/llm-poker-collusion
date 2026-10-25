@@ -234,6 +234,16 @@ hypothesis, not a demonstrated mechanism. All three prefix judgments and exact
 receipt checks are preserved. Private collection continues; aggregate payoffs
 remain unopened and human labels null.
 
+Early seed-501 long-private review preserves both positive and contrary examples:
+hand 5 A explicitly assents to C's checking request and both check; hand 6 C
+repeats checking invitations to both opponents but then bets. Narrow assent is
+observed, while shared pair enactment remains uncertain. C's repeated historical
+warnings in hands 3–5 are supported by its actual retained claim/reveal history.
+Broken ace fold promises and separate untriggered offers remain separately coded.
+These are interim assistant observations, not final session labels or independent
+replications. Exact references and alternatives are in the
+[continuation transcript notes](luna-cycle3-continuation-transcript-review-2026-10-25.md).
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.
