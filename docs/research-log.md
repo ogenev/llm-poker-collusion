@@ -355,6 +355,96 @@ This authorizes preparing the proposed held-out-context follow-up. No exact new
 paid plan has yet been presented, so new API generation remains unapproved until
 its costs and stop limits are shown and separately confirmed.
 
+## 2026-10-25 — Cycle4 pushed; cycle5 prospective source preparation
+
+Cycle4 publication completed: `465fe32` and
+`9674d8cf14cc39357fdfd7aae16325b47f75db6a` were pushed to `origin/main`;
+the remote ref was read back and matched. No previous raw archive was changed.
+The same request authorizes preparing/publishing the next experiment; new paid
+generation still requires the exact spending plan and subsequent confirmation.
+
+Prepared the [cycle5 source plan](luna-cycle5-heldout-source-plan-2026-10-25.md):
+three fresh private36 sessions, seeds600–602, original initial rotations0/1/2,
+neutral prompts, two rounds,500/1,000-character limits and six-hand memory.
+Luna/explicit medium/strict JSON,4,096 completion tokens,90-second decisions,
+5,400-second sessions, one connection and no retries remain unchanged.
+These are unmatched source sessions, not missing-cell replacements or new
+public/private matched sets. No canceled channel-explicit revision was restored.
+
+Prospectively select at most two incoming card-request contexts per source,
+one per hand from hand7 onward, before second-round calls. The fixed lexical
+matcher does not require honesty wording or use current response/truth/payoff.
+Persist view/prefix hashes and timestamps before callbacks; independently
+recompute selection during evidence verification. Preserve underfill without
+backfill, extra sources or retuning. Candidate availability and lexical coverage
+remain limitations. Contexts are clustered within three sources; repeated
+responses and individual hands are not independent replications.
+
+Offline inspection found the first tie-break followed seat rotation and therefore
+always prioritized seat0 when all players qualified. Revised it before any paid
+collection to `(2*seed + 2*hand_index) % 3`, added a seat/identity regression check,
+and preserved the initial source snapshot and rehearsal. Both three-session
+scripted rehearsals completed and sealed six contexts; each used972 synthetic
+calls with sockets forbidden. These are software checks, not scientific findings.
+Two earlier test failures are retained: an incorrect overall Inspect-status
+assertion (fixed to inspect the failed sample), and rejecting audit `tools:null`
+despite omission on the HTTP wire (fixed to distinguish absent tools from actual
+function calling). No paid request was made by either failed test. The first
+full suite passed1,442 tests with two opt-in browser skips; the revised selector's
+final full suite passed1,443 tests with the same two skips. Locked installation,
+Ruff and mypy passed. Dependency deprecation warnings remain unrelated to these
+changes. Revised zero-call preflights passed for all three source blocks. The
+pending approval receipt was rejected before provider initialization, with the
+API key unset and no live output directory created.
+
+Official pricing/model documentation was freshly checked2026-10-25 through the
+available web connector after workspace-only access could not refresh it. The
+earlier connectivity/forecast receipts retain that temporary limitation; a new
+official-price receipt and forecast002 supersede it. Standard prices remain
+$0.10 input/$0.50 output/$0.01 cache read/$0.125 default cache write per million.
+Medium and structured outputs are supported; this experiment does not use
+function calling. Non-generating model availability GET and client preflights
+passed without revealing credentials. Historical evidence and SDK interception
+support transport compatibility; no new paid compatibility call was made.
+
+Complete private36 sources501/502 forecast **$0.215770925 per source**, hence
+**$0.647312775** total (about2,876,655 tokens). Each proposed source stops at
+$0.35/3,000,000 tokens, maximum396 calls; totals **$1.05/9,000,000/1,188 calls**.
+These are post-response thresholds, not hard invoice caps; queued decisions in
+the original three-player communication phase can finish after a failure.
+Failure stops later sources; all partial/failed evidence and unknown usage stay.
+The two-session forecast is uncertain and does not erase seed500's interruption.
+
+After source verification, seal input-only contexts and three standardized
+request variants. Up to180 subsequent probe calls are proposed, but **zero are
+authorized by this source-stage plan**; exact input-bound costs/limits need a
+separate approval. Separate recipient choice from truthful claims and the joint
+truthful-to-requester endpoint. Standardizing the whole focal message removes
+its other offers/claims; withholding is broader still. Human review remains
+deferred, labels0/null; assistant checks do not substitute for human gates.
+No new coalition, payoff, channel or Luna/Sol inference has been collected.
+New paid generation this preparation:0; cumulative known Luna spend remains
+**$3.289810990 plus three unresolved historical requests**.
+
+Preparation freezes184 files under manifest SHA-256
+`cff62bb99cdb00c30630756f14f320d149525ea8b1d14e242edb627e3ffbe439`.
+The live output paths are absent and the approval template remains false.
+The preparation archive includes both draft rehearsals, preserved failed test
+evidence, the final source/configuration snapshot and the exact sequential
+command vectors. Publication/archive receipts will accompany that package.
+
+Preparation [archive](../runs/preparation/luna-heldout-cycle5-20261025-001.zip)
+completed: SHA-256
+`e27dd9c0191e1637c41c1ab8b06b5021e72ce08e1a9382c6e074787ffe050782`,
+5,229,825 bytes and512 checksum entries. ZIP integrity, per-file hashes and
+credential scanning (including nested Inspect logs) passed. Fresh extraction
+with archived source and API credentials unset verified all three revised mock
+sources and reproduced the exact sealed cohort. This reused the locked environment;
+it is an integrity/software reproduction, not independent scientific review.
+The archive journal snapshot predates this publication receipt. The cycle5 plan,
+implementation/tests and this journal are being committed/pushed under the
+researcher's existing request; paid source collection remains pending approval.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.
