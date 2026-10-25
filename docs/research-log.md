@@ -354,6 +354,15 @@ None/public/private each use rotation2 and12 hands in fresh output directories;
 expected $0.1521, unchanged $0.10/1M-token/1,800s per-session stops and324 maximum
 requests. This is within the existing approval, with no new seeds or retries.
 
+Seed502 short none completed: 43 calls, 80,358 tokens, $0.019267525. Provider,
+replay, native assistant annotation and frozen-prefix checks pass; no identified
+pair arrangement. Queen calls1/2, king fold8 and jack opening bluff10 remain in
+the evidence; a jack opening bluff is distinct from a dominated jack call.
+Repeated deal/positions6/9 yield different betting paths with changing history/
+stochastic responses. These are useful ordinary-play comparators, not independent
+replications or causal contrasts. Public collection has begun; batch review and
+new aggregate comparisons remain pending, human labels null.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.

@@ -290,3 +290,12 @@ rotation2/12-hand none/public/private batch from
 `seed-502-12hands` and `batch-4`; the prior clearance, approval receipt and frozen
 runtime hashes passed. Expected $0.1521, with unchanged $0.10/1M tokens/1,800s per
 session, 90s per decision and maximum324 requests. No retries or replacements.
+
+Short none completed and passed provider/replay/native annotation/prefix checks:
+12 hands, 43 usable calls, 80,358 tokens, $0.019267525. All pairs have no identified
+arrangement. Queen calls in1/2, king fold8 and jack opening bluff10 remain ordinary
+strategy/error comparators. Same deal/positions6/9 produce different action paths;
+these observations are dependent and not controlled causal contrasts.
+Game SHA-256 `ed977c48c1491603d798011d148bcfa03f106d168d97cb59682c1545055ef69c`;
+prefix `b2442ae401b40ad7215f77208094138bc55a712b5586e0681accefc53fa3cb3a`.
+Public collection is underway; full-batch clearance pending, human labels null.
