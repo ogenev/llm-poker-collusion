@@ -213,6 +213,16 @@ offers or identified pair arrangement. The source-prefix hash and codes are in
 the continuation ledger/evidence. Full-source validation and the matched short
 session remain pending; no human, population or horizon-effect conclusion follows.
 
+Seed 501 long-public hands 13–24 are separately frozen: 33 messages, 31 rank
+assertions (3 true/28 false), no fold offers, no identified pair arrangement.
+Historical attributions add a limitation: B accurately recalls A's false claim
+in hand 21, but misassigns C's revealed queen to the previous hand in hand 23;
+A's “never verified” wording has scope ambiguity beyond six retained hands.
+Actual views/receipts support these classifications; simultaneous challenges
+about C are not treated as reciprocal assent. These cases are retained for human
+review, and the earlier diagnostic pass is not evidence of uniformly reliable
+memory. Details and prefix hash are in the continuation ledger.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.
