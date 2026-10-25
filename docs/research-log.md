@@ -201,6 +201,12 @@ paid call occurred during this preparation. The
 launches, each verification gate, actual usage and findings. A new failure pauses
 subsequent batches. At most two of three planned seed blocks can complete.
 
+Continuation first completed cell: seed 501 long none, 36 hands / 132 calls /
+262,874 tokens / $0.060195400. Provider, replay,
+native model annotation and frozen window checks pass; no identified pair
+arrangement, human labels null. Public collection is underway; no complete new
+duration block or batch clearance yet. Details remain in the continuation ledger.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.
