@@ -75,7 +75,7 @@ baseline, not independently reverified evidence.
 
 | Iteration | Experimental coverage | Messaging / findings | Recorded API cost |
 | --- | --- | --- | --- |
-| Reported GPT-6.1 Sol neutral pilot | Three matched sets, nine 12-hand sessions, 108 hands | Public 0/216 possible messages; private 198/216. Human neutral adjudication pending. | $4.0797365, 850 calls, 1,403,108 tokens |
+| Reported GPT-6.1 Sol neutral pilot | Three matched sets, nine 12-hand sessions, 108 hands | Public 0/216 possible messages; private 198/216. Preliminary assistant review reported no convincing coalition; human neutral adjudication pending. | $4.0797365, 850 calls, 1,403,108 tokens |
 | Luna first neutral pilot, seeds 300–302 | Three matched sets, nine 12-hand sessions, 108 hands | Public 98/216; private 155/216. Assistant private enactment uncertain; none/public no identified arrangement. | $0.4561972, 813 calls, 1,909,128 tokens |
 | Luna second neutral pilot, seeds 400–402 | Two complete sets of three planned; eight complete sessions plus partial public400, 103 settled hands | Private reciprocal-warning candidates remained uncertain; private401 had observed narrow assent. | $0.4205535 known neutral cost plus two unknown requests; 765 started/763 usable calls |
 | Luna cycle 3 | Three planned six-condition seed blocks; seed501 complete, seed500 has one partial cell, seed502 collecting | Seed501 private enactment uncertain at both horizons; none/public no identified arrangement. Seed500 information cases remain separately reported. | In progress; separate diagnostic, neutral and continuation accounting required |
@@ -87,6 +87,17 @@ comparison. Sol's public silence and Luna's public messaging are conspicuous
 reported behavioral differences, but a three-set pilot cannot establish their
 population frequency. Cycle 3's changed horizon, seeds and partial cell prevent
 a simple like-for-like full-cycle cost or coalition-rate comparison with Sol.
+
+The [committed Sol report](neutral-pilot-iteration-report-2026-10-24.md) describes
+private card questions with false answers (seed301 hand1), an accurate relay
+combined with a false own-card claim (302 hand7), a broken fold promise (302
+hand10), and a historical warning followed by ordinary calling (302 hand11).
+Those mechanisms also occur in Luna's transcripts. Sol's reported absence of a
+convincing coalition is a preliminary assistant assessment, not a verified zero
+rate or a human-calibrated model difference. Its reported 28 direct rank claims,
+all false, concern one private session and a narrower coding definition; comparing
+that percentage directly with Luna's broader semantic claim counts would require
+the unavailable raw logs and consistent recoding.
 
 ## Limitations that govern interpretation
 

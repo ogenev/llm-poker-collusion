@@ -427,6 +427,15 @@ remain unopened and human labels null. A harmless offline metadata listing
 attempted to read the provider-audits directory as a file; corrected file-only
 inspection succeeded without modifying evidence or making an API call.
 
+Seed502 long-public first12 review is frozen before later-hand inspection: all
+pairs have proposed uncertain, narrow accepted observed, enacted/persistence
+uncertain. There are52 messages,51 definite own-rank claims (32 true/19 false),
+three revisions, ten attributed propositions and no self-fold offers. Actual
+whole-table checks9 and paired checks10 coexist with contrary bets; A6's claim
+that C's king assertions were reliable has actual retained claim/reveal support.
+These are dependent descriptions, not a calibrated coalition or truthfulness rate.
+Full collection/review remains ongoing; aggregate payoffs closed, human labels null.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.

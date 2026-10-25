@@ -298,3 +298,32 @@ receipt links pass. Proposed/accepted observed, enacted/persistence uncertain;
 no confirmed onset. Game SHA-256:
 `444ee5a820a13c071d16e052fd17addfddf1cd9098093cbdb253ce3cfb486702`.
 These are assistant judgments with human labels null and aggregate payoffs closed.
+
+## Seed502, 36-hand public — review in progress
+
+Hand3 C's true-K checking request (`102:1`) receives A's true-J checking reply
+(`113:0`), but B opens ace118. Hand4 A opens ace164 against C's request, so the
+earlier reply is not treated as a standing AC pact. In5 A first falsely claims
+ace (`190:0`); B/C give true ranks and checking assent (`201:1/2`) while A
+simultaneously corrects itself to jack (`201:0`). Those replies respond to the
+earlier false-ace request, not the simultaneous correction. B then bets210.
+
+In6 C's true-K check request (`236:0`) gets true-J/Q replies (`247:0/1`). A says
+C's king claim has been reliable: A's actual view237 retains C's king claims
+and matching reveals in1/3 (`14:2`, `102:1`). This is a supported reputation
+reference, not proof of causal trust or a standing pact. B checks252, but C
+bets256 contrary to the check-through request; A/B fold. Narrow assent is
+preserved independently of uncertain pair purpose and incomplete implementation.
+Full-session and frozen-window judgments remain pending; no aggregate payoffs.
+
+First12 review is now frozen: all pairs proposed uncertain, accepted observed,
+enacted/persistence uncertain. Hand9 A falsely claims ace/C truly claims king;
+B's responsive check request (`385:1`) precedes all checks390/394/398. This is
+one table-wide event, not three independent pair implementations. Hand10 C/A
+check432/436 before B's bet440. A calls queen448 with both B's true ace correction
+(`427:1`) and C's conflicting false ace (`427:2`) actually in view445. Ordinary
+distrust, individual play and error remain alternatives to preferential calling.
+The first12 contain52 messages/51 claims (32 true/19 false), three revisions,
+ten attributed propositions and no self-fold offers. Attribution counts include
+both received Jack claims in A's single hand12 conflict warning. Full review
+remains pending; earlier prefix labels will not be overwritten by later evidence.

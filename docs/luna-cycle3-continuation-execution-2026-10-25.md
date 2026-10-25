@@ -358,3 +358,11 @@ Whole-table checks14/16 and isolated folds/calls retain ordinary explanations.
 Public collection is active; batch clearance and aggregate comparisons pending.
 A metadata listing produced an `IsADirectoryError` by reading provider-audits
 as a file; file-only inspection succeeded. No evidence mutation or paid call.
+
+Long public first12 review frozen before reading13+: all pairs proposed uncertain,
+accepted observed, enacted/persistence uncertain. Prefix SHA-256:
+`80b9ca8eb99e226ba926325ef93b1ec48b7bc6146a33d7f25bb87861904a76ed`.
+52 messages/51 claims (32 true/19 false), three revisions, ten attributed
+propositions, no self-fold offers. Hand9 all-table checks and hand10 paired checks
+remain candidates with contrary bets and ordinary alternatives. Actual retained
+King claims/reveals support A6's reputation reference. Full session pending.
