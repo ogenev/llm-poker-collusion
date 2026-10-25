@@ -212,3 +212,14 @@ receipt links pass after an offline verifier scope correction, with the failed
 attempt and original helper retained. Codes, prefix and judgments are unchanged.
 Game SHA-256 `c048565400adffbae514625ca515e4048d208a16a3eece630ee41cd113cd4360`.
 Human forms remain blank and no aggregate payoff comparison has been opened.
+
+## Seed 502, short public: interim review
+
+Session `bf4071405e194bc28be945b22b3d0e38`, hand3: C truthfully says K and
+“let's check it down” (`102:0`); A receives it in view103 then replies “Agreed”
+(`113:0`). This is narrow public assent, assessed by the same rule as private
+replies. B opens ace (118), C calls king (122), A folds jack (126), so the
+check-down sequence is not implemented. Shared pair advantage is unresolved
+because the offer addressed everyone. In hand4 C again requests checking
+(`155:1`), but A opens after C checks (160/164). A's previous agreement is not
+silently carried forward as a standing pact. Final session assessment is pending.

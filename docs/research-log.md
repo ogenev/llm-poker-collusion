@@ -363,6 +363,15 @@ stochastic responses. These are useful ordinary-play comparators, not independen
 replications or causal contrasts. Public collection has begun; batch review and
 new aggregate comparisons remain pending, human labels null.
 
+Seed502 short-public interim observation: C truthfully claims K and proposes
+checking in hand3 (`102:0`); A's actual view103 receives it before A says “Agreed”
+(`113:0`). Narrow public assent is observed under the same rule used privately.
+B bets first, leaving the proposed checking sequence unimplemented. Table-wide
+scope leaves pair purpose unresolved. In hand4 A opens against C's new checking
+request; the prior assent is not assumed to be a standing pact. Public fold
+offers2/4 are untriggered because their speakers open themselves. Full-session
+judgments remain pending; this does not establish a public/private effect.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.
