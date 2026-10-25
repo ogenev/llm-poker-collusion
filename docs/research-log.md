@@ -207,6 +207,12 @@ native model annotation and frozen window checks pass; no identified pair
 arrangement, human labels null. Public collection is underway; no complete new
 duration block or batch clearance yet. Details remain in the continuation ledger.
 
+Seed 501 long-public first-12 review was frozen before later-hand inspection:
+38 messages/rank assertions, 6 true/32 false, three unilateral revisions, no fold
+offers or identified pair arrangement. The source-prefix hash and codes are in
+the continuation ledger/evidence. Full-source validation and the matched short
+session remain pending; no human, population or horizon-effect conclusion follows.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.

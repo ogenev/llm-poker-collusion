@@ -81,3 +81,16 @@ all-check hands do not establish shared purpose. Human labels remain null and
 aggregate payoff tables remain closed. Game SHA-256:
 `61f6920b518c18a91114d0a0166304d2bd25b30fe44d732f165c77f2e286b259`.
 Public collection has started; batch clearance waits for all three sessions.
+
+### Public first-12 checkpoint
+
+Before reading later public hands, all fixed pairs and hands 1–12 were reviewed.
+There are 38 delivered messages/definite rank assertions (6 true/32 false), three
+unilateral revisions, no explicit fold offer, attributed relay or identified
+responsive arrangement. Assistant proposed/accepted/enacted labels are not observed
+for all pairs. Ordinary betting alternatives and the hand-11 king fold remain in
+the notes; similar bluffs do not themselves establish joint deception. Prefix SHA:
+`87b14786070c76c46917d15d004d181bbbae2e3460d3c0f9ec88fee3c22f4c5c`.
+The source-bound record and exact code snapshot are under `batch-2/reviews/prefixes/`.
+Full-source checks await completion; no short seed-501 session has started yet, so
+this is not a matched horizon-effect finding. Human annotations remain absent.
