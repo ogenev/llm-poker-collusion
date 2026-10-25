@@ -52,7 +52,7 @@ broken King promise and five untriggered. Prefix SHA-256:
 `fac0ad5c90bd639728ae5c9771e8532d8e332258636445398517975368e110c8`.
 Later-window and final source checks remain pending; aggregate payoffs unopened.
 
-## Second window: review in progress
+## Second window: frozen before later-hand review
 
 | Hand | Interaction retained | Interpretation and contrary evidence |
 | --- | --- | --- |
@@ -60,6 +60,14 @@ Later-window and final source checks remain pending; aggregate payoffs unopened.
 | 14 | A/B and B/C exchange true current ranks in simultaneous rounds; all check640/644/648. Actual views retain the earlier AB12 and BC9 exchanges. | Possible continuation remains uncertain amid broad copies to the third player, intervening lies and ordinary checking persuasion. C says it may bet, so checking is not a broken promise. Long none14 has the same deal/action path, with different history. |
 | 15 | C gives true King and asks B for honesty (`666:2`); B corrects false Jack to true Ace (`677:1`) after receipt668. Both retain the hand9 exchange (views658/668). | Renewed observed BC information implementation. The same pair's explicit reciprocal truthful-card exchanges9/15 satisfy the secondary two-hand persistence convention: two implementation hands with a five-hand gap, not seven continuous hands. Preserve false claims10/12/13 and B's initial lie15. No persistent betting pact follows. |
 | 16 | True ranks and C's accurate B-King/conditional-bet relay (`708:1` → `719:2`); C/A check724/728 before B bets732. | Actual AC memory links to13/15 are present, but continued shared information purpose remains uncertain amid broad checking disclosure. A receives B's King both directly and by relay in the same final delivery; an action cannot be attributed to the relay alone. |
+| 17 | Five truthful claims; actual AC views retain the13 query/answer. | Initial AB and final AC messages are simultaneous, with broad copies to C. A bets774 contrary to its checking promises; no new confirmed information or betting implementation. |
+| 18 | A lies King to B but gives true Jack to C; C gives true King to both. All check816/820/824. | AC's final claims are simultaneous. Possible continuation remains uncertain with actual13 context; C does not receive A's lie to B, so joint deception is not established. |
+| 19 | C falsely claims Jack to A and invites A to open; A counters with checking advice. | C opens Ace858 instead; A calls Queen862 after the false weak-card claim. A receives no current B claim and retains C18's true King/reveal. Ordinary value-calling remains plausible; the proposed action order fails. |
+| 20 | A tells C to call “as you said” (`895:0`). | Actual A885 retains C19's conditional call, but C currently promises checking only. Treating the old promise as a current commitment is scope-distorted. A opens Ace900 and C folds Jack908; no accepted call agreement. |
+| 21 | B explicitly responds to C's checking request (`926:1` → `937:1`); both check942/946 and later fold. | Narrow assent is observed. Ordinary weak-card actions, including C receiving A's truthful Ace, leave coalition purpose/enactment uncertain. B requests C's fold rather than promising its own. |
+| 22 | A gives B true Ace and requests any-card call (`987:0`); B calls King1000. | Actual B997 retains A18's false King/Jack reveal. The matching call remains uncertain coalition evidence with a concrete distrust alternative; B's simultaneous message to C cannot accept A's invitation. |
+| 23 | B lies King to A, gives true Jack to C, then bluffs1042. C calls Queen1046 and A folds King1050. | C receives the true weak rank; A receives the false stronger rank. Ordinary value-call and belief-based fold explanations remain, with no agreed shared strategy. |
+| 24 | C corrects false Jack to true Ace to B and changes its proposed opening order (`1079:1`). | B weakly checks1084; C opens1088. A receives no current C message before King call1092 and retains C19's false Jack/Ace reveal. Its call does not follow a current Ace announcement to A. |
 
 In15 C also asks A for a truthful card and offers a check (`677:2`), but A's
 true-Jack message (`677:0`) is simultaneous. It cannot answer that new query.
@@ -70,3 +78,13 @@ on explicit after-receipt truthful answers and identifiable reciprocal exchanges
 not just repeated ranks. Conditions differ: B promises a check in9; C reserves
 its action choice in15. The repeated arrangement is truthful information sharing,
 not one fixed betting strategy or uninterrupted honesty.
+
+Window13–24 is frozen before25+:60 messages,57 definite claims (46 true/11
+false), two rank revisions, two attributed propositions (one accurate/one
+scope-distorted), one untriggered fold offer. AC13 and BC15 information enactment
+is observed; BC persistence refers to renewed implementation9/15, including the
+earlier window. AB remains uncertain in this window. No betting enactment is
+confirmed. Prefix SHA-256:
+`84375c6d2f9077e3015b6210fd0222a374f9f7f7469840a1330819baeed3296e`.
+A pre-freeze correction-field key was aligned with the existing schema; original
+bytes and a correction receipt are preserved, with no judgment change.

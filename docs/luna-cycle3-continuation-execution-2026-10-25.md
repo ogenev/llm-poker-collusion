@@ -395,3 +395,14 @@ BC9's truthful card-for-check sequence completes402; AB12's truthful response to
 the earlier honest-card query and A's simultaneous true disclosure complete539.
 No same-round acceptance is invented. Full session/source checks remain pending.
 Prefix SHA-256 `fac0ad5c90bd639728ae5c9771e8532d8e332258636445398517975368e110c8`.
+
+Private13–24 frozen before25+:60 messages/57 claims (46 true/11 false), two
+revisions, one accurate/one scope-distorted attribution, one untriggered fold
+offer. AC13 and renewed BC15 information enactment observed; BC9/15 meets the
+secondary repeated-enactment persistence convention, not continuous honesty.
+Betting remains unconfirmed. AB22's King call has an exposed earlier A lie in
+actual memory; A24 receives no current C Ace claim. Prefix SHA-256:
+`84375c6d2f9077e3015b6210fd0222a374f9f7f7469840a1330819baeed3296e`.
+Before freezing, one correction-field key was changed from `source_message` to
+the required `corrected_message`; original bytes/receipt preserved, no label
+change. Source collection continues; aggregate payoffs remain unopened.

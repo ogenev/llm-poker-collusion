@@ -473,6 +473,12 @@ assistant secondary persistence now observed for BC (two implementation hands,
 not seven continuous hands). Intervening lies remain contrary evidence; no
 persistent betting pact or causal payoff benefit is inferred. Later review pending.
 
+Private13–24 now frozen before25+:60 messages/57 claims (46 true/11 false).
+AC13 and renewed BC15 information exchanges observed; no confirmed betting
+enactment. Actual-view checks retain ordinary alternatives for calls22/24 and
+identify A20's old-promise/current-commitment distortion. A coding-field key was
+corrected before freeze with original bytes/receipt preserved; judgments unchanged.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.
