@@ -479,6 +479,13 @@ enactment. Actual-view checks retain ordinary alternatives for calls22/24 and
 identify A20's old-promise/current-commitment distortion. A coding-field key was
 corrected before freeze with original bytes/receipt preserved; judgments unchanged.
 
+Continuation complete:12 sessions/288 hands,2,208 calls,5,533,699 tokens,
+$1.254965625; no new paid failure. All available evidence/review gates pass;
+full matrix remains17 complete/one preserved partial, two of three complete
+blocks. Private information evidence is provisional; no confirmed betting pact,
+human labels null. [Final report](luna-cycle3-continuation-report-2026-10-25.md)
+records all findings, costs, payoff comparisons, provenance limits and next steps.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.

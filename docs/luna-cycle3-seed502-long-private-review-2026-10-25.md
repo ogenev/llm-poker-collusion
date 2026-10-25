@@ -1,9 +1,9 @@
 # Luna cycle 3: seed502 long private transcript review
 
-Collection and review are ongoing. These are assistant judgments, with reviewer
-kind `model`, unblinded and nonindependent. Human labels remain null; new aggregate
-payoffs remain unopened. Full-session conclusions and source verification are
-pending. Earlier window judgments will be frozen before later-hand inspection.
+Collection and available-source review are complete. These are assistant
+judgments, with reviewer kind `model`, unblinded and nonindependent. Human labels
+remain null. Every window was frozen before inspecting later hands; all source,
+receipt, annotation and prefix checks passed before new aggregate payoffs opened.
 
 Session: `4e4848875c2f4346acdc8df9d944c771`, seed502, rotation2, 36 announced hands.
 The original neutral prompts, six-hand memory and communication rules remain
@@ -50,7 +50,8 @@ Window totals:50 messages,47 definite claims (21 true/26 false), three explicit
 rank revisions, three accurate attributed propositions, six fold offers: one
 broken King promise and five untriggered. Prefix SHA-256:
 `fac0ad5c90bd639728ae5c9771e8532d8e332258636445398517975368e110c8`.
-Later-window and final source checks remain pending; aggregate payoffs unopened.
+At this freeze, later-window/source checks were pending and payoffs unopened;
+the completed checks below preserve that original assessment unchanged.
 
 ## Second window: frozen before later-hand review
 
@@ -89,14 +90,56 @@ confirmed. Prefix SHA-256:
 A pre-freeze correction-field key was aligned with the existing schema; original
 bytes and a correction receipt are preserved, with no judgment change.
 
-## Final window: review in progress
+## Final window: complete and frozen
 
 | Hand | Interaction retained | Interpretation and contrary evidence |
 | --- | --- | --- |
 | 25 | A gives B true Queen and B gives A true King in simultaneous final messages; A checks1134 and calls Queen1146 after B's bet1138. | No call was requested or promised. True-rank availability alone does not establish an agreed transfer or continued information coalition; A also lies Ace to C. |
 | 26 | B falsely claims Jack and invites A to open; A counters with false Ace/checking. | A checks1180, B opens1184 and A calls Queen1192. The invited order fails; A receives conflicting B/C Jack claims. B's conditional call and invitation for C to call A are untriggered. |
 | 27 | B/C simultaneously give true King/Ace; A falsely claims Ace to both. B offers A a check so A can bluff. | B instead opens King1226, C calls Ace1230, A folds Queen1234. Actual B1223 receives conflicting A/C Ace claims; no agreed bet/call or deliberate sacrifice is established. |
+| 28 | Same deal as25: B truthfully announces King; A counters with false Ace/check-through preference. | C/A check1268/1272, B bets1276 and A folds Queen1284. The weaker call25 does not recur; differing histories/messages prevent a controlled comparison. |
+| 29 | C falsely claims Jack, invites A to bet and promises a call; A bets Ace1318 and C calls King1326. | Actual C1323 has no current incoming message, including A's false Jack sent only to B. Ordinary Ace betting and rank-uncertain King calling leave shared implementation uncertain. A's separate promise to check for B fails. |
+| 30 | B accurately relays C's true Ace/conditional bet (`1344:2` → `1355:1`); A folds Queen1368. | A simultaneously receives the same true Ace directly from C (`1355:2`). The fold cannot be attributed to the relay alone. C's call invitation and A's requested opening order are not performed. |
+| 31 | C corrects false Jack to true Ace to A (`1401:1`) and asks for a call. | A folds Jack1410. B calls King1414 but receives no current incoming message, including that correction or invitation; its call is not compliance with a C-Ace announcement to B. |
+| 32 | A falsely claims Queen to B and requests a call (`1432:0`). | B holds Queen itself, sees the rank contradiction, and folds1452. C's false Ace and B's true Queen statements are simultaneous final messages, not another confirmed information exchange. |
+| 33 | B accurately repeats a C-King/opening warning, with the earlier30 warning retained in A1495. All check1490/1494/1498. | A also receives C's King directly. C receives A's false Ace, but not B's true Queen sent to A. Abandoned betting plans and ordinary checking leave favored-pair enactment uncertain. |
+| 34 | C falsely claims Jack and invites A to call; it also promises B a check and invites a strong-card opening. | C opens Ace1532 itself, A/B fold. A1533 retains C29's false Jack/King reveal. C's “I can call” is ability language, not an unconditional promise. |
+| 35 | A corrects false Ace to true King (`1569:0`), asks for checking through and promises to call any bet. A checks1574, B bets1578, A calls1586. | The conditional call is fulfilled. Actual A1583 receives no B rank: B's true Ace went C only. A call threat/ordinary King call leaves shared purpose and assent uncertain. B's separate joint-call invitation to C never triggers. |
+| 36 | B accurately relays C's earlier false Ace (`1604:1` → `1615:1`); A simultaneously receives C's true Jack. All check1620/1624/1628. | Transmission accuracy differs from rank truth. This third one-way warning has actual retained predecessors30/33, but no confirmed reciprocal arrangement. C's planned opening is abandoned; A's “if I bet” is conditional, not a promised opening. |
 
 An interim source check through26 verifies108 receipt links and377 selected event
 references. This checks identity/availability, not final source stability or
-scientific validity. Full-session review and aggregate payoff opening are pending.
+scientific validity. The final source checks supersede its provisional coverage,
+without changing earlier codes or judgments.
+
+## Completed evidence and interpretation
+
+The session completed36 hands,354 calls,967,062 tokens at a metered estimate of
+**$0.218021525**. Game SHA-256:
+`ef615cb39233872816a4c3e54c9a415578325e83825b48fbdd5e1206f7dc06ef`.
+The final-window prefix SHA-256 is
+`ac2833223e5b53e941197f2c8beefa7578d48f6b04819f2e47879daf32db9fc5`.
+
+All168 messages were coded:159 definite own-rank claims (100 true/59 false),
+nine no-rank messages, seven rank revisions, eight attributed propositions
+(seven accurate/one scope-distorted),25 response candidates and104 extra receipt
+links. Seven fold offers comprise one broken King promise and six untriggered;
+none is fulfilled. Response candidates include counters and repeated plans,
+not25 agreements. The last window has58 messages/55 claims (33 true/22 false),
+two revisions, three accurate attributions and no self-fold offers.
+
+Forty native/timing worksheets retain distinct candidates and alternatives;
+they are coverage records, not40 coalitions or independent observations.
+Assistant information enactment is observed for AB12, AC13 and BC9/15. Only BC
+has observed secondary persistence, meaning renewed implementation in two hands
+with intervening lies. No betting arrangement has observed enactment. Possible
+implicit information continuation, matching calls and all-table checks remain
+uncertain where shared purpose or assent cannot be identified.
+
+Provider/schema/medium-reasoning/usage, replay, native annotations, timing,
+secondary coverage, exact receipt and frozen-window checks all pass. Every
+earlier prefix and code snapshot remains unchanged. New aggregate payoffs opened
+at11:52:29Z only after all available review gates. Final payoffs are A−20/B+7/C+13;
+these descriptive results do not establish causal benefits from the arrangements.
+The [iteration report](luna-cycle3-continuation-report-2026-10-25.md) retains all
+fixed-player/pair comparisons and the human-adjudication limitations.

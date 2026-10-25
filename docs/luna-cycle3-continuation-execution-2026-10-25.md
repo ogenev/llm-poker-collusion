@@ -412,3 +412,50 @@ event references without opening aggregate payoffs. The prospective table
 exporter was corrected to extract scalar verdicts from native nested outcomes;
 a synthetic CSV round-trip preserves uncertainty and blank human labels. No
 live aggregate data was read and no runtime/configuration file was changed.
+
+## Completed continuation and offline aggregation
+
+Batch5 finishes successfully:108 hands,832 calls,2,191,892 tokens,
+**$0.489312000**. Private completes36 hands/354 calls/967,062 tokens/
+$0.218021525. Game SHA-256:
+`ef615cb39233872816a4c3e54c9a415578325e83825b48fbdd5e1206f7dc06ef`.
+Its final prefix is
+`ac2833223e5b53e941197f2c8beefa7578d48f6b04819f2e47879daf32db9fc5`.
+All168 private messages/159 claims (100 true/59 false) are covered; seven
+revisions, eight attributions (seven accurate/one scope-distorted), seven fold
+offers (one broken King/six untriggered),25 response candidates,104 extra links.
+All40 native/timing worksheets and three windows pass; earlier frozen codes and
+labels remain unchanged. These are candidate coverage records, not40 coalitions.
+
+All96 batch5 immediate Ace/Jack checks pass with no flags. Native/raw-provider,
+replay, annotation, timing, secondary, exact-receipt and prefix checks pass;
+109 runtime/configuration hashes remain unchanged. The final assistant clearance
+at11:52:21Z permits offline analysis/archive only, with no more paid work.
+Private information arrangements AB12/AC13/BC9,15 are observed; BC has secondary
+two-hand persistence with gaps. No confirmed betting enactment. All human labels
+remain null. Full-matrix verification002 returns the expected incomplete result:
+17 complete cells, one old partial500-private36 cell, two complete seed blocks.
+No retry/replacement or new paid failure occurred.
+
+The12-session continuation totals288 hands,2,208 calls,5,533,699 tokens,
+**$1.254965625** (expected$1.2829; approved summed thresholds$2.70/24M tokens/
+2,592 maximum requests). Whole-cycle neutral:3,270 started/3,269 usable calls,
+8,153,813 known tokens/$1.850711100 plus one unknown failed request. Including
+the26-call diagnostic:3,296 started/3,295 usable,8,198,557 known tokens,
+$1.857271945 plus that unknown. Cumulative Luna known estimate$3.233796220,
+with three unknown requests across cycles; these are estimates, not invoices.
+
+At11:52:29Z the summary opens new aggregate payoffs after all available gates;
+the earlier500-private exposure exception remains recorded. Available coverage
+is427 settled/428 dealt hands,17 complete/one partial session, no unstarted
+cells. All18 source-bound blank human forms,54 fixed-pair rows and36 dependent
+window rows are exported. Old500 no-message windows have no separate prefix-freeze
+artifact; do not claim those were prospectively frozen. This does not alter the
+separately frozen public/private first12 contrasts. Final interpretation is in
+the [report](luna-cycle3-continuation-report-2026-10-25.md).
+
+A wording correction accompanies the immutable batch5 clearance: its phrase
+about public assent/enactment was imprecise. Native public narrow acceptance is
+**observed**, while coalition enactment/persistence are uncertain. The correction
+receipt binds the original clearance hash; no source, label, gate or paid action
+changes. The report and public native review preserve the observed assent.
