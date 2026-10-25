@@ -281,3 +281,12 @@ private first12 windows, short has 20/49 true claims versus long30/49 (55 versus
 54 messages), with different dialogue and action trajectories. These are dependent
 descriptive counts, not evidence of a horizon effect or growing trust. New
 aggregate payoff tables remain closed pending the remaining approved reviews.
+
+### Batch 4 launched
+
+At **2026-10-25 08:54:15 UTC**, the guarded launcher started the approved seed502/
+rotation2/12-hand none/public/private batch from
+`0d4ad282a418218c386b3067ec08441d7afff6a6`. Fresh directories are
+`seed-502-12hands` and `batch-4`; the prior clearance, approval receipt and frozen
+runtime hashes passed. Expected $0.1521, with unchanged $0.10/1M tokens/1,800s per
+session, 90s per decision and maximum324 requests. No retries or replacements.

@@ -348,6 +348,12 @@ stochastic responses prevent a causal or frequency claim. Aggregates remain
 unopened. The source-bound clearance permits the already approved seed502 short
 batch only; all original stops and the subsequent-batch failure gate remain.
 
+Approved seed502 short batch launched at 08:54:15 UTC from
+`0d4ad282a418218c386b3067ec08441d7afff6a6`, after the verified seed501 short gate.
+None/public/private each use rotation2 and12 hands in fresh output directories;
+expected $0.1521, unchanged $0.10/1M-token/1,800s per-session stops and324 maximum
+requests. This is within the existing approval, with no new seeds or retries.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.
