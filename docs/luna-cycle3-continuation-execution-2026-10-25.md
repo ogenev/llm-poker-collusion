@@ -45,7 +45,16 @@ complete, and additional hands/windows/pairs do not create replications.
 
 ## Batch 2 launch
 
-Prepared to launch seed 501 / rotation 1 / 36 hands using the approved supervised
-command and fresh `seed-501-36hands` directory. Actual launch/process/finish receipts
+Launched seed 501 / rotation 1 / 36 hands at 2026-10-25T06:12:59.661929+00:00 from
+commit `d8a5812b8dab86635bf4242f8daf213ccb11d024` using the approved supervised command and fresh
+`seed-501-36hands` directory. Actual launch/process/finish receipts
 live under `runs/pilot/exploratory/luna-duration-cycle3-20261024-001-evidence/batch-2/`.
 Results, costs and findings will be recorded as they become available.
+
+The first returned request was audited without another model call: actual provider
+payload uses `gpt-6-luna`, medium, strict JSON, 4,096 output tokens, zero retries
+and no response reuse; prompt equality also passes. This preliminary check does
+not replace full stable-source verification after the batch. Source timestamps
+span October 24/25; the same model identifier does not independently establish
+unchanged provider weights across those dates, so collection order/day remains a
+limitation alongside the imperfect horizon-order balance.
