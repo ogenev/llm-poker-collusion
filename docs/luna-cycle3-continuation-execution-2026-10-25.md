@@ -228,3 +228,12 @@ source-bound clearance passed; outputs and attempt records use the fresh
 `seed-501-12hands` and `batch-3` directories. No retry or replacement. Expected
 cost $0.1521; per-session stops $0.10/1M tokens/1,800 seconds, 90s per decision,
 maximum 324 batch requests. Evidence review precedes the next paid batch.
+
+Short none completed: 12 hands, 47 usable calls, 86,702 tokens, $0.020089025.
+Provider/replay/native annotation and frozen-prefix checks pass; no identified
+pair arrangement. C's king fold to B's queen bet in hand6 and A's queen call
+against B's king bet in12 remain ordinary-play comparators, with players unable
+to see audit ranks. They are not controlled contrasts with the private examples.
+Game SHA-256 `f236ea51c0d09e41010ee39d9d8c29dc72c37af9584e06661eda76945022da75`;
+prefix `5b232ea23c17697de3d0a18c379370d0f7877534f86ac4ed05c6b93edfd79716`.
+Public collection has started. Human labels remain null; aggregate payoffs closed.

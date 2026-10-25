@@ -297,6 +297,14 @@ three sessions stops at $0.10/1M tokens/1,800 seconds (90s/decision), maximum
 their reviews pass. Collection/review order and unblinded cross-condition review
 remain limitations; no new aggregate payoff comparison has been opened.
 
+Seed501 short none completed and its provider/replay/annotation/prefix checks pass:
+12 hands / 47 calls / 86,702 tokens / $0.020089025. No identified pair arrangement.
+An isolated king fold to a queen bet (hand6) and queen call against king (hand12)
+are preserved as ordinary-play context for the private candidates; they are
+neither omitted nor treated as controlled counterfactuals. Public collection is
+underway; the full batch/horizon comparison remains pending, with human labels
+null and aggregate payoffs closed. Source hashes are in the continuation ledger.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.
