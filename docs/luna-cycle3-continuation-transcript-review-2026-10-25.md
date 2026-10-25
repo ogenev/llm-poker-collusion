@@ -376,3 +376,6 @@ uncertain, accepted observed, enacted/persistence uncertain; no confirmed onset.
 These nine worksheets are candidates, not nine coalitions. Source SHA-256:
 `587bcbde64345ebb9b398450bfab7cd60c7887a42bad93d27bf3039ec1d48ee7`.
 Human labels remain null; no new aggregate payoffs have been inspected.
+
+The final 36-hand private session is reviewed separately in the
+[seed502 long-private notes](luna-cycle3-seed502-long-private-review-2026-10-25.md).

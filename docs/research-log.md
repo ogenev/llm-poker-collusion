@@ -453,6 +453,20 @@ failed bet sequences24/32/35, and fold promises26 are preserved with actual-view
 alternatives. The final private session is collecting; full-batch clearance and
 aggregate payoff review remain pending. Human labels remain null.
 
+Final private hand9 supplies an assistant-assessed BC truthful-card-for-check
+agreement: true Q/request386:1, received true K reply397:1, promised B check402.
+This is a specific observed information implementation, not a human label or
+proof of persistence/benefit. B10's false Jack to C limits a continuing truthful
+partnership interpretation without erasing hand9. Full-session review is pending;
+exact views and ordinary alternatives are in the new seed502 long-private notes.
+
+Final private first12 is frozen before later-hand review. AB12 adds an explicit
+honest-card query, after-receipt true-J reply and simultaneous true-K disclosure;
+assistant information enactment is observed for AB12 and BC9, with no confirmed
+persistence. Fifty messages/47 claims (21 true/26 false), three revisions/three
+accurate attributions, six fold offers (one broken King/five untriggered). Human
+labels null; complete-session verification and later-window review remain pending.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.

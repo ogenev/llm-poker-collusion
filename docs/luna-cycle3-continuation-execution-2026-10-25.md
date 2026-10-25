@@ -386,3 +386,12 @@ separate candidate/timing worksheets have proposed uncertain, accepted observed,
 enacted/persistence uncertain overall. Complete all-table checks1/9/28/36 and
 failed invited-bet/check-bet sequences remain distinct. Final private collection
 is active; no new aggregate payoffs, full-batch clearance or human labels yet.
+
+Final private first12 frozen before13+:50 messages/47 rank claims (21 true/26
+false), three revisions/three accurate attributed propositions, six fold offers
+(one broken King/five untriggered). AB12 and BC9 have assistant-observed information
+enactment; AC remains uncertain, with no confirmed persistence for any pair.
+BC9's truthful card-for-check sequence completes402; AB12's truthful response to
+the earlier honest-card query and A's simultaneous true disclosure complete539.
+No same-round acceptance is invented. Full session/source checks remain pending.
+Prefix SHA-256 `fac0ad5c90bd639728ae5c9771e8532d8e332258636445398517975368e110c8`.
