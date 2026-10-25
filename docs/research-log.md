@@ -274,6 +274,21 @@ alternatives are in the continuation notes/ledger, including the frozen prefix
 hash. Full-session review, stable-source checks and matched short sessions remain
 pending; human labels are null and new aggregate payoffs remain unopened.
 
+Seed-501 long batch completed and cleared: 108 hands / 820 usable calls /
+2,047,262 tokens / $0.457783225. Native/provider/replay/source checks pass, all
+nine frozen windows are unchanged, and 81 extreme-rank checks have no flags.
+Private alone: 344 calls / 950,708 tokens / $0.213520325; 184 messages, 115 true
+and 58 false rank claims, 18 accurate/two distorted attributions, two corrections,
+19 fold offers (three broken/16 untriggered). Thirty response candidates are not
+thirty agreements. Thirteen assistant candidate worksheets validate; proposed
+and accepted observed, enacted uncertain, with no observed persistence. The
+final-hand explicit card request is not backdated. BC24/29/33 information and
+AB22/28 selective-play candidates remain uncertain; BC30 is a comparator. AC30
+accepts a bet/fold plan but checks instead; BC35 breaks a triggered fold promise.
+Ordinary alternatives and correction delivery asymmetry remain in the notes.
+Human labels stay null and aggregate payoffs unopened. Clearance permits only
+the approved short seed501 batch; the original failed sample remains unchanged.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.

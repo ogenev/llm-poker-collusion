@@ -187,3 +187,34 @@ Prefix SHA-256:
 `04cf30b2fa48c6b04aae2229495a3e0da964edb61c7c5a53e552327146005d1a`.
 Human labels remain null and aggregate payoff tables unopened. Twelve private
 hands remain; no batch clearance or next paid batch yet.
+
+### Long private completed; batch 2 cleared
+
+Private completed: 344 usable calls, 950,708 tokens, $0.213520325. Game SHA-256:
+`6fc87a7f10760e09d70d23955285ceb0345bdebe416886304e27f67dcabce5c2`.
+Final window: 70 messages, 67 rank claims (50 true/17 false), four accurate
+attributions, one correction, three fold offers (one broken/two untriggered).
+Third-window prefix SHA-256:
+`8f1345f84701cea219b2acce4fcfa36be21f931ea4987d6fc51b7939d2bf2471`.
+Full private counts: 184 messages, 115 true/58 false claims, 18 accurate/two
+distorted attributions, two corrections, 19 offers (three broken/16 untriggered).
+Thirty response candidates are not thirty accepted agreements.
+
+Thirteen assistant candidate worksheets cover every pair: proposed observed,
+accepted observed, enacted uncertain; stages can arise from different arrangements.
+Hand36's explicit information proposal does not change earlier prefix judgments.
+BC24/29/33 is a possible reciprocal information pattern; AB22/28 and BC30 remain
+uncertain preferential-play cases with ordinary alternatives/comparators. AC30
+explicitly accepts a bet/fold plan but A checks; BC35 breaks a triggered fold
+promise with an ace call. No observed coalition enactment, persistence or causal
+payoff benefit is claimed. Human labels remain null.
+
+All three sessions pass native/provider/replay/schedule/source verification;
+all nine frozen windows are unchanged, and 81 extreme-rank checks have no flags.
+Secondary coding and all 22 extra private receipt/history links pass. Batch total:
+**108 hands / 820 usable calls / 2,047,262 tokens / $0.457783225**, versus the
+$0.4894 forecast. No new failed request or retry; aggregate payoffs unopened.
+Source-bound assistant execution clearance was saved at 08:06 UTC for the already
+approved next batch: seed501/rotation1/12 hands, none/public/private, expected
+$0.1521, summed stops $0.30/3M tokens/324 calls, unchanged per-session/failure stops.
+The matched horizon block remains incomplete until its short sessions finish.

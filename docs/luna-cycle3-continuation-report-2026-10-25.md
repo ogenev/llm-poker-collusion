@@ -35,8 +35,11 @@ its archive remain unchanged.
 The separate [transcript notes](luna-cycle3-continuation-transcript-review-2026-10-25.md)
 retain actual messages, event references, ordinary-play alternatives and contrary
 evidence. The completed seed-501 36-hand none/public reviews identify no pair
-arrangement. Private review is ongoing; no final new channel or horizon contrast
-is available yet. Earlier seed-500 private information-sharing candidates remain
+arrangement. The completed long-private assistant review has an observed late
+information proposal and narrow assent, with uncertain coalition enactment and
+persistence. BC24/29/33 is a possible information pattern; AB22/28 and BC30 are
+uncertain preferential-play cases with ordinary alternatives. There is no new
+completed matched horizon contrast yet. Earlier seed-500 information cases remain
 as reported in the checkpoint, including AB hands 7/10, BC hand 14 and AC hands
 24/25/28/31. Information implementation is distinct from betting coordination,
 standing partnership, causal influence or payoff benefit.
