@@ -385,6 +385,14 @@ prove new assent. Public outcomes vary across seeds; do not claim uniformly
 negative public evidence or a private-only pattern. Private collection/batch
 review remain pending; no human labels or new aggregate payoff comparisons.
 
+Seed502 short-private hand4 is an interim candidate: C responds to A's announced
+bet with a call promise, then checks Q and calls A's ace bet. C's actual view also
+retains A's earlier false ace claim/jack reveal, so distrust/bluff-catching is a
+concrete alternative to preferential play. Narrow commitment and matching
+actions are preserved without confirmed coalition enactment. Exact references,
+conflicting claims in2, compatible check/bet sequences2/5 and contrary behavior3
+are in the transcript notes. Full-session judgment remains pending.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.
