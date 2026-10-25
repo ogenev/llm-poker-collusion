@@ -429,19 +429,29 @@ inspection succeeded without modifying evidence or making an API call.
 
 Seed502 long-public first12 review is frozen before later-hand inspection: all
 pairs have proposed uncertain, narrow accepted observed, enacted/persistence
-uncertain. There are52 messages,51 definite own-rank claims (32 true/19 false),
+uncertain. There are 52 messages, 51 definite own-rank claims (32 true/19 false),
 three revisions, ten attributed propositions and no self-fold offers. Actual
 whole-table checks9 and paired checks10 coexist with contrary bets; A6's claim
 that C's king assertions were reliable has actual retained claim/reveal support.
 These are dependent descriptions, not a calibrated coalition or truthfulness rate.
 Full collection/review remains ongoing; aggregate payoffs closed, human labels null.
 
-Seed502 long-public13–24 is frozen before25+:40 messages/claims (29 true/11
+Seed502 long public hands13–24 are frozen before25+: 40 messages/claims (29 true/11
 false), one attribution, no revisions/self-fold offers. All pairs retain enacted/
 persistence uncertain. Separate AC18 check-then-bluff and BC24 invited-bet cases
 are preserved; B24 promises a bet then checks. B22's fulfilled King call opposes
 A's fold request and has actual retained exposed-bluff alternatives from18/20.
-The earlier first15 receipt audit passed all42 links. Collection/review continues.
+The earlier first15 receipt audit passed all 42 links. Collection/review continues.
+
+Seed502 long public completed: 349 calls, 972,940 tokens, $0.214640775. Provider,
+replay, annotation, secondary, receipt and three unchanged prefix checks pass.
+Its 130 messages contain126 claims (77 true/49 false), six revisions,14 accurate
+attributed propositions, and two fold offers: one broken Ace promise/one fulfilled
+Jack fold. Nine separate model worksheets retain enactment/persistence uncertain;
+45 response candidates are not45 agreements. Whole-table checks1/9/28/36,
+failed bet sequences24/32/35, and fold promises26 are preserved with actual-view
+alternatives. The final private session is collecting; full-batch clearance and
+aggregate payoff review remain pending. Human labels remain null.
 
 ## Open decisions
 

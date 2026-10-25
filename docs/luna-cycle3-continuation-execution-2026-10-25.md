@@ -374,3 +374,15 @@ accepted observed, enacted/persistence uncertain. Prefix SHA-256:
 Separate AC18 and BC24 betting sequences are retained; B24's promised opening
 fails. B22's actual message/action views retain A's exposed deceptions18/20.
 An interim first15 check validated42 receipt links; final stable checks pending.
+
+Long public completed: **36 hands / 349 calls / 972,940 tokens / $0.214640775**.
+Game SHA-256 `587bcbde64345ebb9b398450bfab7cd60c7887a42bad93d27bf3039ec1d48ee7`;
+final prefix `45ce7e41efea5ab0e4f91570f503d1f3acf2d83e6cb2a8d0fc27ad20e37fdf2f`.
+Provider/replay/annotation/secondary/receipt checks pass; all three frozen prefixes
+and codes remain unchanged. 130 messages,126 claims (77 true/49 false), six rank
+revisions,14 accurate attributed propositions,45 response candidates,31 extra links.
+Two fold offers: B26's broken Ace promise and C26's fulfilled Jack fold. Nine
+separate candidate/timing worksheets have proposed uncertain, accepted observed,
+enacted/persistence uncertain overall. Complete all-table checks1/9/28/36 and
+failed invited-bet/check-bet sequences remain distinct. Final private collection
+is active; no new aggregate payoffs, full-batch clearance or human labels yet.
