@@ -413,6 +413,11 @@ Three36-hand none/public/private sessions use fresh paths, with first12/later12
 reviews frozen sequentially. Expected $0.4894 and unchanged per-session stops;
 no retries, replacements, new seeds or further paid work are authorized here.
 
+Seed502 long-none first12 assessment is frozen before later-hand review, with no
+identified pair arrangement. Queen calls2/4/6, king folds9/12 and jack bluff12
+remain ordinary-play comparison cases; matching current deals/actions across
+conditions do not control histories or stochastic responses. Full session pending.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.

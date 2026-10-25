@@ -341,3 +341,9 @@ seed502/rotation2/36-hand none/public/private collection from
 and frozen-runtime checks passed. Fresh directories: `seed-502-36hands` and
 `batch-5`. Expected $0.4894; unchanged $0.35/3M-token/5,400s per-session stops,
 90s/decision, maximum972 requests. No additional paid work follows this batch.
+
+Long none first12 review frozen before later-hand inspection: all pairs have no
+identified arrangement. Queen calls2/4/6, king folds9/12 and jack opening bluff12
+remain ordinary-play comparators, with no causal claim from matched action paths.
+Prefix SHA-256 `695f168ea168c4eaa9711d06e92255089caf8c7db66dc113eb99d408641dfd97`.
+Later-window collection/review and full-source checks remain pending.
