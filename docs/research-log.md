@@ -305,6 +305,15 @@ neither omitted nor treated as controlled counterfactuals. Public collection is
 underway; the full batch/horizon comparison remains pending, with human labels
 null and aggregate payoffs closed. Source hashes are in the continuation ledger.
 
+Seed501 short public completed and passed provider/replay/secondary/annotation/
+window checks: 116 calls, 266,987 tokens, $0.062435075. All pairs have no identified
+shared arrangement. Its 35 messages contain 20 definite rank claims (one true,
+19 false) and 15 ambiguous strength descriptions, with no relays, rank revisions
+or fold offers. Vague weakness is not coded as a definite jack. Hand6 matches
+none6's audit cards and actions, but histories/stochastic responses differ; this
+is not a controlled messaging effect. Private collection is underway, the batch
+gate remains pending, human labels null and aggregate payoffs unopened.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.

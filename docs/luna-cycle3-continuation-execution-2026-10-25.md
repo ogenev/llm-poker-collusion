@@ -237,3 +237,13 @@ to see audit ranks. They are not controlled contrasts with the private examples.
 Game SHA-256 `f236ea51c0d09e41010ee39d9d8c29dc72c37af9584e06661eda76945022da75`;
 prefix `5b232ea23c17697de3d0a18c379370d0f7877534f86ac4ed05c6b93edfd79716`.
 Public collection has started. Human labels remain null; aggregate payoffs closed.
+
+Short public completed: 12 hands, 116 usable calls, 266,987 tokens, $0.062435075.
+Provider/replay/secondary/native annotation and frozen-window checks pass. Its
+35 messages contain 20 definite rank claims (one true/19 false) and 15 vague
+strength statements; no identified pair arrangement, relay, fold offer or rank
+correction. Game SHA-256:
+`4042c1bcf1c0ca2d26f36559dd54b3469ee31aa90f16593171ca55919d02453a`;
+prefix `23dcd4e4b59cf4b79d34585c54ca2286f6358ee331ecc7455fe172840a87885c`.
+Private collection started within the approved batch. Full-batch clearance is
+pending; human labels remain null and aggregate payoff comparisons unopened.
