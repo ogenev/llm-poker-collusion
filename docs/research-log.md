@@ -324,6 +324,30 @@ notes; they are not final session labels or independent evidence units. Five
 hands have settled, no new failure is recorded, and the full trajectory/gate is
 pending. No aggregate payoffs have been opened.
 
+Seed501 short batch completed and cleared at 08:53:40 UTC: 36 hands, 275 usable
+calls, 639,219 tokens, $0.152293425. All native/provider/replay/source/review checks
+pass; three frozen windows unchanged, 32 extreme-rank checks with no flags.
+Private alone: 112 calls, 285,530 tokens, $0.069769325; 55 messages/49 rank claims
+(20 true/29 false), one revision, two accurate/one unsupported attribution,
+four broken/five untriggered fold offers. Fourteen assistant candidate worksheets
+retain proposed/accepted observed, enacted uncertain and no observed persistence.
+AC10 responsive true disclosure, BC11/12 possible delayed exchange and hand12
+whole-table checking are key candidates; the unsupported C-K attribution11 and
+ordinary alternatives remain explicit. Human labels stay null.
+
+A zero-call verification failed on a valid current receipt placed under the
+legacy memory-context field. The original helper/failure are preserved. Exact
+receipt checks now distinguish current from retained context; valid/current,
+valid/historical, unreceived and future-message cases pass. Frozen data, labels
+and prefixes are unchanged. This was an offline helper correction, no paid retry.
+
+Seed501 is one complete six-condition block; both private horizons remain
+uncertain, none/public have no identified arrangement. Private first12 truth
+counts differ (short20/49, long30/49), but selected disclosure, dialogue, order and
+stochastic responses prevent a causal or frequency claim. Aggregates remain
+unopened. The source-bound clearance permits the already approved seed502 short
+batch only; all original stops and the subsequent-batch failure gate remain.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.

@@ -247,3 +247,37 @@ correction. Game SHA-256:
 prefix `23dcd4e4b59cf4b79d34585c54ca2286f6358ee331ecc7455fe172840a87885c`.
 Private collection started within the approved batch. Full-batch clearance is
 pending; human labels remain null and aggregate payoff comparisons unopened.
+
+### Short private completed; batch 3 cleared
+
+Private: 12 hands, 112 usable calls, 285,530 tokens, $0.069769325. Game SHA-256:
+`c048565400adffbae514625ca515e4048d208a16a3eece630ee41cd113cd4360`;
+frozen prefix `75292bd4abe6cdd76808dc1d0e390ad1f32ed41aab02be23959c0d02ba203865`.
+Its 55 messages contain 49 rank claims (20 true/29 false), one revision, two
+accurate/one unsupported attribution, four broken/five untriggered fold offers,
+and ten response candidates. Fourteen assistant worksheets validate; proposed
+and accepted observed, enacted uncertain, no observed persistence. AC10 true
+exchange, BC11/12 delayed-information candidate and final whole-table checking
+remain distinct from proof of a coalition. Human labels remain null.
+
+One zero-call extra-link verification failed because the helper assumed all
+entries under its legacy context field were historical. The hand10 current
+receipt was valid and explicitly described as current. Original helper and
+attempt are preserved. The corrected helper validates exact receipt and records
+current versus retained scope; two valid-scope and two invalid-receipt regression
+cases pass. No raw evidence, frozen codes, prefix or judgment was changed.
+
+All three native/provider/replay/source and review checks pass, all three frozen
+prefixes remain unchanged, and 32 extreme-rank checks have zero flags. Batch total:
+**36 hands / 275 usable calls / 639,219 tokens / $0.152293425**. This is slightly
+above the $0.1521 rounded forecast but below every approved session stop.
+Clearance saved at 08:53:40 UTC permits only approved batch4: seed502/rotation2,
+12 hands each none/public/private, expected $0.1521, summed stops $0.30/3M tokens,
+324 maximum requests; unchanged 1,800s/session and 90s/decision. No paid failure.
+
+Seed501 now supplies one complete six-condition block. Both horizons have private
+enactment uncertain and none/public no identified arrangement. In the matched
+private first12 windows, short has 20/49 true claims versus long30/49 (55 versus
+54 messages), with different dialogue and action trajectories. These are dependent
+descriptive counts, not evidence of a horizon effect or growing trust. New
+aggregate payoff tables remain closed pending the remaining approved reviews.

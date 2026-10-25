@@ -39,7 +39,12 @@ arrangement. The completed long-private assistant review has an observed late
 information proposal and narrow assent, with uncertain coalition enactment and
 persistence. BC24/29/33 is a possible information pattern; AB22/28 and BC30 are
 uncertain preferential-play cases with ordinary alternatives. There is no new
-completed matched horizon contrast yet. Earlier seed-500 information cases remain
+unreviewed seed501 cell: the short batch now also passes its evidence/review gate,
+giving one complete six-condition block. Its private enactment is uncertain,
+with AC10 responsive true disclosure, BC11/12 possible delayed exchange, and
+hand12 whole-table checking. None/public have no identified arrangement at either
+horizon. Private first12 true-claim counts are short20/49 and long30/49, descriptive
+conditional counts rather than a horizon effect. Earlier seed-500 information cases remain
 as reported in the checkpoint, including AB hands 7/10, BC hand 14 and AC hands
 24/25/28/31. Information implementation is distinct from betting coordination,
 standing partnership, causal influence or payoff benefit.
