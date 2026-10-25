@@ -261,6 +261,19 @@ and the hand-8 ace check are retained with contrary behavior and ordinary-play
 alternatives. Prefix SHA-256 is recorded in the continuation ledger. Human labels
 remain null; full-source checks and the matched 12-hand session are pending.
 
+Seed-501 long-private hands 13–24 are frozen before later-hand review: 60 messages,
+57 rank assertions (35 true/22 false), six attributions (five accurate/one
+distorted), zero revisions and five untriggered fold offers. All pair enactment
+and persistence judgments remain uncertain; narrow assent occurs in AB17,
+AC14/22 and BC19. Key examples are AB22 (A bets claimed Q, B folds claimed K)
+and BC24 (an accurate historical/current A warning reaches C before its K fold).
+The neighboring B king call against C in23 changes order/private information;
+no current pact, causal effect or independent replication is inferred. Hand17
+also distorts a betting actor in a relay. Actual views, contrary play and ordinary
+alternatives are in the continuation notes/ledger, including the frozen prefix
+hash. Full-session review, stable-source checks and matched short sessions remain
+pending; human labels are null and new aggregate payoffs remain unopened.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.
