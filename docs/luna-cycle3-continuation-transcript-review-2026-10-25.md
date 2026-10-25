@@ -73,6 +73,22 @@ The following settled-hand observations are preliminary:
   claim is verified; the mechanism producing the error is not. A's conditional
   no-call offer to B is untriggered because B checks; an ace check is not an
   observed preferential ace fold.
+- Hand 14: all six rank assertions are true. C renews its check-down response
+  after A's request (`600:0` → view 603 → `611:2`), then checks at 616. A bets
+  king at 620 despite its checking commitment and without the ace exception in
+  C's request. A's view 617 includes C's true queen/B-jack relay and B's direct
+  true jack statement. This verifies information availability and contrary
+  betting, not causal information use. Information exchange and failure to carry
+  out checking must be assessed separately; shared pair purpose remains uncertain.
+- Hand 17: B's `749:1` follows A's `738:0` in actual view 740 and returns true
+  jack with “will fold.” This supports narrow assent to the A-directed invitation,
+  with a general weak-card intention as an alternative. C bets first, so B's jack
+  fold to C is not implementation of a fold-to-A arrangement. The same response
+  distorts C's “call if I bet” (`738:2`) into “call if you bet” addressed to A,
+  changing the bettor under the literal reported-speech reading. B's claimed
+  conflict between A's ace and C's queen assertions is also unjustified: those
+  different ranks are compatible. These are communication/inference errors,
+  not evidence of deliberate deception or a demonstrated memory failure.
 
 Human reviewers should start with the blank full-session forms and source
 transcripts before reading these interpretations. The evidence directory retains
