@@ -218,3 +218,13 @@ Source-bound assistant execution clearance was saved at 08:06 UTC for the alread
 approved next batch: seed501/rotation1/12 hands, none/public/private, expected
 $0.1521, summed stops $0.30/3M tokens/324 calls, unchanged per-session/failure stops.
 The matched horizon block remains incomplete until its short sessions finish.
+
+### Batch 3 launched
+
+At **2026-10-25 08:07:14 UTC**, the guarded launcher started seed501/rotation1/
+12 hands, none/public/private, from commit
+`75072717c89a053ad0570ad0d88233c780da3fa8`. The approval receipt and prior
+source-bound clearance passed; outputs and attempt records use the fresh
+`seed-501-12hands` and `batch-3` directories. No retry or replacement. Expected
+cost $0.1521; per-session stops $0.10/1M tokens/1,800 seconds, 90s per decision,
+maximum 324 batch requests. Evidence review precedes the next paid batch.

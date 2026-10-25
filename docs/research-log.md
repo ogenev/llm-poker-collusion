@@ -289,6 +289,14 @@ Ordinary alternatives and correction delivery asymmetry remain in the notes.
 Human labels stay null and aggregate payoffs unopened. Clearance permits only
 the approved short seed501 batch; the original failed sample remains unchanged.
 
+The already approved seed501 short batch launched at 08:07:14 UTC from
+`75072717c89a053ad0570ad0d88233c780da3fa8`, after the source-bound long-batch gate.
+Fresh paths and zero retries preserve every attempt. Expected $0.1521; each of
+three sessions stops at $0.10/1M tokens/1,800 seconds (90s/decision), maximum
+324 requests total. No horizon comparison is finalized until these sessions and
+their reviews pass. Collection/review order and unblinded cross-condition review
+remain limitations; no new aggregate payoff comparison has been opened.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.
