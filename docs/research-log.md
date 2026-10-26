@@ -445,6 +445,50 @@ The archive journal snapshot predates this publication receipt. The cycle5 plan,
 implementation/tests and this journal are being committed/pushed under the
 researcher's existing request; paid source collection remains pending approval.
 
+## 2026-10-25 — Cycle5 source collection approved
+
+The researcher answered **“yes”** to the exact three-source plan: seeds600–602,
+36 private hands each, maximum1,188 calls, forecast$0.647312775, summed stopping
+thresholds$1.05/9,000,000 tokens. The new approval receipt binds preparation
+manifest `cff62bb99cdb00c30630756f14f320d149525ea8b1d14e242edb627e3ffbe439`.
+All184 frozen files match; runtime provenance matches the validated rehearsal;
+all live output paths were absent. Initial cloud readiness was transiently unknown
+during a configuration update; rechecking established current running/connected,
+enforced policy and ready API credential binding. A fresh non-generating model
+GET passed. No credential values were exposed. Published source is `96c72bf`.
+
+Source600 is launching under the frozen plan. Each subsequent source requires
+successful evidence verification; failures/partials are preserved without retry
+or replacement. The [cycle5 execution ledger](luna-cycle5-execution-2026-10-25.md)
+records attempts, usage and gates. Later probe calls remain unapproved and human
+qualification/coalition decisions remain null. This is spending/proceed approval.
+
+Source600 completed and passed native replay/provider/usage and prospective
+selection verification:36 hands,350 calls,950,478 tokens,**$0.212365425**;
+two contexts selected at hands22/25 before their replies. No failures, retries
+or missing new usage. The execution gate cleared approved source601, now running.
+This assistant execution check is not a human coalition/qualification decision.
+
+Source601 also completed and verified:36 hands,349 calls,944,127 tokens,
+**$0.216475400**, one context at hand36. Preserve this underfill without backfill.
+No new failures/retries/unknown usage; approved source602 is now running.
+
+All three sources are now complete and verified:108 hands,1,041 calls,
+2,831,774 tokens,**$0.639962075**; source602 used342 calls/937,169 tokens/$0.211121250.
+The sealed cohort contains3 contexts across2 sources:600/h22,h25 and601/h36;
+602 yielded0. Underfill is preserved without backfill. All selected requests are
+A→B with B in seat1, so the rotating rule did not produce observed diversity.
+Private communication:497 messages/648 opportunities; this is not a coalition label.
+Current replies remain outside the input cohort; human/assistant semantic labels0,
+paid probes0. Three source sessions are not108 independent replications, and
+the selected contexts represent only two sessions. The h36 context has no later hand.
+The [cycle5 report](luna-cycle5-source-report-2026-10-25.md) records examples,
+Sol reported-baseline limits, usage and the proposed90-call follow-up, unapproved.
+Cumulative known Luna spend:**$3.929773065 plus three unresolved historical requests**.
+Evidence archive:8,156,892 bytes/604 checksum entries; credential scan, ZIP hashes
+and fresh-extraction source/cohort reproduction passed with API credentials unset.
+The execution ledger records its checksum and scope. All184 frozen files match.
+
 ## Open decisions
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.
