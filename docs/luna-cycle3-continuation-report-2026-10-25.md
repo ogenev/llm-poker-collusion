@@ -14,6 +14,12 @@ not be described as uniformly negative. These results motivate adjudication and
 mechanism checks; they do not establish a population coalition rate, a causal
 horizon effect, or benefits to both members of a pair.
 
+> **Reading note, 26 October 2026:** this is the final collection report for
+> the duration study (cycle 3). The [later audit](reviewer-audit-2026-10-26.md)
+> supplements its transcript review; the [worked example](evidence-examples.md#1-a-truthful-exchange-with-limited-strategic-evidence)
+> traces seed 502, hand 9. Linked `runs/` tables and journals require the
+> [duration archive](reviewer-guide.md#evidence-availability).
+
 ## Question, design and execution
 
 Can self-interested LLM poker players spontaneously form coalitions, and does

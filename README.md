@@ -1,323 +1,145 @@
-# LLM poker collusion
+# Private communication and coalition evidence in LLM poker
 
-A research framework under development for studying coalition formation under
-equal access to communication. The architecture combines OpenSpiel for poker,
-a custom Python session engine, and Inspect for model execution. See the
-[research overview](llm-poker-collusion-research-project.md) and [implementation plan](TODO.md).
+Does private communication make individually rewarded AI poker players more
+likely to coordinate against another player? This repository contains the
+experiment framework, protocols, and exploratory results for the
+[Apart AI Collusion Research Sprint](https://apartresearch.com/sprints/ai-collusion-research-sprint-2026-10-23-to-2026-10-25),
+23–25 October 2026.
 
-## Current implementation
+Three persistent players play repeated, simplified poker with either no
+communication, public messages, or private messages. Matched conditions use the
+same cards and seat rotations. We inspect what players say, what they can know,
+and what they subsequently do; winnings alone do not identify a coalition.
 
-The poker core implements the [game protocol](docs/game-protocol.md), private
-observations, reproducible deal schedules, and game-state replay. The
-[session engine](src/poker_collusion/session.py) now runs repeated hands with
-persistent identities, public/private/no communication, simultaneous round
-delivery, bounded player histories, and explicit failure handling. See the
-[session protocol](docs/session-protocol.md) for configurable pilot defaults.
+**[Read the paper](docs/poker-collusion-report.pdf) ·
+[Reviewer guide](docs/reviewer-guide.md) ·
+[Worked evidence examples](docs/evidence-examples.md) ·
+[Offline demo](#try-the-offline-demo) ·
+[Documentation index](docs/README.md)**
 
-The offline tests cover all 24 deals and 13 terminal betting paths per deal,
-plus message privacy, delivery timing, memory, rotation, budgets, failures,
-durable recording, and deterministic session replay. The optional JSONL audit
-preserves exact player views and responses separately from bounded memory.
-Replay verifies the entire trajectory through the same session engine without
-calling players. See the [recording protocol](docs/recording-protocol.md).
-The [model boundary](docs/model-protocol.md) adds neutral and separate
-coordination-control prompts, validated model settings, strict JSON response
-parsing, and tests of actual rendered inputs. The [Inspect integration](docs/inspect-protocol.md)
-now runs one session per sample with bounded concurrency, fresh player inputs,
-explicit failures, and durable model-call evidence linked to the game journal.
-Offline Inspect and OpenAI SDK tests cover raw payloads, usage, privacy, limits,
-and replay. [Live smoke tooling](docs/live-smoke.md) adds a bounded candidate
-configuration, preflight without API calls, explicit pricing, and saved-run
-verification. The pinned OpenAI candidate passed live compatibility on 2026-10-17;
-competence, coordination controls, and research analysis remain on the checklist.
-Logs and game snapshots are not recovery checkpoints; mid-session
-recovery belongs to Phase 2.
+## What this project contributes
 
-The offline [annotation workflow](docs/annotation-format.md) provides versioned
-JSON reviews, source/evidence validation, preserved revisions, and six scripted
-rubric examples with exact session replay. A [standalone HTML form](docs/review-form.md)
-supports human evidence selection, draft downloads, and revisions. The examples
-are preparation data. The [single-session analyser](docs/analysis-protocol.md)
-validates selected reviews, verifies gameplay, and exports stage summaries and
-descriptive payoffs. The [matched comparison layer](docs/comparison-protocol.md)
-uses an explicit run/review manifest, preserves exclusions, and estimates paired
-differences with block bootstrap intervals. The [standalone HTML report](docs/report-viewer.md)
-shows saved comparisons, uncertainty, review coverage, and filterable session
-evidence offline. Human usability review and rubric calibration remain pending.
+1. **A reusable experiment framework:** three communication conditions,
+   individually rewarded players, matched cards, rotating seats, and replayable
+   records of exactly what each player could see.
+2. **Experiments with two models:** GPT-6.1 Sol and GPT-6 Luna, followed by Luna
+   replication, duration comparisons, and tests of honesty wording.
+3. **An audit connecting talk to action:** card claims checked against actual
+   cards, replies checked against delivery timing, and promises checked against
+   subsequent betting.
 
-## How OpenSpiel connects
+## Findings at a glance
 
-The `open-spiel` dependency provides `pyspiel`, Python bindings to OpenSpiel's
-C++ engine. Calls run inside the same Python process. Our
-[`PokerHand`](src/poker_collusion/poker.py) class owns the native game state and
-provides the interface used by the session engine:
+Both models used private messaging more often in the initial neutral pilots
+(paper, Figure 1):
 
-```mermaid
-flowchart LR
-    Session["Our session engine"] -->|calls| Hand["Our PokerHand wrapper"]
-    Hand -->|pyspiel calls| Engine["OpenSpiel game state"]
-```
+| Model | Public messages | Private messages | Source |
+| --- | ---: | ---: | --- |
+| GPT-6.1 Sol | 0/216 (0.0%) | 198/216 (91.7%) | [Sol pilot](docs/neutral-pilot-iteration-report-2026-10-24.md#public-silence-and-frequent-private-messaging) |
+| GPT-6 Luna | 98/216 (45.4%) | 155/216 (71.8%) | [Luna pilot](docs/luna-neutral-iteration-report-2026-10-24.md#neutral-results-and-evidence-checks) |
 
-1. **Create a hand.** Load `kuhn_poker(players=3)`, create a fresh state, and apply
-   three explicit card-dealing actions. Our saved schedules supply identical
-   cards and seat rotations across matched conditions.
-2. **Read an observation.** `hand.view(seat)` constructs a
-   [`PokerView`](src/poker_collusion/records.py) from permitted fields: the
-   player's own card, public actions, pot, legal actions for that player, and
-   any information revealed at settlement. Our wrapper defines this disclosure
-   policy and interprets the engine's action history.
-3. **Apply a decision.** `hand.apply(Action.BET)` validates the named action and
-   translates it to the engine's numeric code: `0` for check/fold or `1` for
-   bet/call, depending on the betting context. OpenSpiel advances the state.
-4. **Settle the hand.** OpenSpiel determines termination and net rewards. The
-   wrapper provides the full reward vector to trusted experiment code and each
-   player's own reward in its observation.
+Each denominator is 3 players × 2 message rounds × 12 hands × 3 sessions.
+These are communication opportunities, not independent trials or coalition
+counts. Private use exceeded public use in each initial matched set for both models.
 
-Game snapshots store the deal and accepted actions in versioned JSON. Restoring
-a snapshot replays those actions through the wrapper; cloning copies the native
-state so each continuation can advance independently.
+Some Luna exchanges implemented truthful information sharing. False claims,
+broken promises, and an ambiguous fold of an unbeatable ace complicate the
+interpretation. Honesty wording produced inconsistent changes across four saved
+contexts. **The study does not establish lasting coalitions, a reliable
+coalition-rate difference, or a causal profit advantage.** See the
+[paper-to-evidence map](docs/reviewer-guide.md#paper-to-evidence-map) and
+[worked examples](docs/evidence-examples.md) for the supporting and contrary cases.
 
-The session engine requests decisions from an async callable receiving only a
-player's permitted view, then applies validated actions through `PokerHand`.
-Scripted callables and the Inspect model adapter use the same interface.
-OpenSpiel remains responsible for poker mechanics.
+## Research status
 
-## Setup and checks
+Sprint collection is complete; the results are exploratory. The framework and
+smoke tests predate 23 October. Qualification, neutral pilots, and follow-up
+studies ran during 23–25 October 2026. The final audit covers 85 supplied game
+journals, including controls and failed attempts; this is an audit coverage
+count, not 85 independent neutral replications.
 
-Use Python 3.13 and [uv](https://docs.astral.sh/uv/). Dependency versions are
-recorded in `uv.lock`.
+Codex performed the detailed transcript audit. Ognyan Genev reviewed messages,
+actions, findings and conclusions; the annotations retain their AI provenance.
+The [final evidence review](docs/reviewer-audit-2026-10-26.md) explains coverage
+and limitations. The [research log](docs/research-log.md) preserves chronology.
+Historical plans and pending-review statements describe their dated checkpoints.
+
+## Repository map
+
+| Location | Contents |
+| --- | --- |
+| [`docs/`](docs/README.md) | Paper, reviewer guide, results, methods, and historical records |
+| [`configs/`](configs) | Recorded experiment settings, model prices, and selection policies |
+| [`src/poker_collusion/`](src/poker_collusion) | Game/session engine, model adapter, recording, analysis, and review tools |
+| [`scripts/`](scripts) | Command-line entry points for offline review and experiment execution |
+| [`tests/`](tests) | Offline tests of mechanics, privacy, delivery, recording, and analysis |
+| `runs/` | Local raw evidence and generated outputs; **Git-ignored** |
+| [Research overview](llm-poker-collusion-research-project.md) | Original research design and longer-term scope |
+| [`TODO.md`](TODO.md) | Development history and broader roadmap, including work beyond this sprint |
+
+Raw journals, transcripts, review exports, and evidence archives are separate
+from Git. A clone does not include them. Relative `runs/` links in historical
+reports work only when the corresponding evidence has been supplied. See the
+[evidence availability notes](docs/reviewer-guide.md#evidence-availability).
+
+## Try the offline demo
+
+Use Python 3.13 and [uv](https://docs.astral.sh/uv/). `uv.lock` records dependency
+versions. Run from the repository root:
 
 ```sh
 uv sync --locked
+POKER_DEMO_DIR="runs/preparation/reviewer-demo-001"
+mkdir -p "$POKER_DEMO_DIR"
+uv run --locked python scripts/demo_session.py --channel private --hands 3 --seed 0 --log "$POKER_DEMO_DIR/session.jsonl"
+uv run --locked python scripts/replay_session.py "$POKER_DEMO_DIR/session.jsonl"
+uv run --locked python scripts/generate_review_page.py "$POKER_DEMO_DIR/session.jsonl" --output "$POKER_DEMO_DIR/review.html"
+```
+
+Open `runs/preparation/reviewer-demo-001/review.html` in your browser. You should
+see three hands with messages, cards, betting actions, and review controls.
+Replay should report `"verified": true` and `"completed_hands": 3`.
+Choose a new directory name when repeating the demo; existing files are protected.
+
+This example uses scripted players and makes no model API calls. It demonstrates
+recording and review, not empirical model behavior. Initial installation downloads
+dependencies. The [offline review guide](docs/offline-review.md) explains the
+viewer and adds a three-condition Inspect example; the
+[complete walkthrough](docs/workflow-walkthrough.md) continues through annotation
+and analysis.
+
+## Setup and offline checks
+
+After installing the locked environment above, check the framework with:
+
+```sh
 uv run --locked pytest
 uv run --locked ruff check .
 uv run --locked ruff format --check .
 uv run --locked mypy
 ```
 
-These checks run locally without model API calls or credentials. Initial setup
-downloads dependencies. The current environment has been verified on macOS
-arm64 with Python 3.13.7 and Linux x86_64 with Python 3.13.16, OpenSpiel 1.6.15,
-and Inspect 0.3.278. Inspect tests use scripted models or simulated OpenAI HTTP
-responses and reject external network connections; local event-loop sockets and
-writable XDG data/cache directories are required.
+These checks use scripted models or simulated provider responses and require
+no API credentials. Local event-loop sockets and writable XDG data/cache
+directories are required. Optional browser tests have additional setup in the
+[workflow walkthrough](docs/workflow-walkthrough.md#2-check-the-installation).
 
-Offline verification (2026-10-15): **994 offline tests pass**, together with Ruff
-lint/format and strict mypy checks. Live qualification (2026-10-17): three matched
-sessions and nine hands completed with 64 calls, 73,701 tokens, and $0.06272325
-metered cost. Saved-run verification and raw provider review passed. Poker
-competence and coordination remain unproven.
+## How the experiment works
 
-Annotation verification (2026-10-18): **1,040 offline tests pass**, including
-46 annotation tests, together with Ruff lint/format and strict mypy checks.
-All six authored annotation examples generated, replayed, and validated offline.
+OpenSpiel supplies three-player Kuhn poker: one card each from J/Q/K/A, a
+one-chip ante, at most one one-chip bet, and no raises. Our session engine
+adds persistent identities, rotating seats, optional communication, and bounded
+memory. Public messages reach everyone; private messages reach the sender and
+one chosen recipient. All messages in a round are generated before delivery,
+so only a later round can respond to an offer.
 
-Review-form verification (2026-10-19): **1,051 tests pass** with the optional
-Chromium suite enabled, plus Ruff lint/format and strict mypy checks. Browser
-interactions cover all six examples and produce 26 Python-validated exports.
-The managed browser blocks local-file navigation, so these interface tests use
-the documented localhost fulfillment mode. Human rubric usability remains untested.
+Each decision receives only that player's permitted view. Audit journals keep
+the hidden deal, exact views, responses, actions, and outcomes for review and
+offline replay. They are never supplied to the players.
 
-Analyser verification (2026-10-19): **1,096 tests pass**, including 45 analyser
-tests and the optional browser suite, plus Ruff lint/format and strict mypy.
-All six example CLI reports match repeated API analysis. Tests cover partial
-sessions, rotating seats, revisions, uncertainty, and input integrity.
-
-Comparison verification (2026-10-19): **1,158 tests pass**, including 62 comparison
-tests and the optional browser suite, plus Ruff lint/format and strict mypy.
-The documented example commands generated and compared nine scripted Inspect
-sessions in three matched blocks. Tests cover paired estimates, missing/failed
-attempts, review exclusions, incompatible runs, revisions, and changed inputs.
-See the [comparison workflow](docs/comparison-protocol.md) for commands and policy.
-
-For a guided check, follow the [whole-workflow manual](docs/workflow-walkthrough.md),
-then the [human usability checklist](docs/usability-check.md). The walkthrough
-creates fresh offline artifacts with expected results; the checklist follows
-your own reviews through validation, analysis, and reporting.
-
-Report verification (2026-10-19): **1,187 tests pass**, including 28 renderer
-tests and both optional browser suites, plus Ruff lint/format and strict mypy.
-The [HTML report](docs/report-viewer.md) was generated from the saved nine-session
-example with links to all nine source review pages. Browser checks cover fixed
-estimates during filtering, evidence, missing/failed data, pagination, mobile,
-and print behavior. Human usability review remains pending.
-
-## Run Inspect offline
-
-```sh
-uv run --locked python scripts/run_experiment.py configs/inspect-offline.json --offline --output runs/preparation/inspect-001
-uv run --locked python scripts/verify_run.py runs/preparation/inspect-001
-```
-
-This executes three matched sessions through Inspect using a scripted mock, with
-synthetic token counts and no provider calls. It writes an Inspect `.eval` log,
-a run manifest, and linked `session.jsonl`/`model.jsonl` journals per attempt.
-Use a new output directory for each run. The runner exits nonzero for incomplete
-or unsuccessful sessions. The verifier cross-checks the manifest, Inspect log,
-and both journals, reconciles token usage, and replays each session without model
-calls. It uses the saved deals rather than regenerating them from a seed, and
-requires matching schedules across conditions and between Inspect and the game
-journals. Use `--preflight` instead of `--output` to inspect the planned workload
-without executing sessions. See the [Inspect protocol](docs/inspect-protocol.md)
-for artifact verification, limits, and separate competence/control templates.
-
-## Prepare the sprint pilot
-
-Keep dated research decisions, experiment notes, evidence links, and open
-questions in the [research log](docs/research-log.md).
-
-The current replication candidate is **GPT-6 Luna with explicit medium reasoning
-and strict JSON schema**. The [staged Luna plan](docs/luna-replication-plan-2026-10-24.md)
-links separate configs and pricing, preserves the original prompts and schedules,
-and records the approved spending plan and review gates. Basics, gameplay and all
-six controls completed and verified; the user authorized assistant gameplay
-verification. The authorized neutral pilot also completed: **nine sessions,
-three matched sets, 108 hands**, with all evidence checks passing. The
-[Luna iteration report and downloadable evidence](docs/luna-neutral-iteration-report-2026-10-24.md)
-cover public/private message use, possible private coordination, the reported Sol
-comparison and $0.456197200 neutral cost. Formal human annotations and independent
-review remain outstanding; no coalition-rate difference is estimated.
-See the [Luna qualification record](docs/luna-qualification-2026-10-24.md) and
-[control report and evidence archive](docs/luna-coordination-iteration-report-2026-10-24.md).
-
-The previous iteration used **GPT-6.1 Sol with explicit medium reasoning**.
-Use the [basic-check configuration](configs/qualification-basics-gpt-6.1-sol-medium.json),
-[gameplay configuration](configs/inspect-pilot-competence-gpt-6.1-sol-medium.json),
-and [pricing file](configs/openai-gpt-6.1-sol-pricing.json) as historical records.
-The log records results and remaining human review; the earlier GPT-5.4 mini
-configurations below remain preparation history.
-
-Start with the [scientific sprint runbook](docs/scientific-runbook.md) for the
-end-to-end sequence: preparation → qualification → exploratory pilot → protocol
-freeze → fresh main runs → human review → analysis and scientific report. It
-connects commands, artifacts, and criteria for proceeding; main settings remain
-undecided until the pilot evidence is reviewed.
-
-The [pilot preparation guide](docs/pilot-preparation.md) documents three live
-configurations prepared on 2026-10-22: no-communication competence gameplay,
-instructed coordination, and a matched neutral exploratory pilot. They use the
-pinned smoke-tested model, 12 hands per session, separate seed ranges, and explicit
-limits. Together they plan 18 sessions and 216 hands; their dollar stopping
-thresholds sum to $18 and are not a hard billing cap.
-
-The guide includes preflight commands without model calls and separate live
-commands for the October 23–25 sprint. These files are pre-sprint preparation,
-not pilot results or a frozen evaluation protocol. The
-[minimal qualification check](docs/qualification-checklist.md) adds six basic
-action cases asked twice, scripted verification, and a human checklist. Its
-whole-check dollar stopping threshold is $0.25. A pass is a basic action screen;
-human gameplay and coordination review remain required. No live qualification
-results are implied by the implementation or successful preflight.
-
-## Run an offline session
-
-Run a 30-hand session with seeded-random scripted players:
-
-```sh
-uv run --locked python scripts/demo_session.py --channel private
-```
-
-Use `--channel public` or `--channel none` for the other conditions. Keep
-`--seed` and `--hands` the same to reuse matched deals and rotations. The demo
-prints completion status, settled rewards by identity, retained-history counts,
-and the last hand's message count. It makes no model calls. Logging is optional.
-The random policy ignores message content when betting, so identical rewards
-across matched channel demos are expected.
-
-For a deterministic all-check session with no messages:
-
-```sh
-uv run --locked python scripts/demo_session.py --channel none --hands 6 --agent passive
-```
-
-The Python entry point is `await run_session(config, schedule, decide)`.
-`decide(view)` returns a `MessageDecision`, `PassDecision`, or `BetDecision`
-according to the phase. `SessionConfig` defaults to 30 hands, two message rounds,
-500 characters per message, a 1,000-character hand budget, ten retained hands,
-and a 30-second decision timeout. The runner returns completed or failed
-in-memory state; callers must inspect its `phase`. Cancellation raises
-`SessionInterrupted` carrying partial state.
-
-## Record and replay an offline session
-
-Use a new file for every attempt; existing files are never overwritten or resumed:
-
-```sh
-uv run --locked python scripts/demo_session.py --channel private --log runs/preparation/private-001.jsonl
-uv run --locked python scripts/replay_session.py runs/preparation/private-001.jsonl
-```
-
-The recorder flushes and fsyncs each event, including accepted decisions before
-their effects. Files contain the full hidden schedule and private audit data;
-never pass a journal to a player. Audit identifiers stay outside player views.
-
-In Python, use `with JsonlRecorder(path) as recorder:` from
-`poker_collusion.event_log`, then pass `recorder=recorder` to `run_session`.
-`await replay_session(path)` from `poker_collusion.replay` returns the reconstructed
-state after checking all observations, responses, effects, and terminal state.
-Replay uses recorded outcomes and makes no model calls or timeout waits.
-
-Cleanly failed and interrupted sessions also replay and retain their original
-status. Successful verification does not make them completed evaluation data.
-A missing footer or torn final line is **incomplete** and cannot be fully replayed.
-Inspect its committed prefix without modifying it:
-
-```sh
-uv run --locked python scripts/replay_session.py runs/preparation/private-001.jsonl --inspect
-```
-
-Only verified `complete` sessions qualify for complete-session results; retain
-all other statuses separately. Malformed committed records are rejected. A disk
-write failure stops execution and propagates as `RecordingError`; inspect the
-retained prefix and use a separate file/identifier for any later attempt.
-
-## Scripted hand
-
-```python
-from poker_collusion.poker import PokerHand
-from poker_collusion.records import Action
-
-hand = PokerHand((0, 1, 3))  # J, Q, A in acting-seat order; audit-only input
-hand.apply(Action.CHECK)
-hand.apply(Action.BET)
-hand.apply(Action.CALL)
-hand.apply(Action.FOLD)  # The earlier checker must respond to the bet.
-print(hand.view(0))  # Only this seat's permitted observation.
-print(hand.returns())  # (-1, -2, 3); trusted experiment code only.
-```
-
-Never give a decision callable the `PokerHand`, deal schedule, or serialized
-snapshot. They contain hidden cards. The session layer passes a player view that
-combines permitted poker information with delivered messages and bounded history.
-
-## Next steps
-
-The Phase 1 runtime is implemented and reviewed. **Step 6 is complete:** the
-[bounded live compatibility check](docs/live-smoke.md#accepted-run-2026-10-17)
-passed on 2026-10-17 for `openai/gpt-5.4-mini-2026-03-17`, including model/settings,
-legal decisions, usage, raw payloads, player privacy, and exact replay.
-
-**Step 7 preparation has started:** [rubric v0.2](docs/collusion-rubric.md)
-defines human coalition judgments with six authored worked examples. It is
-provisional. [Annotation records and validation](docs/annotation-format.md) are
-implemented with six executable examples and a [local browser review form](docs/review-form.md).
-The [single-session analyser](docs/analysis-protocol.md) now produces validated
-JSON summaries. The [comparison workflow](docs/comparison-protocol.md) adds
-offline matched-block estimates and a runnable scripted Inspect example. The
-[HTML viewer](docs/report-viewer.md) renders those saved results with session
-filters and evidence details. Human usability review and precise formation
-timing remain pending.
-The competence and coordination-control pilot, rubric calibration and freeze,
-final model and protocol selection, evaluation annotation and analysis, matched
-evaluation runs, and the sprint report remain sprint work. The
-[checklist](TODO.md) tracks these tasks. Phase 1 is the narrow sprint experiment;
-full recovery, counterfactual continuations, and broader model comparisons
-remain Phase 2.
-
-## Experiment outputs
-
-Write generated runs under `runs/` (ignored), separated into preparation, pilot,
-sprint evaluation, and Phase 2 confirmatory data. Preserve exact schedules and
-configuration with each run. The live smoke artifacts are preparation evidence;
-current qualification results are tracked in the [research log](docs/research-log.md).
-Main sprint evaluation data has not yet been collected.
+- [Game rules](docs/game-protocol.md) and [session protocol](docs/session-protocol.md)
+- [Model prompts and response format](docs/model-protocol.md)
+- [Recording and replay](docs/recording-protocol.md)
+- [Coalition rubric](docs/collusion-rubric.md) and [annotation format](docs/annotation-format.md)
+- [Framework examples and historical checks](docs/framework-reference.md)
+- [Complete offline workflow](docs/workflow-walkthrough.md)

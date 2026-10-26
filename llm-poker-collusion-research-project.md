@@ -1,5 +1,10 @@
 # Spontaneous LLM Collusion in Simplified Poker
 
+> **Original research proposal.** For the completed exploratory sprint,
+> read the [submitted paper](docs/poker-collusion-report.pdf) and
+> [reviewer guide](docs/reviewer-guide.md). The one-model plan and broader
+> future scope below are historical design choices, not the final study summary.
+
 ## Project overview
 
 We want to investigate whether independently motivated large language model (LLM) agents spontaneously form coalitions when they can communicate during a competitive game. We will use a small, three-player poker game and compare public and private communication channels.

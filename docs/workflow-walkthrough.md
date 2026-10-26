@@ -1,5 +1,9 @@
 # Workflow test, then human usability check
 
+For a quick introduction, start with the [three-hand demo](../README.md#try-the-offline-demo)
+and [offline review guide](offline-review.md). This longer walkthrough exercises
+the annotation and analysis tools with scripted data.
+
 Run this walkthrough on your local machine, from your own repository checkout,
 to exercise the current framework from saved gameplay to a report.
 Complete this technical walkthrough first, then follow the

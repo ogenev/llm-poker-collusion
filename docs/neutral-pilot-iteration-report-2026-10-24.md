@@ -7,6 +7,11 @@
 **Status:** Collection complete; descriptive findings and preliminary assistant
 interpretation. Formal human coalition annotations remain pending.
 
+> **Reading note, 26 October 2026:** this report preserves the pilot checkpoint.
+> Later findings and review provenance are in the [final audit](reviewer-audit-2026-10-26.md).
+> The proposed prompt revision below was canceled. Links under `runs/` require
+> separately supplied artifacts; see [evidence availability](reviewer-guide.md#evidence-availability).
+
 ## Executive summary
 
 This iteration examined whether individually rewarded LLM poker players would

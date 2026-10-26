@@ -14,6 +14,11 @@ two complete matched sets**. Hands, messages, offers and overlapping pairs are
 dependent observations. No human annotations are supplied, so the human primary
 private-minus-public estimate is **null**, not zero.
 
+> **Reading note, 26 October 2026:** this is the fresh-replication report
+> (cycle 2). Its pending-review statements are historical; see the
+> [final audit](reviewer-audit-2026-10-26.md) for subsequent review provenance.
+> Linked `runs/` files and the archive require [separate evidence](reviewer-guide.md#evidence-availability).
+
 ## Design, qualification and execution
 
 The researcher approved the [exact plan](luna-cycle2-plan-2026-10-24.md), then

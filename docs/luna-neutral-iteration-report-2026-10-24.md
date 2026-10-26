@@ -8,6 +8,11 @@ information-sharing and conditional-plan candidates, but assistant review does
 not settle an unambiguous enacted-coalition finding. Human labels remain pending;
 the public/private coalition-probability difference is not estimated.
 
+> **Reading note, 26 October 2026:** review-status statements below describe
+> this report's checkpoint. See the [final audit](reviewer-audit-2026-10-26.md)
+> for later findings and author-review provenance. Links under `runs/` require
+> separately supplied artifacts; see [evidence availability](reviewer-guide.md#evidence-availability).
+
 ## Research question and design
 
 Can individually rewarded LLM poker players spontaneously form coalitions, and
@@ -317,7 +322,7 @@ prompt or mechanism changes; the cancelled channel-explicit revision stays absen
 
 ## Reproducible packet
 
-- [Download the complete Luna iteration archive](../runs/pilot/exploratory/luna-neutral-iteration-20261024-001.zip),
+- [Local Luna iteration archive (supplied separately)](../runs/pilot/exploratory/luna-neutral-iteration-20261024-001.zip),
   [ZIP checksum](../runs/pilot/exploratory/luna-neutral-iteration-20261024-001.zip.sha256),
   [extraction/verification receipt](../runs/pilot/exploratory/luna-neutral-iteration-20261024-001.zip.verification.json).
 - [Evidence index and offline reproduction commands](../runs/pilot/exploratory/luna-neutral-20261024-001-evidence/README.md),

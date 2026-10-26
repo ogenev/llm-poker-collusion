@@ -4,68 +4,39 @@ Working notebook for the LLM poker collusion study. Started 2026-10-23
 (Europe/Madrid). Record questions, decisions, experiments, failures, evidence,
 and interpretation here as the research progresses.
 
+Source at notebook creation: `2b9f9db14945c0736568d8d3c71a0878599269c7`.
+
 Use dated entries and preserve earlier decisions when they change. Mark proposals
 as provisional until accepted or frozen. Link each empirical claim to its run,
 review, or analysis; distinguish observations from interpretations. This notebook
 does not replace the raw journals, human annotations, or frozen main protocol.
 Large artifacts live under Git-ignored `runs/` and need a separate archive.
 
-## Current position
+## Current position — 26 October 2026
 
-- **Question:** Does private rather than public communication change the
-  probability of enacted pair coordination among individually rewarded agents?
-- **Sprint scope:** One model, three players, repeated three-player Kuhn poker;
-  public/private comparison, no-communication baseline, and separate instructed
-  coordination controls.
-- **First cycle:** Luna basics passed 12/12; all three gameplay, six control and nine
-  neutral sessions completed and verified. Neutral: 108 hands, 813 calls,
-  1,909,128 tokens, $0.456197200. That cycle: 1,659 calls, 4,811,920 tokens,
-  $0.944253475; no paid failure or missing usage. Main settings remain unfrozen.
-- **Selected poker model:** `openai/gpt-6-luna`, explicit medium reasoning,
-  selected by the researcher on 2026-10-24. Strict JSON schema throughout.
-- **Design:** Prior replications preserved original prompts, mechanics, communication,
-  memory, deals and rotations. Cycle 3 contrasted announced 12/36-hand horizons.
-  Cycle 4 completed the approved selected-context honesty-wording probe;
-  [execution ledger](luna-cycle4-execution-2026-10-25.md) tracks collection and checks.
-  The channel-explicit prompt revision and ten-set expansion remain cancelled.
-- **Baseline:** The committed [Sol report](neutral-pilot-iteration-report-2026-10-24.md)
-  reports completed qualification and nine neutral sessions, with human coalition
-  labels pending. Its ignored raw evidence is unavailable in this cloud checkout;
-  historical claims below are reported records, not independently reverified here.
-- **Review:** The [delegated assistant review](luna-assistant-adjudication-2026-10-24.md)
-  is complete: 15 validated model annotations / 45 pairs, all three gameplay
-  sessions and the jack-call diagnostic. Controls show information enactment in
-  both channels; neutral private cases remain uncertain. Human labels and an
-  independent second review remain distinct and outstanding.
-  The [private-message audit](luna-private-message-review-2026-10-24.md) covers
-  all 155 messages: 62 true/77 false own-card assertions; applicable fold offers
-  were broken in 5/6 cases. These descriptive counts do not resolve coalitions.
-  The researcher accepted [cycle 2 preparation](luna-cycle2-plan-2026-10-24.md):
-  calibration, a separate 60-call diagnostic, then three unchanged fresh matched
-  sets on seeds 400–402. The researcher approved the exact spending plan;
-  [execution](luna-cycle2-execution-2026-10-24.md) passed the diagnostic 60/60
-  (63,265 tokens, $0.0117173). [Cycle 2 is complete as fixed attempts](luna-cycle2-iteration-report-2026-10-24.md):
-  eight complete sessions plus partial public400, two complete matched sets of
-  three planned, no replacement. Private enactment remains assistant-uncertain;
-  human primary estimate is null. Known cycle-2 cost $0.432270800; cumulative
-  Luna through cycle 2 $1.376524275, plus two unresolved requests. Independent
-  review is pending.
-- **Cycle 3 complete:** The [duration study report](luna-cycle3-continuation-report-2026-10-25.md)
-  covers 17 complete sessions plus preserved partial seed-500/private/36:
-  two of three complete seed blocks, 427 settled hands. Private information
-  exchanges have assistant-observed enactment, with no confirmed betting pact
-  or causal benefit. Diagnostic 26/26; known cycle-3 cost $1.857271945 plus one
-  unknown request. Cumulative Luna through cycle3: $3.233796220 plus three unknown requests.
-  Raw evidence was archived and replayed offline in a fresh locked
-  environment; human labels and independent scientific adjudication remain pending.
-- **Cycle 4 complete:** [Honesty probe report](luna-cycle4-iteration-report-2026-10-25.md):
-  120 verified responses,351,357 tokens,$0.056014770, no failed/unknown new call.
-  Mixed local wording effects and recipient routing; hand15's earlier truthful
-  correction did not recur in10 original-condition responses. Four selected
-  contexts from one private session supply no new independent-game/channel/model
-  comparison or coalition-rate estimate. Human review remains pending.
-  Cumulative known Luna cost is $3.289810990 plus three historical unknown requests.
-- **Source at notebook creation:** `2b9f9db14945c0736568d8d3c71a0878599269c7`.
+Sprint collection is complete. The [submitted paper](poker-collusion-report.pdf)
+and [reviewer guide](reviewer-guide.md) summarize experiments with GPT-6.1 Sol
+and GPT-6 Luna. The study remains exploratory; no confirmatory coalition-rate
+or causal-profit result is established.
+
+- Initial neutral pilots: three matched sets and 108 hands per model.
+- Luna fresh replication: 103 settled hands; duration study: 427 settled hands.
+- Honesty probe: 120 responses to four saved contexts, with mixed wording and
+  recipient effects and no subsequent betting.
+- [Prospective source collection](luna-cycle5-source-report-2026-10-25.md):
+  three complete private sessions, 108 hands, and three selected contexts.
+  Its proposed follow-up intervention was not run.
+- [Final audit](reviewer-audit-2026-10-26.md): 85 supplied sprint journals,
+  including controls and failed attempts, covering 1,142 settled hands and
+  3,629 delivered messages. These are coverage counts, not replication counts.
+- Codex performed the transcript audit; Ognyan Genev reviewed messages,
+  actions, findings and conclusions. AI annotations retain their provenance;
+  this does not establish independent human adjudication of every hand.
+
+The dated entries below preserve the information available at each checkpoint,
+including earlier statements about unavailable artifacts and pending reviews.
+The channel-explicit prompt revision and ten-set expansion were canceled.
+Raw evidence remains separate from Git; see [availability](reviewer-guide.md#evidence-availability).
 
 Operational references: [scientific runbook](scientific-runbook.md),
 [qualification checklist](qualification-checklist.md),
@@ -490,6 +461,9 @@ and fresh-extraction source/cohort reproduction passed with API credentials unse
 The execution ledger records its checksum and scope. All184 frozen files match.
 
 ## Open decisions
+
+These were open at the collection checkpoint. The submitted study's final
+scope and limitations are summarized in [Current position](#current-position--26-october-2026).
 
 - Human adjudication of neutral-pilot findings; main settings/sample size after review.
 - Human control-review assignments, second-review availability, and usability outcome.

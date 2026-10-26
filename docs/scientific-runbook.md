@@ -1,5 +1,10 @@
 # Scientific sprint runbook
 
+> **Historical operating plan, 22 October 2026.** For what was actually
+> collected and reported, start with the [reviewer guide](reviewer-guide.md)
+> and [final audit](reviewer-audit-2026-10-26.md). The proposed confirmatory
+> sequence below should not be read as a completed study.
+
 Prepared on 2026-10-22 for the October 23–25 sprint. This is the operating guide;
 the main protocol is still **not frozen**, and this document records no live
 qualification or evaluation results. Run commands from the repository root with
